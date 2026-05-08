@@ -66,6 +66,73 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Chrome Test",
+      "mana": 1,
+      "rarity": "",
+      "difficulty": "",
+      "traits": [],
+      "traditions": [],
+      "access": [],
+      "cast": {
+        "actions": "",
+        "component": "",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": ""
+      },
+      "save": {
+        "type": "",
+        "modifier": ""
+      },
+      "duration": "",
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "bonus": 0,
+        "type": ""
+      },
+      "effect": {
+        "base": "",
+        "options": []
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": {},
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
