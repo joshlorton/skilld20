@@ -805,12 +805,40 @@ function closeModal() { document.getElementById('modal-overlay').style.display =
    INIT & EVENTS
    ============================================================ */
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-  await loadData();
+  /* ----------------------------------------------------------
+     Wire up all event listeners immediately -- before any
+     async work -- so a failed fetch can never block buttons.
+     ---------------------------------------------------------- */
 
   // Search
   document.getElementById('search').addEventListener('input', renderList);
+
+  // Token button -- must work even before data loads
+  document.getElementById('btn-token').addEventListener('click', openModal);
+
+  document.getElementById('btn-token-save').addEventListener('click', () => {
+    const t = document.getElementById('token-input').value.trim();
+    state.token = t;
+    if (t) localStorage.setItem('skd20_token', t);
+    else   localStorage.removeItem('skd20_token');
+    closeModal();
+    loadData();
+  });
+
+  document.getElementById('btn-token-clear').addEventListener('click', () => {
+    state.token = '';
+    localStorage.removeItem('skd20_token');
+    closeModal();
+    loadData();
+  });
+
+  document.getElementById('btn-token-cancel').addEventListener('click', closeModal);
+
+  document.getElementById('modal-overlay').addEventListener('click', e => {
+    if (e.target.id === 'modal-overlay') closeModal();
+  });
 
   // New Foundation
   document.getElementById('btn-new').addEventListener('click', () => {
@@ -847,7 +875,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Save to GitHub
   document.getElementById('btn-save-gh').addEventListener('click', async () => {
-    // Apply editor values if in edit mode
     if (state.mode === 'edit') {
       try {
         const updated = collectEditor();
@@ -868,35 +895,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Token button
-  document.getElementById('btn-token').addEventListener('click', openModal);
-
-  // Token save
-  document.getElementById('btn-token-save').addEventListener('click', () => {
-    const t = document.getElementById('token-input').value.trim();
-    state.token = t;
-    if (t) localStorage.setItem('skd20_token', t);
-    else   localStorage.removeItem('skd20_token');
-    closeModal();
-    loadData();
-    updateButtons();
-  });
-
-  // Token clear
-  document.getElementById('btn-token-clear').addEventListener('click', () => {
-    state.token = '';
-    localStorage.removeItem('skd20_token');
-    closeModal();
-    loadData();
-    updateButtons();
-  });
-
-  // Token cancel
-  document.getElementById('btn-token-cancel').addEventListener('click', closeModal);
-
-  // Close modal on overlay click
-  document.getElementById('modal-overlay').addEventListener('click', e => {
-    if (e.target.id === 'modal-overlay') closeModal();
-  });
+  /* ----------------------------------------------------------
+     Now load data -- errors here no longer affect buttons.
+     ---------------------------------------------------------- */
+  loadData();
 
 });
