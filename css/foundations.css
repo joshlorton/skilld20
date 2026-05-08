@@ -451,7 +451,11 @@ body {
    SCROLLBAR
    ============================================================ */
 
-::-webkit-scrollbar       { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: #2a2a2a; }
+/* Firefox */
+* { scrollbar-width: thin; scrollbar-color: #2a2a2a var(--bg); }
+
+/* Chrome / Safari / Edge */
+::-webkit-scrollbar             { width: 5px; height: 5px; }
+::-webkit-scrollbar-track       { background: var(--bg); }
+::-webkit-scrollbar-thumb       { background: #2a2a2a; }
 ::-webkit-scrollbar-thumb:hover { background: #444; }
