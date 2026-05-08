@@ -135,7 +135,7 @@
       "components": []
     },
     {
-      "name": "Firefox Test 2",
+      "name": "Force Edit",
       "mana": 17,
       "rarity": "",
       "difficulty": "",
@@ -166,10 +166,10 @@
       },
       "duration": "",
       "damage": {
-        "dieNumber": 0,
-        "dieSize": 0,
-        "bonus": 0,
-        "type": ""
+        "dieNumber": 1,
+        "dieSize": 6,
+        "bonus": 1,
+        "type": "Force"
       },
       "effect": {
         "base": "",
