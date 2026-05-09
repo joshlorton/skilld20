@@ -579,7 +579,34 @@ function edCheckboxes(label, groupId, currentValue) {
   return wrap;
 }
 
-function edJson(label, id, value) {
+function edGroupedCheckboxes(label, groupId, currentValues, groups) {
+  const cv   = new Set((currentValues || []).map(v => String(v).toLowerCase()));
+  const wrap = el('div', { class: 'form-field form-field-wide' });
+  wrap.appendChild(el('label', {}, label));
+  const container = el('div', { class: 'checkbox-container', id: groupId });
+
+  groups.forEach(group => {
+    const section = el('div', { class: 'checkbox-section' });
+    if (group.label) section.appendChild(el('span', { class: 'checkbox-section-label' }, group.label));
+    const row = el('div', { class: 'checkbox-group checkbox-group-wrap' });
+    group.items.forEach(item => {
+      const val  = typeof item === 'object' ? item.value : item;
+      const text = typeof item === 'object' ? item.label : item;
+      const cbId = `${groupId}-${val.replace(/[\s/[\]]/g, '-')}`;
+      const lbl  = el('label', { class: 'checkbox-label', for: cbId });
+      const cb   = el('input', { type: 'checkbox', id: cbId, value: val });
+      if (cv.has(val.toLowerCase())) cb.checked = true;
+      lbl.appendChild(cb);
+      lbl.appendChild(document.createTextNode(text));
+      row.appendChild(lbl);
+    });
+    section.appendChild(row);
+    container.appendChild(section);
+  });
+
+  wrap.appendChild(container);
+  return wrap;
+}
   const wrap = el('div', { class: 'form-field' });
   wrap.appendChild(el('label', { for: id }, label));
   const ta = el('textarea', { id, class: 'form-input form-json', rows: 5 });
@@ -616,7 +643,7 @@ const OPTS = {
     { value: 'R', label: '\u21BA  Reaction' }
   ],
   areaShape  : ['cone', 'cube', 'cylinder', 'burst', 'line', 'emanation', 'sphere', 'wall'],
-  attackType : ['ranged', 'melee', 'ranged touch', 'melee touch'],
+  attackType : ['ranged', 'melee'],
   saveType   : ['strength', 'agility', 'dexterity', 'constitution',
                 'perception', 'intelligence', 'wisdom', 'charisma'],
   dieSize    : [
@@ -636,7 +663,20 @@ const OPTS = {
   ]
 };
 
-function parseDuration(dur) {
+const TRAIT_GROUPS = [
+  { label: 'Energy',    items: ['acid', 'cold', 'fire', 'force', 'lightning',
+                                'necrotic', 'physical', 'poison', 'psychic', 'radiant', 'sonic'] },
+  { label: 'Mental',    items: ['charm', 'compulsion', 'emotion', 'fear', 'mental', 'sleep'] },
+  { label: 'Sensory',   items: ['auditory', 'olfactory', 'tactile', 'visual'] },
+  { label: 'Detection', items: ['detection', 'shrouded'] },
+  { label: 'Other',     items: ['creation', 'healing', 'illusion', 'summoning', 'utility', 'ward'] }
+];
+
+const TRADITION_GROUPS = [
+  { label: 'Trained', items: ['arcane', 'divine', 'druidic', 'elemental/primal',
+                               'pact [contractual]', 'pact [devotional]'] },
+  { label: 'Natural', items: ['bloodline', 'innate', 'pact [personality]', 'pact [inherited]'] }
+];
   if (!dur) return { count: '', length: '' };
   const m = String(dur).match(/^(\d+)\s+(.+)$/);
   return m ? { count: m[1], length: m[2] } : { count: '', length: dur };
@@ -661,9 +701,9 @@ function buildEditor(f) {
     edSelect('Rarity',    'ed-rarity',     f.rarity,     OPTS.rarity),
     edSelect('Difficulty','ed-difficulty', f.difficulty, OPTS.difficulty)
   ));
-  form.appendChild(edField('Traits (comma-separated)',     'ed-traits',     (f.traits     || []).join(', ')));
-  form.appendChild(edField('Traditions (comma-separated)', 'ed-traditions', (f.traditions || []).join(', ')));
-  form.appendChild(edField('Access (comma-separated)',     'ed-access',     (f.access     || []).join(', ')));
+  form.appendChild(edGroupedCheckboxes('Traits', 'ed-traits', f.traits, TRAIT_GROUPS));
+  form.appendChild(edGroupedCheckboxes('Traditions', 'ed-traditions', f.traditions, TRADITION_GROUPS));
+  form.appendChild(edField('Access (one entry per line)', 'ed-access', (f.access || []).join('\n'), 'textarea'));
 
   // Cast
   form.appendChild(sec('Cast'));
@@ -779,6 +819,10 @@ function collectEditor() {
     return Array.from(document.querySelectorAll(`#${groupId} input:checked`))
       .map(b => b.value).join('+');
   }
+  function checkboxArr(groupId) {
+    return Array.from(document.querySelectorAll(`#${groupId} input:checked`))
+      .map(b => b.value);
+  }
 
   const durCount  = v('ed-dur-count');
   const durLength = v('ed-dur-length');
@@ -789,9 +833,9 @@ function collectEditor() {
     mana       : num('ed-mana'),
     rarity     : v('ed-rarity'),
     difficulty : v('ed-difficulty'),
-    traits     : arr('ed-traits'),
-    traditions : arr('ed-traditions'),
-    access     : arr('ed-access'),
+    traits     : checkboxArr('ed-traits'),
+    traditions : checkboxArr('ed-traditions'),
+    access     : lines('ed-access'),
     cast: {
       actions   : v('ed-cast-actions'),
       component : checkboxes('ed-cast-comp'),
