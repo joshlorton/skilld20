@@ -160,11 +160,17 @@ const RARITY_BG = {
   unique   : '#54116d'
 };
 const DIFFICULTY_BG = {
-  untrained : '#006030',
-  trained   : '#1a1a1a',
-  expert    : '#7a3510',
-  master    : '#160b65',
-  legendary : '#54116d'
+  easy             : '#006030',
+  average          : '#1a1a1a',
+  hard             : '#7a3510',
+  'very hard'      : '#160b65',
+  'incredibly hard': '#54116d',
+  // legacy PF2e values kept for backwards compatibility
+  untrained        : '#006030',
+  trained          : '#1a1a1a',
+  expert           : '#7a3510',
+  master           : '#160b65',
+  legendary        : '#54116d'
 };
 
 function traitTag(text, bg) {
@@ -595,7 +601,13 @@ function edRow(...fields) {
 
 const OPTS = {
   rarity     : ['common', 'uncommon', 'rare', 'unique'],
-  difficulty : ['untrained', 'trained', 'expert', 'master', 'legendary'],
+  difficulty : [
+    { value: 'easy',             label: 'Easy' },
+    { value: 'average',          label: 'Average' },
+    { value: 'hard',             label: 'Hard' },
+    { value: 'very hard',        label: 'Very Hard' },
+    { value: 'incredibly hard',  label: 'Incredibly Hard' }
+  ],
   actions    : [
     { value: 'F', label: '\u25C7  Free' },
     { value: '1', label: '\u25C6  1 action' },
@@ -608,16 +620,20 @@ const OPTS = {
   saveType   : ['strength', 'agility', 'dexterity', 'constitution',
                 'perception', 'intelligence', 'wisdom', 'charisma'],
   dieSize    : [
-    { value: 3, label: 'd3' }, { value: 4,  label: 'd4'  },
-    { value: 6, label: 'd6' }, { value: 8,  label: 'd8'  },
+    { value: 3,  label: 'd3'  }, { value: 4,  label: 'd4'  },
+    { value: 6,  label: 'd6'  }, { value: 8,  label: 'd8'  },
     { value: 10, label: 'd10' }, { value: 12, label: 'd12' }
   ],
   damageType : ['acid', 'bludgeoning', 'cold', 'fire', 'force', 'lightning',
                 'necrotic', 'physical', 'piercing', 'poison', 'psychic',
                 'radiant', 'slashing', 'sonic'],
-  durLength  : ['instantaneous', 'round', 'minute', '10 minutes', 'hour',
-                '8 hours', 'day', 'week', 'month', 'year',
-                'until dismissed', 'until triggered', 'permanent']
+  durLength  : [
+    'instantaneous',
+    'until the start of your next turn',
+    'until the end of your next turn',
+    'rounds', 'minutes', 'hours', 'days', 'weeks', 'months', 'years',
+    'until dismissed', 'until triggered', 'permanent'
+  ]
 };
 
 function parseDuration(dur) {
@@ -637,8 +653,8 @@ function buildEditor(f) {
   const sec  = t => el('div', { class: 'editor-section-title' }, t);
   const dur  = parseDuration(f.duration);
 
-  // Identity
-  form.appendChild(sec('Identity'));
+  // Foundation (was Identity)
+  form.appendChild(sec('Foundation'));
   form.appendChild(edRow(
     edField('Name',       'ed-name',       f.name),
     edNum(  'Mana',       'ed-mana',       f.mana, 0),
@@ -652,9 +668,9 @@ function buildEditor(f) {
   // Cast
   form.appendChild(sec('Cast'));
   form.appendChild(edRow(
-    edSelect('Actions',    'ed-cast-actions',     String(f.cast?.actions ?? ''), OPTS.actions),
-    edCheckboxes('Components', 'ed-cast-comp',    f.cast?.component),
-    edField('Trigger',     'ed-cast-trigger',     f.cast?.trigger)
+    edSelect('Actions',    'ed-cast-actions',  String(f.cast?.actions ?? ''), OPTS.actions),
+    edCheckboxes('Components', 'ed-cast-comp', f.cast?.component),
+    edField('Trigger',     'ed-cast-trigger',  f.cast?.trigger)
   ));
 
   // Range & Area
@@ -669,24 +685,6 @@ function buildEditor(f) {
     edField('Targets Type',  'ed-targets-type',  f.targets?.type)
   ));
 
-  // Attack & Save
-  form.appendChild(sec('Attack & Save'));
-  form.appendChild(edRow(
-    edSelect('Attack Type',     'ed-atk-type',      f.attack?.type,     OPTS.attackType),
-    edNum(  'Attack Modifier',  'ed-atk-modifier',  f.attack?.modifier, null),
-    edSelect('Save Type',       'ed-save-type',     f.save?.type,       OPTS.saveType),
-    edNum(  'Save Modifier',    'ed-save-modifier', f.save?.modifier,   null)
-  ));
-
-  // Damage
-  form.appendChild(sec('Damage'));
-  form.appendChild(edRow(
-    edNum(  'Die Count', 'ed-dmg-count',    f.damage?.dieNumber, 0),
-    edSelect('Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize),
-    edNum(  'Modifier',  'ed-dmg-modifier', f.damage?.modifier ?? f.damage?.bonus, null),
-    edSelect('Type',     'ed-dmg-type',     f.damage?.type,      OPTS.damageType)
-  ));
-
   // Duration
   form.appendChild(sec('Duration'));
   form.appendChild(edRow(
@@ -694,10 +692,22 @@ function buildEditor(f) {
     edSelect('Length', 'ed-dur-length', dur.length, OPTS.durLength)
   ));
 
-  // Effect
+  // Effect (includes Damage and Attack & Save)
   form.appendChild(sec('Effect'));
   form.appendChild(edField('Base Effect', 'ed-effect-base', f.effect?.base, 'textarea'));
   form.appendChild(edJson('Options (JSON array)', 'ed-effect-options', f.effect?.options));
+  form.appendChild(edRow(
+    edNum(  'Die Count', 'ed-dmg-count',    f.damage?.dieNumber, 0),
+    edSelect('Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize),
+    edNum(  'Modifier',  'ed-dmg-modifier', f.damage?.modifier ?? f.damage?.bonus, null),
+    edSelect('Type',     'ed-dmg-type',     f.damage?.type,      OPTS.damageType)
+  ));
+  form.appendChild(edRow(
+    edSelect('Attack Type',    'ed-atk-type',      f.attack?.type,     OPTS.attackType),
+    edNum(  'Attack Modifier', 'ed-atk-modifier',  f.attack?.modifier, null),
+    edSelect('Save Type',      'ed-save-type',     f.save?.type,       OPTS.saveType),
+    edNum(  'Save Modifier',   'ed-save-modifier', f.save?.modifier,   null)
+  ));
 
   // Skill Check
   form.appendChild(sec('Skill Check'));
