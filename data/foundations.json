@@ -24,17 +24,17 @@
       },
       "attack": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "save": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "duration": "",
       "damage": {
         "dieNumber": 0,
         "dieSize": 0,
-        "bonus": 0,
+        "modifier": 0,
         "type": ""
       },
       "effect": {
