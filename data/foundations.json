@@ -3,8 +3,8 @@
     {
       "name": "Firerfox test",
       "mana": 13,
-      "rarity": "",
-      "difficulty": "",
+      "rarity": "common",
+      "difficulty": "average",
       "traits": [
         "fire",
         "ward"
