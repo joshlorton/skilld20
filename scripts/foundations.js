@@ -1,4 +1,4 @@
-Save error: GitHub 409:'use strict';
+'use strict';
 
 /* ============================================================
    CONFIG
@@ -106,28 +106,47 @@ async function loadData() {
   updateButtons();
 }
 
+async function fetchCurrentSha() {
+  const resp = await fetch(
+    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
+    { headers: ghHeaders() }
+  );
+  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
+  const raw = await resp.json();
+  state.sha = raw.sha;
+}
+
 async function saveData() {
   if (!state.token) { setStatus('No token set', 'error'); return false; }
-  setStatus('Saving…', 'load');
+  setStatus('Saving\u2026', 'load');
   try {
-    const json    = JSON.stringify({ foundations: state.foundations }, null, 2);
-    const content = btoa(unescape(encodeURIComponent(json)));
-    const ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
-    const body    = { message: `Update foundations [${ts}]`, content, sha: state.sha };
-    const resp    = await fetch(
-      `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
-      { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-    );
-    if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
-    const result = await resp.json();
-    state.sha    = result.content.sha;
-    state.dirty  = false;
-    setStatus('Saved to GitHub ✓', 'ok');
-    return true;
+    return await attemptSave(false);
   } catch (err) {
     setStatus(`Save error: ${err.message}`, 'error');
     return false;
   }
+}
+
+async function attemptSave(isRetry) {
+  const json    = JSON.stringify({ foundations: state.foundations }, null, 2);
+  const content = btoa(unescape(encodeURIComponent(json)));
+  const ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
+  const body    = { message: `Update foundations [${ts}]`, content, sha: state.sha };
+  const resp    = await fetch(
+    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
+    { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+  );
+  if (resp.status === 409 && !isRetry) {
+    setStatus('Conflict detected, refreshing\u2026', 'load');
+    await fetchCurrentSha();
+    return attemptSave(true);
+  }
+  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
+  const result = await resp.json();
+  state.sha    = result.content.sha;
+  state.dirty  = false;
+  setStatus('Saved to GitHub \u2713', 'ok');
+  return true;
 }
 
 /* ============================================================
@@ -217,8 +236,9 @@ function renderSpecs(f) {
   if (hasValue(f.duration)) add(specRow('Duration', f.duration));
 
   if (f.damage?.dieNumber) {
-    const d = f.damage;
-    const dmg = `${d.dieNumber}d${d.dieSize}${d.bonus ? `+${d.bonus}` : ''} ${d.type || ''}`.trim();
+    const d   = f.damage;
+    const mod = d.modifier ?? d.bonus;
+    const dmg = `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim();
     add(specRow('Damage', dmg));
   }
 
@@ -494,152 +514,237 @@ function renderViewer(f) {
 }
 
 /* ============================================================
+   EDITOR — FIELD HELPERS
+   ============================================================ */
+
+function edField(label, id, value, type) {
+  const wrap = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', { for: id }, label));
+  const input = el(type === 'textarea' ? 'textarea' : 'input', { id, class: 'form-input' });
+  if (type !== 'textarea') input.type = type || 'text';
+  input.value = (value !== null && value !== undefined) ? String(value) : '';
+  if (type === 'textarea') input.rows = 3;
+  wrap.appendChild(input);
+  return wrap;
+}
+
+function edNum(label, id, value, min, step) {
+  const wrap = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', { for: id }, label));
+  const input = el('input', { id, class: 'form-input', type: 'number' });
+  if (min !== undefined && min !== null) input.min = String(min);
+  if (step !== undefined) input.step = String(step);
+  input.value = (value !== null && value !== undefined && value !== '') ? String(value) : '';
+  wrap.appendChild(input);
+  return wrap;
+}
+
+function edSelect(label, id, value, options) {
+  const wrap = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', { for: id }, label));
+  const sel = el('select', { id, class: 'form-input form-select' });
+  sel.appendChild(el('option', { value: '' }, ''));
+  options.forEach(opt => {
+    const v = typeof opt === 'object' ? opt.value : opt;
+    const l = typeof opt === 'object' ? opt.label : opt;
+    const o = el('option', { value: String(v) }, l);
+    if (String(v) === String(value)) o.selected = true;
+    sel.appendChild(o);
+  });
+  wrap.appendChild(sel);
+  return wrap;
+}
+
+function edCheckboxes(label, groupId, currentValue) {
+  const wrap  = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', {}, label));
+  const group = el('div', { class: 'checkbox-group', id: groupId });
+  const cv    = (currentValue || '').toLowerCase();
+  ['V', 'S', 'M', 'F'].forEach(comp => {
+    const cbId  = `${groupId}-${comp}`;
+    const cbWrap = el('label', { class: 'checkbox-label', for: cbId });
+    const cb    = el('input', { type: 'checkbox', id: cbId, value: comp.toLowerCase() });
+    if (cv.includes(comp.toLowerCase())) cb.checked = true;
+    cbWrap.appendChild(cb);
+    cbWrap.appendChild(document.createTextNode(comp));
+    group.appendChild(cbWrap);
+  });
+  wrap.appendChild(group);
+  return wrap;
+}
+
+function edJson(label, id, value) {
+  const wrap = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', { for: id }, label));
+  const ta = el('textarea', { id, class: 'form-input form-json', rows: 5 });
+  const hasContent = Array.isArray(value) ? value.length : (value && Object.keys(value).length);
+  ta.value = hasContent ? JSON.stringify(value, null, 2) : '';
+  wrap.appendChild(ta);
+  return wrap;
+}
+
+function edRow(...fields) {
+  const r = el('div', { class: 'form-row' });
+  fields.forEach(f => r.appendChild(f));
+  return r;
+}
+
+/* ============================================================
    EDITOR — BUILD FORM
    ============================================================ */
 
+const OPTS = {
+  rarity     : ['common', 'uncommon', 'rare', 'unique'],
+  difficulty : ['untrained', 'trained', 'expert', 'master', 'legendary'],
+  actions    : [
+    { value: 'F', label: '\u25C7  Free' },
+    { value: '1', label: '\u25C6  1 action' },
+    { value: '2', label: '\u25C6\u25C6  2 actions' },
+    { value: '3', label: '\u25C6\u25C6\u25C6  3 actions' },
+    { value: 'R', label: '\u21BA  Reaction' }
+  ],
+  areaShape  : ['cone', 'cube', 'cylinder', 'burst', 'line', 'emanation', 'sphere', 'wall'],
+  attackType : ['ranged', 'melee', 'ranged touch', 'melee touch'],
+  saveType   : ['strength', 'agility', 'dexterity', 'constitution',
+                'perception', 'intelligence', 'wisdom', 'charisma'],
+  dieSize    : [
+    { value: 3, label: 'd3' }, { value: 4,  label: 'd4'  },
+    { value: 6, label: 'd6' }, { value: 8,  label: 'd8'  },
+    { value: 10, label: 'd10' }, { value: 12, label: 'd12' }
+  ],
+  damageType : ['acid', 'bludgeoning', 'cold', 'fire', 'force', 'lightning',
+                'necrotic', 'physical', 'piercing', 'poison', 'psychic',
+                'radiant', 'slashing', 'sonic'],
+  durLength  : ['instantaneous', 'round', 'minute', '10 minutes', 'hour',
+                '8 hours', 'day', 'week', 'month', 'year',
+                'until dismissed', 'until triggered', 'permanent']
+};
+
+function parseDuration(dur) {
+  if (!dur) return { count: '', length: '' };
+  const m = String(dur).match(/^(\d+)\s+(.+)$/);
+  return m ? { count: m[1], length: m[2] } : { count: '', length: dur };
+}
+
+function parseRange(range) {
+  if (!range && range !== 0) return '';
+  const n = parseInt(String(range), 10);
+  return isNaN(n) ? '' : n;
+}
+
 function buildEditor(f) {
   const form = el('div', { class: 'editor-form' });
-
-  function secTitle(t) { return el('div', { class: 'editor-section-title' }, t); }
-
-  function field(label, id, value, type) {
-    const wrap  = el('div', { class: 'form-field' });
-    const lbl   = el('label', { for: id }, label);
-    const input = el(type === 'textarea' ? 'textarea' : 'input', { id, class: 'form-input' });
-    if (type !== 'textarea') input.type = type || 'text';
-    input.value = (value !== null && value !== undefined) ? String(value) : '';
-    if (type === 'textarea') input.rows = 3;
-    wrap.appendChild(lbl); wrap.appendChild(input);
-    return wrap;
-  }
-
-  function jsonField(label, id, value) {
-    const wrap = el('div', { class: 'form-field' });
-    wrap.appendChild(el('label', { for: id }, label));
-    const ta = el('textarea', { id, class: 'form-input form-json', rows: 5 });
-    ta.value = (value && (Array.isArray(value) ? value.length : Object.keys(value).length))
-      ? JSON.stringify(value, null, 2) : '';
-    wrap.appendChild(ta);
-    return wrap;
-  }
-
-  function row(...fields) {
-    const r = el('div', { class: 'form-row' });
-    fields.forEach(f => r.appendChild(f));
-    return r;
-  }
+  const sec  = t => el('div', { class: 'editor-section-title' }, t);
+  const dur  = parseDuration(f.duration);
 
   // Identity
-  form.appendChild(secTitle('Identity'));
-  form.appendChild(row(
-    field('Name',       'ed-name',       f.name),
-    field('Mana',       'ed-mana',       f.mana,       'number'),
-    field('Rarity',     'ed-rarity',     f.rarity),
-    field('Difficulty', 'ed-difficulty', f.difficulty)
+  form.appendChild(sec('Identity'));
+  form.appendChild(edRow(
+    edField('Name',       'ed-name',       f.name),
+    edNum(  'Mana',       'ed-mana',       f.mana, 0),
+    edSelect('Rarity',    'ed-rarity',     f.rarity,     OPTS.rarity),
+    edSelect('Difficulty','ed-difficulty', f.difficulty, OPTS.difficulty)
   ));
-  form.appendChild(field('Traits (comma-separated)',     'ed-traits',      (f.traits     || []).join(', ')));
-  form.appendChild(field('Traditions (comma-separated)', 'ed-traditions',  (f.traditions || []).join(', ')));
-  form.appendChild(field('Access (comma-separated)',     'ed-access',      (f.access     || []).join(', ')));
+  form.appendChild(edField('Traits (comma-separated)',     'ed-traits',     (f.traits     || []).join(', ')));
+  form.appendChild(edField('Traditions (comma-separated)', 'ed-traditions', (f.traditions || []).join(', ')));
+  form.appendChild(edField('Access (comma-separated)',     'ed-access',     (f.access     || []).join(', ')));
 
   // Cast
-  form.appendChild(secTitle('Cast'));
-  form.appendChild(row(
-    field('Actions',   'ed-cast-actions',   f.cast?.actions),
-    field('Component', 'ed-cast-component', f.cast?.component),
-    field('Trigger',   'ed-cast-trigger',   f.cast?.trigger)
+  form.appendChild(sec('Cast'));
+  form.appendChild(edRow(
+    edSelect('Actions',    'ed-cast-actions',     String(f.cast?.actions ?? ''), OPTS.actions),
+    edCheckboxes('Components', 'ed-cast-comp',    f.cast?.component),
+    edField('Trigger',     'ed-cast-trigger',     f.cast?.trigger)
   ));
 
   // Range & Area
-  form.appendChild(secTitle('Range & Area'));
-  form.appendChild(row(
-    field('Range',      'ed-range',       f.range),
-    field('Area Size',  'ed-area-size',   f.area?.size,  'number'),
-    field('Area Shape', 'ed-area-shape',  f.area?.shape)
+  form.appendChild(sec('Range & Area'));
+  form.appendChild(edRow(
+    edNum(  'Range (ft)',    'ed-range',       parseRange(f.range), 0, 5),
+    edNum(  'Area Size (ft)','ed-area-size',   f.area?.size,        0, 5),
+    edSelect('Area Shape',   'ed-area-shape',  f.area?.shape, OPTS.areaShape)
   ));
-  form.appendChild(row(
-    field('Targets Count', 'ed-targets-count', f.targets?.count, 'number'),
-    field('Targets Type',  'ed-targets-type',  f.targets?.type)
+  form.appendChild(edRow(
+    edNum(  'Targets Count', 'ed-targets-count', f.targets?.count, 0),
+    edField('Targets Type',  'ed-targets-type',  f.targets?.type)
   ));
 
   // Attack & Save
-  form.appendChild(secTitle('Attack & Save'));
-  form.appendChild(row(
-    field('Attack Type',     'ed-atk-type',     f.attack?.type),
-    field('Attack Modifier', 'ed-atk-modifier', f.attack?.modifier),
-    field('Save Type',       'ed-save-type',    f.save?.type),
-    field('Save Modifier',   'ed-save-modifier',f.save?.modifier)
+  form.appendChild(sec('Attack & Save'));
+  form.appendChild(edRow(
+    edSelect('Attack Type',     'ed-atk-type',      f.attack?.type,     OPTS.attackType),
+    edNum(  'Attack Modifier',  'ed-atk-modifier',  f.attack?.modifier, null),
+    edSelect('Save Type',       'ed-save-type',     f.save?.type,       OPTS.saveType),
+    edNum(  'Save Modifier',    'ed-save-modifier', f.save?.modifier,   null)
   ));
 
   // Damage
-  form.appendChild(secTitle('Damage'));
-  form.appendChild(row(
-    field('Die Count', 'ed-dmg-count', f.damage?.dieNumber, 'number'),
-    field('Die Size',  'ed-dmg-size',  f.damage?.dieSize,   'number'),
-    field('Bonus',     'ed-dmg-bonus', f.damage?.bonus,     'number'),
-    field('Type',      'ed-dmg-type',  f.damage?.type)
+  form.appendChild(sec('Damage'));
+  form.appendChild(edRow(
+    edNum(  'Die Count', 'ed-dmg-count',    f.damage?.dieNumber, 0),
+    edSelect('Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize),
+    edNum(  'Modifier',  'ed-dmg-modifier', f.damage?.modifier ?? f.damage?.bonus, null),
+    edSelect('Type',     'ed-dmg-type',     f.damage?.type,      OPTS.damageType)
   ));
 
   // Duration
-  form.appendChild(secTitle('Duration'));
-  form.appendChild(field('Duration', 'ed-duration', f.duration));
+  form.appendChild(sec('Duration'));
+  form.appendChild(edRow(
+    edNum(   'Count',  'ed-dur-count',  dur.count,  0),
+    edSelect('Length', 'ed-dur-length', dur.length, OPTS.durLength)
+  ));
 
   // Effect
-  form.appendChild(secTitle('Effect'));
-  form.appendChild(field('Base Effect', 'ed-effect-base', f.effect?.base, 'textarea'));
-  form.appendChild(jsonField('Options (JSON array)', 'ed-effect-options', f.effect?.options));
+  form.appendChild(sec('Effect'));
+  form.appendChild(edField('Base Effect', 'ed-effect-base', f.effect?.base, 'textarea'));
+  form.appendChild(edJson('Options (JSON array)', 'ed-effect-options', f.effect?.options));
 
   // Skill Check
-  form.appendChild(secTitle('Skill Check'));
-  form.appendChild(field('Primary (comma-separated)',   'ed-sk-primary',   (f.skill?.primary   || []).join(', ')));
-  form.appendChild(field('Secondary (comma-separated)', 'ed-sk-secondary', (f.skill?.secondary || []).join(', ')));
-  form.appendChild(field('Critical Success (one per line)', 'ed-sk-cs', (f.skill?.cs || []).join('\n'), 'textarea'));
-  form.appendChild(field('Success',          'ed-sk-s',  f.skill?.s,                 'textarea'));
-  form.appendChild(field('Failure',          'ed-sk-f',  f.skill?.f,                 'textarea'));
-  form.appendChild(field('Critical Failure (one per line)', 'ed-sk-cf', (f.skill?.cf || []).join('\n'), 'textarea'));
+  form.appendChild(sec('Skill Check'));
+  form.appendChild(edField('Primary (comma-separated)',   'ed-sk-primary',   (f.skill?.primary   || []).join(', ')));
+  form.appendChild(edField('Secondary (comma-separated)', 'ed-sk-secondary', (f.skill?.secondary || []).join(', ')));
+  form.appendChild(edField('Critical Success (one per line)', 'ed-sk-cs', (f.skill?.cs || []).join('\n'), 'textarea'));
+  form.appendChild(edField('Success',          'ed-sk-s',  f.skill?.s,  'textarea'));
+  form.appendChild(edField('Failure',          'ed-sk-f',  f.skill?.f,  'textarea'));
+  form.appendChild(edField('Critical Failure (one per line)', 'ed-sk-cf', (f.skill?.cf || []).join('\n'), 'textarea'));
 
   // Attack Results
-  form.appendChild(secTitle('Attack Results'));
-  form.appendChild(row(
-    field('Critical Success', 'ed-ar-cs', f.attack_results?.cs, 'textarea'),
-    field('Success',          'ed-ar-s',  f.attack_results?.s,  'textarea')
+  form.appendChild(sec('Attack Results'));
+  form.appendChild(edRow(
+    edField('Critical Success', 'ed-ar-cs', f.attack_results?.cs, 'textarea'),
+    edField('Success',          'ed-ar-s',  f.attack_results?.s,  'textarea')
   ));
-  form.appendChild(row(
-    field('Failure',          'ed-ar-f',  f.attack_results?.f,  'textarea'),
-    field('Critical Failure', 'ed-ar-cf', f.attack_results?.cf, 'textarea')
+  form.appendChild(edRow(
+    edField('Failure',          'ed-ar-f',  f.attack_results?.f,  'textarea'),
+    edField('Critical Failure', 'ed-ar-cf', f.attack_results?.cf, 'textarea')
   ));
 
   // Save Results
-  form.appendChild(secTitle('Save Results'));
-  form.appendChild(row(
-    field('Critical Success', 'ed-sr-cs', f.save_results?.cs, 'textarea'),
-    field('Success',          'ed-sr-s',  f.save_results?.s,  'textarea')
+  form.appendChild(sec('Save Results'));
+  form.appendChild(edRow(
+    edField('Critical Success', 'ed-sr-cs', f.save_results?.cs, 'textarea'),
+    edField('Success',          'ed-sr-s',  f.save_results?.s,  'textarea')
   ));
-  form.appendChild(row(
-    field('Failure',          'ed-sr-f',  f.save_results?.f,  'textarea'),
-    field('Critical Failure', 'ed-sr-cf', f.save_results?.cf, 'textarea')
+  form.appendChild(edRow(
+    edField('Failure',          'ed-sr-f',  f.save_results?.f,  'textarea'),
+    edField('Critical Failure', 'ed-sr-cf', f.save_results?.cf, 'textarea')
   ));
 
-  // Sustain / Dismiss / Heightened / Variants / Components — JSON fields
-  form.appendChild(secTitle('Sustain'));
-  form.appendChild(jsonField('Sustain entries (JSON array)', 'ed-sustain', f.sustain));
+  // JSON sections
+  form.appendChild(sec('Sustain'));
+  form.appendChild(edJson('Sustain entries (JSON array)', 'ed-sustain', f.sustain));
+  form.appendChild(sec('Dismiss'));
+  form.appendChild(edJson('Dismiss (JSON object)', 'ed-dismiss', f.dismiss));
+  form.appendChild(sec('Heightened'));
+  form.appendChild(edJson('Heightened entries (JSON array)', 'ed-heightened', f.heightened));
+  form.appendChild(sec('Variants'));
+  form.appendChild(edJson('Variants (JSON array)', 'ed-variants', f.variants));
+  form.appendChild(sec('Components'));
+  form.appendChild(edJson('Components (JSON array)', 'ed-components', f.components));
 
-  form.appendChild(secTitle('Dismiss'));
-  form.appendChild(jsonField('Dismiss (JSON object)', 'ed-dismiss', f.dismiss));
-
-  form.appendChild(secTitle('Heightened'));
-  form.appendChild(jsonField('Heightened entries (JSON array)', 'ed-heightened', f.heightened));
-
-  form.appendChild(secTitle('Variants'));
-  form.appendChild(jsonField('Variants (JSON array)', 'ed-variants', f.variants));
-
-  form.appendChild(secTitle('Components'));
-  form.appendChild(jsonField('Components (JSON array)', 'ed-components', f.components));
-
-  // Delete (editor mode, existing foundation)
   if (state.currentIndex >= 0 && state.token) {
-    const btn = el('button', { class: 'btn btn-danger btn-delete', id: 'btn-delete' },
-      `Delete "${f.name || 'this foundation'}"`);
-    form.appendChild(btn);
+    form.appendChild(el('button', { class: 'btn btn-danger btn-delete', id: 'btn-delete' },
+      `Delete "${f.name || 'this foundation'}"`));
   }
 
   return form;
@@ -650,16 +755,24 @@ function buildEditor(f) {
    ============================================================ */
 
 function collectEditor() {
-  function v(id)       { return document.getElementById(id)?.value?.trim() || ''; }
-  function num(id)     { const x = v(id); return x !== '' ? parseFloat(x) : 0; }
-  function arr(id)     { return v(id).split(',').map(s => s.trim()).filter(Boolean); }
-  function lines(id)   { return v(id).split('\n').map(s => s.trim()).filter(Boolean); }
+  function v(id)     { return document.getElementById(id)?.value?.trim() || ''; }
+  function num(id)   { const x = v(id); return x !== '' ? parseFloat(x) : 0; }
+  function arr(id)   { return v(id).split(',').map(s => s.trim()).filter(Boolean); }
+  function lines(id) { return v(id).split('\n').map(s => s.trim()).filter(Boolean); }
   function json(id, fallback) {
     const raw = v(id);
     if (!raw) return fallback;
     try { return JSON.parse(raw); }
     catch (e) { throw new Error(`Invalid JSON in "${id}": ${e.message}`); }
   }
+  function checkboxes(groupId) {
+    return Array.from(document.querySelectorAll(`#${groupId} input:checked`))
+      .map(b => b.value).join('+');
+  }
+
+  const durCount  = v('ed-dur-count');
+  const durLength = v('ed-dur-length');
+  const rangeNum  = v('ed-range');
 
   return {
     name       : v('ed-name'),
@@ -671,19 +784,19 @@ function collectEditor() {
     access     : arr('ed-access'),
     cast: {
       actions   : v('ed-cast-actions'),
-      component : v('ed-cast-component'),
+      component : checkboxes('ed-cast-comp'),
       trigger   : v('ed-cast-trigger')
     },
-    range   : v('ed-range'),
+    range   : rangeNum !== '' ? `${rangeNum}'` : '',
     area    : { size: num('ed-area-size'), shape: v('ed-area-shape') },
     targets : { count: num('ed-targets-count'), type: v('ed-targets-type') },
-    attack  : { type: v('ed-atk-type'), modifier: v('ed-atk-modifier') },
-    save    : { type: v('ed-save-type'), modifier: v('ed-save-modifier') },
-    duration : v('ed-duration'),
+    attack  : { type: v('ed-atk-type'),  modifier: num('ed-atk-modifier')  },
+    save    : { type: v('ed-save-type'), modifier: num('ed-save-modifier') },
+    duration : durCount && durLength ? `${durCount} ${durLength}` : durLength,
     damage: {
       dieNumber : num('ed-dmg-count'),
       dieSize   : num('ed-dmg-size'),
-      bonus     : num('ed-dmg-bonus'),
+      modifier  : num('ed-dmg-modifier'),
       type      : v('ed-dmg-type')
     },
     effect: {
