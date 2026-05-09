@@ -607,6 +607,8 @@ function edGroupedCheckboxes(label, groupId, currentValues, groups) {
   wrap.appendChild(container);
   return wrap;
 }
+
+function edJson(label, id, value) {
   const wrap = el('div', { class: 'form-field' });
   wrap.appendChild(el('label', { for: id }, label));
   const ta = el('textarea', { id, class: 'form-input form-json', rows: 5 });
@@ -677,6 +679,8 @@ const TRADITION_GROUPS = [
                                'pact [contractual]', 'pact [devotional]'] },
   { label: 'Natural', items: ['bloodline', 'innate', 'pact [personality]', 'pact [inherited]'] }
 ];
+
+function parseDuration(dur) {
   if (!dur) return { count: '', length: '' };
   const m = String(dur).match(/^(\d+)\s+(.+)$/);
   return m ? { count: m[1], length: m[2] } : { count: '', length: dur };
