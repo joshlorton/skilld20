@@ -5,8 +5,15 @@
       "mana": 13,
       "rarity": "",
       "difficulty": "",
-      "traits": [],
-      "traditions": [],
+      "traits": [
+        "fire",
+        "ward"
+      ],
+      "traditions": [
+        "arcane",
+        "elemental/primal",
+        "bloodline"
+      ],
       "access": [],
       "cast": {
         "actions": "",
