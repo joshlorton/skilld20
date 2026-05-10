@@ -582,7 +582,7 @@ function edCheckboxes(label, groupId, currentValue) {
 function edGroupedCheckboxes(label, groupId, currentValues, groups) {
   const cv   = new Set((currentValues || []).map(v => String(v).toLowerCase()));
   const wrap = el('div', { class: 'form-field form-field-wide' });
-  wrap.appendChild(el('label', {}, label));
+  wrap.appendChild(el('label', { class: 'form-label-tag' }, label));
   const container = el('div', { class: 'checkbox-container', id: groupId });
 
   groups.forEach(group => {
@@ -739,12 +739,11 @@ function buildEditor(f) {
   // Effect (includes Damage and Attack & Save)
   form.appendChild(sec('Effect'));
   form.appendChild(edField('Base Effect', 'ed-effect-base', f.effect?.base, 'textarea'));
-  form.appendChild(edJson('Options (JSON array)', 'ed-effect-options', f.effect?.options));
   form.appendChild(edRow(
-    edNum(  'Die Count', 'ed-dmg-count',    f.damage?.dieNumber, 0),
-    edSelect('Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize),
-    edNum(  'Modifier',  'ed-dmg-modifier', f.damage?.modifier ?? f.damage?.bonus, null),
-    edSelect('Type',     'ed-dmg-type',     f.damage?.type,      OPTS.damageType)
+    edNum(  'Damage Die Count', 'ed-dmg-count',    f.damage?.dieNumber, 0),
+    edSelect('Damage Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize),
+    edNum(  'Damage Modifier',  'ed-dmg-modifier', f.damage?.modifier ?? f.damage?.bonus, null),
+    edSelect('Damage Type',     'ed-dmg-type',     f.damage?.type,      OPTS.damageType)
   ));
   form.appendChild(edRow(
     edSelect('Attack Type',    'ed-atk-type',      f.attack?.type,     OPTS.attackType),
@@ -752,6 +751,7 @@ function buildEditor(f) {
     edSelect('Save Type',      'ed-save-type',     f.save?.type,       OPTS.saveType),
     edNum(  'Save Modifier',   'ed-save-modifier', f.save?.modifier,   null)
   ));
+  form.appendChild(edJson('Options (JSON array)', 'ed-effect-options', f.effect?.options));
 
   // Skill Check
   form.appendChild(sec('Skill Check'));
@@ -785,9 +785,8 @@ function buildEditor(f) {
   ));
 
   // JSON sections
-  form.appendChild(sec('Sustain'));
-  form.appendChild(edJson('Sustain entries (JSON array)', 'ed-sustain', f.sustain));
-  form.appendChild(sec('Dismiss'));
+  form.appendChild(sec('Sustain & Dismiss'));
+  form.appendChild(edJson('Sustain (JSON array)', 'ed-sustain', f.sustain));
   form.appendChild(edJson('Dismiss (JSON object)', 'ed-dismiss', f.dismiss));
   form.appendChild(sec('Heightened'));
   form.appendChild(edJson('Heightened entries (JSON array)', 'ed-heightened', f.heightened));

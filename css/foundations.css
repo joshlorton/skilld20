@@ -441,6 +441,21 @@ body {
 
 /* Grouped checkbox container */
 .form-field-wide      { min-width: 100%; }
+.form-label-tag {
+  display: inline-block;
+  background: var(--heading-bg);
+  color: var(--heading-fg);
+  font-weight: 700;
+  font-variant: small-caps;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  padding: 3px 8px;
+  border: 2px solid var(--heading-fg);
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  cursor: default;
+}
 .checkbox-container   { display: flex; flex-direction: column; gap: 4px; padding: 4px 0; }
 .checkbox-section     { display: flex; flex-direction: column; gap: 2px; }
 .checkbox-section-label {
