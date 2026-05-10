@@ -3,10 +3,17 @@
     {
       "name": "Firerfox test",
       "mana": 13,
-      "rarity": "",
-      "difficulty": "",
-      "traits": [],
-      "traditions": [],
+      "rarity": "common",
+      "difficulty": "average",
+      "traits": [
+        "fire",
+        "ward"
+      ],
+      "traditions": [
+        "arcane",
+        "elemental/primal",
+        "bloodline"
+      ],
       "access": [],
       "cast": {
         "actions": "",
