@@ -579,10 +579,11 @@ function edCheckboxes(label, groupId, currentValue) {
   return wrap;
 }
 
-function edGroupedCheckboxes(label, groupId, currentValues, groups) {
+function edGroupedCheckboxes(label, groupId, currentValues, groups, labelClass) {
   const cv   = new Set((currentValues || []).map(v => String(v).toLowerCase()));
   const wrap = el('div', { class: 'form-field form-field-wide' });
-  wrap.appendChild(el('label', { class: 'form-label-tag' }, label));
+  const cls  = ['form-label-tag', labelClass].filter(Boolean).join(' ');
+  wrap.appendChild(el('label', { class: cls }, label));
   const container = el('div', { class: 'checkbox-container', id: groupId });
 
   groups.forEach(group => {
@@ -680,6 +681,16 @@ const TRADITION_GROUPS = [
   { label: 'Natural', items: ['bloodline', 'innate', 'pact [personality]', 'pact [inherited]'] }
 ];
 
+const ACCESS_GROUPS = [
+  { label: 'Arcane School',   items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water'] },
+  { label: 'Bloodline',       items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water',
+                                       'genie: air', 'genie: earth', 'genie: fire', 'genie: water'] },
+  { label: 'Divine Domain',   items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water'] },
+  { label: 'Divine Specialty',items: ['firemane', 'firewalker', 'icepriestess/icepriest', 'stormlady/stormlord', 'windwalker'] },
+  { label: 'Pact',            items: ['the fathomless', 'genie: air', 'genie: earth', 'genie: fire', 'genie: water'] },
+  { label: 'Primal Circle',   items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water'] }
+];
+
 function parseDuration(dur) {
   if (!dur) return { count: '', length: '' };
   const m = String(dur).match(/^(\d+)\s+(.+)$/);
@@ -705,9 +716,9 @@ function buildEditor(f) {
     edSelect('Rarity',    'ed-rarity',     f.rarity,     OPTS.rarity),
     edSelect('Difficulty','ed-difficulty', f.difficulty, OPTS.difficulty)
   ));
-  form.appendChild(edGroupedCheckboxes('Traits', 'ed-traits', f.traits, TRAIT_GROUPS));
-  form.appendChild(edGroupedCheckboxes('Traditions', 'ed-traditions', f.traditions, TRADITION_GROUPS));
-  form.appendChild(edField('Access (one entry per line)', 'ed-access', (f.access || []).join('\n'), 'textarea'));
+  form.appendChild(edGroupedCheckboxes('Traits',      'ed-traits',     f.traits,     TRAIT_GROUPS,      'form-label-tag-traits'));
+  form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, TRADITION_GROUPS,  'form-label-tag-traditions'));
+  form.appendChild(edGroupedCheckboxes('Access',      'ed-access',     f.access,     ACCESS_GROUPS,     'form-label-tag-access'));
 
   // Cast
   form.appendChild(sec('Cast'));
@@ -762,27 +773,34 @@ function buildEditor(f) {
   form.appendChild(edField('Failure',          'ed-sk-f',  f.skill?.f,  'textarea'));
   form.appendChild(edField('Critical Failure (one per line)', 'ed-sk-cf', (f.skill?.cf || []).join('\n'), 'textarea'));
 
-  // Attack Results
-  form.appendChild(sec('Attack Results'));
-  form.appendChild(edRow(
+  // Attack Results and Save Results -- side by side
+  const resultsRow = el('div', { class: 'form-results-row' });
+
+  const attackCol = el('div', { class: 'form-results-col' });
+  attackCol.appendChild(sec('Attack Results'));
+  attackCol.appendChild(edRow(
     edField('Critical Success', 'ed-ar-cs', f.attack_results?.cs, 'textarea'),
     edField('Success',          'ed-ar-s',  f.attack_results?.s,  'textarea')
   ));
-  form.appendChild(edRow(
+  attackCol.appendChild(edRow(
     edField('Failure',          'ed-ar-f',  f.attack_results?.f,  'textarea'),
     edField('Critical Failure', 'ed-ar-cf', f.attack_results?.cf, 'textarea')
   ));
 
-  // Save Results
-  form.appendChild(sec('Save Results'));
-  form.appendChild(edRow(
+  const saveCol = el('div', { class: 'form-results-col' });
+  saveCol.appendChild(sec('Save Results'));
+  saveCol.appendChild(edRow(
     edField('Critical Success', 'ed-sr-cs', f.save_results?.cs, 'textarea'),
     edField('Success',          'ed-sr-s',  f.save_results?.s,  'textarea')
   ));
-  form.appendChild(edRow(
+  saveCol.appendChild(edRow(
     edField('Failure',          'ed-sr-f',  f.save_results?.f,  'textarea'),
     edField('Critical Failure', 'ed-sr-cf', f.save_results?.cf, 'textarea')
   ));
+
+  resultsRow.appendChild(attackCol);
+  resultsRow.appendChild(saveCol);
+  form.appendChild(resultsRow);
 
   // JSON sections
   form.appendChild(sec('Sustain & Dismiss'));
@@ -838,7 +856,7 @@ function collectEditor() {
     difficulty : v('ed-difficulty'),
     traits     : checkboxArr('ed-traits'),
     traditions : checkboxArr('ed-traditions'),
-    access     : lines('ed-access'),
+    access     : checkboxArr('ed-access'),
     cast: {
       actions   : v('ed-cast-actions'),
       component : checkboxes('ed-cast-comp'),
