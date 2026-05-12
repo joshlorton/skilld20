@@ -123,6 +123,8 @@
       ],
       "access": [
         "elemental: fire",
+        "elemental: fire",
+        "elemental: fire",
         "elemental: fire"
       ],
       "cast": {
@@ -179,9 +181,9 @@
         "cf": ""
       },
       "save_results": {
-        "cs": "",
-        "s": "",
-        "f": "",
+        "cs": "No damage.",
+        "s": "Half damage.",
+        "f": "Normal damage.",
         "cf": "Double damage + 1 persistent fire damage."
       },
       "sustain": [
