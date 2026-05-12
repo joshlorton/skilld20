@@ -154,8 +154,8 @@
     {
       "name": "Force Edit",
       "mana": 17,
-      "rarity": "",
-      "difficulty": "",
+      "rarity": "unique",
+      "difficulty": "incredibly hard",
       "traits": [],
       "traditions": [],
       "access": [],
@@ -175,18 +175,18 @@
       },
       "attack": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "save": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "duration": "",
       "damage": {
         "dieNumber": 1,
         "dieSize": 6,
-        "bonus": 1,
-        "type": "Force"
+        "modifier": 1,
+        "type": ""
       },
       "effect": {
         "base": "",
