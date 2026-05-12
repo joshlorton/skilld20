@@ -1,48 +1,55 @@
 {
   "foundations": [
     {
-      "name": "Firerfox test",
-      "mana": 13,
+      "name": "Fire Bolt",
+      "mana": 3,
       "rarity": "common",
       "difficulty": "average",
       "traits": [
-        "fire",
-        "ward"
+        "fire"
       ],
       "traditions": [
         "arcane",
+        "divine",
         "elemental/primal",
         "bloodline"
       ],
-      "access": [],
+      "access": [
+        "elemental: fire",
+        "elemental: fire",
+        "genie: fire",
+        "elemental: fire",
+        "genie: fire",
+        "elemental: fire"
+      ],
       "cast": {
-        "actions": "",
-        "component": "",
+        "actions": "1",
+        "component": "v",
         "trigger": ""
       },
-      "range": "",
+      "range": "30'",
       "area": {
         "size": 0,
         "shape": ""
       },
       "targets": {
-        "count": 0,
-        "type": ""
+        "count": 1,
+        "type": "creature or object"
       },
       "attack": {
-        "type": "",
+        "type": "ranged",
         "modifier": 0
       },
       "save": {
         "type": "",
         "modifier": 0
       },
-      "duration": "",
+      "duration": "instantaneous",
       "damage": {
-        "dieNumber": 0,
-        "dieSize": 0,
+        "dieNumber": 1,
+        "dieSize": 3,
         "modifier": 0,
-        "type": ""
+        "type": "fire"
       },
       "effect": {
         "base": "",
@@ -57,10 +64,10 @@
         "cf": []
       },
       "attack_results": {
-        "cs": "",
+        "cs": "Double damage.",
         "s": "",
         "f": "",
-        "cf": ""
+        "cf": "Missed. No effect."
       },
       "save_results": {
         "cs": "",
@@ -77,8 +84,8 @@
     {
       "name": "Chrome Test",
       "mana": 1,
-      "rarity": "",
-      "difficulty": "",
+      "rarity": "rare",
+      "difficulty": "easy",
       "traits": [
         "acid",
         "cold",
@@ -148,8 +155,8 @@
     {
       "name": "Force Edit",
       "mana": 17,
-      "rarity": "",
-      "difficulty": "",
+      "rarity": "unique",
+      "difficulty": "incredibly hard",
       "traits": [],
       "traditions": [],
       "access": [],
@@ -169,18 +176,18 @@
       },
       "attack": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "save": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "duration": "",
       "damage": {
         "dieNumber": 1,
         "dieSize": 6,
-        "bonus": 1,
-        "type": "Force"
+        "modifier": 1,
+        "type": ""
       },
       "effect": {
         "base": "",
@@ -215,8 +222,8 @@
     {
       "name": "Firefox Test 3",
       "mana": 23,
-      "rarity": "",
-      "difficulty": "",
+      "rarity": "uncommon",
+      "difficulty": "hard",
       "traits": [],
       "traditions": [],
       "access": [],
@@ -236,17 +243,17 @@
       },
       "attack": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "save": {
         "type": "",
-        "modifier": ""
+        "modifier": 0
       },
       "duration": "",
       "damage": {
         "dieNumber": 0,
         "dieSize": 0,
-        "bonus": 0,
+        "modifier": 0,
         "type": ""
       },
       "effect": {
