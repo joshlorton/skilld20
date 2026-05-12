@@ -195,7 +195,32 @@
         }
       ],
       "dismiss": [],
-      "heightened": [],
+      "heightened": [
+        {
+          "variant": "-",
+          "attribute": "area size",
+          "actions": "",
+          "component": "-",
+          "effect": "increase Line length by 10'",
+          "mana": 4
+        },
+        {
+          "variant": "Cone",
+          "attribute": "area shape",
+          "actions": "",
+          "component": "-",
+          "effect": "change AoE to a 10' cone",
+          "mana": 0
+        },
+        {
+          "variant": "Cone",
+          "attribute": "area size",
+          "actions": "",
+          "component": "-",
+          "effect": "increase Cone length by 5'",
+          "mana": 4
+        }
+      ],
       "variants": [],
       "components": []
     },
