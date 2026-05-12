@@ -2,7 +2,7 @@
   "foundations": [
     {
       "name": "Fire Bolt",
-      "mana": 3,
+      "mana": 4,
       "rarity": "common",
       "difficulty": "average",
       "traits": [
@@ -47,12 +47,12 @@
       "duration": "instantaneous",
       "damage": {
         "dieNumber": 1,
-        "dieSize": 3,
+        "dieSize": 4,
         "modifier": 0,
         "type": "fire"
       },
       "effect": {
-        "base": "",
+        "base": "You launch a crossbow bolt-like projectile of fire at your target. Your projectile provides 5' of dim illumination along its path of travel.",
         "options": []
       },
       "skill": {
@@ -64,7 +64,7 @@
         "cf": []
       },
       "attack_results": {
-        "cs": "Double damage.",
+        "cs": "Double damage + 1d4 persistent fire damage.",
         "s": "",
         "f": "",
         "cf": "Missed. No effect."
