@@ -154,7 +154,7 @@
         "dieNumber": 1,
         "dieSize": 4,
         "modifier": 0,
-        "type": ""
+        "type": "fire"
       },
       "effect": {
         "base": "Searing flames shoot from your outstretched hands.",
