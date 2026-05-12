@@ -110,26 +110,30 @@
       "components": []
     },
     {
-      "name": "Chrome Test",
-      "mana": 1,
-      "rarity": "rare",
-      "difficulty": "easy",
+      "name": "Project Fire",
+      "mana": 6,
+      "rarity": "common",
+      "difficulty": "average",
       "traits": [
-        "acid",
-        "cold",
         "fire"
       ],
-      "traditions": [],
-      "access": [],
+      "traditions": [
+        "arcane",
+        "elemental/primal"
+      ],
+      "access": [
+        "elemental: fire",
+        "elemental: fire"
+      ],
       "cast": {
-        "actions": "",
-        "component": "",
+        "actions": "1",
+        "component": "v",
         "trigger": ""
       },
-      "range": "",
+      "range": "0'",
       "area": {
-        "size": 0,
-        "shape": ""
+        "size": 20,
+        "shape": "line"
       },
       "targets": {
         "count": 0,
@@ -140,27 +144,33 @@
         "modifier": 0
       },
       "save": {
-        "type": "",
+        "type": "agility",
         "modifier": 0
       },
-      "duration": "",
+      "duration": "0 instantaneous",
       "damage": {
-        "dieNumber": 0,
-        "dieSize": 0,
+        "dieNumber": 1,
+        "dieSize": 4,
         "modifier": 0,
         "type": ""
       },
       "effect": {
-        "base": "",
+        "base": "Searing flames shoot from your outstretched hands.",
         "options": []
       },
       "skill": {
-        "primary": [],
+        "primary": [
+          "per Tradition"
+        ],
         "secondary": [],
-        "cs": [],
+        "cs": [
+          "Extra stuff."
+        ],
         "s": "",
         "f": "",
-        "cf": []
+        "cf": [
+          "Bad stuff."
+        ]
       },
       "attack_results": {
         "cs": "",
@@ -172,10 +182,17 @@
         "cs": "",
         "s": "",
         "f": "",
-        "cf": ""
+        "cf": "Double damage + 1 persistent fire damage."
       },
-      "sustain": [],
-      "dismiss": {},
+      "sustain": [
+        {
+          "actions": "1",
+          "component": "S",
+          "effect": "Sustain until the start of your next turn. The effect ends if you move more than 5' in a single action. This sustain action must be taken immediately after casting.",
+          "mana": 3
+        }
+      ],
+      "dismiss": [],
       "heightened": [],
       "variants": [],
       "components": []
