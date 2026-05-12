@@ -370,7 +370,7 @@ function actionRow(item, idx) {
   if (item.effect)      row.appendChild(el('span', { class: 'action-effect'    }, item.effect));
   if (item.mana !== undefined && item.mana !== null && item.mana !== '') {
     const m = Number(item.mana);
-    const label = isNaN(m) ? String(item.mana) : (m > 0 ? `+${m}` : `${m}`);
+    const label = isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`);
     row.appendChild(el('span', { class: 'action-mana' }, label));
   }
   return row;
@@ -405,7 +405,7 @@ function sustainRow(item, idx) {
   if (item.effect)    row.appendChild(el('span', { class: 'action-effect'    }, item.effect));
   if (item.mana !== undefined && item.mana !== null && item.mana !== '') {
     const m = Number(item.mana);
-    const label = isNaN(m) ? String(item.mana) : (m > 0 ? `+${m}` : `${m}`);
+    const label = isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`);
     row.appendChild(el('span', { class: 'action-mana' }, label));
   }
   return row;
@@ -715,6 +715,100 @@ function collectSdRows(containerId) {
   }).filter(r => r.effect);
 }
 
+const HT_ATTRIBUTES = [
+  { value: 'range',      label: 'Range'      },
+  { value: 'area size',  label: 'Area Size'  },
+  { value: 'area shape', label: 'Area Shape' },
+  { value: 'targets',    label: 'Targets'    },
+  { value: 'duration',   label: 'Duration'   },
+  { value: 'effect',     label: 'Effect'     },
+  { value: 'damage',     label: 'Damage'     }
+];
+
+function buildHtRow(data) {
+  data = data || {};
+  const row = el('div', { class: 'ht-row' });
+
+  const varIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'Variant', 'data-field': 'variant' });
+  varIn.value = data.variant || '';
+  row.appendChild(varIn);
+
+  const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
+  attrSel.appendChild(el('option', { value: '' }, ''));
+  HT_ATTRIBUTES.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (data.attribute === value) o.selected = true;
+    attrSel.appendChild(o);
+  });
+  row.appendChild(attrSel);
+
+  const actSel = el('select', { class: 'form-input form-select', 'data-field': 'actions' });
+  [{ v: '', l: '' }, { v: 'F', l: '\u25C7' }, { v: '1', l: '\u25C6' },
+   { v: '2', l: '\u25C6\u25C6' }, { v: '3', l: '\u25C6\u25C6\u25C6' }, { v: 'R', l: '\u21BA' }]
+    .forEach(({ v, l }) => {
+      const o = el('option', { value: v }, l);
+      if (String(data.actions) === v) o.selected = true;
+      actSel.appendChild(o);
+    });
+  row.appendChild(actSel);
+
+  const compIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'V S M F', 'data-field': 'component' });
+  compIn.value = data.component || '';
+  row.appendChild(compIn);
+
+  const efTa = el('textarea', { class: 'form-input', rows: 2, 'data-field': 'effect' });
+  efTa.value = data.effect || '';
+  row.appendChild(efTa);
+
+  const manaIn = el('input', { class: 'form-input', type: 'number', min: '0', 'data-field': 'mana' });
+  if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
+  row.appendChild(manaIn);
+
+  return row;
+}
+
+function buildHtSection(initialData) {
+  const wrap = el('div', { class: 'form-field form-field-wide' });
+
+  const heading = el('div', { class: 'sd-heading' });
+  heading.appendChild(el('span', {}, 'Heightened'));
+  const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
+  heading.appendChild(addBtn);
+  wrap.appendChild(heading);
+
+  const labels = el('div', { class: 'ht-labels' });
+  ['Option', 'Attribute', 'Act', 'Comp', 'Effect', 'Mana'].forEach(l =>
+    labels.appendChild(el('span', { class: 'sd-label' }, l)));
+  wrap.appendChild(labels);
+
+  const container = el('div', { id: 'heightened-rows' });
+  const rows = Array.isArray(initialData) ? initialData : [];
+  if (rows.length) rows.forEach(r => container.appendChild(buildHtRow(r)));
+  else container.appendChild(buildHtRow({}));
+  wrap.appendChild(container);
+
+  addBtn.addEventListener('click', () => container.appendChild(buildHtRow({})));
+  return wrap;
+}
+
+function collectHeightenedRows() {
+  const rows = document.querySelectorAll('#heightened-rows .ht-row');
+  return Array.from(rows).map(row => {
+    const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
+    const m = get('mana');
+    return {
+      variant   : get('variant'),
+      attribute : get('attribute'),
+      actions   : get('actions'),
+      component : get('component'),
+      effect    : get('effect'),
+      mana      : m !== '' ? parseFloat(m) : 0
+    };
+  }).filter(r => r.effect || r.attribute);
+}
+
 /* ============================================================
    EDITOR — BUILD FORM
    ============================================================ */
@@ -742,8 +836,16 @@ const OPTS = {
   ],
   areaShape  : ['cone', 'cube', 'cylinder', 'burst', 'line', 'emanation', 'sphere', 'wall'],
   attackType : ['ranged', 'melee'],
-  saveType   : ['strength', 'agility', 'dexterity', 'constitution',
-                'perception', 'intelligence', 'wisdom', 'charisma'],
+  saveType   : [
+    { value: 'strength',     label: 'Strength'     },
+    { value: 'agility',      label: 'Agility'      },
+    { value: 'dexterity',    label: 'Dexterity'    },
+    { value: 'constitution', label: 'Constitution' },
+    { value: 'perception',   label: 'Perception'   },
+    { value: 'intelligence', label: 'Intelligence' },
+    { value: 'wisdom',       label: 'Wisdom'       },
+    { value: 'charisma',     label: 'Charisma'     }
+  ],
   dieSize    : [
     { value: 3,  label: 'd3'  }, { value: 4,  label: 'd4'  },
     { value: 6,  label: 'd6'  }, { value: 8,  label: 'd8'  },
@@ -895,8 +997,7 @@ function buildEditor(f) {
   sdRow.appendChild(buildSdSection('Sustain', 'sustain-rows', f.sustain));
   sdRow.appendChild(buildSdSection('Dismiss', 'dismiss-rows', f.dismiss));
   form.appendChild(sdRow);
-  form.appendChild(sec('Heightened'));
-  form.appendChild(edJson('Heightened entries (JSON array)', 'ed-heightened', f.heightened));
+  form.appendChild(buildHtSection(f.heightened));
   form.appendChild(sec('Variants'));
   form.appendChild(edJson('Variants (JSON array)', 'ed-variants', f.variants));
   form.appendChild(sec('Components'));
@@ -965,7 +1066,7 @@ function collectEditor() {
     },
     effect: {
       base    : v('ed-effect-base'),
-      options : json('ed-effect-options', [])
+      options : []
     },
     skill: {
       primary   : arr('ed-sk-primary'),
@@ -979,7 +1080,7 @@ function collectEditor() {
     save_results   : { cs: v('ed-sr-cs'), s: v('ed-sr-s'), f: v('ed-sr-f'), cf: v('ed-sr-cf') },
     sustain    : collectSdRows('sustain-rows'),
     dismiss    : collectSdRows('dismiss-rows'),
-    heightened : json('ed-heightened', []),
+    heightened : collectHeightenedRows(),
     variants   : json('ed-variants',   []),
     components : json('ed-components', [])
   };
