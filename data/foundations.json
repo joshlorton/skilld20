@@ -52,7 +52,7 @@
         "type": "fire"
       },
       "effect": {
-        "base": "You launch a crossbow bolt-like projectile of fire at your target. Your projectile provides 5' of dim illumination along its path of travel.",
+        "base": "You launch a bolt-like projectile of fire at your target. Your projectile provides 5' of dim illumination along its path of travel.",
         "options": []
       },
       "skill": {
