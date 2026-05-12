@@ -166,19 +166,18 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 6px 12px;
+  font-family: var(--font-ui);
   font-variant: small-caps;
-  font-size: 20px;
+  font-size: 27px;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
 .foundation-mana {
-  font-size: 20px;
-  font-family: var(--font-ui);
-  font-variant: normal;
-  font-weight: 700;
   color: var(--mana);
-  letter-spacing: 0;
-  text-transform: uppercase;
+  font-variant: small-caps;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 /* ============================================================
@@ -259,8 +258,6 @@ body {
    ============================================================ */
 
 .section-results { border-bottom: 1px solid var(--border); }
-
-.result-block { }
 
 .result-heading {
   background: #1a1a1a;
