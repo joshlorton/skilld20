@@ -778,25 +778,17 @@ function buildEditor(f) {
 
   const attackCol = el('div', { class: 'form-results-col' });
   attackCol.appendChild(sec('Attack Results'));
-  attackCol.appendChild(edRow(
-    edField('Critical Success', 'ed-ar-cs', f.attack_results?.cs, 'textarea'),
-    edField('Success',          'ed-ar-s',  f.attack_results?.s,  'textarea')
-  ));
-  attackCol.appendChild(edRow(
-    edField('Failure',          'ed-ar-f',  f.attack_results?.f,  'textarea'),
-    edField('Critical Failure', 'ed-ar-cf', f.attack_results?.cf, 'textarea')
-  ));
+  attackCol.appendChild(edField('Critical Success', 'ed-ar-cs', f.attack_results?.cs, 'textarea'));
+  attackCol.appendChild(edField('Success',          'ed-ar-s',  f.attack_results?.s,  'textarea'));
+  attackCol.appendChild(edField('Failure',          'ed-ar-f',  f.attack_results?.f,  'textarea'));
+  attackCol.appendChild(edField('Critical Failure', 'ed-ar-cf', f.attack_results?.cf, 'textarea'));
 
   const saveCol = el('div', { class: 'form-results-col' });
   saveCol.appendChild(sec('Save Results'));
-  saveCol.appendChild(edRow(
-    edField('Critical Success', 'ed-sr-cs', f.save_results?.cs, 'textarea'),
-    edField('Success',          'ed-sr-s',  f.save_results?.s,  'textarea')
-  ));
-  saveCol.appendChild(edRow(
-    edField('Failure',          'ed-sr-f',  f.save_results?.f,  'textarea'),
-    edField('Critical Failure', 'ed-sr-cf', f.save_results?.cf, 'textarea')
-  ));
+  saveCol.appendChild(edField('Critical Success', 'ed-sr-cs', f.save_results?.cs, 'textarea'));
+  saveCol.appendChild(edField('Success',          'ed-sr-s',  f.save_results?.s,  'textarea'));
+  saveCol.appendChild(edField('Failure',          'ed-sr-f',  f.save_results?.f,  'textarea'));
+  saveCol.appendChild(edField('Critical Failure', 'ed-sr-cf', f.save_results?.cf, 'textarea'));
 
   resultsRow.appendChild(attackCol);
   resultsRow.appendChild(saveCol);
