@@ -83,8 +83,8 @@
     {
       "name": "Chrome Test",
       "mana": 1,
-      "rarity": "",
-      "difficulty": "",
+      "rarity": "rare",
+      "difficulty": "easy",
       "traits": [
         "acid",
         "cold",
