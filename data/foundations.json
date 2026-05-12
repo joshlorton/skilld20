@@ -90,8 +90,21 @@
         "f": "",
         "cf": ""
       },
-      "sustain": [],
-      "dismiss": {},
+      "sustain": [
+        {
+          "actions": "1",
+          "component": "S",
+          "effect": "sustain illumination by 1 round",
+          "mana": 0
+        },
+        {
+          "actions": "F",
+          "component": "",
+          "effect": "sustain illumination by 1 round",
+          "mana": 2
+        }
+      ],
+      "dismiss": [],
       "heightened": [],
       "variants": [],
       "components": []
