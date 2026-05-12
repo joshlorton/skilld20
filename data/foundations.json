@@ -99,7 +99,7 @@
         },
         {
           "actions": "F",
-          "component": "",
+          "component": "-",
           "effect": "sustain illumination by 1 round",
           "mana": 2
         }
