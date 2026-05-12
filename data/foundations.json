@@ -17,6 +17,7 @@
       "access": [
         "elemental: fire",
         "elemental: fire",
+        "genie: fire",
         "elemental: fire",
         "genie: fire",
         "elemental: fire"
@@ -63,7 +64,7 @@
         "cf": []
       },
       "attack_results": {
-        "cs": "",
+        "cs": "Double damage.",
         "s": "",
         "f": "",
         "cf": ""
