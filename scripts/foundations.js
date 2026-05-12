@@ -297,7 +297,8 @@ function resultRow(label, value, cls) {
   if (!clean.length) return null;
 
   const row = el('div', { class: `result-row${cls ? ' ' + cls : ''}` });
-  row.appendChild(el('b', { class: 'result-label' }, label));
+  const labelClass = cls === 'skill-row' ? 'skill-label' : 'result-label';
+  row.appendChild(el('b', { class: labelClass }, label));
   const val = el('div', { class: 'result-value' });
   if (clean.length === 1) {
     val.textContent = clean[0];
@@ -318,8 +319,8 @@ function renderResults(f) {
     const block = el('div', { class: 'result-block' });
     block.appendChild(el('div', { class: 'result-heading' }, 'Skill Check'));
     const addRow = (label, val, cls) => { const r = resultRow(label, val, cls); if (r) block.appendChild(r); };
-    if (sk.primary?.length)   addRow('Primary',          sk.primary.join(', '), '');
-    if (sk.secondary?.length) addRow('Secondary',        sk.secondary.join(', '), '');
+    if (sk.primary?.length)   addRow('Primary',   sk.primary.join(', '),   'skill-row');
+    if (sk.secondary?.length) addRow('Secondary', sk.secondary.join(', '), 'skill-row');
     addRow('Critical Success', sk.cs, 'row-cs');
     addRow('Success',          sk.s || ['Expected effect.'], 'row-s');
     addRow('Failure',          sk.f || ['Failed cast. No effect.'], 'row-sf');
@@ -331,7 +332,7 @@ function renderResults(f) {
   if (f.attack?.type && f.attack_results) {
     const ar = f.attack_results;
     const block = el('div', { class: 'result-block' });
-    block.appendChild(el('div', { class: 'result-heading' }, `Attack :: ${f.attack.type}`));
+    block.appendChild(el('div', { class: 'result-heading' }, `Attack -- ${f.attack.type}`));
     const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
     addRow('Critical Success', ar.cs, 'row-cs');
     addRow('Success',          ar.s || ['Normal damage.'], 'row-s');
@@ -344,7 +345,7 @@ function renderResults(f) {
   if (f.save?.type && f.save_results) {
     const sr = f.save_results;
     const block = el('div', { class: 'result-block' });
-    block.appendChild(el('div', { class: 'result-heading' }, `Save :: ${f.save.type}`));
+    block.appendChild(el('div', { class: 'result-heading' }, `Save -- ${f.save.type}`));
     const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
     addRow('Critical Success', sr.cs, 'row-cs');
     addRow('Success',          sr.s, 'row-s');
@@ -387,11 +388,20 @@ function componentRow(item, idx) {
   return row;
 }
 
+function sdComponent(comp) {
+  if (!comp) return '-';
+  const MAP = { verbal: 'V', somatic: 'S', material: 'M', focus: 'F',
+                v: 'V', s: 'S', m: 'M', f: 'F' };
+  return comp.toLowerCase().split(/[+|,\s]+/)
+    .map(c => MAP[c.trim()] || c.trim().charAt(0).toUpperCase())
+    .filter(Boolean).join(' ');
+}
+
 function sustainRow(item, idx) {
   const row = el('div', { class: `action-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   if (item.variant)   row.appendChild(el('span', { class: 'action-variant'   }, item.variant));
   if (hasValue(item.actions)) row.appendChild(el('span', { class: 'action-sym' }, actionSym(item.actions)));
-  if (item.component) row.appendChild(el('span', { class: 'action-component' }, spellComponent(item.component)));
+  row.appendChild(el('span', { class: 'action-component' }, sdComponent(item.component)));
   if (item.effect)    row.appendChild(el('span', { class: 'action-effect'    }, item.effect));
   if (item.mana !== undefined && item.mana !== null && item.mana !== '') {
     const m = Number(item.mana);
@@ -421,14 +431,13 @@ function renderSustainDismiss(f) {
   if (!sustainItems.length && !dismissItems.length) return null;
 
   const section = el('div', { class: 'section-action' });
-  section.appendChild(el('div', { class: 'section-heading' }, 'Duration'));
 
   if (sustainItems.length) {
-    section.appendChild(el('div', { class: 'action-sub-heading' }, 'Sustain'));
+    section.appendChild(el('div', { class: 'result-heading' }, 'Sustain'));
     sustainItems.forEach((s, i) => section.appendChild(sustainRow(s, i)));
   }
   if (dismissItems.length) {
-    section.appendChild(el('div', { class: 'action-sub-heading' }, 'Dismiss'));
+    section.appendChild(el('div', { class: 'result-heading' }, 'Dismiss'));
     dismissItems.forEach((d, i) => section.appendChild(sustainRow(d, i)));
   }
   return section;
@@ -492,7 +501,7 @@ function renderViewer(f) {
   const heading = el('div', { class: 'foundation-heading' });
   heading.appendChild(el('span', { class: 'foundation-name' }, f.name || 'Unnamed'));
   if (f.mana !== undefined && f.mana !== '') {
-    heading.appendChild(el('span', { class: 'foundation-mana' }, `Foundation [${f.mana}]`));
+    heading.appendChild(el('span', { class: 'foundation-mana' }, `Foundation ${f.mana}`));
   }
   card.appendChild(heading);
 
