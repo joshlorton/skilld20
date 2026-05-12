@@ -149,7 +149,7 @@
         "type": "agility",
         "modifier": 0
       },
-      "duration": "0 instantaneous",
+      "duration": "instantaneous",
       "damage": {
         "dieNumber": 1,
         "dieSize": 4,
