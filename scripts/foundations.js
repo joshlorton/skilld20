@@ -60,6 +60,14 @@ function hasValue(v) {
   return true;
 }
 
+function spellComponent(comp) {
+  if (!comp) return '';
+  const MAP = { v: 'Verbal', s: 'Somatic', m: 'Material', f: 'Focus' };
+  return comp.toLowerCase().split(/[+|,\s]+/)
+    .map(c => MAP[c.trim()] || c.trim())
+    .filter(Boolean).join(', ');
+}
+
 function setStatus(msg, type) {
   const s = document.getElementById('status-text');
   s.textContent = msg;
@@ -96,7 +104,7 @@ async function loadData() {
       if (!resp.ok) throw new Error(`Fetch ${resp.status}: ${resp.statusText}`);
       const data = await resp.json();
       state.foundations = data.foundations || [];
-      setStatus('Viewer mode — no token', '');
+      setStatus('Viewer mode :: no token', '');
     }
   } catch (err) {
     setStatus(`Error: ${err.message}`, 'error');
@@ -206,7 +214,7 @@ function specRowCast(f) {
   row.appendChild(el('b', { class: 'spec-label' }, 'Cast'));
   const val = el('span', { class: 'spec-value' });
   if (hasValue(cast.actions)) val.appendChild(el('span', { class: 'action-sym' }, actionSym(cast.actions)));
-  if (cast.component) val.appendChild(document.createTextNode(` ${cast.component}`));
+  if (cast.component) val.appendChild(document.createTextNode(` ${spellComponent(cast.component)}`));
   row.appendChild(val);
   return row;
 }
@@ -231,22 +239,7 @@ function renderSpecs(f) {
     add(specRow('Targets', [f.targets.count, f.targets.type].filter(Boolean).join(' ')));
   }
 
-  if (f.attack?.type) {
-    add(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
-  }
-
-  if (f.save?.type) {
-    add(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
-  }
-
   if (hasValue(f.duration)) add(specRow('Duration', f.duration));
-
-  if (f.damage?.dieNumber) {
-    const d   = f.damage;
-    const mod = d.modifier ?? d.bonus;
-    const dmg = `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim();
-    add(specRow('Damage', dmg));
-  }
 
   return sheet;
 }
@@ -258,6 +251,7 @@ function renderSpecs(f) {
 function renderEffect(f) {
   if (!f.effect?.base) return null;
   const section = el('div', { class: 'section-effect' });
+  section.appendChild(el('div', { class: 'result-heading' }, 'Effect'));
   section.appendChild(el('p', { class: 'effect-base' }, f.effect.base));
 
   const opts = (f.effect.options || []).filter(Boolean);
@@ -276,6 +270,20 @@ function renderEffect(f) {
     });
     section.appendChild(grid);
   }
+
+  // Attack, Save, Damage moved from spec sheet into effect section
+  if (f.attack?.type) {
+    section.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
+  }
+  if (f.save?.type) {
+    section.appendChild(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
+  }
+  if (f.damage?.dieNumber) {
+    const d = f.damage;
+    const mod = d.modifier ?? d.bonus;
+    section.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
+  }
+
   return section;
 }
 
@@ -323,7 +331,7 @@ function renderResults(f) {
   if (f.attack?.type && f.attack_results) {
     const ar = f.attack_results;
     const block = el('div', { class: 'result-block' });
-    block.appendChild(el('div', { class: 'result-heading' }, `Attack — ${f.attack.type}`));
+    block.appendChild(el('div', { class: 'result-heading' }, `Attack :: ${f.attack.type}`));
     const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
     addRow('Critical Success', ar.cs, 'row-cs');
     addRow('Success',          ar.s || ['Normal damage.'], 'row-s');
@@ -336,7 +344,7 @@ function renderResults(f) {
   if (f.save?.type && f.save_results) {
     const sr = f.save_results;
     const block = el('div', { class: 'result-block' });
-    block.appendChild(el('div', { class: 'result-heading' }, `Save — ${f.save.type}`));
+    block.appendChild(el('div', { class: 'result-heading' }, `Save :: ${f.save.type}`));
     const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
     addRow('Critical Success', sr.cs, 'row-cs');
     addRow('Success',          sr.s, 'row-s');
@@ -355,15 +363,14 @@ function renderResults(f) {
 function actionRow(item, idx) {
   const row = el('div', { class: `action-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   if (item.attribute)   row.appendChild(el('b',    { class: 'action-attribute' }, item.attribute));
-  if (item.variant)     row.appendChild(el('span', { class: 'action-variant'   }, `[${item.variant}]`));
+  if (item.variant)     row.appendChild(el('span', { class: 'action-variant'   }, item.variant));
   if (hasValue(item.actions)) row.appendChild(el('span', { class: 'action-sym' }, actionSym(item.actions)));
-  if (item.component)   row.appendChild(el('span', { class: 'action-component' }, item.component));
+  if (item.component)   row.appendChild(el('span', { class: 'action-component' }, spellComponent(item.component)));
   if (item.effect)      row.appendChild(el('span', { class: 'action-effect'    }, item.effect));
-  // mana: show +N, -N, or 0
   if (item.mana !== undefined && item.mana !== null && item.mana !== '') {
     const m = Number(item.mana);
     const label = isNaN(m) ? String(item.mana) : (m > 0 ? `+${m}` : `${m}`);
-    row.appendChild(el('span', { class: 'action-mana' }, `[${label}]`));
+    row.appendChild(el('span', { class: 'action-mana' }, label));
   }
   return row;
 }
@@ -371,9 +378,9 @@ function actionRow(item, idx) {
 function componentRow(item, idx) {
   const row = el('div', { class: `action-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   if (item.attribute)   row.appendChild(el('b',    { class: 'action-attribute'   }, item.attribute));
-  if (item.variant)     row.appendChild(el('span', { class: 'action-variant'     }, `[${item.variant}]`));
+  if (item.variant)     row.appendChild(el('span', { class: 'action-variant'     }, item.variant));
   if (hasValue(item.actions)) row.appendChild(el('span', { class: 'action-sym'   }, actionSym(item.actions)));
-  if (item.component)   row.appendChild(el('span', { class: 'action-component'   }, item.component));
+  if (item.component)   row.appendChild(el('span', { class: 'action-component'   }, spellComponent(item.component)));
   if (item.effect)      row.appendChild(el('span', { class: 'action-effect'      }, item.effect));
   if (item.description) row.appendChild(el('span', { class: 'action-description' }, item.description));
   if (item.price)       row.appendChild(el('span', { class: 'action-price'       }, `${item.price} gp`));
@@ -382,14 +389,14 @@ function componentRow(item, idx) {
 
 function sustainRow(item, idx) {
   const row = el('div', { class: `action-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  if (item.variant)  row.appendChild(el('span', { class: 'action-variant' }, `[${item.variant}]`));
+  if (item.variant)   row.appendChild(el('span', { class: 'action-variant'   }, item.variant));
   if (hasValue(item.actions)) row.appendChild(el('span', { class: 'action-sym' }, actionSym(item.actions)));
-  if (item.component) row.appendChild(el('span', { class: 'action-component' }, item.component));
-  if (item.effect)    row.appendChild(el('span', { class: 'action-effect' }, item.effect));
-  if (item.mana) {
+  if (item.component) row.appendChild(el('span', { class: 'action-component' }, spellComponent(item.component)));
+  if (item.effect)    row.appendChild(el('span', { class: 'action-effect'    }, item.effect));
+  if (item.mana !== undefined && item.mana !== null && item.mana !== '') {
     const m = Number(item.mana);
     const label = isNaN(m) ? String(item.mana) : (m > 0 ? `+${m}` : `${m}`);
-    row.appendChild(el('span', { class: 'action-mana' }, `[${label}]`));
+    row.appendChild(el('span', { class: 'action-mana' }, label));
   }
   return row;
 }
@@ -405,20 +412,24 @@ function renderActionSection(title, items, rowFn) {
 }
 
 function renderSustainDismiss(f) {
-  const hasSustain = f.sustain?.some(s => s?.effect);
-  const hasDismiss = f.dismiss && (hasValue(f.dismiss.actions) || f.dismiss.effect);
-  if (!hasSustain && !hasDismiss) return null;
+  const sustainItems = (f.sustain || []).filter(s => s?.effect);
+  const dismissRaw   = f.dismiss;
+  const dismissItems = Array.isArray(dismissRaw)
+    ? dismissRaw.filter(d => d?.effect)
+    : (dismissRaw?.effect ? [dismissRaw] : []);
+
+  if (!sustainItems.length && !dismissItems.length) return null;
 
   const section = el('div', { class: 'section-action' });
   section.appendChild(el('div', { class: 'section-heading' }, 'Duration'));
 
-  if (hasSustain) {
+  if (sustainItems.length) {
     section.appendChild(el('div', { class: 'action-sub-heading' }, 'Sustain'));
-    f.sustain.filter(s => s?.effect).forEach((s, i) => section.appendChild(sustainRow(s, i)));
+    sustainItems.forEach((s, i) => section.appendChild(sustainRow(s, i)));
   }
-  if (hasDismiss) {
+  if (dismissItems.length) {
     section.appendChild(el('div', { class: 'action-sub-heading' }, 'Dismiss'));
-    section.appendChild(sustainRow(f.dismiss, 0));
+    dismissItems.forEach((d, i) => section.appendChild(sustainRow(d, i)));
   }
   return section;
 }
@@ -626,11 +637,86 @@ function edRow(...fields) {
 }
 
 /* ============================================================
+   EDITOR — SUSTAIN / DISMISS BUILDER
+   ============================================================ */
+
+function buildSdRow(data) {
+  data = data || {};
+  const row = el('div', { class: 'sd-row' });
+
+  const actSel = el('select', { class: 'form-input form-select', 'data-field': 'actions' });
+  [{ v: '', l: '' }, { v: 'F', l: '\u25C7' }, { v: '1', l: '\u25C6' },
+   { v: '2', l: '\u25C6\u25C6' }, { v: '3', l: '\u25C6\u25C6\u25C6' }, { v: 'R', l: '\u21BA' }]
+    .forEach(({ v, l }) => {
+      const o = el('option', { value: v }, l);
+      if (String(data.actions) === v) o.selected = true;
+      actSel.appendChild(o);
+    });
+  row.appendChild(actSel);
+
+  const compIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'V S M F', 'data-field': 'component' });
+  compIn.value = data.component || '';
+  row.appendChild(compIn);
+
+  const efTa = el('textarea', { class: 'form-input', rows: 2, 'data-field': 'effect' });
+  efTa.value = data.effect || '';
+  row.appendChild(efTa);
+
+  const manaIn = el('input', { class: 'form-input', type: 'number', 'data-field': 'mana' });
+  if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
+  row.appendChild(manaIn);
+
+  return row;
+}
+
+function buildSdSection(title, containerId, initialData) {
+  const col = el('div', { class: 'form-results-col' });
+
+  const heading = el('div', { class: 'sd-heading' });
+  heading.appendChild(el('span', {}, title));
+  const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
+  heading.appendChild(addBtn);
+  col.appendChild(heading);
+
+  const labels = el('div', { class: 'sd-labels' });
+  ['Actions', 'Component', 'Effect', 'Mana'].forEach(l =>
+    labels.appendChild(el('span', { class: 'sd-label' }, l)));
+  col.appendChild(labels);
+
+  const container = el('div', { id: containerId });
+  const rows = Array.isArray(initialData)
+    ? initialData
+    : (initialData && (initialData.effect || initialData.actions) ? [initialData] : []);
+  if (rows.length) rows.forEach(r => container.appendChild(buildSdRow(r)));
+  else container.appendChild(buildSdRow({}));
+  col.appendChild(container);
+
+  addBtn.addEventListener('click', () => container.appendChild(buildSdRow({})));
+  return col;
+}
+
+function collectSdRows(containerId) {
+  const rows = document.querySelectorAll(`#${containerId} .sd-row`);
+  return Array.from(rows).map(row => {
+    const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
+    const m = get('mana');
+    return { actions: get('actions'), component: get('component'),
+             effect: get('effect'), mana: m !== '' ? parseFloat(m) : 0 };
+  }).filter(r => r.effect);
+}
+
+/* ============================================================
    EDITOR — BUILD FORM
    ============================================================ */
 
 const OPTS = {
-  rarity     : ['common', 'uncommon', 'rare', 'unique'],
+  rarity     : [
+    { value: 'common',   label: 'Common'   },
+    { value: 'uncommon', label: 'Uncommon' },
+    { value: 'rare',     label: 'Rare'     },
+    { value: 'unique',   label: 'Unique'   }
+  ],
   difficulty : [
     { value: 'easy',             label: 'Easy' },
     { value: 'average',          label: 'Average' },
@@ -795,9 +881,11 @@ function buildEditor(f) {
   form.appendChild(resultsRow);
 
   // JSON sections
-  form.appendChild(sec('Sustain & Dismiss'));
-  form.appendChild(edJson('Sustain (JSON array)', 'ed-sustain', f.sustain));
-  form.appendChild(edJson('Dismiss (JSON object)', 'ed-dismiss', f.dismiss));
+  // Sustain & Dismiss — structured 2-column form
+  const sdRow = el('div', { class: 'form-results-row' });
+  sdRow.appendChild(buildSdSection('Sustain', 'sustain-rows', f.sustain));
+  sdRow.appendChild(buildSdSection('Dismiss', 'dismiss-rows', f.dismiss));
+  form.appendChild(sdRow);
   form.appendChild(sec('Heightened'));
   form.appendChild(edJson('Heightened entries (JSON array)', 'ed-heightened', f.heightened));
   form.appendChild(sec('Variants'));
@@ -880,8 +968,8 @@ function collectEditor() {
     },
     attack_results : { cs: v('ed-ar-cs'), s: v('ed-ar-s'), f: v('ed-ar-f'), cf: v('ed-ar-cf') },
     save_results   : { cs: v('ed-sr-cs'), s: v('ed-sr-s'), f: v('ed-sr-f'), cf: v('ed-sr-cf') },
-    sustain    : json('ed-sustain',    []),
-    dismiss    : json('ed-dismiss',    {}),
+    sustain    : collectSdRows('sustain-rows'),
+    dismiss    : collectSdRows('dismiss-rows'),
     heightened : json('ed-heightened', []),
     variants   : json('ed-variants',   []),
     components : json('ed-components', [])
