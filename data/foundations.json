@@ -226,12 +226,15 @@
       "components": []
     },
     {
-      "name": "Force Edit",
-      "mana": 17,
-      "rarity": "unique",
-      "difficulty": "incredibly hard",
+      "name": "Animate Dead",
+      "mana": 7,
+      "rarity": "uncommon",
+      "difficulty": "hard",
       "traits": [],
-      "traditions": [],
+      "traditions": [
+        "arcane",
+        "divine"
+      ],
       "access": [],
       "cast": {
         "actions": "",
@@ -287,7 +290,7 @@
         "cf": ""
       },
       "sustain": [],
-      "dismiss": {},
+      "dismiss": [],
       "heightened": [],
       "variants": [],
       "components": []
