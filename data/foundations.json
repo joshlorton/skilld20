@@ -52,7 +52,7 @@
         "type": "fire"
       },
       "effect": {
-        "base": "You launch a bolt-like projectile of fire at your target. Your projectile provides 5' of dim illumination along its path of travel.",
+        "base": "You launch a bolt of fire at your target. It provides 5' of dim illumination along its path of travel.",
         "options": []
       },
       "skill": {
@@ -94,13 +94,13 @@
         {
           "actions": "1",
           "component": "S",
-          "effect": "sustain illumination by 1 round",
+          "effect": "sustain illumination",
           "mana": 0
         },
         {
           "actions": "F",
           "component": "-",
-          "effect": "sustain illumination by 1 round",
+          "effect": "sustain illumination",
           "mana": 2
         }
       ],
