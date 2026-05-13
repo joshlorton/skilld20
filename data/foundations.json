@@ -293,13 +293,24 @@
       "components": []
     },
     {
-      "name": "Firefox Test 3",
-      "mana": 23,
+      "name": "Affect Fire",
+      "mana": 2,
       "rarity": "uncommon",
-      "difficulty": "hard",
-      "traits": [],
-      "traditions": [],
-      "access": [],
+      "difficulty": "average",
+      "traits": [
+        "fire"
+      ],
+      "traditions": [
+        "arcane",
+        "elemental/primal"
+      ],
+      "access": [
+        "elemental: fire",
+        "genie: fire",
+        "firewalker",
+        "genie: fire",
+        "elemental: fire"
+      ],
       "cast": {
         "actions": "",
         "component": "",
@@ -354,7 +365,7 @@
         "cf": ""
       },
       "sustain": [],
-      "dismiss": {},
+      "dismiss": [],
       "heightened": [],
       "variants": [],
       "components": []
