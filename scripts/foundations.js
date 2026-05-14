@@ -184,11 +184,14 @@ function renderTraitBar(f) {
   (f.access     || []).filter(Boolean).forEach(t => {
     const lower = t.toLowerCase();
     let key = 'pact';
-    if      (lower.includes('arcane'))    key = 'arcane';
-    else if (lower.includes('bloodline')) key = 'bloodline';
-    else if (lower.includes('divine'))    key = 'divine';
-    else if (lower.includes('bardic'))    key = 'bardic';
-    bar.appendChild(traitTag(t, `trait-access-${key}`));
+    if      (lower.startsWith('arcane'))    key = 'arcane';
+    else if (lower.startsWith('bloodline')) key = 'bloodline';
+    else if (lower.startsWith('divine'))    key = 'divine';
+    else if (lower.startsWith('bardic'))    key = 'bardic';
+    // Strip category prefix for display ("arcane school: elemental: fire" → "elemental: fire")
+    const colonIdx = t.indexOf(': ');
+    const display  = colonIdx >= 0 ? t.slice(colonIdx + 2) : t;
+    bar.appendChild(traitTag(display, `trait-access-${key}`));
   });
 
   return bar;
@@ -877,13 +880,42 @@ const TRADITION_GROUPS = [
 ];
 
 const ACCESS_GROUPS = [
-  { label: 'Arcane School',   items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water'] },
-  { label: 'Bloodline',       items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water',
-                                       'genie: air', 'genie: earth', 'genie: fire', 'genie: water'] },
-  { label: 'Divine Domain',   items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water'] },
-  { label: 'Divine Specialty',items: ['firemane', 'firewalker', 'icepriestess/icepriest', 'stormlady/stormlord', 'windwalker'] },
-  { label: 'Pact',            items: ['the fathomless', 'genie: air', 'genie: earth', 'genie: fire', 'genie: water'] },
-  { label: 'Primal Circle',   items: ['elemental: air', 'elemental: earth', 'elemental: fire', 'elemental: water'] }
+  { label: 'Arcane School', items: [
+    { value: 'arcane school: elemental: air',   label: 'elemental: air'   },
+    { value: 'arcane school: elemental: earth',  label: 'elemental: earth' },
+    { value: 'arcane school: elemental: fire',   label: 'elemental: fire'  },
+    { value: 'arcane school: elemental: water',  label: 'elemental: water' }
+  ]},
+  { label: 'Bloodline', items: [
+    { value: 'bloodline: elemental: air',    label: 'elemental: air'   },
+    { value: 'bloodline: elemental: earth',   label: 'elemental: earth' },
+    { value: 'bloodline: elemental: fire',    label: 'elemental: fire'  },
+    { value: 'bloodline: elemental: water',   label: 'elemental: water' },
+    { value: 'bloodline: genie: air',         label: 'genie: air'       },
+    { value: 'bloodline: genie: earth',        label: 'genie: earth'     },
+    { value: 'bloodline: genie: fire',         label: 'genie: fire'      },
+    { value: 'bloodline: genie: water',        label: 'genie: water'     }
+  ]},
+  { label: 'Divine Domain', items: [
+    { value: 'divine domain: elemental: air',   label: 'elemental: air'   },
+    { value: 'divine domain: elemental: earth',  label: 'elemental: earth' },
+    { value: 'divine domain: elemental: fire',   label: 'elemental: fire'  },
+    { value: 'divine domain: elemental: water',  label: 'elemental: water' }
+  ]},
+  { label: 'Divine Specialty', items: [
+    { value: 'divine specialty: firemane',               label: 'firemane'               },
+    { value: 'divine specialty: firewalker',              label: 'firewalker'             },
+    { value: 'divine specialty: icepriestess/icepriest',  label: 'icepriestess/icepriest' },
+    { value: 'divine specialty: stormlady/stormlord',     label: 'stormlady/stormlord'    },
+    { value: 'divine specialty: windwalker',              label: 'windwalker'             }
+  ]},
+  { label: 'Pact', items: [
+    { value: 'pact: the fathomless', label: 'the fathomless' },
+    { value: 'pact: genie: air',      label: 'genie: air'     },
+    { value: 'pact: genie: earth',     label: 'genie: earth'   },
+    { value: 'pact: genie: fire',      label: 'genie: fire'    },
+    { value: 'pact: genie: water',     label: 'genie: water'   }
+  ]}
 ];
 
 function parseDuration(dur) {
