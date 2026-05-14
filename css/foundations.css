@@ -8,7 +8,7 @@
   --bg:           #0f0f0f;
   --bg-sidebar:   #0d0d0d;
   --bg-card:      #0f0f0f;
-  --heading-bg:   #5D0000;
+  --heading-bg:   #5a0008;
   --heading-fg:   #cbc18f;
   --accent:       #cbc18f;
   --mana:         #00ffff;
@@ -187,7 +187,7 @@ body {
 .trait-bar { display: flex; flex-wrap: wrap; padding-bottom: 6px; gap: 0; }
 
 .trait-tag {
-  background: #5D0000;
+  background: #5a0008;
   color: #fff;
   font-weight: 700;
   font-variant: small-caps;
@@ -201,20 +201,20 @@ body {
 
 /* Rarity */
 .trait-rarity-common   { background: #1a1a1a; }
-.trait-rarity-uncommon { background: #7a3510; }
+.trait-rarity-uncommon { background: #bd5410; }
 .trait-rarity-rare     { background: #160b65; }
 .trait-rarity-unique   { background: #54116d; }
 
 /* Difficulty */
-.trait-difficulty-easy             { background: #006030; }
+.trait-difficulty-easy             { background: #00b050; }
 .trait-difficulty-average          { background: #1a1a1a; }
-.trait-difficulty-hard             { background: #7a3510; }
+.trait-difficulty-hard             { background: #bd5410; }
 .trait-difficulty-very-hard        { background: #160b65; }
 .trait-difficulty-incredibly-hard  { background: #54116d; }
 /* Legacy PF2e difficulty names */
-.trait-difficulty-untrained  { background: #006030; }
+.trait-difficulty-untrained  { background: #00b050; }
 .trait-difficulty-trained    { background: #1a1a1a; }
-.trait-difficulty-expert     { background: #7a3510; }
+.trait-difficulty-expert     { background: #bd5410; }
 .trait-difficulty-master     { background: #160b65; }
 .trait-difficulty-legendary  { background: #54116d; }
 
