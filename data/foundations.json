@@ -14,11 +14,11 @@
         "bloodline"
       ],
       "access": [
-        "elemental: fire",
-        "elemental: fire",
-        "genie: fire",
-        "elemental: fire",
-        "elemental: fire"
+        "arcane school: elemental: fire",
+        "bloodline: elemental: fire",
+        "bloodline: genie: fire",
+        "divine domain: elemental: fire",
+        "pact: genie: fire"
       ],
       "cast": {
         "actions": "1",
