@@ -237,11 +237,15 @@ function specRow(label, value) {
 function specRowCast(f) {
   const cast = f.cast;
   if (!cast) return null;
+  const hasActions   = hasValue(cast.actions) && cast.actions !== '';
+  const hasComponent = cast.component && cast.component !== '';
+  const hasTrigger   = cast.trigger   && cast.trigger   !== '';
+  if (!hasActions && !hasComponent && !hasTrigger) return null;
   const row = el('div', { class: 'spec-row' });
   row.appendChild(el('b', { class: 'spec-label' }, 'Cast'));
   const val = el('span', { class: 'spec-value' });
-  if (hasValue(cast.actions)) val.appendChild(el('span', { class: 'action-sym' }, actionSym(cast.actions)));
-  if (cast.component) val.appendChild(document.createTextNode(` ${spellComponent(cast.component)}`));
+  if (hasActions)   val.appendChild(el('span', { class: 'action-sym' }, actionSym(cast.actions)));
+  if (hasComponent) val.appendChild(document.createTextNode(` ${spellComponent(cast.component)}`));
   row.appendChild(val);
   return row;
 }
@@ -342,12 +346,17 @@ function renderResults(f) {
 
   // Skill
   const sk = f.skill;
-  if (sk?.primary?.some(Boolean)) {
+  const hasSkillData = sk && (
+    sk.primary?.some(Boolean) || sk.secondary?.some(Boolean) ||
+    sk.cs?.some(Boolean) || sk.s || sk.f || sk.cf?.some(Boolean)
+  );
+  if (hasSkillData) {
     const block = el('div', { class: 'result-block' });
     block.appendChild(el('div', { class: 'result-heading' }, 'Skill Check'));
     const addRow = (label, val, cls) => { const r = resultRow(label, val, cls); if (r) block.appendChild(r); };
-    if (sk.primary?.length)   addRow('Primary',   sk.primary.join(', '),   'skill-row');
-    if (sk.secondary?.length) addRow('Secondary', sk.secondary.join(', '), 'skill-row');
+    const primaryDisplay = sk.primary?.some(Boolean) ? sk.primary.join(', ') : 'per Tradition';
+    addRow('Primary',          primaryDisplay,              'skill-row');
+    if (sk.secondary?.length)  addRow('Secondary', sk.secondary.join(', '), 'skill-row');
     addRow('Critical Success', sk.cs, 'row-cs');
     addRow('Success',          sk.s || ['Expected effect.'], 'row-s');
     addRow('Failure',          sk.f || ['Failed cast. No effect.'], 'row-sf');
@@ -1018,7 +1027,10 @@ function buildEditor(f) {
 
   // Skill Check
   form.appendChild(sec('Skill Check'));
-  form.appendChild(edField('Primary (comma-separated)',   'ed-sk-primary',   (f.skill?.primary   || []).join(', ')));
+  const primaryVal = (f.skill?.primary || []).join(', ');
+  const primaryField = edField('Primary (comma-separated)', 'ed-sk-primary', primaryVal);
+  primaryField.querySelector('input').placeholder = 'per Tradition';
+  form.appendChild(primaryField);
   form.appendChild(edField('Secondary (comma-separated)', 'ed-sk-secondary', (f.skill?.secondary || []).join(', ')));
   form.appendChild(edField('Critical Success (one per line)', 'ed-sk-cs', (f.skill?.cs || []).join('\n'), 'textarea'));
   form.appendChild(edField('Success',          'ed-sk-s',  f.skill?.s,  'textarea'));
