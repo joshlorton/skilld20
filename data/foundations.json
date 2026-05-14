@@ -17,8 +17,7 @@
         "arcane school: elemental: fire",
         "bloodline: elemental: fire",
         "bloodline: genie: fire",
-        "divine domain: elemental: fire",
-        "pact: genie: fire"
+        "divine domain: elemental: fire"
       ],
       "cast": {
         "actions": "1",
