@@ -115,13 +115,13 @@
         "fire"
       ],
       "traditions": [
-        "arcane"
+        "arcane",
+        "bloodline"
       ],
       "access": [
         "arcane school: elemental: fire",
         "bloodline: elemental: fire",
         "bloodline: genie: fire",
-        "divine domain: elemental: fire",
         "divine specialty: firewalker",
         "pact: genie: fire"
       ],
