@@ -231,7 +231,10 @@
       "traits": [],
       "traditions": [
         "arcane",
-        "divine"
+        "divine",
+        "bardic",
+        "bloodline",
+        "pact"
       ],
       "access": [],
       "cast": {
