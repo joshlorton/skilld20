@@ -307,12 +307,12 @@
         "arcane"
       ],
       "access": [
-        "elemental: fire",
-        "elemental: fire",
-        "genie: fire",
-        "elemental: fire",
-        "firewalker",
-        "genie: fire"
+        "arcane school: elemental: fire",
+        "bloodline: elemental: fire",
+        "bloodline: genie: fire",
+        "divine domain: elemental: fire",
+        "divine specialty: firewalker",
+        "pact: genie: fire"
       ],
       "cast": {
         "actions": "",
