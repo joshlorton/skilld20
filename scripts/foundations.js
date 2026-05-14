@@ -161,37 +161,36 @@ async function attemptSave(isRetry) {
    RENDERING — TRAIT BAR
    ============================================================ */
 
-const RARITY_BG = {
-  common   : '#1a1a1a',
-  uncommon : '#7a3510',
-  rare     : '#160b65',
-  unique   : '#54116d'
-};
-const DIFFICULTY_BG = {
-  easy             : '#006030',
-  average          : '#1a1a1a',
-  hard             : '#7a3510',
-  'very hard'      : '#160b65',
-  'incredibly hard': '#54116d',
-  // legacy PF2e values kept for backwards compatibility
-  untrained        : '#006030',
-  trained          : '#1a1a1a',
-  expert           : '#7a3510',
-  master           : '#160b65',
-  legendary        : '#54116d'
-};
-
-function traitTag(text, bg) {
-  return el('span', { class: 'trait-tag', style: `background:${bg || '#5D0000'}` }, text);
+function traitTag(text, cls) {
+  const classes = ['trait-tag', cls].filter(Boolean).join(' ');
+  return el('span', { class: classes }, text);
 }
 
 function renderTraitBar(f) {
   const bar = el('div', { class: 'trait-bar' });
-  if (f.rarity)     bar.appendChild(traitTag(f.rarity,     RARITY_BG[f.rarity.toLowerCase()]     || '#5D0000'));
-  if (f.difficulty) bar.appendChild(traitTag(f.difficulty, DIFFICULTY_BG[f.difficulty.toLowerCase()] || '#5D0000'));
-  (f.traits      || []).filter(Boolean).forEach(t => bar.appendChild(traitTag(t, '#5D0000')));
-  (f.traditions  || []).filter(Boolean).forEach(t => bar.appendChild(traitTag(t, '#0d3a5e')));
-  (f.access      || []).filter(Boolean).forEach(t => bar.appendChild(traitTag(t, '#1a3d2a')));
+
+  if (f.rarity) {
+    bar.appendChild(traitTag(f.rarity,
+      `trait-rarity-${f.rarity.toLowerCase()}`));
+  }
+  if (f.difficulty) {
+    bar.appendChild(traitTag(f.difficulty,
+      `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
+  }
+  (f.traits     || []).filter(Boolean).forEach(t =>
+    bar.appendChild(traitTag(t, '')));
+  (f.traditions || []).filter(Boolean).forEach(t =>
+    bar.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`)));
+  (f.access     || []).filter(Boolean).forEach(t => {
+    const lower = t.toLowerCase();
+    let key = 'pact';
+    if      (lower.includes('arcane'))    key = 'arcane';
+    else if (lower.includes('bloodline')) key = 'bloodline';
+    else if (lower.includes('divine'))    key = 'divine';
+    else if (lower.includes('bardic'))    key = 'bardic';
+    bar.appendChild(traitTag(t, `trait-access-${key}`));
+  });
+
   return bar;
 }
 
@@ -873,9 +872,8 @@ const TRAIT_GROUPS = [
 ];
 
 const TRADITION_GROUPS = [
-  { label: 'Trained', items: ['arcane', 'divine', 'druidic', 'elemental/primal',
-                               'pact [contractual]', 'pact [devotional]'] },
-  { label: 'Natural', items: ['bloodline', 'innate', 'pact [personality]', 'pact [inherited]'] }
+  { label: 'Trained',   items: ['arcane', 'divine', 'bardic'] },
+  { label: 'Untrained', items: ['bloodline', 'pact'] }
 ];
 
 const ACCESS_GROUPS = [
