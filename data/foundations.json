@@ -376,6 +376,73 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "New Foundation",
+      "mana": 0,
+      "rarity": "",
+      "difficulty": "",
+      "traits": [],
+      "traditions": [],
+      "access": [],
+      "cast": {
+        "actions": "",
+        "component": "",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "duration": "",
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "effect": {
+        "base": "",
+        "options": []
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
