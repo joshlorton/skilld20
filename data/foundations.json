@@ -116,15 +116,13 @@
         "fire"
       ],
       "traditions": [
-        "arcane",
-        "elemental/primal"
+        "arcane"
       ],
       "access": [
         "elemental: fire",
         "elemental: fire",
         "elemental: fire",
-        "firewalker",
-        "elemental: fire"
+        "firewalker"
       ],
       "cast": {
         "actions": "1",
