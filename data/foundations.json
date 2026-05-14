@@ -11,7 +11,6 @@
       "traditions": [
         "arcane",
         "divine",
-        "elemental/primal",
         "bloodline"
       ],
       "access": [
@@ -19,8 +18,7 @@
         "elemental: fire",
         "genie: fire",
         "elemental: fire",
-        "genie: fire",
-        "elemental: fire"
+        "genie: fire"
       ],
       "cast": {
         "actions": "1",
