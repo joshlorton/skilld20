@@ -900,12 +900,14 @@ const OPTS = {
 };
 
 const TRAIT_GROUPS = [
+  { label: 'Condition', items: ['curse', 'disease', 'poison', 'reposition', 'wood'] },
+  { label: 'Elemental', items: ['air', 'earth', 'fire', 'metal', 'water', 'wood'] },
   { label: 'Energy',    items: ['acid', 'cold', 'fire', 'force', 'lightning',
-                                'necrotic', 'physical', 'poison', 'psychic', 'radiant', 'sonic'] },
+                                'necrotic', 'physical', 'psychic', 'radiant', 'sonic'] },
   { label: 'Mental',    items: ['charm', 'compulsion', 'emotion', 'fear', 'mental', 'sleep'] },
-  { label: 'Sensory',   items: ['auditory', 'olfactory', 'tactile', 'visual'] },
-  { label: 'Detection', items: ['detection', 'shrouded'] },
-  { label: 'Other',     items: ['creation', 'healing', 'illusion', 'summoning', 'utility', 'ward'] }
+  { label: 'Sensory',   items: ['auditory', 'detection', 'olfactory', 'shroud', 'tactile', 'visual'] },
+  { label: 'Other',     items: ['animation', 'creation', 'darkness', 'healing', 'illusion',
+                                'light', 'luck', 'necromancy', 'polymorph', 'summoning', 'utility', 'ward'] }
 ];
 
 const TRADITION_GROUPS = [
@@ -916,39 +918,73 @@ const TRADITION_GROUPS = [
 const ACCESS_GROUPS = [
   { label: 'Arcane School', items: [
     { value: 'arcane school: elemental: air',   label: 'elemental: air'   },
-    { value: 'arcane school: elemental: earth',  label: 'elemental: earth' },
-    { value: 'arcane school: elemental: fire',   label: 'elemental: fire'  },
-    { value: 'arcane school: elemental: water',  label: 'elemental: water' }
+    { value: 'arcane school: elemental: earth', label: 'elemental: earth' },
+    { value: 'arcane school: elemental: fire',  label: 'elemental: fire'  },
+    { value: 'arcane school: elemental: water', label: 'elemental: water' }
   ]},
   { label: 'Bloodline', items: [
-    { value: 'bloodline: elemental: air',    label: 'elemental: air'   },
-    { value: 'bloodline: elemental: earth',   label: 'elemental: earth' },
-    { value: 'bloodline: elemental: fire',    label: 'elemental: fire'  },
-    { value: 'bloodline: elemental: water',   label: 'elemental: water' },
-    { value: 'bloodline: genie: air',         label: 'genie: air'       },
-    { value: 'bloodline: genie: earth',        label: 'genie: earth'     },
-    { value: 'bloodline: genie: fire',         label: 'genie: fire'      },
-    { value: 'bloodline: genie: water',        label: 'genie: water'     }
+    { value: 'bloodline: draconic',             label: 'draconic'             },
+    { value: 'bloodline: elemental: air',       label: 'elemental: air'       },
+    { value: 'bloodline: elemental: earth',     label: 'elemental: earth'     },
+    { value: 'bloodline: elemental: fire',      label: 'elemental: fire'      },
+    { value: 'bloodline: elemental: water',     label: 'elemental: water'     },
+    { value: 'bloodline: fey',                  label: 'fey'                  },
+    { value: 'bloodline: genie: air',           label: 'genie: air'           },
+    { value: 'bloodline: genie: earth',         label: 'genie: earth'         },
+    { value: 'bloodline: genie: fire',          label: 'genie: fire'          },
+    { value: 'bloodline: genie: water',         label: 'genie: water'         },
+    { value: 'bloodline: planar',               label: 'planar'               },
+    { value: 'bloodline: shadow',               label: 'shadow'               },
+    { value: 'bloodline: undead',               label: 'undead'               }
   ]},
   { label: 'Divine Domain', items: [
+    { value: 'divine domain: animal',           label: 'animal'           },
+    { value: 'divine domain: artifice',         label: 'artifice'         },
+    { value: 'divine domain: athletics',        label: 'athletics'        },
+    { value: 'divine domain: chaos',            label: 'chaos'            },
+    { value: 'divine domain: death',            label: 'death'            },
+    { value: 'divine domain: decay',            label: 'decay'            },
+    { value: 'divine domain: destruction',      label: 'destruction'      },
     { value: 'divine domain: elemental: air',   label: 'elemental: air'   },
-    { value: 'divine domain: elemental: earth',  label: 'elemental: earth' },
-    { value: 'divine domain: elemental: fire',   label: 'elemental: fire'  },
-    { value: 'divine domain: elemental: water',  label: 'elemental: water' }
+    { value: 'divine domain: elemental: earth', label: 'elemental: earth' },
+    { value: 'divine domain: elemental: fire',  label: 'elemental: fire'  },
+    { value: 'divine domain: elemental: water', label: 'elemental: water' },
+    { value: 'divine domain: fate',             label: 'fate'             },
+    { value: 'divine domain: justice',          label: 'justice'          },
+    { value: 'divine domain: knowledge',        label: 'knowledge'        },
+    { value: 'divine domain: luck',             label: 'luck'             },
+    { value: 'divine domain: magic',            label: 'magic'            },
+    { value: 'divine domain: moon',             label: 'moon'             },
+    { value: 'divine domain: order',            label: 'order'            },
+    { value: 'divine domain: plant',            label: 'plant'            },
+    { value: 'divine domain: protection',       label: 'protection'       },
+    { value: 'divine domain: renewal',          label: 'renewal'          },
+    { value: 'divine domain: repose',           label: 'repose'           },
+    { value: 'divine domain: season: autumn',   label: 'season: autumn'   },
+    { value: 'divine domain: season: spring',   label: 'season: spring'   },
+    { value: 'divine domain: season: summer',   label: 'season: summer'   },
+    { value: 'divine domain: season: winter',   label: 'season: winter'   },
+    { value: 'divine domain: sun',              label: 'sun'              },
+    { value: 'divine domain: time',             label: 'time'             },
+    { value: 'divine domain: travel',           label: 'travel'           },
+    { value: 'divine domain: undeath',          label: 'undeath'          },
+    { value: 'divine domain: war',              label: 'war'              }
   ]},
   { label: 'Divine Specialty', items: [
+    { value: 'divine specialty: airwalker',              label: 'airwalker'              },
+    { value: 'divine specialty: deathstalker',           label: 'deathstalker'           },
     { value: 'divine specialty: firemane',               label: 'firemane'               },
-    { value: 'divine specialty: firewalker',              label: 'firewalker'             },
-    { value: 'divine specialty: icepriestess/icepriest',  label: 'icepriestess/icepriest' },
-    { value: 'divine specialty: stormlady/stormlord',     label: 'stormlady/stormlord'    },
-    { value: 'divine specialty: windwalker',              label: 'windwalker'             }
+    { value: 'divine specialty: firewalker',             label: 'firewalker'             },
+    { value: 'divine specialty: icepriestess/icepriest', label: 'icepriestess/icepriest' },
+    { value: 'divine specialty: stormlady/stormlord',    label: 'stormlady/stormlord'    },
+    { value: 'divine specialty: windwalker',             label: 'windwalker'             }
   ]},
   { label: 'Pact', items: [
     { value: 'pact: the fathomless', label: 'the fathomless' },
-    { value: 'pact: genie: air',      label: 'genie: air'     },
-    { value: 'pact: genie: earth',     label: 'genie: earth'   },
-    { value: 'pact: genie: fire',      label: 'genie: fire'    },
-    { value: 'pact: genie: water',     label: 'genie: water'   }
+    { value: 'pact: genie: air',     label: 'genie: air'     },
+    { value: 'pact: genie: earth',   label: 'genie: earth'   },
+    { value: 'pact: genie: fire',    label: 'genie: fire'    },
+    { value: 'pact: genie: water',   label: 'genie: water'   }
   ]}
 ];
 
