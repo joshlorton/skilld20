@@ -117,7 +117,8 @@
       "traditions": [
         "arcane",
         "divine",
-        "bloodline"
+        "bloodline",
+        "pact"
       ],
       "access": [
         "arcane school: elemental: fire",
