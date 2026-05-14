@@ -8,7 +8,7 @@
   --bg:           #0f0f0f;
   --bg-sidebar:   #0d0d0d;
   --bg-card:      #0f0f0f;
-  --heading-bg:   #5a0008;
+  --heading-bg:   #5D0000;
   --heading-fg:   #cbc18f;
   --accent:       #cbc18f;
   --mana:         #00ffff;
@@ -185,9 +185,10 @@ body {
    ============================================================ */
 
 .trait-bar { display: flex; flex-wrap: wrap; padding-bottom: 6px; gap: 0; }
+.trait-break { width: 100%; height: 0; overflow: hidden; }
 
 .trait-tag {
-  background: #5a0008;
+  background: #5D0000;
   color: #fff;
   font-weight: 700;
   font-variant: small-caps;

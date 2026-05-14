@@ -169,30 +169,55 @@ function traitTag(text, cls) {
 function renderTraitBar(f) {
   const bar = el('div', { class: 'trait-bar' });
 
-  if (f.rarity) {
-    bar.appendChild(traitTag(f.rarity,
-      `trait-rarity-${f.rarity.toLowerCase()}`));
-  }
-  if (f.difficulty) {
-    bar.appendChild(traitTag(f.difficulty,
-      `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
-  }
-  (f.traits     || []).filter(Boolean).forEach(t =>
-    bar.appendChild(traitTag(t, '')));
-  (f.traditions || []).filter(Boolean).forEach(t =>
-    bar.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`)));
-  (f.access     || []).filter(Boolean).forEach(t => {
-    const lower = t.toLowerCase();
-    let key = 'pact';
-    if      (lower.startsWith('arcane'))    key = 'arcane';
-    else if (lower.startsWith('bloodline')) key = 'bloodline';
-    else if (lower.startsWith('divine'))    key = 'divine';
-    else if (lower.startsWith('bardic'))    key = 'bardic';
-    // Strip category prefix for display ("arcane school: elemental: fire" → "elemental: fire")
-    const colonIdx = t.indexOf(': ');
-    const display  = colonIdx >= 0 ? t.slice(colonIdx + 2) : t;
-    bar.appendChild(traitTag(display, `trait-access-${key}`));
+  // Row 1: rarity, difficulty, general traits
+  if (f.rarity)     bar.appendChild(traitTag(f.rarity,
+    `trait-rarity-${f.rarity.toLowerCase()}`));
+  if (f.difficulty) bar.appendChild(traitTag(f.difficulty,
+    `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
+  (f.traits || []).filter(Boolean).forEach(t => bar.appendChild(traitTag(t, '')));
+
+  const traditions = (f.traditions || []).filter(Boolean);
+  const accessItems = (f.access    || []).filter(Boolean);
+  if (!traditions.length && !accessItems.length) return bar;
+
+  // Resolve a tradition key from an access item's prefix
+  const tradKey = a => {
+    const p = a.toLowerCase();
+    if (p.startsWith('arcane'))    return 'arcane';
+    if (p.startsWith('bloodline')) return 'bloodline';
+    if (p.startsWith('divine'))    return 'divine';
+    if (p.startsWith('bardic'))    return 'bardic';
+    return 'pact';
+  };
+
+  // Group access items by their tradition key
+  const byTrad = {};
+  accessItems.forEach(a => {
+    const k = tradKey(a);
+    (byTrad[k] = byTrad[k] || []).push(a);
   });
+
+  // Row per tradition: [Tradition] [access item] [access item] ...
+  bar.appendChild(el('div', { class: 'trait-break' }));
+  traditions.forEach((t, i) => {
+    if (i > 0) bar.appendChild(el('div', { class: 'trait-break' }));
+    bar.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`));
+    (byTrad[t.toLowerCase()] || []).forEach(a => {
+      const ci = a.indexOf(': ');
+      bar.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+    });
+  });
+
+  // Orphan access items: access whose tradition key isn't in the traditions list
+  const usedKeys = new Set(traditions.map(t => t.toLowerCase()));
+  const orphans  = accessItems.filter(a => !usedKeys.has(tradKey(a)));
+  if (orphans.length) {
+    bar.appendChild(el('div', { class: 'trait-break' }));
+    orphans.forEach(a => {
+      const ci = a.indexOf(': ');
+      bar.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+    });
+  }
 
   return bar;
 }
