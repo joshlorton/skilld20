@@ -304,7 +304,11 @@
         "fire"
       ],
       "traditions": [
-        "arcane"
+        "arcane",
+        "divine",
+        "bardic",
+        "bloodline",
+        "pact"
       ],
       "access": [
         "arcane school: elemental: fire",
