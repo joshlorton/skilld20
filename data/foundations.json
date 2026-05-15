@@ -328,22 +328,29 @@
           "actions": "3",
           "component": "S, V",
           "effect": "Issue a command. Undead will follow until completed, a new command is given, or they are destroyed. They will continue to follow this command even after your control ends.",
-          "mana": 0
+          "mana": 3
         },
         {
           "actions": "1",
           "component": "V",
           "effect": "Renew control for original duration.",
-          "mana": 0
+          "mana": 4
         },
         {
           "actions": "3",
           "component": "S, V",
           "effect": "Renew control for original duration.",
-          "mana": 0
+          "mana": 1
         }
       ],
-      "dismiss": [],
+      "dismiss": [
+        {
+          "actions": "3",
+          "component": "S, V",
+          "effect": "You lay undead you animated to rest. If unwilling, they make a Charisma save. If performed while under your control, their saves are treated as one result worse.",
+          "mana": 1
+        }
+      ],
       "heightened": [
         {
           "variant": "",
