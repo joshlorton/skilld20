@@ -261,22 +261,30 @@
       },
       "duration": "permanent",
       "damage": {
-        "dieNumber": 1,
-        "dieSize": 6,
-        "modifier": 1,
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
         "type": ""
       },
       "effect": {
-        "base": "You imbue a corpse or skeleton with necromantic energy, causing it to animate as a foul imitation of life. They will follow your commands for 1 minute after casting. The animation is permanent.",
+        "base": "You imbue a corpse or skeleton with necromantic energy, causing it to animate as a foul imitation of life. They will follow your commands for 1 minute after casting, but the animation is permanent.",
         "options": []
       },
       "skill": {
         "primary": [],
-        "secondary": [],
-        "cs": [],
+        "secondary": [
+          "Knowledge: Undead"
+        ],
+        "cs": [
+          "Double duration of control.",
+          "Undead are powerful (+1 on all d20 checks)."
+        ],
         "s": "",
         "f": "",
-        "cf": []
+        "cf": [
+          "No control.",
+          "Undead are weak (-1 on all d20 checks)."
+        ]
       },
       "attack_results": {
         "cs": "",
@@ -290,9 +298,53 @@
         "f": "",
         "cf": ""
       },
-      "sustain": [],
+      "sustain": [
+        {
+          "actions": "1",
+          "component": "V",
+          "effect": "Issue a command. Undead will follow until completed, a new command is given, they are destroyed, or your control ends.",
+          "mana": 0
+        },
+        {
+          "actions": "1",
+          "component": "V",
+          "effect": "Renew control for original duration.",
+          "mana": 7
+        },
+        {
+          "actions": "3",
+          "component": "V",
+          "effect": "Renew control for original duration.",
+          "mana": 1
+        }
+      ],
       "dismiss": [],
-      "heightened": [],
+      "heightened": [
+        {
+          "variant": "",
+          "attribute": "range",
+          "actions": "",
+          "component": "",
+          "effect": "+15' range",
+          "mana": 5
+        },
+        {
+          "variant": "",
+          "attribute": "area size",
+          "actions": "1",
+          "component": "V",
+          "effect": "+5' radius",
+          "mana": 5
+        },
+        {
+          "variant": "",
+          "attribute": "duration",
+          "actions": "1",
+          "component": "S",
+          "effect": "extend control by 1 step",
+          "mana": 8
+        }
+      ],
       "variants": [],
       "components": []
     },
