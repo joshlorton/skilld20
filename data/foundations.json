@@ -274,7 +274,7 @@
         "type": ""
       },
       "effect": {
-        "base": "You imbue a corpse with necromantic energy, causing it to animate as a foul imitation of life. While the animation is permanent, they will only follow your commands for 1 minute after casting.",
+        "base": "You create a burst of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed.\nNOTE: Your maximum mana pool is reduced by the CR of each undead under your control.",
         "options": []
       },
       "skill": {
