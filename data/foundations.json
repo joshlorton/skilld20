@@ -229,14 +229,20 @@
       "mana": 7,
       "rarity": "uncommon",
       "difficulty": "hard",
-      "traits": [],
+      "traits": [
+        "animation",
+        "necromancy"
+      ],
       "traditions": [
         "arcane",
         "divine",
         "bloodline",
         "pact"
       ],
-      "access": [],
+      "access": [
+        "bloodline: undead",
+        "divine domain: undeath"
+      ],
       "cast": {
         "actions": "1",
         "component": "v",
@@ -324,7 +330,7 @@
           "variant": "",
           "attribute": "range",
           "actions": "",
-          "component": "",
+          "component": "-",
           "effect": "+15' range",
           "mana": 5
         },
