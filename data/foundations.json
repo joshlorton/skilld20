@@ -274,7 +274,7 @@
         "type": ""
       },
       "effect": {
-        "base": "You create a burst of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed.\nNOTE: Your maximum mana pool is reduced by the CR of each undead under your control.",
+        "base": "You create a burst of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed.\n -- NOTE -- Your maximum mana pool is reduced by the CR of each undead under your control.",
         "options": []
       },
       "skill": {
