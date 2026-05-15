@@ -398,17 +398,20 @@ function renderResults(f) {
    ============================================================ */
 
 function actionRow(item, idx) {
-  const row = el('div', { class: `action-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  if (item.attribute)   row.appendChild(el('b',    { class: 'action-attribute' }, item.attribute));
-  if (item.variant)     row.appendChild(el('span', { class: 'action-variant'   }, item.variant));
-  if (hasValue(item.actions)) row.appendChild(el('span', { class: 'action-sym' }, actionSym(item.actions)));
-  if (item.component)   row.appendChild(el('span', { class: 'action-component' }, spellComponent(item.component)));
-  if (item.effect)      row.appendChild(el('span', { class: 'action-effect'    }, item.effect));
-  if (item.mana !== undefined && item.mana !== null && item.mana !== '') {
-    const m = Number(item.mana);
-    const label = isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`);
-    row.appendChild(el('span', { class: 'action-mana' }, label));
-  }
+  const row = el('div', { class: `ht-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
+  row.appendChild(el('b',    { class: 'ht-attr' }, item.attribute || ''));
+  row.appendChild(el('span', { class: 'sv-sym'  },
+    hasValue(item.actions) && item.actions !== '' && item.actions !== '-'
+      ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'sv-comp' },
+    item.component ? spellComponent(item.component) : ''));
+  const effectText = [item.variant ? `[${item.variant}]` : '', item.effect || '']
+    .filter(Boolean).join(' ');
+  row.appendChild(el('span', { class: 'sv-effect' }, effectText));
+  const m = Number(item.mana);
+  row.appendChild(el('span', { class: 'sv-mana' },
+    (item.mana !== undefined && item.mana !== null && item.mana !== '')
+      ? (isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`)) : ''));
   return row;
 }
 
@@ -434,16 +437,16 @@ function sdComponent(comp) {
 }
 
 function sustainRow(item, idx) {
-  const row = el('div', { class: `action-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  if (item.variant)   row.appendChild(el('span', { class: 'action-variant'   }, item.variant));
-  if (hasValue(item.actions)) row.appendChild(el('span', { class: 'action-sym' }, actionSym(item.actions)));
-  row.appendChild(el('span', { class: 'action-component' }, sdComponent(item.component)));
-  if (item.effect)    row.appendChild(el('span', { class: 'action-effect'    }, item.effect));
-  if (item.mana !== undefined && item.mana !== null && item.mana !== '') {
-    const m = Number(item.mana);
-    const label = isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`);
-    row.appendChild(el('span', { class: 'action-mana' }, label));
-  }
+  const row = el('div', { class: `sd-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
+  row.appendChild(el('span', { class: 'sv-sym' },
+    hasValue(item.actions) && item.actions !== '' && item.actions !== '-'
+      ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'sv-comp' }, sdComponent(item.component)));
+  row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
+  const m = Number(item.mana);
+  row.appendChild(el('span', { class: 'sv-mana' },
+    (item.mana !== undefined && item.mana !== null && item.mana !== '')
+      ? (isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`)) : ''));
   return row;
 }
 
@@ -900,7 +903,7 @@ const OPTS = {
 };
 
 const TRAIT_GROUPS = [
-  { label: 'Condition', items: ['curse', 'disease', 'poison', 'reposition', 'wood'] },
+  { label: 'Condition', items: ['curse', 'disease', 'haste', 'poison', 'reposition', 'slow', 'stun'] },
   { label: 'Elemental', items: ['air', 'earth', 'fire', 'metal', 'water', 'wood'] },
   { label: 'Energy',    items: ['acid', 'cold', 'fire', 'force', 'lightning',
                                 'necrotic', 'physical', 'psychic', 'radiant', 'sonic'] },
