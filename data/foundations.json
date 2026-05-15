@@ -238,18 +238,18 @@
       ],
       "access": [],
       "cast": {
-        "actions": "",
-        "component": "",
+        "actions": "1",
+        "component": "v",
         "trigger": ""
       },
       "range": "",
       "area": {
-        "size": 0,
-        "shape": ""
+        "size": 10,
+        "shape": "burst"
       },
       "targets": {
-        "count": 0,
-        "type": ""
+        "count": 1,
+        "type": "corpse"
       },
       "attack": {
         "type": "",
@@ -259,7 +259,7 @@
         "type": "",
         "modifier": 0
       },
-      "duration": "",
+      "duration": "permanent",
       "damage": {
         "dieNumber": 1,
         "dieSize": 6,
@@ -267,7 +267,7 @@
         "type": ""
       },
       "effect": {
-        "base": "",
+        "base": "You imbue a corpse or skeleton with necromantic energy, causing it to animate as a foul imitation of life. They will follow your commands for 1 minute after casting. The animation is permanent.",
         "options": []
       },
       "skill": {
