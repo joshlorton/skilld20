@@ -273,7 +273,7 @@
         "type": ""
       },
       "effect": {
-        "base": "You imbue a corpse with necromantic energy, causing it to animate as a foul imitation of life. They will follow your commands for 1 minute after casting, but the animation is permanent.",
+        "base": "You imbue a corpse with necromantic energy, causing it to animate as a foul imitation of life. While the animation is permanent, they will only follow your commands for 1 minute after casting.",
         "options": []
       },
       "skill": {
