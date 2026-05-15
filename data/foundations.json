@@ -274,7 +274,7 @@
         "type": ""
       },
       "effect": {
-        "base": "You create a burst of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed.\n -- NOTE -- Your maximum mana pool is reduced by the CR of each undead under your control.",
+        "base": "You create a burst of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed. Your maximum mana pool is reduced by the total CR of all undead under your control.",
         "options": []
       },
       "skill": {
@@ -284,13 +284,25 @@
         ],
         "cs": [
           "Double duration of control.",
-          "Undead are powerful (+1 on all d20 checks)."
+          "Undead are powerful (+1 on all d20 checks).",
+          "Undead can speak one language known during their life",
+          "Undead gain one hit point per CR",
+          "Undead gain resistance positive 2",
+          "Undead deal +1 negative damage per CR with all melee attacks."
         ],
         "s": "",
         "f": "",
         "cf": [
-          "No control.",
-          "Undead are weak (-1 on all d20 checks)."
+          "Undead animate, but you have no control and you are their sole target",
+          "Undead are weak (-1 on all d20 checks)",
+          "You gain weakness positive 3 for 1d3 minutes",
+          "You gain weakness negative 3 for 1d4+1 minutes",
+          "For the next hour, all undead within 200' of you can sense your exact location",
+          "You lose control of all your undead for 1d4 rounds",
+          "You again the undead trait for 1 hour",
+          "You suffer 1d4 persistent negative damage",
+          "You are unable to Animate Dead for 1d4 minutes",
+          "All corpses in the AoE become immune to your attempts to Animate Dead for 24 hours"
         ]
       },
       "attack_results": {
