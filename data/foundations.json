@@ -274,7 +274,7 @@
         "type": ""
       },
       "effect": {
-        "base": "You create a burst of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed. Your maximum mana pool is reduced by the total CR of all undead under your control.",
+        "base": "You create a burst of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed. Your maximum mana pool is reduced by the combined creature levels of all undead under your control.",
         "options": []
       },
       "skill": {
@@ -286,9 +286,9 @@
           "Double duration of control.",
           "Undead are powerful (+1 on all d20 checks).",
           "Undead can speak one language known during their life",
-          "Undead gain one hit point per CR",
+          "Undead gain +1 HP per creature level (minimum +1)",
           "Undead gain resistance positive 2",
-          "Undead deal +1 negative damage per CR with all melee attacks."
+          "Undead deal +1 negative damage per creature level with all melee attacks (minimum +1)"
         ],
         "s": "",
         "f": "",
@@ -325,16 +325,22 @@
           "mana": 0
         },
         {
+          "actions": "3",
+          "component": "S, V",
+          "effect": "Issue a command. Undead will follow until completed, a new command is given, or they are destroyed. They will continue to follow this command even after your control ends.",
+          "mana": 0
+        },
+        {
           "actions": "1",
           "component": "V",
           "effect": "Renew control for original duration.",
-          "mana": 7
+          "mana": 0
         },
         {
           "actions": "3",
-          "component": "V",
+          "component": "S, V",
           "effect": "Renew control for original duration.",
-          "mana": 1
+          "mana": 0
         }
       ],
       "dismiss": [],
