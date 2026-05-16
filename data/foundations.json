@@ -464,21 +464,31 @@
     },
     {
       "name": "Detect",
-      "mana": 0,
-      "rarity": "",
-      "difficulty": "",
-      "traits": [],
-      "traditions": [],
-      "access": [],
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "traits": [
+        "detection"
+      ],
+      "traditions": [
+        "arcane",
+        "divine",
+        "bardic",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "divine domain: knowledge"
+      ],
       "cast": {
-        "actions": "",
-        "component": "",
+        "actions": "1",
+        "component": "s",
         "trigger": ""
       },
-      "range": "",
+      "range": "0'",
       "area": {
-        "size": 0,
-        "shape": ""
+        "size": 30,
+        "shape": "emanation"
       },
       "targets": {
         "count": 0,
@@ -492,7 +502,7 @@
         "type": "",
         "modifier": 0
       },
-      "duration": "",
+      "duration": "until the end of your next turn",
       "damage": {
         "dieNumber": 0,
         "dieSize": 0,
