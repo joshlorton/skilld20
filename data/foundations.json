@@ -492,7 +492,7 @@
       },
       "targets": {
         "count": 0,
-        "type": "object declared during casting"
+        "type": "type of objects declared during casting"
       },
       "attack": {
         "type": "",
