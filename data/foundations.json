@@ -510,7 +510,7 @@
         "type": ""
       },
       "effect": {
-        "base": "Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area.",
+        "base": "Detect: Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area. \nSense: Declare what you are attempting to find. You gain a vague directional sense toward the nearest qualifying target. No visual aura.",
         "options": []
       },
       "skill": {
@@ -540,15 +540,50 @@
         "f": "",
         "cf": ""
       },
-      "sustain": [],
+      "sustain": [
+        {
+          "actions": "F",
+          "component": "-",
+          "effect": "sustain duration until the end of your next turn",
+          "mana": 4
+        },
+        {
+          "actions": "1",
+          "component": "S",
+          "effect": "sustain duration until the end of your next turn",
+          "mana": 2
+        },
+        {
+          "actions": "2",
+          "component": "S",
+          "effect": "sustain duration until the end of your next turn",
+          "mana": 0
+        }
+      ],
       "dismiss": [],
       "heightened": [
         {
           "variant": "Creature",
           "attribute": "targets",
           "actions": "F",
-          "component": "",
+          "component": "-",
           "effect": "a general category OR specific type of creature",
+          "mana": 8
+        },
+        {
+          "variant": "Cone",
+          "attribute": "area shape",
+          "actions": "F",
+          "component": "-",
+          "effect": "60' cone instead of 30' sphere; caster must face a direction; 1 action per direction",
+          "mana": 0
+        },
+        {
+          "variant": "Detect",
+          "attribute": "area size",
+          "actions": "F",
+          "component": "-",
+          "effect": "double size of area or effect",
           "mana": 8
         }
       ],
