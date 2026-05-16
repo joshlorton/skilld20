@@ -492,7 +492,7 @@
       },
       "targets": {
         "count": 0,
-        "type": ""
+        "type": "object declared during casting"
       },
       "attack": {
         "type": "",
@@ -510,12 +510,19 @@
         "type": ""
       },
       "effect": {
-        "base": "",
+        "base": "Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area.",
         "options": []
       },
       "skill": {
         "primary": [],
-        "secondary": [],
+        "secondary": [
+          "Diplomacy (Gather Information)",
+          "Knowledge (target related)",
+          "Perception",
+          "Society (Subsist)",
+          "Survival (Sense Direction",
+          "Subsist)"
+        ],
         "cs": [],
         "s": "",
         "f": "",
