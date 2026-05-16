@@ -485,7 +485,7 @@
         "component": "s",
         "trigger": ""
       },
-      "range": "0'",
+      "range": "",
       "area": {
         "size": 30,
         "shape": "emanation"
