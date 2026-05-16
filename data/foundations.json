@@ -492,7 +492,7 @@
       },
       "targets": {
         "count": 0,
-        "type": "type of objects declared during casting"
+        "type": "a general category OR specific type object, substance, or active magical effect"
       },
       "attack": {
         "type": "",
@@ -542,7 +542,16 @@
       },
       "sustain": [],
       "dismiss": [],
-      "heightened": [],
+      "heightened": [
+        {
+          "variant": "Creature",
+          "attribute": "targets",
+          "actions": "F",
+          "component": "",
+          "effect": "a general category OR specific type of creature",
+          "mana": 8
+        }
+      ],
       "variants": [],
       "components": []
     }
