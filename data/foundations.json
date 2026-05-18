@@ -523,10 +523,14 @@
           "Survival (Sense Direction",
           "Subsist)"
         ],
-        "cs": [],
+        "cs": [
+          "Extra stuff."
+        ],
         "s": "",
         "f": "",
-        "cf": []
+        "cf": [
+          "Bad stuff."
+        ]
       },
       "attack_results": {
         "cs": "",
