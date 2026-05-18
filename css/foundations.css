@@ -269,6 +269,32 @@ body {
 }
 .effect-base { padding: 8px 12px 4px; margin: 0; }
 .effect-options { padding: 0 12px 8px; }
+.effect-option-block {
+  padding: 6px 12px;
+  border-top: 1px solid var(--border);
+}
+.effect-option-text { font-size: 14px; margin-bottom: 4px; }
+
+/* Additional effect rows in editor */
+.effect-base-wrap  { padding: 8px 0 4px; }
+.effect-extra-row  { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
+.effect-extra-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.effect-extra-label {
+  font-size: 10px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  font-family: var(--font-ui);
+}
+.effect-row-remove {
+  background: transparent; border: none;
+  color: #f07070; cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 0;
+}
+.effect-row-remove:hover { color: #ff4444; }
 
 .effect-options {
   display: grid;
