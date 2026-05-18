@@ -510,8 +510,26 @@
         "type": ""
       },
       "effect": {
-        "base": "Detect: Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area. \nSense: Declare what you are attempting to find. You gain a vague directional sense toward the nearest qualifying target. No visual aura.",
-        "options": []
+        "base": "Detect: Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area.",
+        "options": [
+          {
+            "text": "Sense: Declare what you are attempting to find. You gain a vague directional sense toward the nearest qualifying target. No visual aura.",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
       },
       "skill": {
         "primary": [],
