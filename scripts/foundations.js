@@ -283,51 +283,45 @@ function renderEffect(f) {
   if (!f.effect?.base) return null;
   const section = el('div', { class: 'section-effect' });
   section.appendChild(el('div', { class: 'result-heading' }, 'Effect'));
-  section.appendChild(el('p', { class: 'effect-base' }, f.effect.base));
 
-  const opts = (f.effect.options || []).filter(Boolean);
-  if (opts.length) {
-    opts.forEach(opt => {
-      if (typeof opt === 'string') {
-        section.appendChild(el('p', { class: 'effect-option-text' }, opt));
-      } else if (opt.text !== undefined) {
-        // New format: {text, damage, attack, save}
-        const block = el('div', { class: 'effect-option-block' });
-        block.appendChild(el('p', { class: 'effect-option-text' }, opt.text));
-        if (opt.damage?.dieNumber) {
-          const d = opt.damage;
-          const mod = d.modifier ?? d.bonus;
-          block.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
-        }
-        if (opt.attack?.type)
-          block.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
-        if (opt.save?.type)
-          block.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
-        section.appendChild(block);
-      } else if (opt.option !== undefined || opt.effect !== undefined) {
-        // Legacy format: {option, effect}
-        const grid = el('div', { class: 'effect-options' });
-        const row  = el('div', { class: 'effect-option-row' });
-        row.appendChild(el('b',    { class: 'effect-option-label' }, opt.option || ''));
-        row.appendChild(el('span', {},                                opt.effect || ''));
-        grid.appendChild(row);
-        section.appendChild(grid);
-      }
-    });
-  }
+  // Base entry
+  section.appendChild(el('p', { class: 'effect-entry' }, f.effect.base));
 
-  // Attack, Save, Damage moved from spec sheet into effect section
-  if (f.attack?.type) {
+  // Attack, Save, Damage (moved from spec sheet)
+  if (f.attack?.type)
     section.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
-  }
-  if (f.save?.type) {
+  if (f.save?.type)
     section.appendChild(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
-  }
   if (f.damage?.dieNumber) {
     const d = f.damage;
     const mod = d.modifier ?? d.bonus;
     section.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
   }
+
+  // Additional effect entries
+  (f.effect.options || []).filter(Boolean).forEach(opt => {
+    if (typeof opt === 'string') {
+      section.appendChild(el('p', { class: 'effect-entry' }, opt));
+    } else if (opt.text !== undefined) {
+      // New format: {text, damage, attack, save}
+      section.appendChild(el('p', { class: 'effect-entry' }, opt.text));
+      if (opt.damage?.dieNumber) {
+        const d = opt.damage;
+        const mod = d.modifier ?? d.bonus;
+        section.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
+      }
+      if (opt.attack?.type)
+        section.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
+      if (opt.save?.type)
+        section.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
+    } else if (opt.option !== undefined || opt.effect !== undefined) {
+      // Legacy {option, effect} format
+      const p = el('p', { class: 'effect-entry' });
+      if (opt.option) p.appendChild(el('b', {}, `${opt.option}: `));
+      if (opt.effect) p.appendChild(document.createTextNode(opt.effect));
+      section.appendChild(p);
+    }
+  });
 
   return section;
 }
@@ -365,7 +359,7 @@ function renderResults(f) {
     sk.cs?.some(Boolean) || sk.s || sk.f || sk.cf?.some(Boolean)
   );
   if (hasSkillData) {
-    const block = el('div', { class: 'result-block' });
+    const block = el('div', {});
     block.appendChild(el('div', { class: 'result-heading' }, 'Skill Check'));
     const addRow = (label, val, cls) => { const r = resultRow(label, val, cls); if (r) block.appendChild(r); };
     const primaryDisplay = sk.primary?.some(Boolean) ? sk.primary.join(', ') : 'per Tradition';
@@ -381,7 +375,7 @@ function renderResults(f) {
   // Attack
   if (f.attack?.type && f.attack_results) {
     const ar = f.attack_results;
-    const block = el('div', { class: 'result-block' });
+    const block = el('div', {});
     block.appendChild(el('div', { class: 'result-heading' }, `Attack -- ${f.attack.type}`));
     const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
     addRow('Critical Success', ar.cs, 'row-cs');
@@ -394,7 +388,7 @@ function renderResults(f) {
   // Save
   if (f.save?.type && f.save_results) {
     const sr = f.save_results;
-    const block = el('div', { class: 'result-block' });
+    const block = el('div', {});
     block.appendChild(el('div', { class: 'result-heading' }, `Save -- ${f.save.type}`));
     const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
     addRow('Critical Success', sr.cs, 'row-cs');
@@ -1176,7 +1170,6 @@ function buildEditor(f) {
 
   // Effect (with + button for additional effects)
   form.appendChild(buildEffectSection(f));
-  form.appendChild(edJson('Options (JSON array)', 'ed-effect-options', f.effect?.options));
 
   // Skill Check
   form.appendChild(sec('Skill Check'));

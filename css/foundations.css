@@ -264,16 +264,15 @@ body {
    EFFECT
    ============================================================ */
 
-.section-effect {
-  border-bottom: 1px solid var(--border);
+.section-effect { border-bottom: 1px solid var(--border); }
+.effect-entry {
+  display: block;
+  padding: 8px 12px 4px;
+  margin: 0;
+  font-size: 15px;
+  font-family: var(--font-spec);
+  line-height: 1.55;
 }
-.effect-base { padding: 8px 12px 4px; margin: 0; }
-.effect-options { padding: 0 12px 8px; }
-.effect-option-block {
-  padding: 6px 12px;
-  border-top: 1px solid var(--border);
-}
-.effect-option-text { font-size: 14px; margin-bottom: 4px; }
 
 /* Additional effect rows in editor */
 .effect-base-wrap  { padding: 8px 0 4px; }
@@ -295,21 +294,6 @@ body {
   font-size: 16px; line-height: 1; padding: 0;
 }
 .effect-row-remove:hover { color: #ff4444; }
-
-.effect-options {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  row-gap: 2px;
-}
-.effect-option-row   { display: contents; }
-.effect-option-label {
-  font-weight: 700;
-  font-style: italic;
-  color: #a6da84;
-  text-transform: capitalize;
-  padding-right: 8px;
-  align-self: start;
-}
 
 /* ============================================================
    RESULT BLOCKS (skill / attack / save)
@@ -380,17 +364,11 @@ body {
   letter-spacing: 1px;
   font-family: var(--font-ui);
 }
-
-.action-sub-heading {
-  font-variant: small-caps;
-  font-weight: 700;
-  font-size: 11px;
-  padding: 5px 12px 2px;
-  color: var(--text-muted);
-  font-family: var(--font-ui);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border-top: 1px solid var(--border);
+/* Major variant: larger heading used for top-level sections (e.g. Variants) */
+.section-heading-major {
+  font-size: 15px;
+  padding: 5px 12px;
+  letter-spacing: 2px;
 }
 
 .action-row {
@@ -430,7 +408,6 @@ body {
 .action-component   { color: var(--text-muted); font-size: 13px; white-space: nowrap; text-transform: uppercase; }
 .action-effect      { flex: 1; }
 .action-description { font-style: italic; color: var(--text-muted); flex: 1; }
-.action-mana        { font-weight: 700; color: var(--mana); font-family: var(--font-ui); white-space: nowrap; font-size: 13px; }
 .action-price       { font-weight: 700; color: var(--price); font-family: var(--font-ui); white-space: nowrap; font-size: 13px; }
 
 /* ============================================================
@@ -438,17 +415,6 @@ body {
    ============================================================ */
 
 .section-variants { border-bottom: 1px solid var(--border); }
-
-.section-heading-major {
-  background: var(--heading-fg);
-  color: var(--heading-bg);
-  font-variant: small-caps;
-  font-weight: 700;
-  font-size: 15px;
-  padding: 5px 12px;
-  letter-spacing: 2px;
-  font-family: var(--font-ui);
-}
 
 .variant-block    { border-top: 1px solid #2a1010; }
 .variant-heading  {
