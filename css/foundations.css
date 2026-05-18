@@ -326,17 +326,22 @@ body {
 /* Heightened structured editor */
 .ht-labels {
   display: grid;
-  grid-template-columns: 110px 100px 52px 60px 1fr 46px;
+  grid-template-columns: 110px 100px 130px 60px 1fr 46px;
   gap: 4px;
   padding: 0 0 2px;
 }
 .ht-row {
   display: grid;
-  grid-template-columns: 110px 100px 52px 60px 1fr 46px;
+  grid-template-columns: 110px 100px 130px 60px 1fr 46px;
   gap: 4px;
   margin-bottom: 4px;
 }
 .ht-row .form-input { font-size: 12px; padding: 3px 5px; }
+
+/* Action pair (count + length) */
+.action-pair { display: flex; gap: 2px; }
+.action-count-inp   { width: 34px !important; flex-shrink: 0; padding: 3px 4px !important; }
+.action-length-sel  { flex: 1; min-width: 0; }
 .row-cs  { background: #0a2e14; border: 1px solid #2a7040; }
 .row-s   { background: #081e0e; border: 1px solid #1a5028; }
 .row-sf  { background: #2e1408; border: 1px solid #7a3018; }
@@ -553,14 +558,14 @@ body {
 .sd-add-btn:hover { opacity: 0.75; }
 .sd-labels {
   display: grid;
-  grid-template-columns: 58px 80px 1fr 46px;
+  grid-template-columns: 90px 130px 52px 1fr 46px;
   gap: 4px;
   padding: 0 0 2px;
 }
 .sd-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-ui); }
 .sd-row {
   display: grid;
-  grid-template-columns: 58px 80px 1fr 46px;
+  grid-template-columns: 90px 130px 52px 1fr 46px;
   gap: 4px;
   margin-bottom: 4px;
 }

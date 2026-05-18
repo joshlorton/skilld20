@@ -28,13 +28,104 @@ const state = {
    UTILITIES
    ============================================================ */
 
-function actionSym(n) {
-  if (n === null || n === undefined || n === '') return '';
-  const s = String(n).toUpperCase().trim();
+const ACTION_LENGTHS = [
+  { value: 'none',     label: '-- None' },
+  { value: 'free',     label: '◇ Free' },
+  { value: 'reaction', label: '↺ Reaction' },
+  { value: 'action',   label: '◆ Action' },
+  { value: 'round',    label: 'Round' },
+  { value: 'minute',   label: 'Minute' },
+  { value: 'hour',     label: 'Hour' },
+  { value: 'day',      label: 'Day' },
+  { value: 'week',     label: 'Week' }
+];
+
+function parseLegacyAction(val) {
+  if (val === null || val === undefined) return { count: '', length: 'none' };
+  if (typeof val === 'object') return { count: val.count ?? '', length: val.length ?? 'none' };
+  const s = String(val).trim();
+  if (s === '' || s === '-') return { count: '', length: 'none' };
+  if (s === 'F' || s === '0') return { count: '', length: 'free' };
+  if (s === 'R') return { count: '', length: 'reaction' };
+  const n = parseInt(s, 10);
+  if (!isNaN(n) && n > 0) return { count: n, length: 'action' };
+  return { count: '', length: 'none' };
+}
+
+function collectAction(count, length) {
+  const noCount = ['none', 'free', 'reaction'];
+  if (!length || noCount.includes(length)) return { count: null, length: length || 'none' };
+  const c = parseInt(count, 10);
+  return { count: isNaN(c) ? 1 : c, length };
+}
+
+function isNoAction(val) {
+  if (!val && val !== 0) return true;
+  if (val === '-') return true;
+  if (typeof val === 'object') return !val.length || val.length === 'none';
+  return false;
+}
+
+function actionSym(val) {
+  if (val === null || val === undefined || val === '') return '';
+  if (typeof val === 'object' && val !== null) {
+    const { count, length } = val;
+    if (!length || length === 'none') return '-';
+    if (length === 'free')     return '◇';
+    if (length === 'reaction') return '↺';
+    if (length === 'action') {
+      const n = parseInt(count, 10);
+      const c = isNaN(n) ? 1 : Math.min(n, 3);
+      return '◆'.repeat(c || 1);
+    }
+    const n = parseInt(count, 10);
+    const c = isNaN(n) ? 1 : n;
+    if (length === 'round')  return c === 1 ? '1 rnd'  : `${c} rnds`;
+    if (length === 'minute') return `${c} min`;
+    if (length === 'hour')   return `${c} hr`;
+    if (length === 'day')    return `${c} day`;
+    if (length === 'week')   return `${c} wk`;
+    return String(val);
+  }
+  // Legacy string format
+  const s = String(val).toUpperCase().trim();
+  if (s === '' || s === '-') return '-';
   if (s === 'R')  return '↺';
   if (s === '0' || s === 'F') return '◇';
   const count = Math.min(parseInt(s, 10) || 1, 3);
   return '◆'.repeat(count);
+}
+
+function buildActionPair(actVal, idPrefix) {
+  const parsed  = parseLegacyAction(actVal);
+  const noCount = ['none', 'free', 'reaction'];
+  const wrap    = el('div', { class: 'action-pair' });
+
+  const cAttrs = { type: 'number', min: '0', max: '99', class: 'form-input action-count-inp' };
+  if (idPrefix) cAttrs.id = `${idPrefix}-act-count`; else cAttrs['data-field'] = 'act-count';
+  const countIn = el('input', cAttrs);
+  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+
+  const lAttrs = { class: 'form-input form-select action-length-sel' };
+  if (idPrefix) lAttrs.id = `${idPrefix}-act-length`; else lAttrs['data-field'] = 'act-length';
+  const lengthSel = el('select', lAttrs);
+  ACTION_LENGTHS.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (value === parsed.length) o.selected = true;
+    lengthSel.appendChild(o);
+  });
+
+  const syncCount = () => {
+    const off = noCount.includes(lengthSel.value);
+    countIn.disabled = off;
+    countIn.style.opacity = off ? '0.3' : '1';
+  };
+  lengthSel.addEventListener('change', syncCount);
+  syncCount();
+
+  wrap.appendChild(countIn);
+  wrap.appendChild(lengthSel);
+  return wrap;
 }
 
 function el(tag, attrs, ...children) {
@@ -237,7 +328,7 @@ function specRow(label, value) {
 function specRowCast(f) {
   const cast = f.cast;
   if (!cast) return null;
-  const hasActions   = hasValue(cast.actions) && cast.actions !== '';
+  const hasActions   = !isNoAction(cast.actions);
   const hasComponent = cast.component && cast.component !== '';
   const hasTrigger   = cast.trigger   && cast.trigger   !== '';
   if (!hasActions && !hasComponent && !hasTrigger) return null;
@@ -409,8 +500,7 @@ function actionRow(item, idx) {
   const row = el('div', { class: `ht-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   row.appendChild(el('b',    { class: 'ht-attr' }, item.attribute || ''));
   row.appendChild(el('span', { class: 'sv-sym'  },
-    hasValue(item.actions) && item.actions !== '' && item.actions !== '-'
-      ? actionSym(item.actions) : ''));
+    !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'sv-comp' },
     item.component ? spellComponent(item.component) : ''));
   const effectText = [item.variant ? `[${item.variant}]` : '', item.effect || '']
@@ -447,8 +537,7 @@ function sdComponent(comp) {
 function sustainRow(item, idx) {
   const row = el('div', { class: `sd-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   row.appendChild(el('span', { class: 'sv-sym' },
-    hasValue(item.actions) && item.actions !== '' && item.actions !== '-'
-      ? actionSym(item.actions) : ''));
+    !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'sv-comp' }, sdComponent(item.component)));
   row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
   const m = Number(item.mana);
@@ -700,15 +789,16 @@ function buildSdRow(data) {
   data = data || {};
   const row = el('div', { class: 'sd-row' });
 
-  const actSel = el('select', { class: 'form-input form-select', 'data-field': 'actions' });
-  [{ v: '', l: '' }, { v: 'F', l: '\u25C7' }, { v: '1', l: '\u25C6' },
-   { v: '2', l: '\u25C6\u25C6' }, { v: '3', l: '\u25C6\u25C6\u25C6' }, { v: 'R', l: '\u21BA' }]
-    .forEach(({ v, l }) => {
-      const o = el('option', { value: v }, l);
-      if (String(data.actions) === v) o.selected = true;
-      actSel.appendChild(o);
-    });
-  row.appendChild(actSel);
+  const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
+  attrSel.appendChild(el('option', { value: '' }, ''));
+  HT_ATTRIBUTES.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (data.attribute === value) o.selected = true;
+    attrSel.appendChild(o);
+  });
+  row.appendChild(attrSel);
+
+  row.appendChild(buildActionPair(data.actions));
 
   const compIn = el('input', { class: 'form-input', type: 'text',
     placeholder: 'V S M F', 'data-field': 'component' });
@@ -727,18 +817,18 @@ function buildSdRow(data) {
 }
 
 function buildSdSection(title, containerId, initialData) {
-  const col = el('div', { class: 'form-results-col' });
+  const wrap = el('div', { class: 'form-field form-field-wide' });
 
   const heading = el('div', { class: 'sd-heading' });
   heading.appendChild(el('span', {}, title));
   const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
   heading.appendChild(addBtn);
-  col.appendChild(heading);
+  wrap.appendChild(heading);
 
   const labels = el('div', { class: 'sd-labels' });
-  ['Actions', 'Component', 'Effect', 'Mana'].forEach(l =>
+  ['Attribute', 'Actions', 'Comp', 'Effect', 'Mana'].forEach(l =>
     labels.appendChild(el('span', { class: 'sd-label' }, l)));
-  col.appendChild(labels);
+  wrap.appendChild(labels);
 
   const container = el('div', { id: containerId });
   const rows = Array.isArray(initialData)
@@ -746,10 +836,10 @@ function buildSdSection(title, containerId, initialData) {
     : (initialData && (initialData.effect || initialData.actions) ? [initialData] : []);
   if (rows.length) rows.forEach(r => container.appendChild(buildSdRow(r)));
   else container.appendChild(buildSdRow({}));
-  col.appendChild(container);
+  wrap.appendChild(container);
 
   addBtn.addEventListener('click', () => container.appendChild(buildSdRow({})));
-  return col;
+  return wrap;
 }
 
 function collectSdRows(containerId) {
@@ -757,8 +847,13 @@ function collectSdRows(containerId) {
   return Array.from(rows).map(row => {
     const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const m = get('mana');
-    return { actions: get('actions'), component: get('component'),
-             effect: get('effect'), mana: m !== '' ? parseFloat(m) : 0 };
+    return {
+      attribute : get('attribute'),
+      actions   : collectAction(get('act-count'), get('act-length')),
+      component : get('component'),
+      effect    : get('effect'),
+      mana      : m !== '' ? parseFloat(m) : 0
+    };
   }).filter(r => r.effect);
 }
 
@@ -790,15 +885,7 @@ function buildHtRow(data) {
   });
   row.appendChild(attrSel);
 
-  const actSel = el('select', { class: 'form-input form-select', 'data-field': 'actions' });
-  [{ v: '', l: '' }, { v: 'F', l: '\u25C7' }, { v: '1', l: '\u25C6' },
-   { v: '2', l: '\u25C6\u25C6' }, { v: '3', l: '\u25C6\u25C6\u25C6' }, { v: 'R', l: '\u21BA' }]
-    .forEach(({ v, l }) => {
-      const o = el('option', { value: v }, l);
-      if (String(data.actions) === v) o.selected = true;
-      actSel.appendChild(o);
-    });
-  row.appendChild(actSel);
+  row.appendChild(buildActionPair(data.actions));
 
   const compIn = el('input', { class: 'form-input', type: 'text',
     placeholder: 'V S M F', 'data-field': 'component' });
@@ -848,7 +935,7 @@ function collectHeightenedRows() {
     return {
       variant   : get('variant'),
       attribute : get('attribute'),
-      actions   : get('actions'),
+      actions   : collectAction(get('act-count'), get('act-length')),
       component : get('component'),
       effect    : get('effect'),
       mana      : m !== '' ? parseFloat(m) : 0
@@ -1143,10 +1230,13 @@ function buildEditor(f) {
 
   // Cast
   form.appendChild(sec('Cast'));
+  const castActWrap = el('div', { class: 'form-field' });
+  castActWrap.appendChild(el('label', {}, 'Actions'));
+  castActWrap.appendChild(buildActionPair(f.cast?.actions, 'ed-cast'));
   form.appendChild(edRow(
-    edSelect('Actions',    'ed-cast-actions',  String(f.cast?.actions ?? ''), OPTS.actions),
+    castActWrap,
     edCheckboxes('Components', 'ed-cast-comp', f.cast?.component),
-    edField('Trigger',     'ed-cast-trigger',  f.cast?.trigger)
+    edField('Trigger', 'ed-cast-trigger', f.cast?.trigger)
   ));
 
   // Range & Area
@@ -1204,12 +1294,8 @@ function buildEditor(f) {
   resultsRow.appendChild(saveCol);
   form.appendChild(resultsRow);
 
-  // JSON sections
-  // Sustain & Dismiss — structured 2-column form
-  const sdRow = el('div', { class: 'form-results-row' });
-  sdRow.appendChild(buildSdSection('Sustain', 'sustain-rows', f.sustain));
-  sdRow.appendChild(buildSdSection('Dismiss', 'dismiss-rows', f.dismiss));
-  form.appendChild(sdRow);
+  form.appendChild(buildSdSection('Sustain', 'sustain-rows', f.sustain));
+  form.appendChild(buildSdSection('Dismiss', 'dismiss-rows', f.dismiss));
   form.appendChild(buildHtSection(f.heightened));
   form.appendChild(sec('Variants'));
   form.appendChild(edJson('Variants (JSON array)', 'ed-variants', f.variants));
@@ -1261,7 +1347,10 @@ function collectEditor() {
     traditions : checkboxArr('ed-traditions'),
     access     : checkboxArr('ed-access'),
     cast: {
-      actions   : v('ed-cast-actions'),
+      actions  : collectAction(
+        document.getElementById('ed-cast-act-count')?.value?.trim() || '',
+        document.getElementById('ed-cast-act-length')?.value?.trim() || 'none'
+      ),
       component : checkboxes('ed-cast-comp'),
       trigger   : v('ed-cast-trigger')
     },
