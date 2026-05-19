@@ -603,8 +603,8 @@
           "variant": "Creature",
           "attribute": "targets",
           "actions": {
-            "count": null,
-            "length": "reaction"
+            "count": 0,
+            "length": "action"
           },
           "component": "-",
           "effect": "a general category OR specific type of creature",
@@ -614,8 +614,8 @@
           "variant": "Cone",
           "attribute": "area shape",
           "actions": {
-            "count": null,
-            "length": "reaction"
+            "count": 0,
+            "length": "action"
           },
           "component": "-",
           "effect": "60' cone instead of 30' sphere; caster must face a direction; 1 action per direction",
@@ -625,8 +625,8 @@
           "variant": "Detect",
           "attribute": "area size",
           "actions": {
-            "count": null,
-            "length": "reaction"
+            "count": 0,
+            "length": "action"
           },
           "component": "-",
           "effect": "double size of area or effect",
