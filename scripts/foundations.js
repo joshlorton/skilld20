@@ -497,7 +497,7 @@ function actionRow(item, idx) {
   row.appendChild(el('span', { class: 'sv-sym'     },
     !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'sv-comp'    },
-    item.component ? spellComponent(item.component) : ''));
+    item.component ? sdComponent(item.component) : ''));
   row.appendChild(el('span', { class: 'sv-effect'  }, item.effect || ''));
   const m = Number(item.mana);
   row.appendChild(el('span', { class: 'sv-mana' },
@@ -507,14 +507,17 @@ function actionRow(item, idx) {
 }
 
 function componentRow(item, idx) {
-  const row = el('div', { class: `action-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  if (item.attribute)   row.appendChild(el('b',    { class: 'action-attribute'   }, item.attribute));
-  if (item.variant)     row.appendChild(el('span', { class: 'action-variant'     }, item.variant));
-  if (hasValue(item.actions)) row.appendChild(el('span', { class: 'action-sym'   }, actionSym(item.actions)));
-  if (item.component)   row.appendChild(el('span', { class: 'action-component'   }, spellComponent(item.component)));
-  if (item.effect)      row.appendChild(el('span', { class: 'action-effect'      }, item.effect));
-  if (item.description) row.appendChild(el('span', { class: 'action-description' }, item.description));
-  if (item.price)       row.appendChild(el('span', { class: 'action-price'       }, `${item.price} gp`));
+  const row = el('div', { class: `comp-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
+  row.appendChild(el('span', { class: 'ht-variant'  }, item.variant   || ''));
+  row.appendChild(el('b',    { class: 'ht-attr'     }, item.attribute  || ''));
+  row.appendChild(el('span', { class: 'sv-sym'      }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'sv-comp'     }, sdComponent(item.component)));
+  row.appendChild(el('span', { class: 'sv-effect'   }, item.effect     || ''));
+  row.appendChild(el('span', { class: 'sv-desc'     }, item.description || ''));
+  row.appendChild(el('span', { class: 'comp-rarity' }, item.rarity     || ''));
+  const price = item.price;
+  row.appendChild(el('span', { class: 'comp-price'  },
+    (price !== null && price !== undefined && price !== '') ? `${price} gp` : ''));
   return row;
 }
 
@@ -529,12 +532,13 @@ function sdComponent(comp) {
 
 function sustainRow(item, idx) {
   const row = el('div', { class: `sd-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('b',    { class: 'ht-attr'  }, item.attribute || ''));
-  row.appendChild(el('span', { class: 'sv-sym'   }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
-  row.appendChild(el('span', { class: 'sv-comp'  }, sdComponent(item.component)));
-  row.appendChild(el('span', { class: 'sv-effect'}, item.effect || ''));
+  row.appendChild(el('span', { class: 'ht-variant' }, item.variant   || ''));
+  row.appendChild(el('b',    { class: 'ht-attr'   }, item.attribute  || ''));
+  row.appendChild(el('span', { class: 'sv-sym'    }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'sv-comp'   }, sdComponent(item.component)));
+  row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
   const m = Number(item.mana);
-  row.appendChild(el('span', { class: 'sv-mana'  },
+  row.appendChild(el('span', { class: 'sv-mana'   },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
       ? (isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`)) : ''));
   return row;
@@ -657,13 +661,13 @@ function renderViewer(f) {
   const ht = renderActionSection('Heightened', f.heightened, actionRow);
   if (ht) card.appendChild(ht);
 
+  // Components (before Variants)
+  const co = renderActionSection('Components', f.components, componentRow);
+  if (co) card.appendChild(co);
+
   // Variants
   const vt = renderVariants(f);
   if (vt) card.appendChild(vt);
-
-  // Components
-  const co = renderActionSection('Components', f.components, componentRow);
-  if (co) card.appendChild(co);
 
   return card;
 }
@@ -783,6 +787,13 @@ function buildSdRow(data) {
   const parsed = parseLegacyAction(data.actions);
   const row = el('div', { class: 'sd-row' });
 
+  // Option
+  const varIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'Option', 'data-field': 'variant' });
+  varIn.value = data.variant || '';
+  row.appendChild(varIn);
+
+  // Attribute
   const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
   attrSel.appendChild(el('option', { value: '' }, ''));
   HT_ATTRIBUTES.forEach(({ value, label }) => {
@@ -840,7 +851,7 @@ function buildSdSection(title, containerId, initialData) {
   wrap.appendChild(heading);
 
   const labels = el('div', { class: 'sd-labels' });
-  ['Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
+  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
     labels.appendChild(el('span', { class: 'sd-label' }, l)));
   wrap.appendChild(labels);
 
@@ -862,6 +873,7 @@ function collectSdRows(containerId) {
     const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const m = get('mana');
     return {
+      variant   : get('variant'),
       attribute : get('attribute'),
       actions   : collectAction(get('act-count'), get('act-length')),
       component : get('component'),
@@ -976,6 +988,130 @@ function collectHeightenedRows() {
       mana      : m !== '' ? parseFloat(m) : 0
     };
   }).filter(r => r.effect || r.attribute);
+}
+
+/* ============================================================
+   EDITOR — COMPONENTS BUILDER
+   ============================================================ */
+
+function buildComponentRow(data) {
+  data = data || {};
+  const parsed = parseLegacyAction(data.actions);
+  const wrap = el('div', { class: 'comp-editor-row' });
+
+  const header = el('div', { class: 'effect-extra-header' });
+  header.appendChild(el('span', { class: 'effect-extra-label' }, 'Component'));
+  const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
+  removeBtn.addEventListener('click', () => wrap.remove());
+  header.appendChild(removeBtn);
+  wrap.appendChild(header);
+
+  const lblRow = el('div', { class: 'comp-editor-labels' });
+  ['Option', 'Attribute', 'Count', 'Length', 'Type', 'Rarity', 'Price'].forEach(l =>
+    lblRow.appendChild(el('span', { class: 'sd-label' }, l)));
+  wrap.appendChild(lblRow);
+
+  const mainRow = el('div', { class: 'comp-editor-main' });
+
+  const varIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'Option', 'data-field': 'variant' });
+  varIn.value = data.variant || '';
+  mainRow.appendChild(varIn);
+
+  const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
+  attrSel.appendChild(el('option', { value: '' }, ''));
+  HT_ATTRIBUTES.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (data.attribute === value) o.selected = true;
+    attrSel.appendChild(o);
+  });
+  mainRow.appendChild(attrSel);
+
+  const countIn = el('input', { type: 'number', min: '0', max: '99',
+    class: 'form-input', 'data-field': 'act-count' });
+  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+  mainRow.appendChild(countIn);
+
+  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
+  ACTION_LENGTHS.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (value === parsed.length) o.selected = true;
+    lengthSel.appendChild(o);
+  });
+  const syncCount = () => {
+    const off = lengthSel.value === 'reaction';
+    countIn.disabled = off;
+    countIn.style.opacity = off ? '0.3' : '1';
+  };
+  lengthSel.addEventListener('change', syncCount);
+  syncCount();
+  mainRow.appendChild(lengthSel);
+
+  const typeIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'M V S F', 'data-field': 'component' });
+  typeIn.value = data.component || '';
+  mainRow.appendChild(typeIn);
+
+  const raritySel = el('select', { class: 'form-input form-select', 'data-field': 'rarity' });
+  raritySel.appendChild(el('option', { value: '' }, ''));
+  ['Common', 'Uncommon', 'Rare', 'Unique'].forEach(r => {
+    const o = el('option', { value: r.toLowerCase() }, r);
+    if ((data.rarity || '').toLowerCase() === r.toLowerCase()) o.selected = true;
+    raritySel.appendChild(o);
+  });
+  mainRow.appendChild(raritySel);
+
+  const priceIn = el('input', { type: 'number', min: '0', step: '0.01',
+    class: 'form-input', 'data-field': 'price' });
+  if (data.price !== undefined && data.price !== null && data.price !== '')
+    priceIn.value = String(data.price);
+  mainRow.appendChild(priceIn);
+
+  wrap.appendChild(mainRow);
+
+  const efTa = el('textarea', { class: 'form-input', rows: 2,
+    'data-field': 'effect', placeholder: 'Effect' });
+  efTa.value = data.effect || '';
+  wrap.appendChild(efTa);
+
+  const descTa = el('textarea', { class: 'form-input', rows: 2,
+    'data-field': 'description', placeholder: 'Description' });
+  descTa.value = data.description || '';
+  wrap.appendChild(descTa);
+
+  return wrap;
+}
+
+function buildComponentsSection(f) {
+  const wrap = el('div', { class: 'form-field form-field-wide' });
+  const heading = el('div', { class: 'sd-heading' });
+  heading.appendChild(el('span', {}, 'Components'));
+  const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
+  heading.appendChild(addBtn);
+  wrap.appendChild(heading);
+  const container = el('div', { id: 'component-rows' });
+  (f.components || []).filter(Boolean).forEach(c => container.appendChild(buildComponentRow(c)));
+  wrap.appendChild(container);
+  addBtn.addEventListener('click', () => container.appendChild(buildComponentRow({})));
+  return wrap;
+}
+
+function collectComponentRows() {
+  const rows = document.querySelectorAll('#component-rows .comp-editor-row');
+  return Array.from(rows).map(row => {
+    const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
+    const num = f => { const x = get(f); return x !== '' ? parseFloat(x) : null; };
+    return {
+      variant     : get('variant'),
+      attribute   : get('attribute'),
+      actions     : collectAction(get('act-count'), get('act-length')),
+      component   : get('component'),
+      effect      : get('effect'),
+      description : get('description'),
+      rarity      : get('rarity'),
+      price       : num('price')
+    };
+  }).filter(r => r.effect || r.description || r.variant);
 }
 
 /* ============================================================
@@ -1332,10 +1468,9 @@ function buildEditor(f) {
   form.appendChild(buildSdSection('Sustain', 'sustain-rows', f.sustain));
   form.appendChild(buildSdSection('Dismiss', 'dismiss-rows', f.dismiss));
   form.appendChild(buildHtSection(f.heightened));
+  form.appendChild(buildComponentsSection(f));
   form.appendChild(sec('Variants'));
   form.appendChild(edJson('Variants (JSON array)', 'ed-variants', f.variants));
-  form.appendChild(sec('Components'));
-  form.appendChild(edJson('Components (JSON array)', 'ed-components', f.components));
 
   if (state.currentIndex >= 0 && state.token) {
     form.appendChild(el('button', { class: 'btn btn-danger btn-delete', id: 'btn-delete' },
@@ -1419,7 +1554,7 @@ function collectEditor() {
     dismiss    : collectSdRows('dismiss-rows'),
     heightened : collectHeightenedRows(),
     variants   : json('ed-variants',   []),
-    components : json('ed-components', [])
+    components : collectComponentRows()
   };
 }
 
