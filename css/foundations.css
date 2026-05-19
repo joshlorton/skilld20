@@ -340,7 +340,7 @@ body {
 
 /* Action pair (count + length) -- used in Cast section only */
 .action-pair { display: flex; gap: 2px; }
-.action-count-inp   { width: 34px !important; flex-shrink: 0; padding: 3px 4px !important; }
+.action-count-inp   { width: 50px !important; flex-shrink: 0; padding: 3px 4px !important; }
 .action-length-sel  { flex: 1; min-width: 0; }
 .row-cs  { background: #0a2e14; border: 1px solid #2a7040; }
 .row-s   { background: #081e0e; border: 1px solid #1a5028; }
@@ -399,7 +399,7 @@ body {
 }
 .ht-view-row {
   display: grid;
-  grid-template-columns: 90px 40px 80px 1fr 44px;
+  grid-template-columns: 70px 90px 40px 80px 1fr 44px;
   padding: 4px 12px;
   gap: 6px;
   align-items: start;
@@ -408,7 +408,8 @@ body {
 .sv-comp   { font-size: 12px; color: var(--text-muted); text-transform: uppercase; padding-top: 2px; }
 .sv-effect { font-size: 14px; line-height: 1.5; }
 .sv-mana   { text-align: right; font-weight: 700; color: var(--mana); font-family: var(--font-ui); font-size: 13px; white-space: nowrap; }
-.ht-attr   { font-weight: 700; color: var(--heading-fg); font-family: var(--font-ui); font-size: 13px; text-transform: capitalize; padding-top: 2px; }
+.ht-attr    { font-weight: 700; color: var(--heading-fg); font-family: var(--font-ui); font-size: 13px; text-transform: capitalize; padding-top: 2px; }
+.ht-variant { font-style: italic; color: #a6da84; font-size: 13px; white-space: nowrap; padding-top: 2px; }
 
 .action-attribute   { font-weight: 700; color: var(--heading-fg); text-transform: capitalize; min-width: 80px; flex-shrink: 0; font-family: var(--font-ui); font-size: 13px; }
 .action-variant     { font-style: italic; color: #a6da84; font-size: 13px; white-space: nowrap; }

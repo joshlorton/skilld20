@@ -492,14 +492,13 @@ function renderResults(f) {
 
 function actionRow(item, idx) {
   const row = el('div', { class: `ht-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('b',    { class: 'ht-attr' }, item.attribute || ''));
-  row.appendChild(el('span', { class: 'sv-sym'  },
+  row.appendChild(el('span', { class: 'ht-variant' }, item.variant || ''));
+  row.appendChild(el('b',    { class: 'ht-attr'    }, item.attribute || ''));
+  row.appendChild(el('span', { class: 'sv-sym'     },
     !isNoAction(item.actions) ? actionSym(item.actions) : ''));
-  row.appendChild(el('span', { class: 'sv-comp' },
+  row.appendChild(el('span', { class: 'sv-comp'    },
     item.component ? spellComponent(item.component) : ''));
-  const effectText = [item.variant ? `[${item.variant}]` : '', item.effect || '']
-    .filter(Boolean).join(' ');
-  row.appendChild(el('span', { class: 'sv-effect' }, effectText));
+  row.appendChild(el('span', { class: 'sv-effect'  }, item.effect || ''));
   const m = Number(item.mana);
   row.appendChild(el('span', { class: 'sv-mana' },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
@@ -558,19 +557,21 @@ function renderSustainDismiss(f) {
     ? dismissRaw.filter(d => d?.effect)
     : (dismissRaw?.effect ? [dismissRaw] : []);
 
-  if (!sustainItems.length && !dismissItems.length) return null;
-
-  const section = el('div', { class: 'section-action' });
+  const sections = [];
 
   if (sustainItems.length) {
-    section.appendChild(el('div', { class: 'result-heading' }, 'Sustain'));
-    sustainItems.forEach((s, i) => section.appendChild(sustainRow(s, i)));
+    const sec = el('div', { class: 'section-action' });
+    sec.appendChild(el('div', { class: 'result-heading' }, 'Sustain'));
+    sustainItems.forEach((s, i) => sec.appendChild(sustainRow(s, i)));
+    sections.push(sec);
   }
   if (dismissItems.length) {
-    section.appendChild(el('div', { class: 'result-heading' }, 'Dismiss'));
-    dismissItems.forEach((d, i) => section.appendChild(sustainRow(d, i)));
+    const sec = el('div', { class: 'section-action' });
+    sec.appendChild(el('div', { class: 'result-heading' }, 'Dismiss'));
+    dismissItems.forEach((d, i) => sec.appendChild(sustainRow(d, i)));
+    sections.push(sec);
   }
-  return section;
+  return sections;
 }
 
 /* ============================================================
@@ -611,8 +612,7 @@ function renderVariants(f) {
     if (results) block.appendChild(results);
 
     // Sustain/Dismiss
-    const sd = renderSustainDismiss(v);
-    if (sd) block.appendChild(sd);
+    renderSustainDismiss(v).forEach(sec => block.appendChild(sec));
 
     section.appendChild(block);
   });
@@ -650,9 +650,8 @@ function renderViewer(f) {
   const results = renderResults(f);
   if (results) card.appendChild(results);
 
-  // Sustain / Dismiss
-  const sd = renderSustainDismiss(f);
-  if (sd) card.appendChild(sd);
+  // Sustain / Dismiss (separate sections for margin between them)
+  renderSustainDismiss(f).forEach(sec => card.appendChild(sec));
 
   // Heightened
   const ht = renderActionSection('Heightened', f.heightened, actionRow);
