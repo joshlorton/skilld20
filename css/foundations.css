@@ -6,7 +6,7 @@
 
 :root {
   --bg:           #0f0f0f;
-  --bg-sidebar:   #0d0d0d;
+  --sidebar-width:  210px;
   --bg-card:      #0f0f0f;
   --heading-bg:   #5D0000;
   --heading-fg:   #cbc18f;
@@ -64,14 +64,23 @@ body {
    ============================================================ */
 
 #sidebar {
-  width: 210px;
+  width: var(--sidebar-width);
   flex-shrink: 0;
   background: var(--bg-sidebar);
-  border-right: 1px solid var(--border);
+  border-right: none;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
+
+#sidebar-handle {
+  width: 4px;
+  flex-shrink: 0;
+  background: var(--border);
+  cursor: col-resize;
+  transition: background 0.15s;
+}
+#sidebar-handle:hover { background: var(--heading-fg); }
 
 #search-wrap { padding: 8px; border-bottom: 1px solid var(--border); }
 
@@ -100,7 +109,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.list-item:hover           { background: #1a1a1a; }
+.list-item:hover           { background: #222; }
 .list-item-active          { background: #1a1a1a; border-left-color: var(--heading-fg); color: var(--heading-fg); font-weight: 700; }
 .list-empty                { padding: 14px; color: var(--text-muted); font-size: 12px; font-style: italic; }
 

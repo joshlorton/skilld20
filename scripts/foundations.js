@@ -1571,13 +1571,16 @@ function renderList() {
     !search || (f.name || '').toLowerCase().includes(search)
   );
 
-  if (!filtered.length) {
+  const sorted   = filtered.slice().sort((a, b) =>
+    (a.name || '').localeCompare(b.name || ''));
+
+  if (!sorted.length) {
     list.appendChild(el('div', { class: 'list-empty' },
       state.foundations.length ? 'No matches.' : 'No foundations yet.'));
     return;
   }
 
-  filtered.forEach(f => {
+  sorted.forEach(f => {
     const idx  = state.foundations.indexOf(f);
     const item = el('div', {
       class: `list-item${idx === state.currentIndex ? ' list-item-active' : ''}`,
@@ -1664,6 +1667,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Search
   document.getElementById('search').addEventListener('input', renderList);
+
+  // Sidebar resize
+  const SIDEBAR_MIN = 140;
+  const SIDEBAR_MAX = 500;
+  const SIDEBAR_KEY = 'skd20_sidebar_width';
+  const root        = document.documentElement;
+
+  const savedWidth = localStorage.getItem(SIDEBAR_KEY);
+  if (savedWidth) root.style.setProperty('--sidebar-width', savedWidth + 'px');
+
+  document.getElementById('sidebar-handle').addEventListener('mousedown', e => {
+    e.preventDefault();
+    const onMove = mv => {
+      const w = Math.min(Math.max(mv.clientX, SIDEBAR_MIN), SIDEBAR_MAX);
+      root.style.setProperty('--sidebar-width', w + 'px');
+    };
+    const onUp = mv => {
+      const w = Math.min(Math.max(mv.clientX, SIDEBAR_MIN), SIDEBAR_MAX);
+      localStorage.setItem(SIDEBAR_KEY, w);
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup',   onUp);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
+  });
 
   // Token button -- must work even before data loads
   document.getElementById('btn-token').addEventListener('click', openModal);
