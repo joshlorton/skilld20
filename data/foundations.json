@@ -569,8 +569,8 @@
         {
           "attribute": "duration",
           "actions": {
-            "count": null,
-            "length": "free"
+            "count": 0,
+            "length": "action"
           },
           "component": "-",
           "effect": "sustain duration until the end of your next turn",
@@ -604,7 +604,7 @@
           "attribute": "targets",
           "actions": {
             "count": null,
-            "length": "free"
+            "length": "reaction"
           },
           "component": "-",
           "effect": "a general category OR specific type of creature",
@@ -615,7 +615,7 @@
           "attribute": "area shape",
           "actions": {
             "count": null,
-            "length": "free"
+            "length": "reaction"
           },
           "component": "-",
           "effect": "60' cone instead of 30' sphere; caster must face a direction; 1 action per direction",
@@ -626,7 +626,7 @@
           "attribute": "area size",
           "actions": {
             "count": null,
-            "length": "free"
+            "length": "reaction"
           },
           "component": "-",
           "effect": "double size of area or effect",
