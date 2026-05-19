@@ -1571,8 +1571,11 @@ function renderList() {
     !search || (f.name || '').toLowerCase().includes(search)
   );
 
-  const sorted   = filtered.slice().sort((a, b) =>
-    (a.name || '').localeCompare(b.name || ''));
+  const sorted = filtered.slice().sort((a, b) => {
+    const n1 = (a.name || '').toLowerCase();
+    const n2 = (b.name || '').toLowerCase();
+    return n1 < n2 ? -1 : n1 > n2 ? 1 : 0;
+  });
 
   if (!sorted.length) {
     list.appendChild(el('div', { class: 'list-empty' },
@@ -1677,13 +1680,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedWidth = localStorage.getItem(SIDEBAR_KEY);
   if (savedWidth) root.style.setProperty('--sidebar-width', savedWidth + 'px');
 
-  document.getElementById('sidebar-handle').addEventListener('mousedown', e => {
+  const handle = document.getElementById('sidebar-handle');
+
+  // Firefox fires dragstart after mousedown even with preventDefault, intercepting mousemove.
+  handle.addEventListener('dragstart', e => e.preventDefault());
+
+  handle.addEventListener('mousedown', e => {
     e.preventDefault();
+    document.body.style.userSelect = 'none';
+    document.body.style.cursor     = 'col-resize';
+
     const onMove = mv => {
+      mv.preventDefault();
       const w = Math.min(Math.max(mv.clientX, SIDEBAR_MIN), SIDEBAR_MAX);
       root.style.setProperty('--sidebar-width', w + 'px');
     };
     const onUp = mv => {
+      document.body.style.userSelect = '';
+      document.body.style.cursor     = '';
       const w = Math.min(Math.max(mv.clientX, SIDEBAR_MIN), SIDEBAR_MAX);
       localStorage.setItem(SIDEBAR_KEY, w);
       document.removeEventListener('mousemove', onMove);
