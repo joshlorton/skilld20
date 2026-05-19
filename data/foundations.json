@@ -322,6 +322,7 @@
       },
       "sustain": [
         {
+          "variant": "Command",
           "attribute": "effect",
           "actions": {
             "count": 1,
@@ -332,6 +333,7 @@
           "mana": 0
         },
         {
+          "variant": "Command",
           "attribute": "effect",
           "actions": {
             "count": 3,
@@ -342,6 +344,7 @@
           "mana": 3
         },
         {
+          "variant": "Control",
           "attribute": "duration",
           "actions": {
             "count": 1,
@@ -352,6 +355,7 @@
           "mana": 4
         },
         {
+          "variant": "Control",
           "attribute": "duration",
           "actions": {
             "count": 3,
@@ -364,13 +368,14 @@
       ],
       "dismiss": [
         {
+          "variant": "Lay to Rest",
           "attribute": "",
           "actions": {
             "count": 3,
             "length": "action"
           },
           "component": "S, V",
-          "effect": "You lay undead you animated to rest. If unwilling, they make a Charisma save. If performed while under your control, their saves are treated as one result worse.",
+          "effect": "You reverse the animation of one of your undead. If unwilling, they make a Charisma save. If performed while under your control, their saves are treated as one result worse.",
           "mana": 1
         }
       ],
