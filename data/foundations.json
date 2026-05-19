@@ -322,7 +322,7 @@
       },
       "sustain": [
         {
-          "attribute": "",
+          "attribute": "effect",
           "actions": {
             "count": 1,
             "length": "action"
@@ -332,7 +332,7 @@
           "mana": 0
         },
         {
-          "attribute": "",
+          "attribute": "effect",
           "actions": {
             "count": 3,
             "length": "action"
