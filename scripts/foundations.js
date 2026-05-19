@@ -29,40 +29,36 @@ const state = {
    ============================================================ */
 
 const ACTION_LENGTHS = [
-  { value: 'none',     label: '-- None' },
-  { value: 'free',     label: '◇ Free' },
   { value: 'reaction', label: '↺ Reaction' },
-  { value: 'action',   label: '◆ Action' },
-  { value: 'round',    label: 'Round' },
-  { value: 'minute',   label: 'Minute' },
-  { value: 'hour',     label: 'Hour' },
-  { value: 'day',      label: 'Day' },
-  { value: 'week',     label: 'Week' }
+  { value: 'action',   label: 'Action'     },
+  { value: 'round',    label: 'Round'      },
+  { value: 'minute',   label: 'Minute'     },
+  { value: 'hour',     label: 'Hour'       },
+  { value: 'day',      label: 'Day'        },
+  { value: 'week',     label: 'Week'       }
 ];
 
 function parseLegacyAction(val) {
-  if (val === null || val === undefined) return { count: '', length: 'none' };
-  if (typeof val === 'object') return { count: val.count ?? '', length: val.length ?? 'none' };
+  if (val === null || val === undefined) return { count: '', length: 'action' };
+  if (typeof val === 'object') return { count: val.count ?? '', length: val.length ?? 'action' };
   const s = String(val).trim();
-  if (s === '' || s === '-') return { count: '', length: 'none' };
-  if (s === 'F' || s === '0') return { count: '', length: 'free' };
+  if (s === '' || s === '-') return { count: 0,  length: 'action' };
+  if (s === 'F' || s === '0') return { count: 0, length: 'action' };
   if (s === 'R') return { count: '', length: 'reaction' };
   const n = parseInt(s, 10);
-  if (!isNaN(n) && n > 0) return { count: n, length: 'action' };
-  return { count: '', length: 'none' };
+  if (!isNaN(n)) return { count: n, length: 'action' };
+  return { count: '', length: 'action' };
 }
 
 function collectAction(count, length) {
-  const noCount = ['none', 'free', 'reaction'];
-  if (!length || noCount.includes(length)) return { count: null, length: length || 'none' };
+  if (length === 'reaction') return { count: null, length: 'reaction' };
   const c = parseInt(count, 10);
-  return { count: isNaN(c) ? 1 : c, length };
+  return { count: isNaN(c) ? 1 : c, length: length || 'action' };
 }
 
 function isNoAction(val) {
-  if (!val && val !== 0) return true;
-  if (val === '-') return true;
-  if (typeof val === 'object') return !val.length || val.length === 'none';
+  if (val === null || val === undefined || val === '' || val === '-') return true;
+  if (typeof val === 'object') return false; // objects always have some action value
   return false;
 }
 
@@ -70,13 +66,11 @@ function actionSym(val) {
   if (val === null || val === undefined || val === '') return '';
   if (typeof val === 'object' && val !== null) {
     const { count, length } = val;
-    if (!length || length === 'none') return '-';
-    if (length === 'free')     return '◇';
     if (length === 'reaction') return '↺';
     if (length === 'action') {
       const n = parseInt(count, 10);
-      const c = isNaN(n) ? 1 : Math.min(n, 3);
-      return '◆'.repeat(c || 1);
+      if (isNaN(n) || n <= 0) return '◇';
+      return '◆'.repeat(Math.min(n, 3));
     }
     const n = parseInt(count, 10);
     const c = isNaN(n) ? 1 : n;
@@ -97,9 +91,8 @@ function actionSym(val) {
 }
 
 function buildActionPair(actVal, idPrefix) {
-  const parsed  = parseLegacyAction(actVal);
-  const noCount = ['none', 'free', 'reaction'];
-  const wrap    = el('div', { class: 'action-pair' });
+  const parsed = parseLegacyAction(actVal);
+  const wrap   = el('div', { class: 'action-pair' });
 
   const cAttrs = { type: 'number', min: '0', max: '99', class: 'form-input action-count-inp' };
   if (idPrefix) cAttrs.id = `${idPrefix}-act-count`; else cAttrs['data-field'] = 'act-count';
@@ -115,8 +108,9 @@ function buildActionPair(actVal, idPrefix) {
     lengthSel.appendChild(o);
   });
 
+  // Only reaction disables count
   const syncCount = () => {
-    const off = noCount.includes(lengthSel.value);
+    const off = lengthSel.value === 'reaction';
     countIn.disabled = off;
     countIn.style.opacity = off ? '0.3' : '1';
   };
@@ -536,12 +530,12 @@ function sdComponent(comp) {
 
 function sustainRow(item, idx) {
   const row = el('div', { class: `sd-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'sv-sym' },
-    !isNoAction(item.actions) ? actionSym(item.actions) : ''));
-  row.appendChild(el('span', { class: 'sv-comp' }, sdComponent(item.component)));
-  row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
+  row.appendChild(el('b',    { class: 'ht-attr'  }, item.attribute || ''));
+  row.appendChild(el('span', { class: 'sv-sym'   }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'sv-comp'  }, sdComponent(item.component)));
+  row.appendChild(el('span', { class: 'sv-effect'}, item.effect || ''));
   const m = Number(item.mana);
-  row.appendChild(el('span', { class: 'sv-mana' },
+  row.appendChild(el('span', { class: 'sv-mana'  },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
       ? (isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`)) : ''));
   return row;
@@ -787,6 +781,7 @@ function edRow(...fields) {
 
 function buildSdRow(data) {
   data = data || {};
+  const parsed = parseLegacyAction(data.actions);
   const row = el('div', { class: 'sd-row' });
 
   const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
@@ -798,7 +793,27 @@ function buildSdRow(data) {
   });
   row.appendChild(attrSel);
 
-  row.appendChild(buildActionPair(data.actions));
+  // Count field
+  const countIn = el('input', { type: 'number', min: '0', max: '99',
+    class: 'form-input', 'data-field': 'act-count' });
+  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+  row.appendChild(countIn);
+
+  // Length select
+  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
+  ACTION_LENGTHS.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (value === parsed.length) o.selected = true;
+    lengthSel.appendChild(o);
+  });
+  const syncCount = () => {
+    const off = lengthSel.value === 'reaction';
+    countIn.disabled = off;
+    countIn.style.opacity = off ? '0.3' : '1';
+  };
+  lengthSel.addEventListener('change', syncCount);
+  syncCount();
+  row.appendChild(lengthSel);
 
   const compIn = el('input', { class: 'form-input', type: 'text',
     placeholder: 'V S M F', 'data-field': 'component' });
@@ -826,7 +841,7 @@ function buildSdSection(title, containerId, initialData) {
   wrap.appendChild(heading);
 
   const labels = el('div', { class: 'sd-labels' });
-  ['Attribute', 'Actions', 'Comp', 'Effect', 'Mana'].forEach(l =>
+  ['Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
     labels.appendChild(el('span', { class: 'sd-label' }, l)));
   wrap.appendChild(labels);
 
@@ -885,7 +900,28 @@ function buildHtRow(data) {
   });
   row.appendChild(attrSel);
 
-  row.appendChild(buildActionPair(data.actions));
+  // Count field
+  const parsed = parseLegacyAction(data.actions);
+  const countIn = el('input', { type: 'number', min: '0', max: '99',
+    class: 'form-input', 'data-field': 'act-count' });
+  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+  row.appendChild(countIn);
+
+  // Length select
+  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
+  ACTION_LENGTHS.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (value === parsed.length) o.selected = true;
+    lengthSel.appendChild(o);
+  });
+  const syncCount = () => {
+    const off = lengthSel.value === 'reaction';
+    countIn.disabled = off;
+    countIn.style.opacity = off ? '0.3' : '1';
+  };
+  lengthSel.addEventListener('change', syncCount);
+  syncCount();
+  row.appendChild(lengthSel);
 
   const compIn = el('input', { class: 'form-input', type: 'text',
     placeholder: 'V S M F', 'data-field': 'component' });
@@ -913,7 +949,7 @@ function buildHtSection(initialData) {
   wrap.appendChild(heading);
 
   const labels = el('div', { class: 'ht-labels' });
-  ['Option', 'Attribute', 'Act', 'Comp', 'Effect', 'Mana'].forEach(l =>
+  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
     labels.appendChild(el('span', { class: 'sd-label' }, l)));
   wrap.appendChild(labels);
 

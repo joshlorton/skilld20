@@ -269,7 +269,7 @@ body {
   display: block;
   padding: 8px 12px 4px;
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
   font-family: var(--font-spec);
   line-height: 1.55;
 }
@@ -326,19 +326,19 @@ body {
 /* Heightened structured editor */
 .ht-labels {
   display: grid;
-  grid-template-columns: 110px 100px 130px 60px 1fr 46px;
+  grid-template-columns: 110px 100px 50px 84px 60px 1fr 46px;
   gap: 4px;
   padding: 0 0 2px;
 }
 .ht-row {
   display: grid;
-  grid-template-columns: 110px 100px 130px 60px 1fr 46px;
+  grid-template-columns: 110px 100px 50px 84px 60px 1fr 46px;
   gap: 4px;
   margin-bottom: 4px;
 }
 .ht-row .form-input { font-size: 12px; padding: 3px 5px; }
 
-/* Action pair (count + length) */
+/* Action pair (count + length) -- used in Cast section only */
 .action-pair { display: flex; gap: 2px; }
 .action-count-inp   { width: 34px !important; flex-shrink: 0; padding: 3px 4px !important; }
 .action-length-sel  { flex: 1; min-width: 0; }
@@ -387,10 +387,12 @@ body {
 .row-odd  { background: #141c28; }
 .row-even { background: #1e3347; }
 
+.section-effect, .section-results, .section-action, .section-variants { margin-bottom: 3px; }
+
 /* Grid-based viewer rows */
 .sd-view-row {
   display: grid;
-  grid-template-columns: 44px 52px 1fr 44px;
+  grid-template-columns: 80px 44px 52px 1fr 44px;
   padding: 4px 12px;
   gap: 6px;
   align-items: start;
@@ -558,14 +560,14 @@ body {
 .sd-add-btn:hover { opacity: 0.75; }
 .sd-labels {
   display: grid;
-  grid-template-columns: 90px 130px 52px 1fr 46px;
+  grid-template-columns: 90px 50px 84px 52px 1fr 46px;
   gap: 4px;
   padding: 0 0 2px;
 }
 .sd-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-ui); }
 .sd-row {
   display: grid;
-  grid-template-columns: 90px 130px 52px 1fr 46px;
+  grid-template-columns: 90px 50px 84px 52px 1fr 46px;
   gap: 4px;
   margin-bottom: 4px;
 }
