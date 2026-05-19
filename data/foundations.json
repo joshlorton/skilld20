@@ -245,7 +245,10 @@
         "divine domain: undeath"
       ],
       "cast": {
-        "actions": "1",
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
         "component": "v",
         "trigger": ""
       },
@@ -319,25 +322,41 @@
       },
       "sustain": [
         {
-          "actions": "1",
+          "attribute": "",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
           "component": "V",
           "effect": "Issue a command. Undead will follow until completed, a new command is given, they are destroyed, or your control ends.",
           "mana": 0
         },
         {
-          "actions": "3",
+          "attribute": "",
+          "actions": {
+            "count": 3,
+            "length": "action"
+          },
           "component": "S, V",
           "effect": "Issue a command. Undead will follow until completed, a new command is given, or they are destroyed. They will continue to follow this command even after your control ends.",
           "mana": 3
         },
         {
-          "actions": "1",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
           "component": "V",
           "effect": "Renew control for original duration.",
           "mana": 4
         },
         {
-          "actions": "3",
+          "attribute": "duration",
+          "actions": {
+            "count": 3,
+            "length": "action"
+          },
           "component": "S, V",
           "effect": "Renew control for original duration.",
           "mana": 1
@@ -345,7 +364,11 @@
       ],
       "dismiss": [
         {
-          "actions": "3",
+          "attribute": "",
+          "actions": {
+            "count": 3,
+            "length": "action"
+          },
           "component": "S, V",
           "effect": "You lay undead you animated to rest. If unwilling, they make a Charisma save. If performed while under your control, their saves are treated as one result worse.",
           "mana": 1
@@ -355,7 +378,10 @@
         {
           "variant": "",
           "attribute": "range",
-          "actions": "",
+          "actions": {
+            "count": 0,
+            "length": "action"
+          },
           "component": "-",
           "effect": "+15' range",
           "mana": 5
@@ -363,7 +389,10 @@
         {
           "variant": "",
           "attribute": "area size",
-          "actions": "1",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
           "component": "V",
           "effect": "+5' radius",
           "mana": 5
@@ -371,7 +400,10 @@
         {
           "variant": "",
           "attribute": "duration",
-          "actions": "1",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
           "component": "S",
           "effect": "extend control by 1 step",
           "mana": 8
