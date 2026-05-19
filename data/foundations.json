@@ -381,7 +381,7 @@
       ],
       "heightened": [
         {
-          "variant": "All",
+          "variant": "",
           "attribute": "range",
           "actions": {
             "count": 0,
@@ -392,7 +392,7 @@
           "mana": 5
         },
         {
-          "variant": "All",
+          "variant": "",
           "attribute": "area size",
           "actions": {
             "count": 1,
@@ -403,7 +403,7 @@
           "mana": 5
         },
         {
-          "variant": "All",
+          "variant": "",
           "attribute": "duration",
           "actions": {
             "count": 1,
