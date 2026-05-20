@@ -9,8 +9,8 @@
   --sidebar-width:  210px;
   --bg-card:      #0f0f0f;
   --heading-bg:   #5D0000;
-  --heading-fg:   #c7c1bb;
-  --accent:       #c7c1bb;
+  --heading-fg:   #cbc18f;
+  --accent:       #cbc18f;
   --mana:         #00ffff;
   --price:        #ffff00;
   --text:         #e8e8e8;
@@ -161,7 +161,7 @@ body {
    ============================================================ */
 
 .foundation-card {
-  max-width: 760px;
+  max-width: none;
   font-family: var(--font-spec);
   font-size: 15px;
   line-height: 1.55;
@@ -474,7 +474,7 @@ body {
    EDITOR FORM
    ============================================================ */
 
-.editor-form { max-width: 760px; padding-bottom: 40px; }
+.editor-form { max-width: none; padding-bottom: 40px; }
 
 .editor-section-title {
   background: var(--heading-bg);
