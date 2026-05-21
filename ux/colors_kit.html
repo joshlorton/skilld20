@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKILLd20 -- Legacy Color Palette</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; background: #0f0f0f; color: #e8e8e8; }
+  h1 { padding: 2rem 2rem 1rem; font-size: 1.4rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: #aaa; }
+  .section { margin: 0 2rem 2.5rem; }
+  .section-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #666; margin-bottom: 1px; }
+  .band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 52px;
+    
+    margin-bottom: 1px;
+    overflow: hidden;
+  }
+  .band-name { font-size: 0.82rem; }
+  .band-hex  { font-size: 0.78rem; font-family: monospace; opacity: 0.7; }
+  .band-var  { font-size: 0.72rem; color: #888; margin-left: 1rem; white-space: nowrap; }
+  .light-text .band-name, .light-text .band-hex { color: #fff; }
+  .dark-text  .band-name, .dark-text  .band-hex  { color: #222; }
+  .pair { display: flex; gap: 4px; margin-bottom: 1px; }
+  .pair .band { flex: 1; margin-bottom: 1px; }
+</style>
+</head>
+<body>
+
+<h1>SKILLd20 -- Legacy Color Palette</h1>
+
+<!-- CORE VARIABLES -->
+<div class="section">
+<div class="section-title">Core -- CSS Variables (:root)</div>
+
+<div class="band light-text" style="background:#0f0f0f; border:1px solid #252525">
+  <span class="band-name">App background / Card background</span>
+  <span class="band-hex">#0f0f0f <span class="band-var">--bg  --bg-card</span></span>
+</div>
+
+<div class="band light-text" style="background:#5D0000">
+  <span class="band-name">Heading background -- dark crimson</span>
+  <span class="band-hex">#5D0000 <span class="band-var">--heading-bg</span></span>
+</div>
+
+<div class="band dark-text" style="background:#cbc18f">
+  <span class="band-name">Heading foreground / Accent -- warm gold</span>
+  <span class="band-hex">#cbc18f <span class="band-var">--heading-fg  --accent</span></span>
+</div>
+
+<div class="band dark-text" style="background:#00ffff">
+  <span class="band-name">Mana -- pure cyan</span>
+  <span class="band-hex">#00ffff <span class="band-var">--mana</span></span>
+</div>
+
+<div class="band dark-text" style="background:#ffff00">
+  <span class="band-name">Price -- pure yellow</span>
+  <span class="band-hex">#ffff00 <span class="band-var">--price</span></span>
+</div>
+
+<div class="band dark-text" style="background:#e8e8e8">
+  <span class="band-name">Primary text</span>
+  <span class="band-hex">#e8e8e8 <span class="band-var">--text</span></span>
+</div>
+
+<div class="band light-text" style="background:#666">
+  <span class="band-name">Muted text -- labels, placeholders</span>
+  <span class="band-hex">#666666 <span class="band-var">--text-muted</span></span>
+</div>
+
+<div class="band light-text" style="background:#252525; border:1px solid #444">
+  <span class="band-name">Border / Divider</span>
+  <span class="band-hex">#252525 <span class="band-var">--border</span></span>
+</div>
+</div>
+
+<!-- TABLE ROWS -->
+<div class="section">
+<div class="section-title">Alternating Table Rows</div>
+
+<div class="band light-text" style="background:#141c28">
+  <span class="band-name">Row odd -- faint blue</span>
+  <span class="band-hex">#141c28 <span class="band-var">row-odd</span></span>
+</div>
+
+<div class="band light-text" style="background:#1e3347">
+  <span class="band-name">Row even -- steel blue</span>
+  <span class="band-hex">#1e3347 <span class="band-var">row-even</span></span>
+</div>
+</div>
+
+<!-- RESULT ROWS -->
+<div class="section">
+<div class="section-title">Result Rows -- Critical Success / Success / Failure / Critical Failure</div>
+
+<div class="band light-text" style="background:#0a2e14; border:1px solid #2a7040">
+  <span class="band-name" style="color:#5ec87a">Critical Success -- label</span>
+  <span class="band-hex">#0a2e14 bg · #2a7040 border · <span style="color:#5ec87a">label #5ec87a</span></span>
+</div>
+
+<div class="band light-text" style="background:#081e0e; border:1px solid #1a5028">
+  <span class="band-name" style="color:#3ea058">Success -- label</span>
+  <span class="band-hex">#081e0e bg · #1a5028 border · <span style="color:#3ea058">label #3ea058</span></span>
+</div>
+
+<div class="band light-text" style="background:#2e1408; border:1px solid #7a3018">
+  <span class="band-name" style="color:#c07040">Failure -- label</span>
+  <span class="band-hex">#2e1408 bg · #7a3018 border · <span style="color:#c07040">label #c07040</span></span>
+</div>
+
+<div class="band light-text" style="background:#240606; border:1px solid #7a1a1a">
+  <span class="band-name" style="color:#c04040">Critical Failure -- label</span>
+  <span class="band-hex">#240606 bg · #7a1a1a border · <span style="color:#c04040">label #c04040</span></span>
+</div>
+</div>
+
+<!-- UI CHROME -->
+<div class="section">
+<div class="section-title">UI Chrome -- Topbar, Sidebar, Interactive</div>
+
+<div class="band light-text" style="background:#080808">
+  <span class="band-name">Topbar background</span>
+  <span class="band-hex">#080808</span>
+</div>
+
+<div class="band light-text" style="background:#0d0d0d; border:1px solid #1a1a1a">
+  <span class="band-name">Sidebar background</span>
+  <span class="band-hex">#0d0d0d <span class="band-var">--bg-sidebar</span></span>
+</div>
+
+<div class="band light-text" style="background:#1a1a1a">
+  <span class="band-name">List item active / hover base</span>
+  <span class="band-hex">#1a1a1a</span>
+</div>
+
+<div class="band light-text" style="background:#222">
+  <span class="band-name">List item hover highlight</span>
+  <span class="band-hex">#222222</span>
+</div>
+
+<div class="band light-text" style="background:#252525">
+  <span class="band-name">Secondary button background</span>
+  <span class="band-hex">#252525</span>
+</div>
+
+<div class="band light-text" style="background:#3a0d0d">
+  <span class="band-name">Danger button background</span>
+  <span class="band-hex">#3a0d0d bg · <span style="color:#f07070">text #f07070</span></span>
+</div>
+
+<div class="band light-text" style="background:#220e0e">
+  <span class="band-name">Variant heading background</span>
+  <span class="band-hex">#220e0e</span>
+</div>
+
+<div class="band light-text" style="background:#2a2a2a">
+  <span class="band-name">Form input background</span>
+  <span class="band-hex">#2a2a2a</span>
+</div>
+
+<div class="band light-text" style="background:#161616">
+  <span class="band-name">Form select background</span>
+  <span class="band-hex">#161616</span>
+</div>
+
+<div class="band light-text" style="background:#101810">
+  <span class="band-name">Form results column background</span>
+  <span class="band-hex">#101810</span>
+</div>
+</div>
+
+<!-- STATUS COLORS -->
+<div class="section">
+<div class="section-title">Status -- Text Colors (shown on dark bg)</div>
+
+<div class="band light-text" style="background:#181818">
+  <span class="band-name" style="color:#5cb85c">Status OK -- saved / success</span>
+  <span class="band-hex" style="color:#5cb85c">#5cb85c</span>
+</div>
+
+<div class="band light-text" style="background:#181818">
+  <span class="band-name" style="color:#e05555">Status Error</span>
+  <span class="band-hex" style="color:#e05555">#e05555</span>
+</div>
+
+<div class="band light-text" style="background:#181818">
+  <span class="band-name" style="color:#f07070">Danger / remove button / CF label</span>
+  <span class="band-hex" style="color:#f07070">#f07070</span>
+</div>
+
+<div class="band light-text" style="background:#181818">
+  <span class="band-name" style="color:#ff4444">Danger hover -- remove button</span>
+  <span class="band-hex" style="color:#ff4444">#ff4444</span>
+</div>
+
+<div class="band light-text" style="background:#181818">
+  <span class="band-name" style="color:#a6da84">Option / variant name -- sage green</span>
+  <span class="band-hex" style="color:#a6da84">#a6da84</span>
+</div>
+</div>
+
+<!-- TRAIT: GENERAL DEFAULT -->
+<div class="section">
+<div class="section-title">Trait -- General Default</div>
+
+<div class="band light-text" style="background:#5D0000">
+  <span class="band-name">General trait tag -- dark crimson (matches heading-bg)</span>
+  <span class="band-hex">#5D0000</span>
+</div>
+</div>
+
+<!-- TRAIT: RARITY -->
+<div class="section">
+<div class="section-title">Trait -- Rarity</div>
+
+<div class="band light-text" style="background:#1a1a1a; border:1px solid #333">
+  <span class="band-name">Common</span>
+  <span class="band-hex">#1a1a1a</span>
+</div>
+
+<div class="band light-text" style="background:#bd5410">
+  <span class="band-name">Uncommon</span>
+  <span class="band-hex">#bd5410</span>
+</div>
+
+<div class="band light-text" style="background:#160b65">
+  <span class="band-name">Rare</span>
+  <span class="band-hex">#160b65</span>
+</div>
+
+<div class="band light-text" style="background:#54116d">
+  <span class="band-name">Unique</span>
+  <span class="band-hex">#54116d</span>
+</div>
+</div>
+
+<!-- TRAIT: DIFFICULTY -->
+<div class="section">
+<div class="section-title">Trait -- Difficulty (shared values with Rarity where noted)</div>
+
+<div class="band dark-text" style="background:#00b050">
+  <span class="band-name">Easy / Untrained</span>
+  <span class="band-hex">#00b050</span>
+</div>
+
+<div class="band light-text" style="background:#1a1a1a; border:1px solid #333">
+  <span class="band-name">Average / Trained -- same as Common rarity</span>
+  <span class="band-hex">#1a1a1a</span>
+</div>
+
+<div class="band light-text" style="background:#bd5410">
+  <span class="band-name">Hard / Expert -- same as Uncommon rarity</span>
+  <span class="band-hex">#bd5410</span>
+</div>
+
+<div class="band light-text" style="background:#160b65">
+  <span class="band-name">Very Hard / Master -- same as Rare rarity</span>
+  <span class="band-hex">#160b65</span>
+</div>
+
+<div class="band light-text" style="background:#54116d">
+  <span class="band-name">Incredibly Hard / Legendary -- same as Unique rarity</span>
+  <span class="band-hex">#54116d</span>
+</div>
+</div>
+
+<!-- TRADITION -->
+<div class="section">
+<div class="section-title">Tradition -- Trained</div>
+
+<div class="band light-text" style="background:#5e88c8">
+  <span class="band-name">Arcane -- medium steel blue</span>
+  <span class="band-hex">#5e88c8</span>
+</div>
+
+<div class="band dark-text" style="background:#c0be40">
+  <span class="band-name">Divine -- olive gold</span>
+  <span class="band-hex">#c0be40</span>
+</div>
+
+<div class="band light-text" style="background:#a65ec8">
+  <span class="band-name">Bardic -- medium purple</span>
+  <span class="band-hex">#a65ec8</span>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">Tradition -- Untrained</div>
+
+<div class="band light-text" style="background:#c04040">
+  <span class="band-name">Bloodline -- medium crimson</span>
+  <span class="band-hex">#c04040</span>
+</div>
+
+<div class="band light-text" style="background:#af804f">
+  <span class="band-name">Pact -- warm sienna</span>
+  <span class="band-hex">#af804f</span>
+</div>
+</div>
+
+<!-- ACCESS -->
+<div class="section">
+<div class="section-title">Access -- Tradition Sub-Access (darker versions of Tradition colors)</div>
+
+<div class="pair">
+  <div class="band light-text" style="background:#5e88c8">
+    <span class="band-name">Arcane (tradition)</span>
+    <span class="band-hex">#5e88c8</span>
+  </div>
+  <div class="band light-text" style="background:#2a4870">
+    <span class="band-name">Arcane access -- dark steel blue</span>
+    <span class="band-hex">#2a4870</span>
+  </div>
+</div>
+
+<div class="pair">
+  <div class="band dark-text" style="background:#c0be40">
+    <span class="band-name">Divine (tradition)</span>
+    <span class="band-hex">#c0be40</span>
+  </div>
+  <div class="band light-text" style="background:#787a18">
+    <span class="band-name">Divine access -- dark olive</span>
+    <span class="band-hex">#787a18</span>
+  </div>
+</div>
+
+<div class="pair">
+  <div class="band light-text" style="background:#a65ec8">
+    <span class="band-name">Bardic (tradition)</span>
+    <span class="band-hex">#a65ec8</span>
+  </div>
+  <div class="band light-text" style="background:#502a70">
+    <span class="band-name">Bardic access -- dark purple</span>
+    <span class="band-hex">#502a70</span>
+  </div>
+</div>
+
+<div class="pair">
+  <div class="band light-text" style="background:#c04040">
+    <span class="band-name">Bloodline (tradition)</span>
+    <span class="band-hex">#c04040</span>
+  </div>
+  <div class="band light-text" style="background:#7a1a1a">
+    <span class="band-name">Bloodline access -- dark crimson</span>
+    <span class="band-hex">#7a1a1a</span>
+  </div>
+</div>
+
+<div class="pair">
+  <div class="band light-text" style="background:#af804f">
+    <span class="band-name">Pact (tradition)</span>
+    <span class="band-hex">#af804f</span>
+  </div>
+  <div class="band light-text" style="background:#4b3621">
+    <span class="band-name">Pact access -- dark brown</span>
+    <span class="band-hex">#4b3621</span>
+  </div>
+</div>
+</div>
+
+<!-- TYPOGRAPHY REFERENCE -->
+<div class="section">
+<div class="section-title">Typography Reference -- Text Colors in Context</div>
+
+<div class="band light-text" style="background:#1e3347">
+  <span class="band-name" style="color:#e8e8e8">Primary text on row-even</span>
+  <span class="band-hex" style="color:#cbc18f">--heading-fg on --row-even</span>
+</div>
+
+<div class="band light-text" style="background:#5D0000">
+  <span class="band-name" style="color:#cbc18f">Heading foreground on heading-bg</span>
+  <span class="band-hex" style="color:#cbc18f">#cbc18f on #5D0000</span>
+</div>
+
+<div class="band dark-text" style="background:#c0be40">
+  <span class="band-name" style="color:#1a1a1a">Dark text on Divine / section-heading</span>
+  <span class="band-hex" style="color:#1a1a1a">#1a1a1a on #c0be40</span>
+</div>
+</div>
+
+</body>
+</html>
