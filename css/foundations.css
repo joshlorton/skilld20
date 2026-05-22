@@ -5,13 +5,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:             #081337;
-  --sidebar-width:  210px;
-  --bg-card:        var(--bg);       /* alias; consolidated with --bg and topbar */
+  --bg:             #041337;
   --heading-bg:     #0F6070;
   --heading-fg:     #F0E8D0;
   --accent:         #F0E8D0;
-  --mana:           #78DDD6;
+  --mana:           #88FFFF;
   --price:          #BFEA4A;
   --text:           #D0D8DC;
   --text-muted:     #8A9DA8;
@@ -21,6 +19,7 @@
   --sidebar-hover:  #1A8FA8;
   --font-ui:        'Lato', sans-serif;
   --font-spec:      'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+  --sidebar-width:  210px;
   --topbar-h:       46px;
 }
 
@@ -640,7 +639,7 @@ body {
   z-index: 1000;
 }
 #modal {
-  background: var(--bg-card);
+  background: var(--bg);
   border: 1px solid var(--heading-fg);
   padding: 24px;
   width: 400px;
