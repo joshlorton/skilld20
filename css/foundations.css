@@ -5,7 +5,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:             #141E38;
+  --bg:             #081337;
   --sidebar-width:  210px;
   --bg-card:        var(--bg);       /* alias; consolidated with --bg and topbar */
   --heading-bg:     #0F6070;
@@ -15,10 +15,10 @@
   --price:          #BFEA4A;
   --text:           #D0D8DC;
   --text-muted:     #8A9DA8;
-  --border:         #3A2868;
-  --row-odd:        #1E3A78;
-  --row-even:       #2868C0;
-  --sidebar-hover:  #147A8C;
+  --border:         #3A3F3F;
+  --row-odd:        #141E38;
+  --row-even:       #1E3A78;
+  --sidebar-hover:  #1A8FA8;
   --font-ui:        'Lato', sans-serif;
   --font-spec:      'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
   --topbar-h:       46px;
@@ -635,7 +635,7 @@ body {
 
 #modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   display: flex; align-items: center; justify-content: center;
   z-index: 1000;
 }
