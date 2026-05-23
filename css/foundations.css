@@ -232,18 +232,18 @@ body {
 .trait-difficulty-legendary  { background: #54116d; }
 
 /* Traditions */
-.trait-tradition-arcane    { background: #786618; }
-.trait-tradition-divine    { background: #363c44; }
-.trait-tradition-bardic    { background: #5c2090; }
-.trait-tradition-bloodline { background: #580a0a; }
-.trait-tradition-pact      { background: #5e3418; }
+.trait-tradition-arcane    { background: #c8a830; }
+.trait-tradition-divine    { background: #6a7280; }
+.trait-tradition-bardic    { background: #a868d8; }
+.trait-tradition-bloodline { background: #982020; }
+.trait-tradition-pact      { background: #9e6838; }
 
 /* Access */
-.trait-access-arcane    { background: #2a2000; }
-.trait-access-divine    { background: #121418; }
-.trait-access-bardic    { background: #1a0830; }
-.trait-access-bloodline { background: #180404; }
-.trait-access-pact      { background: #201008; }
+.trait-access-arcane    { background: #786618; }
+.trait-access-divine    { background: #363c44; }
+.trait-access-bardic    { background: #5c2090; }
+.trait-access-bloodline { background: #580a0a; }
+.trait-access-pact      { background: #5e3418; }
 
 /* ============================================================
    SPEC SHEET
