@@ -1304,20 +1304,26 @@ const ACCESS_GROUPS = [
     { value: 'arcane school: elemental: fire',  label: 'elemental: fire'  },
     { value: 'arcane school: elemental: water', label: 'elemental: water' }
   ]},
+  { label: 'Bardic Tune', items: [
+    { value: 'bardic tune: discovery',          label: 'discovery'  },
+    { value: 'bardic tune: lull',               label: 'lull'       },
+    { value: 'bardic tune: obscure',            label: 'obscure'    },
+    { value: 'bardic tune: protection',         label: 'protection' }
+  ]},
   { label: 'Bloodline', items: [
-    { value: 'bloodline: draconic',             label: 'draconic'             },
-    { value: 'bloodline: elemental: air',       label: 'elemental: air'       },
-    { value: 'bloodline: elemental: earth',     label: 'elemental: earth'     },
-    { value: 'bloodline: elemental: fire',      label: 'elemental: fire'      },
-    { value: 'bloodline: elemental: water',     label: 'elemental: water'     },
-    { value: 'bloodline: fey',                  label: 'fey'                  },
-    { value: 'bloodline: genie: air',           label: 'genie: air'           },
-    { value: 'bloodline: genie: earth',         label: 'genie: earth'         },
-    { value: 'bloodline: genie: fire',          label: 'genie: fire'          },
-    { value: 'bloodline: genie: water',         label: 'genie: water'         },
-    { value: 'bloodline: planar',               label: 'planar'               },
-    { value: 'bloodline: shadow',               label: 'shadow'               },
-    { value: 'bloodline: undead',               label: 'undead'               }
+    { value: 'bloodline: draconic',             label: 'draconic'         },
+    { value: 'bloodline: elemental: air',       label: 'elemental: air'   },
+    { value: 'bloodline: elemental: earth',     label: 'elemental: earth' },
+    { value: 'bloodline: elemental: fire',      label: 'elemental: fire'  },
+    { value: 'bloodline: elemental: water',     label: 'elemental: water' },
+    { value: 'bloodline: fey',                  label: 'fey'              },
+    { value: 'bloodline: genie: air',           label: 'genie: air'       },
+    { value: 'bloodline: genie: earth',         label: 'genie: earth'     },
+    { value: 'bloodline: genie: fire',          label: 'genie: fire'      },
+    { value: 'bloodline: genie: water',         label: 'genie: water'     },
+    { value: 'bloodline: planar',               label: 'planar'           },
+    { value: 'bloodline: shadow',               label: 'shadow'           },
+    { value: 'bloodline: undead',               label: 'undead'           }
   ]},
   { label: 'Divine Domain', items: [
     { value: 'divine domain: animal',           label: 'animal'           },
