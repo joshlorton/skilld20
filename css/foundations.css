@@ -182,7 +182,7 @@ body {
   font-variant: small-caps;
   font-size: 27px;
   font-weight: 700;
-  letter-spacing: 0.3px;
+  letter-spacing: 2px;
 }
 .foundation-mana {
   color: var(--mana);
@@ -251,7 +251,7 @@ body {
 
 .spec-sheet {
   padding: 5px 0;
-  border-bottom: 1px solid var(--border);
+/*  border-bottom: 1px solid var(--border); */
 }
 .spec-row {
   display: flex;
@@ -273,9 +273,10 @@ body {
 
 /* ============================================================
    EFFECT
-   ============================================================ */
+   ============================================================ 
 
-.section-effect { border-bottom: 1px solid var(--border); }
+.section-effect { border-bottom: 1px solid var(--border); } */
+
 .effect-entry {
   display: block;
   padding: 8px 12px 4px;
@@ -308,18 +309,19 @@ body {
 
 /* ============================================================
    RESULT BLOCKS (skill / attack / save)
-   ============================================================ */
+   ============================================================ 
 
-.section-results { border-bottom: 1px solid var(--border); }
+.section-results { border-bottom: 1px solid var(--border); } */
 
 .result-heading {
   background: #1a1a1a;
+  border: 1px solid var(--border);
   color: var(--heading-fg);
   font-variant: small-caps;
   font-weight: 700;
   font-size: 13px;
   padding: 3px 12px;
-  border-top: 1px solid var(--border);
+  /* border-top: 1px solid var(--border); */
   letter-spacing: 1px;
   font-family: var(--font-ui);
   text-transform: uppercase;
@@ -366,13 +368,14 @@ body {
 
 /* ============================================================
    ACTION ROWS (sustain, dismiss, heightened, components)
-   ============================================================ */
+   ============================================================ 
 
-.section-action     { border-bottom: 1px solid var(--border); }
+.section-action     { border-bottom: 1px solid var(--border); } */
 
 .section-heading {
-  background: var(--heading-fg);
-  color: var(--heading-bg);
+  background: var(--heading-bg);
+  border: 1px solid var(--border);
+  color: var(--heading-fg);
   font-variant: small-caps;
   font-weight: 700;
   font-size: 13px;
@@ -382,9 +385,10 @@ body {
 }
 /* Major variant: larger heading used for top-level sections (e.g. Variants) */
 .section-heading-major {
-  font-size: 15px;
-  padding: 5px 12px;
+  font-size: 19px;
+  padding: 3px 12px;
   letter-spacing: 2px;
+  font-weight: 500;
 }
 
 .action-row {
@@ -457,13 +461,14 @@ body {
 
 /* ============================================================
    VARIANTS
-   ============================================================ */
+   ============================================================ 
 
 .section-variants { border-bottom: 1px solid var(--border); }
 
-.variant-block    { border-top: 1px solid var(--border); }
+.variant-block    { border-top: 1px solid var(--border); } */
 .variant-heading  {
   background: var(--row-odd);
+  border: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
