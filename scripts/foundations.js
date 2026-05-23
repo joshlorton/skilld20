@@ -1269,9 +1269,9 @@ const OPTS = {
     { value: 6,  label: 'd6'  }, { value: 8,  label: 'd8'  },
     { value: 10, label: 'd10' }, { value: 12, label: 'd12' }
   ],
-  damageType : ['acid', 'bludgeoning', 'cold', 'fire', 'force', 'lightning',
-                'necrotic', 'physical', 'piercing', 'poison', 'psychic',
-                'radiant', 'slashing', 'sonic'],
+  damageType : ['acid', 'bludgeoning', 'cold', 'electricity', 'fire', 'force', 'lightning',
+                'necrotic', 'negative', 'physical', 'piercing', 'poison', 'positive', 'profane',
+                 'psychic', 'radiant', 'sacred', 'slashing', 'sonic'],
   durLength  : [
     'instantaneous',
     'until the start of your next turn',
@@ -1284,12 +1284,14 @@ const OPTS = {
 const TRAIT_GROUPS = [
   { label: 'Condition', items: ['curse', 'disease', 'haste', 'poison', 'reposition', 'slow', 'stun'] },
   { label: 'Elemental', items: ['air', 'earth', 'fire', 'metal', 'water', 'wood'] },
-  { label: 'Energy',    items: ['acid', 'cold', 'fire', 'force', 'lightning',
-                                'necrotic', 'physical', 'psychic', 'radiant', 'sonic'] },
+  { label: 'Energy',    items: ['acid', 'cold', 'electricity', 'fire', 'force', 'lightning',
+                                'necrotic', 'negative', 'poison', 'positive', 'profane', 'psychic',
+                                'radiant', 'sacred', 'sonic'] },
   { label: 'Mental',    items: ['charm', 'compulsion', 'emotion', 'fear', 'mental', 'sleep'] },
   { label: 'Sensory',   items: ['auditory', 'detection', 'olfactory', 'shroud', 'tactile', 'visual'] },
-  { label: 'Other',     items: ['animation', 'creation', 'darkness', 'healing', 'illusion',
-                                'light', 'luck', 'necromancy', 'polymorph', 'summoning', 'utility', 'ward'] }
+  { label: 'Other',     items: ['animation', 'creation', 'darkness', 'enhancement', 'healing', 'illusion',
+                                'light', 'luck', 'necromancy', 'polymorph', 'reduction', 'resistance',
+                                'summoning', 'utility', 'ward'] }
 ];
 
 const TRADITION_GROUPS = [
