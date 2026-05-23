@@ -5,7 +5,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:             #041337;
+  --bg:             #030D28;
   --heading-bg:     #0F6070;
   --heading-fg:     #F0E8D0;
   --accent:         #F0E8D0;
@@ -17,6 +17,8 @@
   --row-odd:        #141E38;
   --row-even:       #1E3A78;
   --sidebar-hover:  #1A8FA8;
+  --text-variant:   #C45E08;
+  --text-attr:      #E8930A;
   --font-ui:        'Lato', sans-serif;
   --font-spec:      'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
   --sidebar-width:  210px;
@@ -230,18 +232,18 @@ body {
 .trait-difficulty-legendary  { background: #54116d; }
 
 /* Traditions */
-.trait-tradition-arcane    { background: #5e88c8; }
-.trait-tradition-divine    { background: #c0be40; color: #1a1a1a; }
-.trait-tradition-bardic    { background: #a65ec8; }
-.trait-tradition-bloodline { background: #c04040; }
-.trait-tradition-pact      { background: #af804f; }
+.trait-tradition-arcane    { background: #786618; }
+.trait-tradition-divine    { background: #363c44; }
+.trait-tradition-bardic    { background: #5c2090; }
+.trait-tradition-bloodline { background: #580a0a; }
+.trait-tradition-pact      { background: #5e3418; }
 
 /* Access */
-.trait-access-arcane    { background: #2a4870; }
-.trait-access-divine    { background: #787a18; }
-.trait-access-bardic    { background: #502a70; }
-.trait-access-bloodline { background: #7a1a1a; }
-.trait-access-pact      { background: #4b3621; }
+.trait-access-arcane    { background: #2a2000; }
+.trait-access-divine    { background: #121418; }
+.trait-access-bardic    { background: #1a0830; }
+.trait-access-bloodline { background: #180404; }
+.trait-access-pact      { background: #201008; }
 
 /* ============================================================
    SPEC SHEET
@@ -443,8 +445,8 @@ body {
 .sv-comp   { font-size: 12px; color: var(--text-muted); text-transform: uppercase; padding-top: 2px; }
 .sv-effect { font-size: 14px; line-height: 1.5; }
 .sv-mana   { text-align: right; font-weight: 700; color: var(--mana); font-family: var(--font-ui); font-size: 13px; white-space: nowrap; }
-.ht-attr    { font-weight: 700; color: var(--heading-fg); font-family: var(--font-ui); font-size: 13px; text-transform: capitalize; padding-top: 2px; }
-.ht-variant { font-weight: 700; color: var(--mana); font-size: 13px; white-space: nowrap; padding-top: 2px; }
+.ht-attr   { font-weight: 700; color: var(--text-attr); font-family: var(--font-ui); font-size: 13px; text-transform: capitalize; padding-top: 2px; }
+.ht-vrnt   { font-weight: 700; color: var(--text-variant); font-size: 13px; white-space: nowrap; padding-top: 2px; }
 
 .action-attribute   { font-weight: 700; color: var(--heading-fg); text-transform: capitalize; min-width: 80px; flex-shrink: 0; font-family: var(--font-ui); font-size: 13px; }
 .action-variant     { font-weight: 700; color: var(--mana); font-size: 13px; white-space: nowrap; }
@@ -607,7 +609,7 @@ body {
   gap: 4px;
   margin-bottom: 4px;
 }
-.sd-row .form-input { font-size: 12px; padding: 3px 5px; }
+.sd-row .form-input   { font-size: 12px; padding: 3px 5px; }
 .checkbox-container   { display: flex; flex-direction: column; gap: 4px; padding: 4px 0; }
 .checkbox-section     { display: flex; flex-direction: column; gap: 2px; }
 .checkbox-section-label {
