@@ -200,8 +200,10 @@ body {
 .trait-break { width: 100%; height: 1px; overflow: hidden; }
 
 .trait-tag {
-  background: #5D0000;
-  color: #EEF0EC;
+  /* background: #5D0000;
+  color: #EEF0EC; */
+  background: #8A9DA8;
+  color: #1A1A1A;
   font-weight: 700;
   font-variant: small-caps;
   text-transform: capitalize;
@@ -378,7 +380,7 @@ body {
   color: var(--heading-fg);
   font-variant: small-caps;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 19px;
   padding: 3px 12px;
   letter-spacing: 1px;
   font-family: var(--font-ui);
