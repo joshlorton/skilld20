@@ -374,21 +374,21 @@ body {
 
 .section-heading {
   background: var(--heading-bg);
-  border: 1px solid var(--border);
+  /* border: 1px solid var(--border); */
   color: var(--heading-fg);
   font-variant: small-caps;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 17px;
   padding: 3px 12px;
   letter-spacing: 1px;
   font-family: var(--font-ui);
 }
 /* Major variant: larger heading used for top-level sections (e.g. Variants) */
 .section-heading-major {
-  font-size: 19px;
+  font-size: 23px;
   padding: 3px 12px;
   letter-spacing: 2px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .action-row {
