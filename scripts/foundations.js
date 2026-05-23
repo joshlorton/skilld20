@@ -492,13 +492,13 @@ function renderResults(f) {
 
 function actionRow(item, idx) {
   const row = el('div', { class: `ht-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'ht-variant' }, item.variant || ''));
-  row.appendChild(el('b',    { class: 'ht-attr'    }, item.attribute || ''));
-  row.appendChild(el('span', { class: 'sv-sym'     },
+  row.appendChild(el('span', { class: 'ht-vrnt' }, item.variant || ''));
+  row.appendChild(el('b',    { class: 'ht-attr' }, item.attribute || ''));
+  row.appendChild(el('span', { class: 'sv-sym'  },
     !isNoAction(item.actions) ? actionSym(item.actions) : ''));
-  row.appendChild(el('span', { class: 'sv-comp'    },
+  row.appendChild(el('span', { class: 'sv-comp' },
     item.component ? sdComponent(item.component) : ''));
-  row.appendChild(el('span', { class: 'sv-effect'  }, item.effect || ''));
+  row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
   const m = Number(item.mana);
   row.appendChild(el('span', { class: 'sv-mana' },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
@@ -508,7 +508,7 @@ function actionRow(item, idx) {
 
 function componentRow(item, idx) {
   const row = el('div', { class: `comp-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'ht-variant'  }, item.variant   || ''));
+  row.appendChild(el('span', { class: 'ht-vrnt'     }, item.variant   || ''));
   row.appendChild(el('b',    { class: 'ht-attr'     }, item.attribute  || ''));
   row.appendChild(el('span', { class: 'sv-sym'      }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'sv-comp'     }, sdComponent(item.component)));
@@ -532,7 +532,7 @@ function sdComponent(comp) {
 
 function sustainRow(item, idx) {
   const row = el('div', { class: `sd-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'ht-variant' }, item.variant   || ''));
+  row.appendChild(el('span', { class: 'ht-vrnt'   }, item.variant   || ''));
   row.appendChild(el('b',    { class: 'ht-attr'   }, item.attribute  || ''));
   row.appendChild(el('span', { class: 'sv-sym'    }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'sv-comp'   }, sdComponent(item.component)));
