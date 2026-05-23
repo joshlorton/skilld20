@@ -182,7 +182,7 @@ body {
   font-variant: small-caps;
   font-size: 27px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 .foundation-mana {
   color: var(--mana);
@@ -251,10 +251,7 @@ body {
    SPEC SHEET
    ============================================================ */
 
-.spec-sheet {
-  padding: 5px 0;
-/*  border-bottom: 1px solid var(--border); */
-}
+.spec-sheet { padding: 5px 0; }
 .spec-row {
   display: flex;
   align-items: baseline;
@@ -275,9 +272,7 @@ body {
 
 /* ============================================================
    EFFECT
-   ============================================================ 
-
-.section-effect { border-bottom: 1px solid var(--border); } */
+   ============================================================ */
 
 .effect-entry {
   display: block;
@@ -311,19 +306,16 @@ body {
 
 /* ============================================================
    RESULT BLOCKS (skill / attack / save)
-   ============================================================ 
-
-.section-results { border-bottom: 1px solid var(--border); } */
+   ============================================================ */
 
 .result-heading {
   background: #1a1a1a;
-  border: 1px solid var(--border);
   color: var(--heading-fg);
   font-variant: small-caps;
   font-weight: 700;
   font-size: 13px;
   padding: 3px 12px;
-  /* border-top: 1px solid var(--border); */
+  border: 1px solid var(--border);
   letter-spacing: 1px;
   font-family: var(--font-ui);
   text-transform: uppercase;
@@ -370,13 +362,10 @@ body {
 
 /* ============================================================
    ACTION ROWS (sustain, dismiss, heightened, components)
-   ============================================================ 
-
-.section-action     { border-bottom: 1px solid var(--border); } */
+   ============================================================ */
 
 .section-heading {
   background: var(--heading-bg);
-  /* border: 1px solid var(--border); */
   color: var(--heading-fg);
   font-variant: small-caps;
   font-weight: 700;
