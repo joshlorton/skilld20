@@ -515,6 +515,7 @@
         "pact"
       ],
       "access": [
+        "bardic tune: discovery",
         "divine domain: knowledge"
       ],
       "cast": {
@@ -604,6 +605,7 @@
       },
       "sustain": [
         {
+          "variant": "",
           "attribute": "duration",
           "actions": {
             "count": 0,
@@ -614,6 +616,7 @@
           "mana": 4
         },
         {
+          "variant": "",
           "attribute": "duration",
           "actions": {
             "count": 1,
@@ -624,6 +627,7 @@
           "mana": 2
         },
         {
+          "variant": "",
           "attribute": "duration",
           "actions": {
             "count": 2,
