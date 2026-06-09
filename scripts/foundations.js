@@ -1271,11 +1271,10 @@ const OPTS = {
   ],
   damageType : ['acid', 'bludgeoning', 'cold', 'electricity', 'fire', 'force', 'lightning',
                 'necrotic', 'negative', 'physical', 'piercing', 'poison', 'positive', 'profane',
-                 'psychic', 'radiant', 'sacred', 'slashing', 'sonic'],
+                'psychic', 'radiant', 'sacred', 'slashing', 'sonic'],
   durLength  : [
     'instantaneous',
-    'until the start of your next turn',
-    'until the end of your next turn',
+    'until the start of your next turn', 'until the end of your next turn',
     'rounds', 'minutes', 'hours', 'days', 'weeks', 'months', 'years',
     'until dismissed', 'until triggered', 'permanent'
   ]
