@@ -415,8 +415,8 @@ body {
 .row-odd  { background: var(--row-odd); }
 .row-even { background: var(--row-even); }
 
-.section-effect, .section-results, .section-action, .section-variants { margin-bottom: 3px; }
-.section-effect, .section-results, .section-action { display: flex; }
+.section-effect, .section-results, .section-action, .section-sd, .section-variants { margin-bottom: 3px; }
+.section-effect, .section-results, .section-sd { display: flex; }
 
 /* Grid-based viewer rows */
 .sd-view-row {

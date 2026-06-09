@@ -601,7 +601,7 @@ function renderSustainDismiss(f) {
   const sections = [];
 
   if (sustainItems.length) {
-    const sec = el('div', { class: 'section-action' });
+    const sec = el('div', { class: 'section-sd' });
     sec.appendChild(el('div', { class: 'result-col-heading' }, 'Sustain'));
     const rows = el('div', { class: 'result-col-content' });
     sustainItems.forEach((s, i) => rows.appendChild(sustainRow(s, i)));
@@ -609,7 +609,7 @@ function renderSustainDismiss(f) {
     sections.push(sec);
   }
   if (dismissItems.length) {
-    const sec = el('div', { class: 'section-action' });
+    const sec = el('div', { class: 'section-sd' });
     sec.appendChild(el('div', { class: 'result-col-heading' }, 'Dismiss'));
     const rows = el('div', { class: 'result-col-content' });
     dismissItems.forEach((d, i) => rows.appendChild(sustainRow(d, i)));
