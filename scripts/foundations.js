@@ -254,56 +254,53 @@ function traitTag(text, cls) {
 function renderTraitBar(f) {
   const bar = el('div', { class: 'trait-bar' });
 
-  // Row 1: rarity, difficulty, general traits
-  if (f.rarity)     bar.appendChild(traitTag(f.rarity,
+  // -- Left column: rarity + difficulty (row 1), general traits (row 2)
+  const left = el('div', { class: 'trait-col-left' });
+  if (f.rarity)     left.appendChild(traitTag(f.rarity,
     `trait-rarity-${f.rarity.toLowerCase()}`));
-  if (f.difficulty) bar.appendChild(traitTag(f.difficulty,
+  if (f.difficulty) left.appendChild(traitTag(f.difficulty,
     `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
-  (f.traits || []).filter(Boolean).forEach(t => bar.appendChild(traitTag(t, '')));
+  const traits = (f.traits || []).filter(Boolean);
+  if (traits.length) {
+    left.appendChild(el('div', { class: 'trait-break' }));
+    traits.forEach(t => left.appendChild(traitTag(t, '')));
+  }
+  bar.appendChild(left);
 
+  // -- Right column: traditions + access (one tradition per row, wraps within)
   const traditions = (f.traditions || []).filter(Boolean);
   const accessItems = (f.access    || []).filter(Boolean);
-  if (!traditions.length && !accessItems.length) return bar;
-
-  // Resolve a tradition key from an access item's prefix
-  const tradKey = a => {
-    const p = a.toLowerCase();
-    if (p.startsWith('arcane'))    return 'arcane';
-    if (p.startsWith('bloodline')) return 'bloodline';
-    if (p.startsWith('divine'))    return 'divine';
-    if (p.startsWith('bardic'))    return 'bardic';
-    return 'pact';
-  };
-
-  // Group access items by their tradition key
-  const byTrad = {};
-  accessItems.forEach(a => {
-    const k = tradKey(a);
-    (byTrad[k] = byTrad[k] || []).push(a);
-  });
-
-  // Row per tradition: [Tradition] [access item] [access item] ...
-  bar.appendChild(el('div', { class: 'trait-break' }));
-  traditions.forEach((t, i) => {
-    if (i > 0) bar.appendChild(el('div', { class: 'trait-break' }));
-    bar.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`));
-    (byTrad[t.toLowerCase()] || []).forEach(a => {
-      const ci = a.indexOf(': ');
-      bar.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+  if (traditions.length || accessItems.length) {
+    const right = el('div', { class: 'trait-col-right' });
+    const tradKey = a => {
+      const p = a.toLowerCase();
+      if (p.startsWith('arcane'))    return 'arcane';
+      if (p.startsWith('bloodline')) return 'bloodline';
+      if (p.startsWith('divine'))    return 'divine';
+      if (p.startsWith('bardic'))    return 'bardic';
+      return 'pact';
+    };
+    const byTrad = {};
+    accessItems.forEach(a => { const k = tradKey(a); (byTrad[k] = byTrad[k] || []).push(a); });
+    traditions.forEach((t, i) => {
+      if (i > 0) right.appendChild(el('div', { class: 'trait-break' }));
+      right.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`));
+      (byTrad[t.toLowerCase()] || []).forEach(a => {
+        const ci = a.indexOf(': ');
+        right.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+      });
     });
-  });
-
-  // Orphan access items: access whose tradition key isn't in the traditions list
-  const usedKeys = new Set(traditions.map(t => t.toLowerCase()));
-  const orphans  = accessItems.filter(a => !usedKeys.has(tradKey(a)));
-  if (orphans.length) {
-    bar.appendChild(el('div', { class: 'trait-break' }));
-    orphans.forEach(a => {
-      const ci = a.indexOf(': ');
-      bar.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
-    });
+    const usedKeys = new Set(traditions.map(t => t.toLowerCase()));
+    const orphans  = accessItems.filter(a => !usedKeys.has(tradKey(a)));
+    if (orphans.length) {
+      if (traditions.length) right.appendChild(el('div', { class: 'trait-break' }));
+      orphans.forEach(a => {
+        const ci = a.indexOf(': ');
+        right.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+      });
+    }
+    bar.appendChild(right);
   }
-
   return bar;
 }
 
@@ -434,61 +431,97 @@ function resultRow(label, value, cls) {
 }
 
 function renderResults(f) {
-  const section = el('div', { class: 'section-results' });
-  let any = false;
+  const cols = [];
 
-  // Skill
+  // Helper: build one result column
+  function buildCol(headingText, buildContent) {
+    const col = el('div', { class: 'result-col' });
+    col.appendChild(el('div', { class: 'result-col-heading' }, headingText));
+    const content = el('div', { class: 'result-col-content' });
+    buildContent(content);
+    col.appendChild(content);
+    return col;
+  }
+
+  // Helper: type row (row 1) -- two sub-cells
+  function typeRow(leftLabel, leftVal, rightLabel, rightVal) {
+    const row = el('div', { class: 'result-type-row row-odd' });
+    [{ lbl: leftLabel, val: leftVal }, { lbl: rightLabel, val: rightVal }].forEach(({ lbl, val }) => {
+      const cell = el('div', { class: 'result-subcell' });
+      if (lbl) cell.appendChild(el('b',   { class: 'skill-label'  }, lbl));
+      if (val) cell.appendChild(el('div', { class: 'result-value' }, val));
+      row.appendChild(cell);
+    });
+    return row;
+  }
+
+  // Skill column
   const sk = f.skill;
   const hasSkillData = sk && (
     sk.primary?.some(Boolean) || sk.secondary?.some(Boolean) ||
     sk.cs?.some(Boolean) || sk.s || sk.f || sk.cf?.some(Boolean)
   );
   if (hasSkillData) {
-    const block = el('div', {});
-    block.appendChild(el('div', { class: 'result-heading' }, 'Skill Check'));
-    const addRow = (label, val, cls) => { const r = resultRow(label, val, cls); if (r) block.appendChild(r); };
-    const primaryDisplay = sk.primary?.some(Boolean) ? sk.primary.join(', ') : 'per Tradition';
-    addRow('Primary',          primaryDisplay,              'skill-row');
-    if (sk.secondary?.length)  addRow('Secondary', sk.secondary.join(', '), 'skill-row');
-    addRow('Critical Success', sk.cs, 'row-cs');
-    addRow('Success',          sk.s || ['Expected effect.'], 'row-s');
-    addRow('Failure',          sk.f || ['Failed cast. No effect.'], 'row-sf');
-    addRow('Critical Failure', sk.cf, 'row-cf');
-    section.appendChild(block); any = true;
+    cols.push(buildCol('Skill Check', content => {
+      const primDisplay = sk.primary?.some(Boolean) ? sk.primary.join(', ') : 'per Tradition';
+      const secDisplay  = sk.secondary?.length ? sk.secondary.join(', ') : '';
+      content.appendChild(typeRow('Primary', primDisplay, secDisplay ? 'Secondary' : '', secDisplay));
+      const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
+      add('Critical Success', sk.cs, 'row-cs');
+      add('Success',          sk.s  || ['Expected effect.'],        'row-s');
+      add('Failure',          sk.f  || ['Failed cast. No effect.'], 'row-sf');
+      add('Critical Failure', sk.cf, 'row-cf');
+    }));
   }
 
-  // Attack
+  // Attack column
   if (f.attack?.type && f.attack_results) {
     const ar = f.attack_results;
-    const block = el('div', {});
-    block.appendChild(el('div', { class: 'result-heading' }, `Attack -- ${f.attack.type}`));
-    const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
-    addRow('Critical Success', ar.cs, 'row-cs');
-    addRow('Success',          ar.s || ['Normal damage.'], 'row-s');
-    addRow('Failure',          ar.f || ['Missed. No effect.'], 'row-sf');
-    addRow('Critical Failure', ar.cf, 'row-cf');
-    section.appendChild(block); any = true;
+    cols.push(buildCol('Attack', content => {
+      content.appendChild(typeRow('Type', f.attack.type, '', ''));
+      const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
+      add('Critical Success', ar.cs, 'row-cs');
+      add('Success',          ar.s  || ['Normal damage.'],    'row-s');
+      add('Failure',          ar.f  || ['Missed. No effect.'],'row-sf');
+      add('Critical Failure', ar.cf, 'row-cf');
+    }));
   }
 
-  // Save
+  // Save column
   if (f.save?.type && f.save_results) {
     const sr = f.save_results;
-    const block = el('div', {});
-    block.appendChild(el('div', { class: 'result-heading' }, `Save -- ${f.save.type}`));
-    const addRow = (l, v, c) => { const r = resultRow(l, v, c); if (r) block.appendChild(r); };
-    addRow('Critical Success', sr.cs, 'row-cs');
-    addRow('Success',          sr.s, 'row-s');
-    addRow('Failure',          sr.f, 'row-sf');
-    addRow('Critical Failure', sr.cf, 'row-cf');
-    section.appendChild(block); any = true;
+    cols.push(buildCol('Save', content => {
+      content.appendChild(typeRow('Type', f.save.type, '', ''));
+      const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
+      add('Critical Success', sr.cs, 'row-cs');
+      add('Success',          sr.s,  'row-s');
+      add('Failure',          sr.f,  'row-sf');
+      add('Critical Failure', sr.cf, 'row-cf');
+    }));
   }
 
-  return any ? section : null;
+  if (!cols.length) return null;
+  const section = el('div', { class: 'section-results' });
+  cols.forEach(c => section.appendChild(c));
+  return section;
 }
 
 /* ============================================================
    RENDERING — ACTION ROWS
    ============================================================ */
+
+function renderRowResults(results) {
+  const div = el('div', { class: 'sv-results' });
+  if (!results?.type) return div;
+  const typeLabel = results.type === 'save'
+    ? (results.saveType || '').toUpperCase()
+    : `${(results.attackType || '').toUpperCase()} ATTACK`;
+  div.appendChild(el('div', { class: 'sv-results-type' }, typeLabel));
+  [results.cs, results.s, results.f, results.cf].forEach(text => {
+    if (text) div.appendChild(el('div', { class: 'sv-results-entry' }, `- ${text}`));
+  });
+  return div;
+}
 
 function actionRow(item, idx) {
   const row = el('div', { class: `ht-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
@@ -499,6 +532,7 @@ function actionRow(item, idx) {
   row.appendChild(el('span', { class: 'sv-comp' },
     item.component ? sdComponent(item.component) : ''));
   row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
+  row.appendChild(renderRowResults(item.results));
   const m = Number(item.mana);
   row.appendChild(el('span', { class: 'sv-mana' },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
@@ -537,6 +571,7 @@ function sustainRow(item, idx) {
   row.appendChild(el('span', { class: 'sv-sym'    }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'sv-comp'   }, sdComponent(item.component)));
   row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
+  row.appendChild(renderRowResults(item.results));
   const m = Number(item.mana);
   row.appendChild(el('span', { class: 'sv-mana'   },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
@@ -779,6 +814,80 @@ function edRow(...fields) {
 }
 
 /* ============================================================
+   EDITOR — ROW RESULTS (Sustain / Dismiss / Heightened)
+   ============================================================ */
+
+function buildRowResultsSection(results) {
+  const wrap = el('div', { class: 'row-results-section' });
+
+  const typeRow = el('div', { class: 'form-row' });
+  const typeSel = el('select', { class: 'form-input form-select', 'data-field': 'results-type' });
+  [{ v: '', l: '-- No Results' }, { v: 'save', l: 'Save' }, { v: 'attack', l: 'Attack' }]
+    .forEach(({ v, l }) => {
+      const o = el('option', { value: v }, l);
+      if ((results?.type || '') === v) o.selected = true;
+      typeSel.appendChild(o);
+    });
+  typeRow.appendChild(typeSel);
+
+  const saveTypeSel = el('select', { class: 'form-input form-select', 'data-field': 'results-save-type' });
+  saveTypeSel.appendChild(el('option', { value: '' }, ''));
+  OPTS.saveType.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (results?.saveType === value) o.selected = true;
+    saveTypeSel.appendChild(o);
+  });
+  typeRow.appendChild(saveTypeSel);
+
+  const attackTypeSel = el('select', { class: 'form-input form-select', 'data-field': 'results-attack-type' });
+  attackTypeSel.appendChild(el('option', { value: '' }, ''));
+  OPTS.attackType.forEach(opt => {
+    const v = typeof opt === 'object' ? opt.value : opt;
+    const l = typeof opt === 'object' ? opt.label : opt;
+    const o = el('option', { value: v }, l);
+    if (results?.attackType === v) o.selected = true;
+    attackTypeSel.appendChild(o);
+  });
+  typeRow.appendChild(attackTypeSel);
+  wrap.appendChild(typeRow);
+
+  const fields = el('div', { class: 'row-results-fields' });
+  [['CS', 'cs'], ['S', 's'], ['F', 'f'], ['CF', 'cf']].forEach(([lbl, key]) => {
+    const f = el('div', { class: 'form-field' });
+    f.appendChild(el('label', {}, lbl));
+    const ta = el('textarea', { class: 'form-input', rows: 1, 'data-field': `results-${key}` });
+    ta.value = results?.[key] || '';
+    f.appendChild(ta);
+    fields.appendChild(f);
+  });
+  wrap.appendChild(fields);
+
+  const sync = () => {
+    const t = typeSel.value;
+    saveTypeSel.style.display   = (t === 'save')   ? '' : 'none';
+    attackTypeSel.style.display = (t === 'attack') ? '' : 'none';
+    fields.style.display        = t ? '' : 'none';
+  };
+  typeSel.addEventListener('change', sync);
+  sync();
+  return wrap;
+}
+
+function collectRowResults(container) {
+  const type = container.querySelector('[data-field="results-type"]')?.value || '';
+  if (!type) return null;
+  return {
+    type,
+    saveType   : container.querySelector('[data-field="results-save-type"]')?.value?.trim()   || '',
+    attackType : container.querySelector('[data-field="results-attack-type"]')?.value?.trim() || '',
+    cs : container.querySelector('[data-field="results-cs"]')?.value?.trim() || '',
+    s  : container.querySelector('[data-field="results-s"]')?.value?.trim()  || '',
+    f  : container.querySelector('[data-field="results-f"]')?.value?.trim()  || '',
+    cf : container.querySelector('[data-field="results-cf"]')?.value?.trim() || ''
+  };
+}
+
+/* ============================================================
    EDITOR — SUSTAIN / DISMISS BUILDER
    ============================================================ */
 
@@ -838,7 +947,10 @@ function buildSdRow(data) {
   if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
   row.appendChild(manaIn);
 
-  return row;
+  const wrap = el('div', { class: 'sd-row-wrap' });
+  wrap.appendChild(row);
+  wrap.appendChild(buildRowResultsSection(data.results));
+  return wrap;
 }
 
 function buildSdSection(title, containerId, initialData) {
@@ -868,9 +980,9 @@ function buildSdSection(title, containerId, initialData) {
 }
 
 function collectSdRows(containerId) {
-  const rows = document.querySelectorAll(`#${containerId} .sd-row`);
-  return Array.from(rows).map(row => {
-    const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
+  const wraps = document.querySelectorAll(`#${containerId} .sd-row-wrap`);
+  return Array.from(wraps).map(wrap => {
+    const get = f => wrap.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const m = get('mana');
     return {
       variant   : get('variant'),
@@ -878,7 +990,8 @@ function collectSdRows(containerId) {
       actions   : collectAction(get('act-count'), get('act-length')),
       component : get('component'),
       effect    : get('effect'),
-      mana      : m !== '' ? parseFloat(m) : 0
+      mana      : m !== '' ? parseFloat(m) : 0,
+      results   : collectRowResults(wrap)
     };
   }).filter(r => r.effect);
 }
@@ -947,7 +1060,10 @@ function buildHtRow(data) {
   if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
   row.appendChild(manaIn);
 
-  return row;
+  const wrap = el('div', { class: 'ht-row-wrap' });
+  wrap.appendChild(row);
+  wrap.appendChild(buildRowResultsSection(data.results));
+  return wrap;
 }
 
 function buildHtSection(initialData) {
@@ -975,9 +1091,9 @@ function buildHtSection(initialData) {
 }
 
 function collectHeightenedRows() {
-  const rows = document.querySelectorAll('#heightened-rows .ht-row');
-  return Array.from(rows).map(row => {
-    const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
+  const wraps = document.querySelectorAll('#heightened-rows .ht-row-wrap');
+  return Array.from(wraps).map(wrap => {
+    const get = f => wrap.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const m = get('mana');
     return {
       variant   : get('variant'),
@@ -985,7 +1101,8 @@ function collectHeightenedRows() {
       actions   : collectAction(get('act-count'), get('act-length')),
       component : get('component'),
       effect    : get('effect'),
-      mana      : m !== '' ? parseFloat(m) : 0
+      mana      : m !== '' ? parseFloat(m) : 0,
+      results   : collectRowResults(wrap)
     };
   }).filter(r => r.effect || r.attribute);
 }
