@@ -364,47 +364,49 @@ function renderSpecs(f) {
 function renderEffect(f) {
   if (!f.effect?.base) return null;
   const section = el('div', { class: 'section-effect' });
-  section.appendChild(el('div', { class: 'result-heading' }, 'Effect'));
+  section.appendChild(el('div', { class: 'result-col-heading' }, 'Effect'));
+  const content = el('div', { class: 'result-col-content' });
 
   // Base entry
-  section.appendChild(el('p', { class: 'effect-entry' }, f.effect.base));
+  content.appendChild(el('p', { class: 'effect-entry' }, f.effect.base));
 
   // Attack, Save, Damage (moved from spec sheet)
   if (f.attack?.type)
-    section.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
+    content.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
   if (f.save?.type)
-    section.appendChild(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
+    content.appendChild(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
   if (f.damage?.dieNumber) {
     const d = f.damage;
     const mod = d.modifier ?? d.bonus;
-    section.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
+    content.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
   }
 
   // Additional effect entries
   (f.effect.options || []).filter(Boolean).forEach(opt => {
     if (typeof opt === 'string') {
-      section.appendChild(el('p', { class: 'effect-entry' }, opt));
+      content.appendChild(el('p', { class: 'effect-entry' }, opt));
     } else if (opt.text !== undefined) {
       // New format: {text, damage, attack, save}
-      section.appendChild(el('p', { class: 'effect-entry' }, opt.text));
+      content.appendChild(el('p', { class: 'effect-entry' }, opt.text));
       if (opt.damage?.dieNumber) {
         const d = opt.damage;
         const mod = d.modifier ?? d.bonus;
-        section.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
+        content.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
       }
       if (opt.attack?.type)
-        section.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
+        content.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
       if (opt.save?.type)
-        section.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
+        content.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
     } else if (opt.option !== undefined || opt.effect !== undefined) {
       // Legacy {option, effect} format
       const p = el('p', { class: 'effect-entry' });
       if (opt.option) p.appendChild(el('b', {}, `${opt.option}: `));
       if (opt.effect) p.appendChild(document.createTextNode(opt.effect));
-      section.appendChild(p);
+      content.appendChild(p);
     }
   });
 
+  section.appendChild(content);
   return section;
 }
 
@@ -600,14 +602,18 @@ function renderSustainDismiss(f) {
 
   if (sustainItems.length) {
     const sec = el('div', { class: 'section-action' });
-    sec.appendChild(el('div', { class: 'result-heading' }, 'Sustain'));
-    sustainItems.forEach((s, i) => sec.appendChild(sustainRow(s, i)));
+    sec.appendChild(el('div', { class: 'result-col-heading' }, 'Sustain'));
+    const rows = el('div', { class: 'result-col-content' });
+    sustainItems.forEach((s, i) => rows.appendChild(sustainRow(s, i)));
+    sec.appendChild(rows);
     sections.push(sec);
   }
   if (dismissItems.length) {
     const sec = el('div', { class: 'section-action' });
-    sec.appendChild(el('div', { class: 'result-heading' }, 'Dismiss'));
-    dismissItems.forEach((d, i) => sec.appendChild(sustainRow(d, i)));
+    sec.appendChild(el('div', { class: 'result-col-heading' }, 'Dismiss'));
+    const rows = el('div', { class: 'result-col-content' });
+    dismissItems.forEach((d, i) => rows.appendChild(sustainRow(d, i)));
+    sec.appendChild(rows);
     sections.push(sec);
   }
   return sections;

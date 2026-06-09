@@ -416,6 +416,7 @@ body {
 .row-even { background: var(--row-even); }
 
 .section-effect, .section-results, .section-action, .section-variants { margin-bottom: 3px; }
+.section-effect, .section-results, .section-action { display: flex; }
 
 /* Grid-based viewer rows */
 .sd-view-row {
