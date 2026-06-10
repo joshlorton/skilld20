@@ -254,18 +254,23 @@ function traitTag(text, cls) {
 function renderTraitBar(f) {
   const bar = el('div', { class: 'trait-bar' });
 
-  // -- Left column: row 1 = rarity + difficulty + general traits; row 2 = traditions + access
+  // -- Left column: traits (row 1 + row 2) then spec sheet
   const left = el('div', { class: 'trait-col-left' });
-  if (f.rarity)     left.appendChild(traitTag(f.rarity,
-    `trait-rarity-${f.rarity.toLowerCase()}`));
-  if (f.difficulty) left.appendChild(traitTag(f.difficulty,
-    `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
-  (f.traits || []).filter(Boolean).forEach(t => left.appendChild(traitTag(t, '')));
 
+  // Row 1: rarity + difficulty + general traits
+  const traitsRow = el('div', { class: 'trait-row' });
+  if (f.rarity)     traitsRow.appendChild(traitTag(f.rarity,
+    `trait-rarity-${f.rarity.toLowerCase()}`));
+  if (f.difficulty) traitsRow.appendChild(traitTag(f.difficulty,
+    `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
+  (f.traits || []).filter(Boolean).forEach(t => traitsRow.appendChild(traitTag(t, '')));
+  left.appendChild(traitsRow);
+
+  // Row 2: traditions + access
   const traditions = (f.traditions || []).filter(Boolean);
   const accessItems = (f.access    || []).filter(Boolean);
   if (traditions.length || accessItems.length) {
-    left.appendChild(el('div', { class: 'trait-break' }));
+    const tradRow = el('div', { class: 'trait-row' });
     const tradKey = a => {
       const p = a.toLowerCase();
       if (p.startsWith('arcane'))    return 'arcane';
@@ -277,26 +282,32 @@ function renderTraitBar(f) {
     const byTrad = {};
     accessItems.forEach(a => { const k = tradKey(a); (byTrad[k] = byTrad[k] || []).push(a); });
     traditions.forEach((t, i) => {
-      if (i > 0) left.appendChild(el('div', { class: 'trait-break' }));
-      left.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`));
+      if (i > 0) tradRow.appendChild(el('div', { class: 'trait-break' }));
+      tradRow.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`));
       (byTrad[t.toLowerCase()] || []).forEach(a => {
         const ci = a.indexOf(': ');
-        left.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+        tradRow.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
       });
     });
     const usedKeys = new Set(traditions.map(t => t.toLowerCase()));
     const orphans  = accessItems.filter(a => !usedKeys.has(tradKey(a)));
     if (orphans.length) {
-      if (traditions.length) left.appendChild(el('div', { class: 'trait-break' }));
+      if (traditions.length) tradRow.appendChild(el('div', { class: 'trait-break' }));
       orphans.forEach(a => {
         const ci = a.indexOf(': ');
-        left.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+        tradRow.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
       });
     }
+    left.appendChild(tradRow);
   }
+
+  // Spec sheet (cast, range, area, targets, duration)
+  const specs = renderSpecs(f);
+  if (specs.children.length) left.appendChild(specs);
+
   bar.appendChild(left);
 
-  // -- Right column: image placeholder
+  // -- Right column: image (always present; empty if no image)
   const right = el('div', { class: 'trait-col-right' });
   if (f.image) {
     right.appendChild(el('img', { class: 'trait-image', src: f.image, alt: '' }));
@@ -693,10 +704,6 @@ function renderViewer(f) {
 
   // Trait bar
   card.appendChild(renderTraitBar(f));
-
-  // Specs
-  const specs = renderSpecs(f);
-  if (specs.children.length) card.appendChild(specs);
 
   // Effect
   const effect = renderEffect(f);
@@ -1537,26 +1544,13 @@ function buildEditor(f) {
     edSelect('Difficulty','ed-difficulty', f.difficulty, OPTS.difficulty)
   ));
 
-  // Image picker
+  // Image path (relative, e.g. assets/img/animate-dead.jpg)
   const imgWrap = el('div', { class: 'form-field' });
-  imgWrap.appendChild(el('label', {}, 'Image'));
-  const imgRow = el('div', { class: 'form-row', style: 'gap:8px; align-items:center;' });
-  const imgInput = el('input', { type: 'file', accept: 'image/*', class: 'form-input', id: 'ed-image-picker' });
-  const imgClear = el('button', { class: 'btn btn-secondary', type: 'button' }, 'Clear');
-  const imgPreview = el('img', { class: 'ed-image-preview', id: 'ed-image-preview', alt: '' });
-  if (f.image) imgPreview.src = f.image;
-  imgInput.addEventListener('change', () => {
-    const file = imgInput.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = e => { imgPreview.src = e.target.result; };
-    reader.readAsDataURL(file);
-  });
-  imgClear.addEventListener('click', () => { imgPreview.src = ''; imgInput.value = ''; });
-  imgRow.appendChild(imgInput);
-  imgRow.appendChild(imgClear);
-  imgRow.appendChild(imgPreview);
-  imgWrap.appendChild(imgRow);
+  imgWrap.appendChild(el('label', {}, 'Image path (assets/img/...)'));
+  const imgPathIn = el('input', { type: 'text', class: 'form-input', id: 'ed-image-path',
+    placeholder: 'assets/img/filename.jpg' });
+  imgPathIn.value = f.image || '';
+  imgWrap.appendChild(imgPathIn);
   form.appendChild(imgWrap);
   form.appendChild(edGroupedCheckboxes('Traits',      'ed-traits',     f.traits,     TRAIT_GROUPS,      'form-label-tag-traits'));
   form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, TRADITION_GROUPS,  'form-label-tag-traditions'));
@@ -1676,7 +1670,7 @@ function collectEditor() {
     mana       : num('ed-mana'),
     rarity     : v('ed-rarity'),
     difficulty : v('ed-difficulty'),
-    image      : document.getElementById('ed-image-preview')?.src || '',
+    image      : (document.getElementById('ed-image-path')?.value?.trim() || ''),
     traits     : checkboxArr('ed-traits'),
     traditions : checkboxArr('ed-traditions'),
     access     : checkboxArr('ed-access'),
