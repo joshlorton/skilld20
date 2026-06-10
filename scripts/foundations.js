@@ -254,24 +254,18 @@ function traitTag(text, cls) {
 function renderTraitBar(f) {
   const bar = el('div', { class: 'trait-bar' });
 
-  // -- Left column: rarity + difficulty (row 1), general traits (row 2)
+  // -- Left column: row 1 = rarity + difficulty + general traits; row 2 = traditions + access
   const left = el('div', { class: 'trait-col-left' });
   if (f.rarity)     left.appendChild(traitTag(f.rarity,
     `trait-rarity-${f.rarity.toLowerCase()}`));
   if (f.difficulty) left.appendChild(traitTag(f.difficulty,
     `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
-  const traits = (f.traits || []).filter(Boolean);
-  if (traits.length) {
-    left.appendChild(el('div', { class: 'trait-break' }));
-    traits.forEach(t => left.appendChild(traitTag(t, '')));
-  }
-  bar.appendChild(left);
+  (f.traits || []).filter(Boolean).forEach(t => left.appendChild(traitTag(t, '')));
 
-  // -- Right column: traditions + access (one tradition per row, wraps within)
   const traditions = (f.traditions || []).filter(Boolean);
   const accessItems = (f.access    || []).filter(Boolean);
   if (traditions.length || accessItems.length) {
-    const right = el('div', { class: 'trait-col-right' });
+    left.appendChild(el('div', { class: 'trait-break' }));
     const tradKey = a => {
       const p = a.toLowerCase();
       if (p.startsWith('arcane'))    return 'arcane';
@@ -283,24 +277,32 @@ function renderTraitBar(f) {
     const byTrad = {};
     accessItems.forEach(a => { const k = tradKey(a); (byTrad[k] = byTrad[k] || []).push(a); });
     traditions.forEach((t, i) => {
-      if (i > 0) right.appendChild(el('div', { class: 'trait-break' }));
-      right.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`));
+      if (i > 0) left.appendChild(el('div', { class: 'trait-break' }));
+      left.appendChild(traitTag(t, `trait-tradition-${t.toLowerCase()}`));
       (byTrad[t.toLowerCase()] || []).forEach(a => {
         const ci = a.indexOf(': ');
-        right.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+        left.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
       });
     });
     const usedKeys = new Set(traditions.map(t => t.toLowerCase()));
     const orphans  = accessItems.filter(a => !usedKeys.has(tradKey(a)));
     if (orphans.length) {
-      if (traditions.length) right.appendChild(el('div', { class: 'trait-break' }));
+      if (traditions.length) left.appendChild(el('div', { class: 'trait-break' }));
       orphans.forEach(a => {
         const ci = a.indexOf(': ');
-        right.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
+        left.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
       });
     }
-    bar.appendChild(right);
   }
+  bar.appendChild(left);
+
+  // -- Right column: image placeholder
+  const right = el('div', { class: 'trait-col-right' });
+  if (f.image) {
+    right.appendChild(el('img', { class: 'trait-image', src: f.image, alt: '' }));
+  }
+  bar.appendChild(right);
+
   return bar;
 }
 
@@ -519,8 +521,17 @@ function renderRowResults(results) {
     ? (results.saveType || '').toUpperCase()
     : `${(results.attackType || '').toUpperCase()} ATTACK`;
   div.appendChild(el('div', { class: 'sv-results-type' }, typeLabel));
-  [results.cs, results.s, results.f, results.cf].forEach(text => {
-    if (text) div.appendChild(el('div', { class: 'sv-results-entry' }, `- ${text}`));
+  [
+    { text: results.cs, label: 'CS', cls: 'row-cs' },
+    { text: results.s,  label: 'S',  cls: 'row-s'  },
+    { text: results.f,  label: 'F',  cls: 'row-sf' },
+    { text: results.cf, label: 'CF', cls: 'row-cf' }
+  ].forEach(({ text, label, cls }) => {
+    if (!text) return;
+    const entry = el('div', { class: `sv-results-entry ${cls}` });
+    entry.appendChild(el('b', { class: 'sv-results-label' }, label));
+    entry.appendChild(document.createTextNode(` ${text}`));
+    div.appendChild(entry);
   });
   return div;
 }
@@ -1525,6 +1536,28 @@ function buildEditor(f) {
     edSelect('Rarity',    'ed-rarity',     f.rarity,     OPTS.rarity),
     edSelect('Difficulty','ed-difficulty', f.difficulty, OPTS.difficulty)
   ));
+
+  // Image picker
+  const imgWrap = el('div', { class: 'form-field' });
+  imgWrap.appendChild(el('label', {}, 'Image'));
+  const imgRow = el('div', { class: 'form-row', style: 'gap:8px; align-items:center;' });
+  const imgInput = el('input', { type: 'file', accept: 'image/*', class: 'form-input', id: 'ed-image-picker' });
+  const imgClear = el('button', { class: 'btn btn-secondary', type: 'button' }, 'Clear');
+  const imgPreview = el('img', { class: 'ed-image-preview', id: 'ed-image-preview', alt: '' });
+  if (f.image) imgPreview.src = f.image;
+  imgInput.addEventListener('change', () => {
+    const file = imgInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => { imgPreview.src = e.target.result; };
+    reader.readAsDataURL(file);
+  });
+  imgClear.addEventListener('click', () => { imgPreview.src = ''; imgInput.value = ''; });
+  imgRow.appendChild(imgInput);
+  imgRow.appendChild(imgClear);
+  imgRow.appendChild(imgPreview);
+  imgWrap.appendChild(imgRow);
+  form.appendChild(imgWrap);
   form.appendChild(edGroupedCheckboxes('Traits',      'ed-traits',     f.traits,     TRAIT_GROUPS,      'form-label-tag-traits'));
   form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, TRADITION_GROUPS,  'form-label-tag-traditions'));
   form.appendChild(edGroupedCheckboxes('Access',      'ed-access',     f.access,     ACCESS_GROUPS,     'form-label-tag-access'));
@@ -1643,6 +1676,7 @@ function collectEditor() {
     mana       : num('ed-mana'),
     rarity     : v('ed-rarity'),
     difficulty : v('ed-difficulty'),
+    image      : document.getElementById('ed-image-preview')?.src || '',
     traits     : checkboxArr('ed-traits'),
     traditions : checkboxArr('ed-traditions'),
     access     : checkboxArr('ed-access'),
