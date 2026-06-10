@@ -230,6 +230,7 @@
       "mana": 7,
       "rarity": "uncommon",
       "difficulty": "hard",
+      "image": "",
       "traits": [
         "animation",
         "necromancy"
@@ -277,7 +278,7 @@
         "type": ""
       },
       "effect": {
-        "base": "You create a pulse of necromantic energy causing a corpse to animate in a foul imitation of life. They will follow your commands for the next 1 minute, but will remain animated until destroyed. Your maximum mana pool is reduced by the combined creature levels of all undead under your control.",
+        "base": "You create a pulse of necromantic energy causing a corpse to animate in a foul imitation of life. They are CL 1 and will follow your commands for the next 1 minute, but will remain animated until destroyed. NOTE: Your maximum mana pool is reduced by the combined creature levels of all undead under your control.",
         "options": []
       },
       "skill": {
@@ -286,8 +287,8 @@
           "Knowledge: Undead"
         ],
         "cs": [
-          "Double duration of control.",
-          "Undead are powerful (+1 on all d20 checks).",
+          "Double duration of control",
+          "Undead are powerful (+1 on all d20 checks)",
           "Undead can understand and speak all languages known during their life",
           "Undead gain +1 HP per creature level (minimum +1)",
           "Undead gain resistance positive 2",
@@ -296,16 +297,16 @@
         "s": "",
         "f": "",
         "cf": [
-          "Undead animate, but you have no control and you are their sole target",
-          "Undead are weak (-1 on all d20 checks)",
+          "Undead animate per success, but you have no control and you are their sole target",
+          "You take on a zombie-like appearance and detect as undead for 24 hours",
           "You gain weakness positive 3 for 1d3 minutes",
           "You gain weakness negative 3 for 1d4+1 minutes",
           "For the next hour, all undead within 200' of you can sense your exact location",
           "You lose control of all your undead for 1d4 rounds",
-          "You again the undead trait for 1 hour",
+          "You are harmed by positive energy and healed by negative energy for 1 hour",
           "You suffer 1d4 persistent negative damage",
           "You are unable to Animate Dead for 1d4 minutes",
-          "All corpses in the AoE become immune to your attempts to Animate Dead for 24 hours"
+          "All corpses within the AoE are immune to your Animate Dead for 24 hours"
         ]
       },
       "attack_results": {
@@ -329,7 +330,7 @@
             "length": "action"
           },
           "component": "V",
-          "effect": "Issue a command. Undead will follow until completed, a new command is given, they are destroyed, or your control ends.",
+          "effect": "Issue a command. Undead will follow it until completed, a new command is given, they are destroyed, or your control ends.",
           "mana": 0,
           "results": null
         },
@@ -341,7 +342,7 @@
             "length": "action"
           },
           "component": "S, V",
-          "effect": "Issue a command. Undead will follow until completed, a new command is given, or they are destroyed. They will continue to follow this command even after your control ends.",
+          "effect": "Issue a command. Undead will follow it until completed, a new command is given, or they are destroyed. They will continue to follow this command even after your control ends.",
           "mana": 3,
           "results": null
         },
@@ -353,7 +354,7 @@
             "length": "action"
           },
           "component": "V",
-          "effect": "Renew control for original duration.",
+          "effect": "Renew your control for original duration.",
           "mana": 4,
           "results": null
         },
@@ -365,7 +366,7 @@
             "length": "action"
           },
           "component": "S, V",
-          "effect": "Renew control for original duration.",
+          "effect": "Renew your control for original duration.",
           "mana": 1,
           "results": null
         }
@@ -385,7 +386,7 @@
             "type": "save",
             "saveType": "charisma",
             "attackType": "",
-            "cs": "Control ends and undead becomes hostile toward you. They become immune to your control for 8 hours.",
+            "cs": "Control ends and the undead becomes hostile toward you. They become immune to your control for 8 hours.",
             "s": "Control ends and undead becomes hostile toward you.",
             "f": "No effect.",
             "cf": "Animation ends."
@@ -419,15 +420,95 @@
         },
         {
           "variant": "",
+          "attribute": "targets",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "+1 target",
+          "mana": 7,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "targets",
+          "actions": {
+            "count": 10,
+            "length": "minute"
+          },
+          "component": "S V",
+          "effect": "+1 target",
+          "mana": 0,
+          "results": null
+        },
+        {
+          "variant": "",
           "attribute": "duration",
           "actions": {
             "count": 1,
             "length": "action"
           },
           "component": "S",
-          "effect": "extend control by 1 step",
-          "mana": 8,
+          "effect": "increase duration of control by 1 step",
+          "mana": 9,
           "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "hour"
+          },
+          "component": "S V",
+          "effect": "increase duration of control by 1 step",
+          "mana": 0,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "+1 CL",
+          "mana": 7,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 10,
+            "length": "minute"
+          },
+          "component": "",
+          "effect": "+1 CL",
+          "mana": 0,
+          "results": null
+        },
+        {
+          "variant": "Control",
+          "attribute": "targets",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "You target undead that are already animated in an attempt to gain control over them. You can target undead that are currently being controlled. If you do, the undead can use their current controller's save in place of their own if it is higher.",
+          "mana": 21,
+          "results": {
+            "type": "save",
+            "saveType": "charisma",
+            "attackType": "",
+            "cs": "No effect. The undead gains a +2 bonus on all saves against you for 2 hours. This bonus is cumulative.",
+            "s": "No effect.",
+            "f": "You gain control over the undead.",
+            "cf": "You gain control over the undead. They suffer a -2 penalty on all saves against your for 2 hours."
+          }
         }
       ],
       "variants": [],
