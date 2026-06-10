@@ -109,11 +109,7 @@ function buildActionPair(actVal, idPrefix) {
   });
 
   // Only reaction disables count
-  const syncCount = () => {
-    const off = lengthSel.value === 'reaction';
-    countIn.disabled = off;
-    countIn.style.opacity = off ? '0.3' : '1';
-  };
+  const syncCount = () => syncCountToLength(countIn, lengthSel);
   lengthSel.addEventListener('change', syncCount);
   syncCount();
 
@@ -180,7 +176,8 @@ async function loadData() {
       if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
       const raw   = await resp.json();
       state.sha   = raw.sha;
-      const text  = decodeURIComponent(escape(atob(raw.content.replace(/\n/g, ''))));
+      const _b64   = atob(raw.content.replace(/\n/g, ''));
+      const text  = new TextDecoder().decode(Uint8Array.from(_b64, c => c.charCodeAt(0)));
       const data  = JSON.parse(text);
       state.foundations = data.foundations || [];
       setStatus(`Loaded from GitHub (${state.foundations.length})`, 'ok');
@@ -222,7 +219,9 @@ async function saveData() {
 
 async function attemptSave(isRetry) {
   const json    = JSON.stringify({ foundations: state.foundations }, null, 2);
-  const content = btoa(unescape(encodeURIComponent(json)));
+  const _enc    = new TextEncoder().encode(json);
+  let   _bin    = ''; _enc.forEach(b => _bin += String.fromCharCode(b));
+  const content = btoa(_bin);
   const ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
   const body    = { message: `Update foundations [${ts}]`, content, sha: state.sha };
   const resp    = await fetch(
@@ -673,18 +672,8 @@ function renderVariants(f) {
     if (v.mana) heading.appendChild(el('span', { class: 'variant-mana' }, `+${v.mana} mana`));
     block.appendChild(heading);
 
-    // Traits (only if set)
-    if (v.rarity || v.difficulty || v.traits?.length || v.traditions?.length || v.access?.length) {
-      block.appendChild(renderTraitBar(v));
-    }
-
-    // Specs (only non-empty)
-    const specs = renderSpecs(v);
-    if (specs.children.length) block.appendChild(specs);
-
-    // Effect
-    const effect = renderEffect(v);
-    if (effect) block.appendChild(effect);
+    // Trait bar (always; includes specs, effect, image)
+    block.appendChild(renderTraitBar(v));
 
     // Results
     const results = renderResults(v);
@@ -957,11 +946,7 @@ function buildSdRow(data) {
     if (value === parsed.length) o.selected = true;
     lengthSel.appendChild(o);
   });
-  const syncCount = () => {
-    const off = lengthSel.value === 'reaction';
-    countIn.disabled = off;
-    countIn.style.opacity = off ? '0.3' : '1';
-  };
+  const syncCount = () => syncCountToLength(countIn, lengthSel);
   lengthSel.addEventListener('change', syncCount);
   syncCount();
   row.appendChild(lengthSel);
@@ -1070,11 +1055,7 @@ function buildHtRow(data) {
     if (value === parsed.length) o.selected = true;
     lengthSel.appendChild(o);
   });
-  const syncCount = () => {
-    const off = lengthSel.value === 'reaction';
-    countIn.disabled = off;
-    countIn.style.opacity = off ? '0.3' : '1';
-  };
+  const syncCount = () => syncCountToLength(countIn, lengthSel);
   lengthSel.addEventListener('change', syncCount);
   syncCount();
   row.appendChild(lengthSel);
@@ -1187,11 +1168,7 @@ function buildComponentRow(data) {
     if (value === parsed.length) o.selected = true;
     lengthSel.appendChild(o);
   });
-  const syncCount = () => {
-    const off = lengthSel.value === 'reaction';
-    countIn.disabled = off;
-    countIn.style.opacity = off ? '0.3' : '1';
-  };
+  const syncCount = () => syncCountToLength(countIn, lengthSel);
   lengthSel.addEventListener('change', syncCount);
   syncCount();
   mainRow.appendChild(lengthSel);
@@ -1263,6 +1240,32 @@ function collectComponentRows() {
   }).filter(r => r.effect || r.description || r.variant);
 }
 
+function dfNum(label, field, val, min) {
+  const wrap = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', {}, label));
+  const inp = el('input', { type: 'number', class: 'form-input', 'data-field': field });
+  if (min !== undefined && min !== null) inp.min = String(min);
+  if (val !== undefined && val !== null && val !== '') inp.value = String(val);
+  wrap.appendChild(inp);
+  return wrap;
+}
+
+function dfSel(label, field, val, options) {
+  const wrap = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', {}, label));
+  const sel = el('select', { class: 'form-input form-select', 'data-field': field });
+  sel.appendChild(el('option', { value: '' }, ''));
+  options.forEach(opt => {
+    const v = typeof opt === 'object' ? opt.value : opt;
+    const l = typeof opt === 'object' ? opt.label : opt;
+    const o = el('option', { value: String(v) }, l);
+    if (String(v) === String(val)) o.selected = true;
+    sel.appendChild(o);
+  });
+  wrap.appendChild(sel);
+  return wrap;
+}
+
 /* ============================================================
    EDITOR — EFFECT SECTION BUILDER
    ============================================================ */
@@ -1283,44 +1286,18 @@ function buildEffectRow(data) {
   ta.value = data.text || data.effect || (typeof data === 'string' ? data : '') || '';
   wrap.appendChild(ta);
 
-  // Helpers scoped to this row (cannot use outer edNum/edSelect as they set ids)
-  function rowNum(label, field, val, min) {
-    const f = el('div', { class: 'form-field' });
-    f.appendChild(el('label', {}, label));
-    const inp = el('input', { type: 'number', class: 'form-input', 'data-field': field });
-    if (min !== undefined && min !== null) inp.min = String(min);
-    if (val !== undefined && val !== null && val !== '') inp.value = String(val);
-    f.appendChild(inp);
-    return f;
-  }
-  function rowSel(label, field, val, options) {
-    const f = el('div', { class: 'form-field' });
-    f.appendChild(el('label', {}, label));
-    const sel = el('select', { class: 'form-input form-select', 'data-field': field });
-    sel.appendChild(el('option', { value: '' }, ''));
-    options.forEach(opt => {
-      const v = typeof opt === 'object' ? opt.value : opt;
-      const l = typeof opt === 'object' ? opt.label : opt;
-      const o = el('option', { value: String(v) }, l);
-      if (String(v) === String(val)) o.selected = true;
-      sel.appendChild(o);
-    });
-    f.appendChild(sel);
-    return f;
-  }
-
   const dmgRow = el('div', { class: 'form-row' });
-  dmgRow.appendChild(rowNum('Die Count', 'dmg-count', data.damage?.dieNumber, 0));
-  dmgRow.appendChild(rowSel('Die Size',  'dmg-size',  data.damage?.dieSize,   OPTS.dieSize));
-  dmgRow.appendChild(rowNum('Modifier',  'dmg-mod',   data.damage?.modifier,  null));
-  dmgRow.appendChild(rowSel('Type',      'dmg-type',  data.damage?.type,      OPTS.damageType));
+  dmgRow.appendChild(dfNum('Die Count', 'dmg-count', data.damage?.dieNumber, 0));
+  dmgRow.appendChild(dfSel('Die Size',  'dmg-size',  data.damage?.dieSize,   OPTS.dieSize));
+  dmgRow.appendChild(dfNum('Modifier',  'dmg-mod',   data.damage?.modifier,  null));
+  dmgRow.appendChild(dfSel('Type',      'dmg-type',  data.damage?.type,      OPTS.damageType));
   wrap.appendChild(dmgRow);
 
   const asRow = el('div', { class: 'form-row' });
-  asRow.appendChild(rowSel('Attack Type',    'atk-type',  data.attack?.type,     OPTS.attackType));
-  asRow.appendChild(rowNum('Attack Modifier','atk-mod',   data.attack?.modifier, null));
-  asRow.appendChild(rowSel('Save Type',      'save-type', data.save?.type,       OPTS.saveType));
-  asRow.appendChild(rowNum('Save Modifier',  'save-mod',  data.save?.modifier,   null));
+  asRow.appendChild(dfSel('Attack Type',    'atk-type',  data.attack?.type,     OPTS.attackType));
+  asRow.appendChild(dfNum('Attack Modifier','atk-mod',   data.attack?.modifier, null));
+  asRow.appendChild(dfSel('Save Type',      'save-type', data.save?.type,       OPTS.saveType));
+  asRow.appendChild(dfNum('Save Modifier',  'save-mod',  data.save?.modifier,   null));
   wrap.appendChild(asRow);
 
   return wrap;
@@ -1399,13 +1376,6 @@ const OPTS = {
     { value: 'hard',             label: 'Hard' },
     { value: 'very hard',        label: 'Very Hard' },
     { value: 'incredibly hard',  label: 'Incredibly Hard' }
-  ],
-  actions    : [
-    { value: 'F', label: '\u25C7  Free' },
-    { value: '1', label: '\u25C6  1 action' },
-    { value: '2', label: '\u25C6\u25C6  2 actions' },
-    { value: '3', label: '\u25C6\u25C6\u25C6  3 actions' },
-    { value: 'R', label: '\u21BA  Reaction' }
   ],
   areaShape  : ['cone', 'cube', 'cylinder', 'burst', 'line', 'emanation', 'sphere', 'wall'],
   attackType : ['ranged', 'melee'],
@@ -1684,8 +1654,8 @@ function collectEditor() {
     mana       : num('ed-mana'),
     rarity     : v('ed-rarity'),
     difficulty : v('ed-difficulty'),
-    image      : (document.getElementById('ed-image-path')?.value?.trim() || ''),
-    note       : (document.getElementById('ed-note')?.value?.trim() || ''),
+    image      : v('ed-image-path'),
+    note       : v('ed-note'),
     traits     : checkboxArr('ed-traits'),
     traditions : checkboxArr('ed-traditions'),
     access     : checkboxArr('ed-access'),
