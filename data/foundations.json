@@ -230,7 +230,7 @@
       "mana": 7,
       "rarity": "uncommon",
       "difficulty": "hard",
-      "image": "assets/img/skilld20_foundation_animate_dead_2.png",
+      "image": "assets/img/fndtn_animate_dead_3.png",
       "note": "Your maximum mana pool is reduced by the combined creature levels of all undead under your control.",
       "traits": [
         "animation",
