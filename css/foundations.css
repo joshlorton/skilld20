@@ -198,20 +198,24 @@ body {
 
 .trait-bar {
   display: flex;
+  position: relative;
   gap: 0;
 }
 .trait-col-left {
-  flex: 1;
+  flex: 0 0 50%;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 .trait-col-right {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80px;
   overflow: hidden;
 }
 .trait-row {
