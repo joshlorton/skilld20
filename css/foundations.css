@@ -227,7 +227,7 @@ body {
 .trait-col-left .spec-sheet { padding: 2px 0 0; }
 
 .trait-image {
-  max-height: 1024px;
+  max-height: 100%;
   max-width: 100%;
   width: auto;
   height: auto;
