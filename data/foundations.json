@@ -330,7 +330,8 @@
           },
           "component": "V",
           "effect": "Issue a command. Undead will follow until completed, a new command is given, they are destroyed, or your control ends.",
-          "mana": 0
+          "mana": 0,
+          "results": null
         },
         {
           "variant": "Command",
@@ -341,7 +342,8 @@
           },
           "component": "S, V",
           "effect": "Issue a command. Undead will follow until completed, a new command is given, or they are destroyed. They will continue to follow this command even after your control ends.",
-          "mana": 3
+          "mana": 3,
+          "results": null
         },
         {
           "variant": "Control",
@@ -352,7 +354,8 @@
           },
           "component": "V",
           "effect": "Renew control for original duration.",
-          "mana": 4
+          "mana": 4,
+          "results": null
         },
         {
           "variant": "Control",
@@ -363,20 +366,30 @@
           },
           "component": "S, V",
           "effect": "Renew control for original duration.",
-          "mana": 1
+          "mana": 1,
+          "results": null
         }
       ],
       "dismiss": [
         {
           "variant": "Lay to Rest",
-          "attribute": "",
+          "attribute": "duration",
           "actions": {
             "count": 3,
             "length": "action"
           },
           "component": "S, V",
-          "effect": "You reverse the animation of one of your undead. If unwilling, they make a Charisma save. If performed while under your control, their saves are treated as one result worse.",
-          "mana": 1
+          "effect": "You end the animation of an a single undead you animated. If performed while they are under your control, their save is treated as one result worse.",
+          "mana": 3,
+          "results": {
+            "type": "save",
+            "saveType": "charisma",
+            "attackType": "",
+            "cs": "Control ends and undead becomes hostile toward you. They become immune to your control for 8 hours.",
+            "s": "Control ends and undead becomes hostile toward you.",
+            "f": "No effect.",
+            "cf": "Animation ends."
+          }
         }
       ],
       "heightened": [
@@ -389,7 +402,8 @@
           },
           "component": "-",
           "effect": "+15' range",
-          "mana": 5
+          "mana": 5,
+          "results": null
         },
         {
           "variant": "",
@@ -400,7 +414,8 @@
           },
           "component": "V",
           "effect": "+5' radius",
-          "mana": 5
+          "mana": 5,
+          "results": null
         },
         {
           "variant": "",
@@ -411,7 +426,8 @@
           },
           "component": "S",
           "effect": "extend control by 1 step",
-          "mana": 8
+          "mana": 8,
+          "results": null
         }
       ],
       "variants": [],
