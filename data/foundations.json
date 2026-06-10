@@ -231,6 +231,7 @@
       "rarity": "uncommon",
       "difficulty": "hard",
       "image": "assets/img/skilld20_foundation_animate_dead.png",
+      "note": "Your maximum mana pool is reduced by the combined creature levels of all undead under your control.",
       "traits": [
         "animation",
         "necromancy"
@@ -278,7 +279,7 @@
         "type": ""
       },
       "effect": {
-        "base": "You create a pulse of necromantic energy causing a corpse to animate in a foul imitation of life. They are CL 1 and will follow your commands for the next 1 minute, but will remain animated until destroyed. NOTE: Your maximum mana pool is reduced by the combined creature levels of all undead under your control.",
+        "base": "You create a pulse of necromantic energy causing a corpse to animate in a foul imitation of life. They are CL 1 and will follow your commands for the next 1 minute, but will remain animated until destroyed.",
         "options": []
       },
       "skill": {
