@@ -230,7 +230,7 @@
       "mana": 7,
       "rarity": "uncommon",
       "difficulty": "hard",
-      "image": "skilld20_foundation_animate_dead.png",
+      "image": "assets/img/skilld20_foundation_animate_dead.png",
       "traits": [
         "animation",
         "necromancy"
