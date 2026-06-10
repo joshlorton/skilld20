@@ -305,6 +305,10 @@ function renderTraitBar(f) {
   const specs = renderSpecs(f);
   if (specs.children.length) left.appendChild(specs);
 
+  // Effect section (3rd row in left column)
+  const effectSec = renderEffect(f);
+  if (effectSec) left.appendChild(effectSec);
+
   bar.appendChild(left);
 
   // -- Right column: image (always present; empty if no image)
@@ -382,6 +386,14 @@ function renderEffect(f) {
 
   // Base entry
   content.appendChild(el('p', { class: 'effect-entry' }, f.effect.base));
+
+  // Note (optional; displays with CF styling and "NOTE: " prefix)
+  if (f.note?.trim()) {
+    const noteDiv = el('div', { class: 'effect-note row-cf' });
+    noteDiv.appendChild(el('b', { class: 'result-label' }, 'NOTE: '));
+    noteDiv.appendChild(document.createTextNode(f.note.trim()));
+    content.appendChild(noteDiv);
+  }
 
   // Attack, Save, Damage (moved from spec sheet)
   if (f.attack?.type)
@@ -704,10 +716,6 @@ function renderViewer(f) {
 
   // Trait bar
   card.appendChild(renderTraitBar(f));
-
-  // Effect
-  const effect = renderEffect(f);
-  if (effect) card.appendChild(effect);
 
   // Results
   const results = renderResults(f);
@@ -1333,6 +1341,12 @@ function buildEffectSection(f) {
   baseTa.value = f.effect?.base || '';
   baseWrap.appendChild(baseTa);
 
+  // Note field (between effect and damage)
+  const noteTa = el('textarea', { id: 'ed-note', class: 'form-input', rows: 2,
+    placeholder: 'Optional note (displayed with CF styling below effect)' });
+  noteTa.value = f.note || '';
+  baseWrap.appendChild(noteTa);
+
   const dmgRow = el('div', { class: 'form-row' });
   dmgRow.appendChild(edNum(  'Damage Die Count', 'ed-dmg-count',    f.damage?.dieNumber,               0));
   dmgRow.appendChild(edSelect('Damage Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize));
@@ -1671,6 +1685,7 @@ function collectEditor() {
     rarity     : v('ed-rarity'),
     difficulty : v('ed-difficulty'),
     image      : (document.getElementById('ed-image-path')?.value?.trim() || ''),
+    note       : (document.getElementById('ed-note')?.value?.trim() || ''),
     traits     : checkboxArr('ed-traits'),
     traditions : checkboxArr('ed-traditions'),
     access     : checkboxArr('ed-access'),
