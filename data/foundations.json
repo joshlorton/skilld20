@@ -664,13 +664,17 @@
       "mana": 2,
       "rarity": "uncommon",
       "difficulty": "average",
+      "image": "",
+      "note": "",
       "traits": [
-        "fire"
+        "fire",
+        "fire",
+        "visual",
+        "light"
       ],
       "traditions": [
         "arcane",
         "divine",
-        "bardic",
         "bloodline",
         "pact"
       ],
@@ -683,18 +687,21 @@
         "pact: genie: fire"
       ],
       "cast": {
-        "actions": "",
-        "component": "",
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
         "trigger": ""
       },
       "range": "",
       "area": {
-        "size": 0,
-        "shape": ""
+        "size": 5,
+        "shape": "cube"
       },
       "targets": {
         "count": 0,
-        "type": ""
+        "type": "fires"
       },
       "attack": {
         "type": "",
@@ -704,7 +711,7 @@
         "type": "",
         "modifier": 0
       },
-      "duration": "",
+      "duration": "until dismissed",
       "damage": {
         "dieNumber": 0,
         "dieSize": 0,
@@ -712,8 +719,94 @@
         "type": ""
       },
       "effect": {
-        "base": "",
-        "options": []
+        "base": "COLOR: You alter the color of mundane sources of fire within a 5'-cube. Each fire can be a different color or all can be the same color.",
+        "options": [
+          {
+            "text": "FUEL: You alter the fuel consumption of mundane sources of fire within a 5'-cube. Duration from half to twice as long as normal.",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          },
+          {
+            "text": "HEAT: You alter the warmth of mundane sources of fire within a 5'-cube. Heat area from none to twice normal.",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          },
+          {
+            "text": "ILLUMINATION: You alter the light output of mundane sources of fire within a 5'-cube. Increase or decrease dim light radius by 5'.",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          },
+          {
+            "text": "INTENSITY: You alter the intensity of mundane sources of fire within a 5'-cube. Increase or decrease damage by 1 die size.",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          },
+          {
+            "text": "SIZE: You alter the size of mundane sources of fire within a 5'-cube. Increase or decrease size by 1 step (candle < torch < campfire < bonfire).",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
       },
       "skill": {
         "primary": [],
