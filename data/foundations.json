@@ -600,7 +600,7 @@
             "length": "minute"
           },
           "component": "M S V",
-          "effect": "Undead animated within the fire's light gain a +1 bonus on all saves.",
+          "effect": "Undead animated gain a +1 bonus to all saves as long as they are within the fire's light.",
           "description": "chrysocolla gems crushed and thrown into a fire (blue-green chalcedony containing veins of copper)",
           "rarity": "common",
           "price": 20
@@ -632,27 +632,27 @@
           "price": 10
         },
         {
-          "variant": "Control",
+          "variant": "",
           "attribute": "effect",
           "actions": {
             "count": 4,
             "length": "hour"
           },
           "component": "M S",
-          "effect": "Undead animated from within the bath gain a +2 bonus to AC as long as they are under your control. Additionally, these undead gain a +10 bonus on saves to wrest from you.",
+          "effect": "Undead animated from within the bath gain a +2 bonus to AC as long as they are under your control. Additionally, these undead gain a +10 bonus on saves to wrest control from you.",
           "description": "a handful of powdered morion (black, semi-precious smoky quartz), placed in a bath with the bones to be animated",
           "rarity": "uncommon",
           "price": 500
         },
         {
-          "variant": "Control",
+          "variant": "",
           "attribute": "save",
           "actions": {
             "count": 1,
             "length": "action"
           },
           "component": "F",
-          "effect": "When held during casting, animated undead gain a +2 bonus to saves as long as they are under your control.",
+          "effect": "When held during casting, animated undead gain a +2 bonus to all saves as long as they are under your control.",
           "description": "a piece of tomb jade",
           "rarity": "rare",
           "price": 1000
