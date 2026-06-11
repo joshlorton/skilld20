@@ -589,7 +589,8 @@ function componentRow(item, idx) {
   row.appendChild(el('span', { class: 'sv-comp'     }, sdComponent(item.component)));
   row.appendChild(el('span', { class: 'sv-effect'   }, item.effect     || ''));
   row.appendChild(el('span', { class: 'sv-desc'     }, item.description || ''));
-  row.appendChild(el('span', { class: 'comp-rarity' }, item.rarity     || ''));
+  const _rv = (item.rarity || '').toLowerCase();
+  row.appendChild(el('span', { class: `comp-rarity${_rv ? ` comp-rarity-${_rv}` : ''}` }, item.rarity || ''));
   const price = item.price;
   row.appendChild(el('span', { class: 'comp-price'  },
     (price !== null && price !== undefined && price !== '') ? `${price} gp` : ''));
@@ -627,7 +628,9 @@ function renderActionSection(title, items, rowFn) {
   const section = el('div', { class: 'section-action' });
   section.appendChild(el('div', { class: 'section-heading' }, title));
   section.appendChild(el('div', { class: 'result-col-heading' }, title));
-  active.forEach((item, i) => section.appendChild(rowFn(item, i)));
+  const content = el('div', { class: 'result-col-content' });
+  active.forEach((item, i) => content.appendChild(rowFn(item, i)));
+  section.appendChild(content);
   return section;
 }
 
@@ -1021,13 +1024,18 @@ function collectSdRows(containerId) {
 }
 
 const HT_ATTRIBUTES = [
+  { value: 'cast',       label: 'Cast'       },
   { value: 'range',      label: 'Range'      },
   { value: 'area size',  label: 'Area Size'  },
   { value: 'area shape', label: 'Area Shape' },
   { value: 'targets',    label: 'Targets'    },
   { value: 'duration',   label: 'Duration'   },
   { value: 'effect',     label: 'Effect'     },
-  { value: 'damage',     label: 'Damage'     }
+  { value: 'damage',     label: 'Damage'     },
+  { value: 'attack',     label: 'Attack'     },
+  { value: 'save',       label: 'Save'       },
+  { value: 'sustain',    label: 'Sustain'    },
+  { value: 'dismiss',    label: 'Dismiss'    }
 ];
 
 function buildHtRow(data) {
