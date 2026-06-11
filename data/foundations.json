@@ -289,11 +289,11 @@
         ],
         "cs": [
           "Double duration of control",
-          "Undead are powerful (+1 on all d20 checks)",
+          "Undead gain a +1 on all d20 checks as long as they are under your control",
           "Undead can understand and speak all languages known during their life",
-          "Undead gain +1 HP per creature level (minimum +1)",
-          "Undead gain resistance positive 2",
-          "Undead deal +1 negative damage per creature level with all melee attacks (minimum +1)"
+          "Undead gain +1 HP per creature level (minimum +1) as long as they are under your control",
+          "Undead gain resistance positive 2 as long as they are under your control",
+          "Undead deal +1 negative damage per creature level with all melee attacks (minimum +1) as long as they are under your control"
         ],
         "s": "",
         "f": "",
@@ -451,7 +451,7 @@
             "length": "action"
           },
           "component": "S",
-          "effect": "increase duration of control by 1 step",
+          "effect": "Increase duration of control by 1 step.",
           "mana": 9,
           "results": null
         },
@@ -463,7 +463,7 @@
             "length": "minute"
           },
           "component": "S V",
-          "effect": "increase duration of control by 1 step",
+          "effect": "Increase duration of control by 1 step.",
           "mana": 0,
           "results": null
         },
@@ -561,7 +561,7 @@
             "length": "hour"
           },
           "component": "M S",
-          "effect": "increase duration of control by 1 step",
+          "effect": "Increase duration of control by 1 step",
           "description": "newly powdered chrysocolla gems mixed into ink (blue-green chalcedony containing veins of copper)",
           "rarity": "uncommon",
           "price": 20
@@ -574,7 +574,7 @@
             "length": "action"
           },
           "component": "M",
-          "effect": "increase CL of a single target by 1",
+          "effect": "Increase CL of a single target by 1.",
           "description": "black onyx gems",
           "rarity": "common",
           "price": 45
@@ -587,7 +587,7 @@
             "length": "action"
           },
           "component": "M",
-          "effect": "increase CL of a single target to 3 below that of the piece used",
+          "effect": "Increase CL of a single target to 3 below that of the piece used.",
           "description": "piece of a creature you actively helped slay (you directly damaged it, adversely affected it with a spell, etc)",
           "rarity": "uncommon",
           "price": null
@@ -600,10 +600,62 @@
             "length": "minute"
           },
           "component": "M S V",
-          "effect": "undead animated within the fire's light gain a +1 bonus on all saves",
+          "effect": "Undead animated within the fire's light gain a +1 bonus on all saves.",
           "description": "chrysocolla gems crushed and thrown into a fire (blue-green chalcedony containing veins of copper)",
           "rarity": "common",
           "price": 20
+        },
+        {
+          "variant": "Control",
+          "attribute": "sustain",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "Halve your mana cost to renew control.",
+          "description": "black onyx gems",
+          "rarity": "common",
+          "price": 45
+        },
+        {
+          "variant": "Control",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "Increase duration of control by 1 minute.",
+          "description": "a pinch of crushed epidote gems",
+          "rarity": "common",
+          "price": 10
+        },
+        {
+          "variant": "Control",
+          "attribute": "effect",
+          "actions": {
+            "count": 4,
+            "length": "hour"
+          },
+          "component": "M S",
+          "effect": "Undead animated from within the bath gain a +2 bonus to AC as long as they are under your control. Additionally, these undead gain a +10 bonus on saves to wrest from you.",
+          "description": "a handful of powdered morion (black, semi-precious smoky quartz), placed in a bath with the bones to be animated",
+          "rarity": "uncommon",
+          "price": 500
+        },
+        {
+          "variant": "Control",
+          "attribute": "save",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "F",
+          "effect": "When held during casting, animated undead gain a +2 bonus to saves as long as they are under your control.",
+          "description": "a piece of tomb jade",
+          "rarity": "rare",
+          "price": 1000
         }
       ]
     },
