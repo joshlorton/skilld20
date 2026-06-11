@@ -459,8 +459,8 @@
           "variant": "",
           "attribute": "duration",
           "actions": {
-            "count": 1,
-            "length": "hour"
+            "count": 10,
+            "length": "minute"
           },
           "component": "S V",
           "effect": "increase duration of control by 1 step",
@@ -483,8 +483,8 @@
           "variant": "",
           "attribute": "effect",
           "actions": {
-            "count": 10,
-            "length": "minute"
+            "count": 1,
+            "length": "hour"
           },
           "component": "",
           "effect": "+1 CL",
