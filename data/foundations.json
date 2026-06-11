@@ -513,7 +513,99 @@
         }
       ],
       "variants": [],
-      "components": []
+      "components": [
+        {
+          "variant": "",
+          "attribute": "",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "Deal damage to yourself, gaining 3 mana for every point of damage dealt.",
+          "description": "",
+          "rarity": "common",
+          "price": null
+        },
+        {
+          "variant": "",
+          "attribute": "area size",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "+15' radius",
+          "description": "pinch of bone dust from an undead creature animated via Animate Dead",
+          "rarity": "common",
+          "price": 1
+        },
+        {
+          "variant": "",
+          "attribute": "targets",
+          "actions": {
+            "count": 3,
+            "length": "action"
+          },
+          "component": "M S",
+          "effect": "+1 targets",
+          "description": "powdered moonbar",
+          "rarity": "uncommon",
+          "price": 50
+        },
+        {
+          "variant": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 2,
+            "length": "hour"
+          },
+          "component": "M S",
+          "effect": "increase duration of control by 1 step",
+          "description": "newly powdered chrysocolla gems mixed into ink (blue-green chalcedony containing veins of copper)",
+          "rarity": "uncommon",
+          "price": 20
+        },
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "increase CL of a single target by 1",
+          "description": "black onyx gems",
+          "rarity": "common",
+          "price": 45
+        },
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "increase CL of a single target to 3 below that of the piece used",
+          "description": "piece of a creature you actively helped slay (you directly damaged it, adversely affected it with a spell, etc)",
+          "rarity": "uncommon",
+          "price": null
+        },
+        {
+          "variant": "Save",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "minute"
+          },
+          "component": "M S V",
+          "effect": "undead animated within the fire's light gain a +1 bonus on all saves",
+          "description": "chrysocolla gems crushed and thrown into a fire (blue-green chalcedony containing veins of copper)",
+          "rarity": "common",
+          "price": 20
+        }
+      ]
     },
     {
       "name": "Affect Fire",
