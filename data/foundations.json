@@ -701,7 +701,7 @@
       },
       "targets": {
         "count": 0,
-        "type": "fires"
+        "type": "all fires"
       },
       "attack": {
         "type": "",
