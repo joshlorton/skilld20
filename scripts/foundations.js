@@ -90,6 +90,12 @@ function actionSym(val) {
   return '◆'.repeat(count);
 }
 
+function syncCountToLength(countIn, lengthSel) {
+  const off = lengthSel.value === 'reaction';
+  countIn.disabled = off;
+  countIn.style.opacity = off ? '0.3' : '1';
+}
+
 function buildActionPair(actVal, idPrefix) {
   const parsed = parseLegacyAction(actVal);
   const wrap   = el('div', { class: 'action-pair' });
