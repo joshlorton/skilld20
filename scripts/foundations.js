@@ -250,11 +250,11 @@ function traitTag(text, cls) {
   return el('span', { class: classes }, text);
 }
 
-function renderTraitBar(f) {
-  const bar = el('div', { class: 'trait-bar' });
+function renderBase(f) {
+  const base = el('div', { class: 'section-base' });
 
-  // -- Left column: traits (row 1 + row 2) then spec sheet
-  const left = el('div', { class: 'trait-col-left' });
+  // -- Left column: traits (row 1 + row 2) then base-specs
+  const left = el('div', { class: 'base-col-left' });
 
   // Row 1: rarity + difficulty + general traits
   const traitsRow = el('div', { class: 'trait-row' });
@@ -300,24 +300,24 @@ function renderTraitBar(f) {
     left.appendChild(tradRow);
   }
 
-  // Spec sheet (cast, range, area, targets, duration)
+  // Base specs (cast, range, area, targets, duration)
   const specs = renderSpecs(f);
-  if (specs.children.length) left.appendChild(specs);
+  if (specs) left.appendChild(specs);
 
   // Effect section (3rd row in left column)
   const effectSec = renderEffect(f);
   if (effectSec) left.appendChild(effectSec);
 
-  bar.appendChild(left);
+  base.appendChild(left);
 
   // -- Right column: image (always present; empty if no image)
-  const right = el('div', { class: 'trait-col-right' });
+  const right = el('div', { class: 'base-col-right' });
   if (f.image) {
-    right.appendChild(el('img', { class: 'trait-image', src: f.image, alt: '' }));
+    right.appendChild(el('img', { class: 'base-image', src: f.image, alt: '' }));
   }
-  bar.appendChild(right);
+  base.appendChild(right);
 
-  return bar;
+  return base;
 }
 
 /* ============================================================
@@ -349,28 +349,28 @@ function specRowCast(f) {
 }
 
 function renderSpecs(f) {
-  const sheet = el('div', { class: 'spec-sheet' });
-  const add = r => r && sheet.appendChild(r);
+  const content = el('div', { class: 'result-col-content' });
+  const add = r => r && content.appendChild(r);
 
   add(specRowCast(f));
   if (f.cast?.trigger) add(specRow('Trigger', f.cast.trigger));
-
   if (hasValue(f.range)) add(specRow('Range', f.range));
-
   if (f.area?.size || f.area?.shape) {
     const parts = [];
     if (f.area.size) parts.push(`${f.area.size}'`);
     if (f.area.shape) parts.push(f.area.shape);
     add(specRow('Area', parts.join('-')));
   }
-
   if (f.targets?.count || f.targets?.type) {
     add(specRow('Targets', [f.targets.count, f.targets.type].filter(Boolean).join(' ')));
   }
-
   if (hasValue(f.duration)) add(specRow('Duration', f.duration));
 
-  return sheet;
+  if (!content.children.length) return null;
+  const section = el('div', { class: 'base-specs' });
+  section.appendChild(el('div', { class: 'result-col-heading' }, 'Base'));
+  section.appendChild(content);
+  return section;
 }
 
 /* ============================================================
@@ -379,7 +379,7 @@ function renderSpecs(f) {
 
 function renderEffect(f) {
   if (!f.effect?.base) return null;
-  const section = el('div', { class: 'section-effect' });
+  const section = el('div', { class: 'base-effect' });
   section.appendChild(el('div', { class: 'result-col-heading' }, 'Effect'));
   const content = el('div', { class: 'result-col-content' });
 
@@ -394,7 +394,7 @@ function renderEffect(f) {
     content.appendChild(noteDiv);
   }
 
-  // Attack, Save, Damage (moved from spec sheet)
+  // Attack, Save, Damage
   if (f.attack?.type)
     content.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
   if (f.save?.type)
@@ -620,6 +620,7 @@ function renderActionSection(title, items, rowFn) {
   if (!active.length) return null;
   const section = el('div', { class: 'section-action' });
   section.appendChild(el('div', { class: 'section-heading' }, title));
+  section.appendChild(el('div', { class: 'result-col-heading' }, ''));
   active.forEach((item, i) => section.appendChild(rowFn(item, i)));
   return section;
 }
@@ -672,8 +673,8 @@ function renderVariants(f) {
     if (v.mana) heading.appendChild(el('span', { class: 'variant-mana' }, `+${v.mana} mana`));
     block.appendChild(heading);
 
-    // Trait bar (always; includes specs, effect, image)
-    block.appendChild(renderTraitBar(v));
+    // Base section (always; includes specs, effect, image)
+    block.appendChild(renderBase(v));
 
     // Results
     const results = renderResults(v);
@@ -703,8 +704,8 @@ function renderViewer(f) {
   }
   card.appendChild(heading);
 
-  // Trait bar
-  card.appendChild(renderTraitBar(f));
+  // Base section
+  card.appendChild(renderBase(f));
 
   // Results
   const results = renderResults(f);
