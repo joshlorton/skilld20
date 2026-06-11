@@ -444,7 +444,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "variant": "Control",
           "attribute": "duration",
           "actions": {
             "count": 1,
@@ -456,7 +456,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "variant": "Control",
           "attribute": "duration",
           "actions": {
             "count": 10,
@@ -554,7 +554,7 @@
           "price": 50
         },
         {
-          "variant": "",
+          "variant": "Control",
           "attribute": "duration",
           "actions": {
             "count": 2,
