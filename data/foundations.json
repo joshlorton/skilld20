@@ -810,11 +810,28 @@
       },
       "skill": {
         "primary": [],
-        "secondary": [],
-        "cs": [],
-        "s": "",
-        "f": "",
-        "cf": []
+        "secondary": [
+          "per Tradition",
+          "Survival"
+        ],
+        "cs": [
+          "Double chosen base effect",
+          "Select a second base effect"
+        ],
+        "s": "Expected effect.",
+        "f": "Failed cast. No effect. How3ever, you may spend 2 additional actions to recover and then attempt a new skill check.",
+        "cf": [
+          "You suffer 1d4 fire damage",
+          "You suffer 1 persistent fire damage; all squares adjacent to you suffer 1 fire damage",
+          "You gain weakness fire 3 for 1d3 minutes",
+          "You gain weakness cold 3 for 1d4+1 minutes",
+          "Your square fills with smoke; sickened; concealment",
+          "You suffer a -1 penalty to all checks involving fire for 10 minutes",
+          "Fireworks centered on you; dazzled; blinded",
+          "You suffer 1d4 persistent fire damage",
+          "You are unable to cast Affect Fire for 1d4 minutes",
+          "Target becomes immune to your Affect Fire for 8 hours"
+        ]
       },
       "attack_results": {
         "cs": "",
