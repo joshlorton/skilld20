@@ -447,7 +447,8 @@ body {
 
 .section-base, .section-results, .section-action, .section-sd, .section-variants { margin-bottom: 6px; }
 .section-action { margin-top: 6px; }
-.base-effect, .section-results, .section-action, .section-sd { display: flex; }
+.base-effect, .section-results, .section-sd { display: flex; }
+.section-action-body { display: flex; }
 
 /* Grid-based viewer rows */
 .sd-view-row {
