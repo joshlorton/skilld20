@@ -298,7 +298,7 @@ body {
   font-size: 14px;
   font-weight: 700;
   text-transform: capitalize;
-  min-width: 110px;
+  min-width: 70px;
   flex-shrink: 0;
   color: var(--heading-fg);
   font-family: var(--font-ui);
@@ -325,6 +325,8 @@ body {
   line-height: 1.55;
   margin-bottom: 1px;
 }
+.effect-option-block { margin-bottom: 2px; }
+.effect-opt-title { padding: 4px 12px 2px; font-size: 13px; }
 
 /* Additional effect rows in editor */
 .effect-base-wrap  { padding: 8px 0 4px; }
@@ -638,6 +640,7 @@ body {
 
 /* Grouped checkbox container */
 .form-field-wide      { min-width: 100%; }
+.form-label-sm { font-size: 11px; color: var(--text-muted); display: block; margin: 4px 0 2px; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.05em; }
 .form-label-tag {
   display: inline-block;
   color: var(--text);

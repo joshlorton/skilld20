@@ -361,11 +361,12 @@ function renderSpecs(f) {
   add(specRowCast(f));
   if (f.cast?.trigger) add(specRow('Trigger', f.cast.trigger));
   if (hasValue(f.range)) add(specRow('Range', f.range));
-  if (f.area?.size || f.area?.shape) {
+  if (f.area?.size || f.area?.shape || f.area?.type) {
     const parts = [];
     if (f.area.size) parts.push(`${f.area.size}'`);
     if (f.area.shape) parts.push(f.area.shape);
-    add(specRow('Area', parts.join('-')));
+    if (f.area.type)  parts.push(f.area.type);
+    add(specRow('Area', parts.join(' ')));
   }
   if (f.targets?.count || f.targets?.type) {
     add(specRow('Targets', [f.targets.count, f.targets.type].filter(Boolean).join(' ')));
@@ -412,24 +413,35 @@ function renderEffect(f) {
   }
 
   // Additional effect entries
-  (f.effect.options || []).filter(Boolean).forEach(opt => {
+  const opts = (f.effect.options || []).filter(Boolean);
+  const multiOpts = opts.length > 1;
+  opts.forEach((opt, oi) => {
+    const rowCls = multiOpts ? ` ${oi % 2 === 0 ? 'row-odd' : 'row-even'}` : '';
     if (typeof opt === 'string') {
-      content.appendChild(el('p', { class: 'effect-entry' }, opt));
-    } else if (opt.text !== undefined) {
-      // New format: {text, damage, attack, save}
-      content.appendChild(el('p', { class: 'effect-entry' }, opt.text));
+      content.appendChild(el('p', { class: `effect-entry${rowCls}` }, opt));
+    } else if (opt.text !== undefined || opt.title !== undefined) {
+      const block = el('div', { class: `effect-option-block${rowCls}` });
+      if (opt.title) block.appendChild(el('div', { class: 'effect-opt-title ht-vrnt' }, opt.title));
+      if (opt.text)  block.appendChild(el('p',   { class: 'effect-entry' }, opt.text));
+      if (opt.note?.trim()) {
+        const nd = el('div', { class: 'effect-note row-cf' });
+        nd.appendChild(el('b', { class: 'result-label' }, 'NOTE: '));
+        nd.appendChild(document.createTextNode(opt.note.trim()));
+        block.appendChild(nd);
+      }
       if (opt.damage?.dieNumber) {
         const d = opt.damage;
         const mod = d.modifier ?? d.bonus;
-        content.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
+        block.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
       }
       if (opt.attack?.type)
-        content.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
+        block.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
       if (opt.save?.type)
-        content.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
+        block.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
+      content.appendChild(block);
     } else if (opt.option !== undefined || opt.effect !== undefined) {
       // Legacy {option, effect} format
-      const p = el('p', { class: 'effect-entry' });
+      const p = el('p', { class: `effect-entry${rowCls}` });
       if (opt.option) p.appendChild(el('b', {}, `${opt.option}: `));
       if (opt.effect) p.appendChild(document.createTextNode(opt.effect));
       content.appendChild(p);
@@ -1298,10 +1310,23 @@ function buildEffectRow(data) {
   header.appendChild(removeBtn);
   wrap.appendChild(header);
 
-  // Text
+  // Effect Title (optional; styled like variant labels when set)
+  const titleIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'Effect Title (optional)', 'data-field': 'title' });
+  titleIn.value = data.title || '';
+  wrap.appendChild(titleIn);
+
+  // Effect Description
+  wrap.appendChild(el('label', { class: 'form-label-sm' }, 'Effect Description'));
   const ta = el('textarea', { class: 'form-input', rows: 2, 'data-field': 'text' });
   ta.value = data.text || data.effect || (typeof data === 'string' ? data : '') || '';
   wrap.appendChild(ta);
+
+  // Effect Notes
+  wrap.appendChild(el('label', { class: 'form-label-sm' }, 'Effect Notes'));
+  const noteTa = el('textarea', { class: 'form-input', rows: 1, 'data-field': 'note' });
+  noteTa.value = data.note || '';
+  wrap.appendChild(noteTa);
 
   const dmgRow = el('div', { class: 'form-row' });
   dmgRow.appendChild(dfNum('Die Count', 'dmg-count', data.damage?.dieNumber, 0));
@@ -1372,12 +1397,14 @@ function collectEffectOptions() {
     const get = field => row.querySelector(`[data-field="${field}"]`)?.value?.trim() || '';
     const num = field => { const x = get(field); return x !== '' ? parseFloat(x) : 0; };
     return {
+      title  : get('title'),
       text   : get('text'),
+      note   : get('note'),
       damage : { dieNumber: num('dmg-count'), dieSize: num('dmg-size'), modifier: num('dmg-mod'), type: get('dmg-type') },
       attack : { type: get('atk-type'),  modifier: num('atk-mod')  },
       save   : { type: get('save-type'), modifier: num('save-mod') }
     };
-  }).filter(r => r.text);
+  }).filter(r => r.text || r.title);
 }
 
 const OPTS = {
@@ -1394,7 +1421,8 @@ const OPTS = {
     { value: 'very hard',        label: 'Very Hard' },
     { value: 'incredibly hard',  label: 'Incredibly Hard' }
   ],
-  areaShape  : ['cone', 'cube', 'cylinder', 'burst', 'line', 'emanation', 'sphere', 'wall'],
+  areaShape  : ['cone', 'cube', 'cylinder', 'line', 'sphere', 'wall'],
+  areaType   : ['burst', 'emanation', 'cloud'],
   attackType : ['ranged', 'melee'],
   saveType   : [
     { value: 'strength',     label: 'Strength'     },
@@ -1520,9 +1548,12 @@ const ACCESS_GROUPS = [
 ];
 
 function parseDuration(dur) {
-  if (!dur) return { count: '', length: '' };
+  if (!dur) return { count: '', length: '', custom: '' };
+  if (typeof dur === 'object' && dur !== null)
+    return { count: dur.count || '', length: dur.length || '', custom: dur.custom || '' };
   const m = String(dur).match(/^(\d+)\s+(.+)$/);
-  return m ? { count: m[1], length: m[2] } : { count: '', length: dur };
+  if (m) return { count: m[1], length: m[2], custom: '' };
+  return { count: '', length: '', custom: String(dur) };
 }
 
 function parseRange(range) {
@@ -1572,8 +1603,9 @@ function buildEditor(f) {
   form.appendChild(sec('Range & Area'));
   form.appendChild(edRow(
     edNum(  'Range (ft)',    'ed-range',       parseRange(f.range), 0, 5),
-    edNum(  'Area Size (ft)','ed-area-size',   f.area?.size,        0, 5),
-    edSelect('Area Shape',   'ed-area-shape',  f.area?.shape, OPTS.areaShape)
+    edNum(  'Area Size (ft)','ed-area-size',   f.area?.size,         0, 5),
+    edSelect('Area Shape',   'ed-area-shape',  f.area?.shape,  OPTS.areaShape),
+    edSelect('Area Type',    'ed-area-type',   f.area?.type,   OPTS.areaType)
   ));
   form.appendChild(edRow(
     edNum(  'Targets Count', 'ed-targets-count', f.targets?.count, 0),
@@ -1583,8 +1615,9 @@ function buildEditor(f) {
   // Duration
   form.appendChild(sec('Duration'));
   form.appendChild(edRow(
-    edNum(   'Count',  'ed-dur-count',  dur.count,  0),
-    edSelect('Length', 'ed-dur-length', dur.length, OPTS.durLength)
+    edNum(   'Count',       'ed-dur-count',   dur.count,   0),
+    edSelect('Length',      'ed-dur-length',  dur.length,  OPTS.durLength),
+    edField( 'Custom Length','ed-dur-custom',  dur.custom)
   ));
 
   // Effect (with + button for additional effects)
@@ -1664,6 +1697,7 @@ function collectEditor() {
 
   const durCount  = v('ed-dur-count');
   const durLength = v('ed-dur-length');
+  const durCustom = v('ed-dur-custom');
   const rangeNum  = v('ed-range');
 
   return {
@@ -1685,11 +1719,11 @@ function collectEditor() {
       trigger   : v('ed-cast-trigger')
     },
     range   : rangeNum !== '' ? `${rangeNum}'` : '',
-    area    : { size: num('ed-area-size'), shape: v('ed-area-shape') },
+    area    : { size: num('ed-area-size'), shape: v('ed-area-shape'), type: v('ed-area-type') },
     targets : { count: num('ed-targets-count'), type: v('ed-targets-type') },
     attack  : { type: v('ed-atk-type'),  modifier: num('ed-atk-modifier')  },
     save    : { type: v('ed-save-type'), modifier: num('ed-save-modifier') },
-    duration : durCount && durLength ? `${durCount} ${durLength}` : durLength,
+    duration : durCustom || (durCount && durLength ? `${durCount} ${durLength}` : durLength),
     damage: {
       dieNumber : num('ed-dmg-count'),
       dieSize   : num('ed-dmg-size'),
