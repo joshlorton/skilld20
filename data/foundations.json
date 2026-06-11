@@ -516,13 +516,13 @@
       "components": [
         {
           "variant": "",
-          "attribute": "",
+          "attribute": "cast",
           "actions": {
             "count": 1,
             "length": "action"
           },
           "component": "S",
-          "effect": "Deal damage to yourself, gaining 3 mana for every point of damage dealt.",
+          "effect": "Deal melee damage to yourself, gaining 3 mana for every point of damage dealt.",
           "description": "",
           "rarity": "common",
           "price": null
@@ -593,8 +593,8 @@
           "price": null
         },
         {
-          "variant": "Save",
-          "attribute": "effect",
+          "variant": "",
+          "attribute": "save",
           "actions": {
             "count": 1,
             "length": "minute"
