@@ -620,7 +620,7 @@ function renderActionSection(title, items, rowFn) {
   if (!active.length) return null;
   const section = el('div', { class: 'section-action' });
   section.appendChild(el('div', { class: 'section-heading' }, title));
-  section.appendChild(el('div', { class: 'result-col-heading' }, ''));
+  section.appendChild(el('div', { class: 'result-col-heading' }, title));
   active.forEach((item, i) => section.appendChild(rowFn(item, i)));
   return section;
 }
