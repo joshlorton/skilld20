@@ -723,7 +723,7 @@
         "base": "COLOR: You alter the color of mundane sources of fire within a 5'-cube. Each fire can be a different color or all can be the same color.",
         "options": [
           {
-            "title": "FUEL",
+            "title": "Fuel",
             "text": "You alter the fuel consumption of mundane sources of fire within a 5'-cube. Duration from half to twice as long as normal.",
             "note": "",
             "damage": {
@@ -742,7 +742,7 @@
             }
           },
           {
-            "title": "HEAT",
+            "title": "Heat",
             "text": "You alter the warmth of mundane sources of fire within a 5'-cube. Heat area from none to twice normal.",
             "note": "",
             "damage": {
@@ -761,7 +761,7 @@
             }
           },
           {
-            "title": "ILLUMINATION",
+            "title": "Illumination",
             "text": "You alter the light output of mundane sources of fire within a 5'-cube. Increase or decrease dim light radius by 5'.",
             "note": "",
             "damage": {
@@ -780,7 +780,7 @@
             }
           },
           {
-            "title": "INTENSITY",
+            "title": "Intensity",
             "text": "You alter the intensity of mundane sources of fire within a 5'-cube. Increase or decrease damage by 1 die size.",
             "note": "",
             "damage": {
@@ -799,7 +799,7 @@
             }
           },
           {
-            "title": "SIZE",
+            "title": "Size",
             "text": "You alter the size of mundane sources of fire within a 5'-cube. Increase or decrease size by 1 step (candle < torch < campfire < bonfire).",
             "note": "",
             "damage": {
