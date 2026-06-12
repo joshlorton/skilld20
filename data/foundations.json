@@ -720,7 +720,6 @@
         "type": ""
       },
       "effect": {
-        "base": "COLOR: You alter the color of mundane sources of fire within a 5'-cube. Each fire can be a different color or all can be the same color.",
         "options": [
           {
             "title": "Fuel",
