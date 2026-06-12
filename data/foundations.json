@@ -1440,7 +1440,7 @@
           "variant": "",
           "attribute": "effect",
           "actions": {
-            "count": 1,
+            "count": 0,
             "length": "action"
           },
           "component": "",
@@ -1452,7 +1452,7 @@
           "variant": "",
           "attribute": "effect",
           "actions": {
-            "count": 1,
+            "count": 0,
             "length": "action"
           },
           "component": "",
