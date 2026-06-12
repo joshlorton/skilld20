@@ -333,7 +333,7 @@ body {
 .effect-row-main { display: flex; gap: 4px; align-items: stretch; margin-bottom: 4px; }
 .effect-row-main [data-field="title"] { width: 80px; min-width: 80px; flex-shrink: 0; }
 .effect-row-main [data-field="text"],
-.effect-row-main [data-field="note"] { flex: 1; min-height: 60px; resize: vertical; }
+.effect-row-main [data-field="note"] { flex: 1; min-height: 60px; width: auto; min-width: 0; resize: vertical; }
 .effect-base-wrap  { padding: 8px 0 4px; }
 .effect-extra-row  { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
 .effect-extra-header {

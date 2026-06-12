@@ -1383,6 +1383,8 @@ function buildEffectSection(f) {
 
   // Effect options (first row seeded from legacy f.effect.base if present)
   const container = el('div', { id: 'effect-options-rows' });
+  wrap.appendChild(container);
+
   let initOpts = [];
   if (f.effect?.options?.length) {
     initOpts = f.effect.options.filter(Boolean);
@@ -1391,7 +1393,6 @@ function buildEffectSection(f) {
   }
   if (!initOpts.length) initOpts = [{}];
   initOpts.forEach(opt => container.appendChild(buildEffectRow(opt)));
-  wrap.appendChild(container);
 
   addBtn.addEventListener('click', () => container.appendChild(buildEffectRow({})));
   return wrap;
