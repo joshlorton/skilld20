@@ -5,6 +5,8 @@
       "mana": 4,
       "rarity": "common",
       "difficulty": "average",
+      "image": "",
+      "note": "",
       "traits": [
         "fire",
         "fire"
@@ -21,14 +23,18 @@
         "divine domain: elemental: fire"
       ],
       "cast": {
-        "actions": "1",
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
         "component": "v",
         "trigger": ""
       },
       "range": "30'",
       "area": {
         "size": 0,
-        "shape": ""
+        "shape": "",
+        "type": ""
       },
       "targets": {
         "count": 1,
@@ -50,8 +56,27 @@
         "type": "fire"
       },
       "effect": {
-        "base": "You launch a bolt of fire at your target. It provides 5' of dim illumination along its path of travel.",
-        "options": []
+        "options": [
+          {
+            "title": "",
+            "text": "You launch a bolt of fire at your target. It provides 5' of dim illumination along its path of travel.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
       },
       "skill": {
         "primary": [
@@ -63,15 +88,16 @@
         ],
         "cs": [
           "+30' range",
-          "+1 fire damage",
+          "+1d4 fire damage",
+          "+1d4 piercing damage",
           "+1 persistent fire damage",
           "target dazzled until the start of your next turn"
         ],
         "s": "",
         "f": "",
         "cf": [
-          "Your hands char and harden; you to suffer a -1 penalty to all Dexterity-based checks for 1 day",
-          "You smell of burnt hair; you suffer a -1 penalty on Cha-based checks when interacting with other creatures for 1 week",
+          "Your hands char and harden; you to suffer a -1 penalty to all Dexterity-based checks for 8 hours",
+          "You smell of burnt hair; you suffer a -1 penalty on Charisma-based checks when interacting with other creatures for 8 hours",
           "You gain weakness fire 3 for 1d3 minutes",
           "You gain weakness cold 3 for 2d4 minutes"
         ]
@@ -90,16 +116,28 @@
       },
       "sustain": [
         {
-          "actions": "1",
+          "variant": "",
+          "attribute": "",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
           "component": "S",
           "effect": "sustain illumination",
-          "mana": 0
+          "mana": 0,
+          "results": null
         },
         {
-          "actions": "F",
+          "variant": "",
+          "attribute": "",
+          "actions": {
+            "count": 0,
+            "length": "action"
+          },
           "component": "-",
           "effect": "sustain illumination",
-          "mana": 2
+          "mana": 2,
+          "results": null
         }
       ],
       "dismiss": [],
