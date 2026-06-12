@@ -1209,11 +1209,11 @@
       ],
       "cast": {
         "actions": {
-          "count": 1,
-          "length": "action"
+          "count": null,
+          "length": "reaction"
         },
         "component": "v",
-        "trigger": ""
+        "trigger": "A successful physical or force attack is made against you."
       },
       "range": "",
       "area": {
@@ -1225,32 +1225,13 @@
         "count": 0,
         "type": "self"
       },
-      "duration": "1 minutes",
+      "duration": "until the end of your next turn",
       "effect": {
         "options": [
           {
-            "title": "Shield",
-            "text": "You raise a magical buckler-sized barrier of force that hovers near you. You are treated as having used the Raise a Shield action, granting you an AC bonus of +1, for the effect's duration. You can use the Shield Block reaction with your barrier against physical and force attacks, including those from incorporeal sources. Your barrier has Hardness 5, 10 Hit Points, and doesn't require a hand to use. You cannot create another shield for 10 minutes if yours is destroyed for any reason.",
-            "note": "",
-            "damage": {
-              "dieNumber": 0,
-              "dieSize": 0,
-              "modifier": 0,
-              "type": ""
-            },
-            "attack": {
-              "type": "",
-              "modifier": 0
-            },
-            "save": {
-              "type": "",
-              "modifier": 0
-            }
-          },
-          {
-            "title": "Emergency",
-            "text": "You raise a magical buckler-sized barrier of force that hovers near you. You are treated as having used the Raise a Shield  action, granting you an AC bonus of +1, for the effect's duration. As part of casting, you use the Shield Block reaction with your barrier against physical and force attacks, including those from incorporeal sources. Your barrier has Hardness 5, 10 Hit Points, and doesn't require a hand to use. You cannot create another shield for 10 minutes if yours is destroyed for any reason.",
-            "note": "Cast: Reaction to being attacked. Duration: until the end of your next turn.",
+            "title": "",
+            "text": "You raise a magical buckler-sized barrier of force that hovers near you. You are treated as having used the Raise a Shield  action, granting you an AC bonus of +1, for the effect's duration. As part of casting, you use the Shield Block reaction with your barrier against physical and force attacks, including those from incorporeal sources. Your barrier has Hardness 5, 10 Hit Points, and doesn't require a hand to use.",
+            "note": "You cannot create another force barrier for 10 minutes if yours is destroyed for any reason, including dismissal options that destroy it.",
             "damage": {
               "dieNumber": 0,
               "dieSize": 0,
