@@ -986,6 +986,8 @@
       "mana": 4,
       "rarity": "common",
       "difficulty": "average",
+      "image": "",
+      "note": "",
       "traits": [
         "detection"
       ],
@@ -1011,32 +1013,39 @@
       "range": "",
       "area": {
         "size": 30,
-        "shape": "emanation"
+        "shape": "",
+        "type": ""
       },
       "targets": {
         "count": 0,
         "type": "a general category OR specific type object, substance, or active magical effect"
       },
-      "attack": {
-        "type": "",
-        "modifier": 0
-      },
-      "save": {
-        "type": "",
-        "modifier": 0
-      },
       "duration": "until the end of your next turn",
-      "damage": {
-        "dieNumber": 0,
-        "dieSize": 0,
-        "modifier": 0,
-        "type": ""
-      },
       "effect": {
-        "base": "Detect: Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area.",
         "options": [
           {
-            "text": "Sense: Declare what you are attempting to find. You gain a vague directional sense toward the nearest qualifying target. No visual aura.",
+            "title": "Detect",
+            "text": "Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          },
+          {
+            "title": "Sense",
+            "text": "Declare what you are attempting to find. You gain a vague directional sense toward the nearest qualifying target. No visual aura.",
+            "note": "",
             "damage": {
               "dieNumber": 0,
               "dieSize": 0,
@@ -1053,6 +1062,20 @@
             }
           }
         ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
       },
       "skill": {
         "primary": [],
@@ -1095,7 +1118,8 @@
           },
           "component": "-",
           "effect": "sustain duration until the end of your next turn",
-          "mana": 4
+          "mana": 4,
+          "results": null
         },
         {
           "variant": "",
@@ -1106,7 +1130,8 @@
           },
           "component": "S",
           "effect": "sustain duration until the end of your next turn",
-          "mana": 2
+          "mana": 2,
+          "results": null
         },
         {
           "variant": "",
@@ -1117,7 +1142,8 @@
           },
           "component": "S",
           "effect": "sustain duration until the end of your next turn",
-          "mana": 0
+          "mana": 0,
+          "results": null
         }
       ],
       "dismiss": [],
@@ -1131,7 +1157,8 @@
           },
           "component": "-",
           "effect": "a general category OR specific type of creature",
-          "mana": 8
+          "mana": 8,
+          "results": null
         },
         {
           "variant": "Cone",
@@ -1142,7 +1169,8 @@
           },
           "component": "-",
           "effect": "60' cone instead of 30' sphere; caster must face a direction; 1 action per direction",
-          "mana": 0
+          "mana": 0,
+          "results": null
         },
         {
           "variant": "Detect",
@@ -1153,7 +1181,8 @@
           },
           "component": "-",
           "effect": "double size of area or effect",
-          "mana": 8
+          "mana": 8,
+          "results": null
         }
       ],
       "variants": [],
