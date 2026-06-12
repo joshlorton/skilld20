@@ -112,7 +112,10 @@
       "mana": 6,
       "rarity": "common",
       "difficulty": "average",
+      "image": "assets/img/foundations/project_fire.png",
+      "note": "",
       "traits": [
+        "fire",
         "fire"
       ],
       "traditions": [
@@ -129,14 +132,18 @@
         "pact: genie: fire"
       ],
       "cast": {
-        "actions": "1",
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
         "component": "v",
         "trigger": ""
       },
       "range": "0'",
       "area": {
         "size": 20,
-        "shape": "line"
+        "shape": "line",
+        "type": ""
       },
       "targets": {
         "count": 0,
@@ -158,8 +165,27 @@
         "type": "fire"
       },
       "effect": {
-        "base": "Searing flames shoot from your outstretched hands.",
-        "options": []
+        "options": [
+          {
+            "title": "",
+            "text": "Searing flames shoot from your outstretched hands.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
       },
       "skill": {
         "primary": [
@@ -189,10 +215,16 @@
       },
       "sustain": [
         {
-          "actions": "1",
+          "variant": "",
+          "attribute": "",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
           "component": "S",
           "effect": "Sustain until the start of your next turn. The effect ends if you move more than 5' in a single action. This sustain action must be taken immediately after casting.",
-          "mana": 3
+          "mana": 3,
+          "results": null
         }
       ],
       "dismiss": [],
@@ -200,26 +232,38 @@
         {
           "variant": "-",
           "attribute": "area size",
-          "actions": "",
+          "actions": {
+            "count": 0,
+            "length": "action"
+          },
           "component": "-",
           "effect": "increase Line length by 10'",
-          "mana": 4
+          "mana": 4,
+          "results": null
         },
         {
           "variant": "Cone",
           "attribute": "area shape",
-          "actions": "",
+          "actions": {
+            "count": 0,
+            "length": "action"
+          },
           "component": "-",
           "effect": "change AoE to a 10' cone",
-          "mana": 0
+          "mana": 0,
+          "results": null
         },
         {
           "variant": "Cone",
           "attribute": "area size",
-          "actions": "",
+          "actions": {
+            "count": 0,
+            "length": "action"
+          },
           "component": "-",
           "effect": "increase Cone length by 5'",
-          "mana": 4
+          "mana": 4,
+          "results": null
         }
       ],
       "variants": [],
