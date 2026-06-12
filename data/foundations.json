@@ -1212,7 +1212,7 @@
           "count": null,
           "length": "reaction"
         },
-        "component": "v",
+        "component": "s",
         "trigger": "A successful physical or force attack is made against you."
       },
       "range": "",
@@ -1439,6 +1439,18 @@
           "component": "",
           "effect": "Increase barrier's hit points by 2.",
           "mana": 3,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "cast",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "Cast on your turn as a standard action instead of a reaction. Increase duration to 1 minute.",
+          "mana": 0,
           "results": null
         }
       ],
