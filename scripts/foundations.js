@@ -385,15 +385,31 @@ function renderSpecs(f) {
    ============================================================ */
 
 function renderEffect(f) {
-  if (!f.effect?.base) return null;
+  // Build unified opts list: new format (options) or legacy (base)
+  let allOpts = [];
+  if (f.effect?.options?.length) {
+    allOpts = f.effect.options.filter(Boolean);
+  } else if (f.effect?.base) {
+    allOpts = [{ text: f.effect.base }];
+  }
+  const hasContent = allOpts.length || f.note || f.attack?.type || f.save?.type || f.damage?.dieNumber;
+  if (!hasContent) return null;
+
   const section = el('div', { class: 'base-effect' });
   section.appendChild(el('div', { class: 'result-col-heading' }, 'Effect'));
   const content = el('div', { class: 'result-col-content' });
 
-  // Base entry
-  content.appendChild(el('p', { class: 'effect-entry' }, f.effect.base));
+  // Foundation-level attack / save / damage
+  if (f.attack?.type)
+    content.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
+  if (f.save?.type)
+    content.appendChild(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
+  if (f.damage?.dieNumber) {
+    const d = f.damage; const mod = d.modifier ?? d.bonus;
+    content.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
+  }
 
-  // Note (optional; displays with CF styling and "NOTE: " prefix)
+  // Foundation-level note
   if (f.note?.trim()) {
     const noteDiv = el('div', { class: 'effect-note row-cf' });
     noteDiv.appendChild(el('b', { class: 'result-label' }, 'NOTE: '));
@@ -401,51 +417,42 @@ function renderEffect(f) {
     content.appendChild(noteDiv);
   }
 
-  // Attack, Save, Damage
-  if (f.attack?.type)
-    content.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
-  if (f.save?.type)
-    content.appendChild(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
-  if (f.damage?.dieNumber) {
-    const d = f.damage;
-    const mod = d.modifier ?? d.bonus;
-    content.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
-  }
+  // Effect options -- all wrapped in effect-option-block
+  const multiOpts = allOpts.length > 1;
+  allOpts.forEach((opt, oi) => {
+    if (typeof opt === 'string') opt = { text: opt };
+    const isOnly  = !multiOpts;
+    const hasTitle = !!opt.title;
+    const rowCls  = !isOnly ? (oi % 2 === 0 ? ' row-odd' : ' row-even') : '';
+    const block   = el('div', { class: `effect-option-block${rowCls}` });
 
-  // Additional effect entries
-  const opts = (f.effect.options || []).filter(Boolean);
-  const multiOpts = opts.length > 1;
-  opts.forEach((opt, oi) => {
-    const rowCls = multiOpts ? ` ${oi % 2 === 0 ? 'row-odd' : 'row-even'}` : '';
-    if (typeof opt === 'string') {
-      content.appendChild(el('p', { class: `effect-entry${rowCls}` }, opt));
-    } else if (opt.text !== undefined || opt.title !== undefined) {
-      const block = el('div', { class: `effect-option-block${rowCls}` });
-      if (opt.title) block.appendChild(el('div', { class: 'effect-opt-title ht-vrnt' }, opt.title));
-      if (opt.text)  block.appendChild(el('p',   { class: 'effect-entry' }, opt.text));
-      if (opt.note?.trim()) {
-        const nd = el('div', { class: 'effect-note row-cf' });
-        nd.appendChild(el('b', { class: 'result-label' }, 'NOTE: '));
-        nd.appendChild(document.createTextNode(opt.note.trim()));
-        block.appendChild(nd);
-      }
-      if (opt.damage?.dieNumber) {
-        const d = opt.damage;
-        const mod = d.modifier ?? d.bonus;
-        block.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
-      }
-      if (opt.attack?.type)
-        block.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
-      if (opt.save?.type)
-        block.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
-      content.appendChild(block);
-    } else if (opt.option !== undefined || opt.effect !== undefined) {
-      // Legacy {option, effect} format
-      const p = el('p', { class: `effect-entry${rowCls}` });
-      if (opt.option) p.appendChild(el('b', {}, `${opt.option}: `));
-      if (opt.effect) p.appendChild(document.createTextNode(opt.effect));
-      content.appendChild(p);
+    if (hasTitle) block.appendChild(el('div', { class: 'effect-opt-title ht-vrnt' }, opt.title));
+
+    const inner = el('div', { class: 'effect-opt-content' });
+    if (opt.text) inner.appendChild(el('p', { class: 'effect-entry' }, opt.text));
+    if (opt.note?.trim()) {
+      const nd = el('div', { class: 'effect-note row-cf' });
+      nd.appendChild(el('b', { class: 'result-label' }, 'NOTE: '));
+      nd.appendChild(document.createTextNode(opt.note.trim()));
+      inner.appendChild(nd);
     }
+    if (opt.damage?.dieNumber) {
+      const d = opt.damage; const mod = d.modifier ?? d.bonus;
+      inner.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
+    }
+    if (opt.attack?.type)
+      inner.appendChild(specRow('Attack', [opt.attack.type, opt.attack.modifier].filter(Boolean).join(' ')));
+    if (opt.save?.type)
+      inner.appendChild(specRow('Saving Throw', [opt.save.type, opt.save.modifier].filter(Boolean).join(' ')));
+    // Legacy {option, effect} format
+    if (!opt.text && opt.effect) {
+      const p = el('p', { class: 'effect-entry' });
+      if (opt.option) p.appendChild(el('b', {}, `${opt.option}: `));
+      p.appendChild(document.createTextNode(opt.effect));
+      inner.appendChild(p);
+    }
+    block.appendChild(inner);
+    content.appendChild(block);
   });
 
   section.appendChild(content);
@@ -1303,30 +1310,29 @@ function buildEffectRow(data) {
   data = data || {};
   const wrap = el('div', { class: 'effect-extra-row' });
 
-  const header = el('div', { class: 'effect-extra-header' });
-  header.appendChild(el('span', { class: 'effect-extra-label' }, 'Additional Effect'));
+  // Single row: Effect Name (80px) | Description (flex) | Notes (flex) | [×]
+  const mainRow = el('div', { class: 'effect-row-main' });
+
+  const nameIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'Effect Name', 'data-field': 'title' });
+  nameIn.value = data.title || '';
+  mainRow.appendChild(nameIn);
+
+  const descTa = el('textarea', { class: 'form-input', placeholder: 'Effect Description',
+    'data-field': 'text' });
+  descTa.value = data.text || data.effect || (typeof data === 'string' ? data : '') || '';
+  mainRow.appendChild(descTa);
+
+  const noteTa = el('textarea', { class: 'form-input', placeholder: 'Effect Notes',
+    'data-field': 'note' });
+  noteTa.value = data.note || '';
+  mainRow.appendChild(noteTa);
+
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeBtn.addEventListener('click', () => wrap.remove());
-  header.appendChild(removeBtn);
-  wrap.appendChild(header);
+  mainRow.appendChild(removeBtn);
 
-  // Effect Title (optional; styled like variant labels when set)
-  const titleIn = el('input', { class: 'form-input', type: 'text',
-    placeholder: 'Effect Title (optional)', 'data-field': 'title' });
-  titleIn.value = data.title || '';
-  wrap.appendChild(titleIn);
-
-  // Effect Description
-  wrap.appendChild(el('label', { class: 'form-label-sm' }, 'Effect Description'));
-  const ta = el('textarea', { class: 'form-input', rows: 2, 'data-field': 'text' });
-  ta.value = data.text || data.effect || (typeof data === 'string' ? data : '') || '';
-  wrap.appendChild(ta);
-
-  // Effect Notes
-  wrap.appendChild(el('label', { class: 'form-label-sm' }, 'Effect Notes'));
-  const noteTa = el('textarea', { class: 'form-input', rows: 1, 'data-field': 'note' });
-  noteTa.value = data.note || '';
-  wrap.appendChild(noteTa);
+  wrap.appendChild(mainRow);
 
   const dmgRow = el('div', { class: 'form-row' });
   dmgRow.appendChild(dfNum('Die Count', 'dmg-count', data.damage?.dieNumber, 0));
@@ -1354,37 +1360,37 @@ function buildEffectSection(f) {
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 
-  // Base fields
-  const baseWrap = el('div', { class: 'effect-base-wrap' });
-  const baseTa = el('textarea', { id: 'ed-effect-base', class: 'form-input', rows: 3 });
-  baseTa.value = f.effect?.base || '';
-  baseWrap.appendChild(baseTa);
-
-  // Note field (between effect and damage)
+  // Foundation-level note
   const noteTa = el('textarea', { id: 'ed-note', class: 'form-input', rows: 2,
     placeholder: 'Optional note (displayed with CF styling below effect)' });
   noteTa.value = f.note || '';
-  baseWrap.appendChild(noteTa);
+  wrap.appendChild(noteTa);
 
+  // Foundation-level damage / attack / save
   const dmgRow = el('div', { class: 'form-row' });
   dmgRow.appendChild(edNum(  'Damage Die Count', 'ed-dmg-count',    f.damage?.dieNumber,               0));
   dmgRow.appendChild(edSelect('Damage Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize));
   dmgRow.appendChild(edNum(  'Damage Modifier',  'ed-dmg-modifier', f.damage?.modifier ?? f.damage?.bonus, null));
   dmgRow.appendChild(edSelect('Damage Type',     'ed-dmg-type',     f.damage?.type,      OPTS.damageType));
-  baseWrap.appendChild(dmgRow);
+  wrap.appendChild(dmgRow);
 
   const asRow = el('div', { class: 'form-row' });
   asRow.appendChild(edSelect('Attack Type',    'ed-atk-type',      f.attack?.type,     OPTS.attackType));
   asRow.appendChild(edNum(  'Attack Modifier', 'ed-atk-modifier',  f.attack?.modifier, null));
   asRow.appendChild(edSelect('Save Type',      'ed-save-type',     f.save?.type,       OPTS.saveType));
   asRow.appendChild(edNum(  'Save Modifier',   'ed-save-modifier', f.save?.modifier,   null));
-  baseWrap.appendChild(asRow);
+  wrap.appendChild(asRow);
 
-  wrap.appendChild(baseWrap);
-
-  // Additional effects
+  // Effect options (first row seeded from legacy f.effect.base if present)
   const container = el('div', { id: 'effect-options-rows' });
-  (f.effect?.options || []).filter(Boolean).forEach(opt => container.appendChild(buildEffectRow(opt)));
+  let initOpts = [];
+  if (f.effect?.options?.length) {
+    initOpts = f.effect.options.filter(Boolean);
+  } else if (f.effect?.base) {
+    initOpts = [{ text: f.effect.base, title: '', note: '' }];
+  }
+  if (!initOpts.length) initOpts = [{}];
+  initOpts.forEach(opt => container.appendChild(buildEffectRow(opt)));
   wrap.appendChild(container);
 
   addBtn.addEventListener('click', () => container.appendChild(buildEffectRow({})));
@@ -1731,7 +1737,6 @@ function collectEditor() {
       type      : v('ed-dmg-type')
     },
     effect: {
-      base    : v('ed-effect-base'),
       options : collectEffectOptions()
     },
     skill: {
