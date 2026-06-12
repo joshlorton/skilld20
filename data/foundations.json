@@ -805,24 +805,28 @@
         "count": 0,
         "type": "all fires"
       },
-      "attack": {
-        "type": "",
-        "modifier": 0
-      },
-      "save": {
-        "type": "",
-        "modifier": 0
-      },
       "duration": "until dismissed",
-      "damage": {
-        "dieNumber": 0,
-        "dieSize": 0,
-        "modifier": 0,
-        "type": ""
-      },
       "effect": {
-        "base": "COLOR: You alter the color of mundane sources of fire within a 5'-cube. Each fire can be a different color or all can be the same color.",
         "options": [
+          {
+            "title": "Color",
+            "text": "You alter the color of mundane sources of fire within a 5'-cube. Each fire can be a different color or all can be the same color.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          },
           {
             "title": "Fuel",
             "text": "You alter the fuel consumption of mundane sources of fire within a 5'-cube. Duration from half to twice as long as normal.",
@@ -919,6 +923,20 @@
             }
           }
         ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
       },
       "skill": {
         "primary": [],
