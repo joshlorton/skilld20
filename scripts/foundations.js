@@ -385,37 +385,18 @@ function renderSpecs(f) {
    ============================================================ */
 
 function renderEffect(f) {
-  // Build unified opts list: new format (options) or legacy (base)
-  let allOpts = [];
-  if (f.effect?.options?.length) {
-    allOpts = f.effect.options.filter(Boolean);
-  } else if (f.effect?.base) {
-    allOpts = [{ text: f.effect.base }];
+  // Build unified opts list: fold legacy base + foundation-level fields into first opt
+  const allOpts = [];
+  if (f.effect?.base) {
+    allOpts.push({ text: f.effect.base, note: f.note||'',
+                   damage: f.damage, attack: f.attack, save: f.save });
   }
-  const hasContent = allOpts.length || f.note || f.attack?.type || f.save?.type || f.damage?.dieNumber;
-  if (!hasContent) return null;
+  (f.effect?.options || []).filter(Boolean).forEach(opt => allOpts.push(opt));
+  if (!allOpts.length && !f.note && !f.attack?.type && !f.save?.type && !f.damage?.dieNumber) return null;
 
   const section = el('div', { class: 'base-effect' });
   section.appendChild(el('div', { class: 'result-col-heading' }, 'Effect'));
   const content = el('div', { class: 'result-col-content' });
-
-  // Foundation-level attack / save / damage
-  if (f.attack?.type)
-    content.appendChild(specRow('Attack', [f.attack.type, f.attack.modifier].filter(Boolean).join(' ')));
-  if (f.save?.type)
-    content.appendChild(specRow('Saving Throw', [f.save.type, f.save.modifier].filter(Boolean).join(' ')));
-  if (f.damage?.dieNumber) {
-    const d = f.damage; const mod = d.modifier ?? d.bonus;
-    content.appendChild(specRow('Damage', `${d.dieNumber}d${d.dieSize}${mod ? `+${mod}` : ''} ${d.type || ''}`.trim()));
-  }
-
-  // Foundation-level note
-  if (f.note?.trim()) {
-    const noteDiv = el('div', { class: 'effect-note row-cf' });
-    noteDiv.appendChild(el('b', { class: 'result-label' }, 'NOTE: '));
-    noteDiv.appendChild(document.createTextNode(f.note.trim()));
-    content.appendChild(noteDiv);
-  }
 
   // Effect options -- all wrapped in effect-option-block
   const multiOpts = allOpts.length > 1;
@@ -1318,12 +1299,12 @@ function buildEffectRow(data) {
   nameIn.value = data.title || '';
   mainRow.appendChild(nameIn);
 
-  const descTa = el('textarea', { class: 'form-input', placeholder: 'Effect Description',
+  const descTa = el('textarea', { class: 'form-input effect-desc', placeholder: 'Effect Description',
     'data-field': 'text' });
   descTa.value = data.text || data.effect || (typeof data === 'string' ? data : '') || '';
   mainRow.appendChild(descTa);
 
-  const noteTa = el('textarea', { class: 'form-input', placeholder: 'Effect Notes',
+  const noteTa = el('textarea', { class: 'form-input effect-note-ta', placeholder: 'Effect Notes',
     'data-field': 'note' });
   noteTa.value = data.note || '';
   mainRow.appendChild(noteTa);
@@ -1335,10 +1316,10 @@ function buildEffectRow(data) {
   wrap.appendChild(mainRow);
 
   const dmgRow = el('div', { class: 'form-row' });
-  dmgRow.appendChild(dfNum('Die Count', 'dmg-count', data.damage?.dieNumber, 0));
-  dmgRow.appendChild(dfSel('Die Size',  'dmg-size',  data.damage?.dieSize,   OPTS.dieSize));
-  dmgRow.appendChild(dfNum('Modifier',  'dmg-mod',   data.damage?.modifier,  null));
-  dmgRow.appendChild(dfSel('Type',      'dmg-type',  data.damage?.type,      OPTS.damageType));
+  dmgRow.appendChild(dfNum('Damage Die Count', 'dmg-count', data.damage?.dieNumber, 0));
+  dmgRow.appendChild(dfSel('Damage Die Size',  'dmg-size',  data.damage?.dieSize,   OPTS.dieSize));
+  dmgRow.appendChild(dfNum('Damage Modifier',  'dmg-mod',   data.damage?.modifier,  null));
+  dmgRow.appendChild(dfSel('Damage Type',      'dmg-type',  data.damage?.type,      OPTS.damageType));
   wrap.appendChild(dmgRow);
 
   const asRow = el('div', { class: 'form-row' });
@@ -1360,38 +1341,23 @@ function buildEffectSection(f) {
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 
-  // Foundation-level note
-  const noteTa = el('textarea', { id: 'ed-note', class: 'form-input', rows: 2,
-    placeholder: 'Optional note (displayed with CF styling below effect)' });
-  noteTa.value = f.note || '';
-  wrap.appendChild(noteTa);
-
-  // Foundation-level damage / attack / save
-  const dmgRow = el('div', { class: 'form-row' });
-  dmgRow.appendChild(edNum(  'Damage Die Count', 'ed-dmg-count',    f.damage?.dieNumber,               0));
-  dmgRow.appendChild(edSelect('Damage Die Size', 'ed-dmg-size',     f.damage?.dieSize,   OPTS.dieSize));
-  dmgRow.appendChild(edNum(  'Damage Modifier',  'ed-dmg-modifier', f.damage?.modifier ?? f.damage?.bonus, null));
-  dmgRow.appendChild(edSelect('Damage Type',     'ed-dmg-type',     f.damage?.type,      OPTS.damageType));
-  wrap.appendChild(dmgRow);
-
-  const asRow = el('div', { class: 'form-row' });
-  asRow.appendChild(edSelect('Attack Type',    'ed-atk-type',      f.attack?.type,     OPTS.attackType));
-  asRow.appendChild(edNum(  'Attack Modifier', 'ed-atk-modifier',  f.attack?.modifier, null));
-  asRow.appendChild(edSelect('Save Type',      'ed-save-type',     f.save?.type,       OPTS.saveType));
-  asRow.appendChild(edNum(  'Save Modifier',   'ed-save-modifier', f.save?.modifier,   null));
-  wrap.appendChild(asRow);
-
-  // Effect options (first row seeded from legacy f.effect.base if present)
   const container = el('div', { id: 'effect-options-rows' });
   wrap.appendChild(container);
 
-  let initOpts = [];
-  if (f.effect?.options?.length) {
-    initOpts = f.effect.options.filter(Boolean);
-  } else if (f.effect?.base) {
-    initOpts = [{ text: f.effect.base, title: '', note: '' }];
+  // Migration: fold legacy foundation-level note/damage/attack/save into first option
+  const initOpts = [];
+  if (f.effect?.base) {
+    initOpts.push({
+      text:   f.effect.base,
+      title:  '',
+      note:   f.note   || '',
+      damage: f.damage || {},
+      attack: f.attack || {},
+      save:   f.save   || {}
+    });
   }
-  if (!initOpts.length) initOpts = [{}];
+  (f.effect?.options || []).filter(Boolean).forEach(opt => initOpts.push(opt));
+  if (!initOpts.length) initOpts.push({});
   initOpts.forEach(opt => container.appendChild(buildEffectRow(opt)));
 
   addBtn.addEventListener('click', () => container.appendChild(buildEffectRow({})));
@@ -1713,7 +1679,7 @@ function collectEditor() {
     rarity     : v('ed-rarity'),
     difficulty : v('ed-difficulty'),
     image      : v('ed-image-path'),
-    note       : v('ed-note'),
+    note       : '',
     traits     : checkboxArr('ed-traits'),
     traditions : checkboxArr('ed-traditions'),
     access     : checkboxArr('ed-access'),
@@ -1728,18 +1694,15 @@ function collectEditor() {
     range   : rangeNum !== '' ? `${rangeNum}'` : '',
     area    : { size: num('ed-area-size'), shape: v('ed-area-shape'), type: v('ed-area-type') },
     targets : { count: num('ed-targets-count'), type: v('ed-targets-type') },
-    attack  : { type: v('ed-atk-type'),  modifier: num('ed-atk-modifier')  },
-    save    : { type: v('ed-save-type'), modifier: num('ed-save-modifier') },
     duration : durCustom || (durCount && durLength ? `${durCount} ${durLength}` : durLength),
-    damage: {
-      dieNumber : num('ed-dmg-count'),
-      dieSize   : num('ed-dmg-size'),
-      modifier  : num('ed-dmg-modifier'),
-      type      : v('ed-dmg-type')
-    },
-    effect: {
-      options : collectEffectOptions()
-    },
+    ...(()=>{ const _o=collectEffectOptions(); const _f=_o[0]||{}; return {
+      effect : { options: _o },
+      note   : '',
+      damage : { dieNumber:_f.damage?.dieNumber||0, dieSize:_f.damage?.dieSize||0,
+                 modifier:_f.damage?.modifier||0, type:_f.damage?.type||'' },
+      attack : { type:_f.attack?.type||'', modifier:_f.attack?.modifier||0 },
+      save   : { type:_f.save?.type||'',   modifier:_f.save?.modifier||0   }
+    }; })(),
     skill: {
       primary   : arr('ed-sk-primary'),
       secondary : arr('ed-sk-secondary'),
