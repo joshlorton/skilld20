@@ -186,26 +186,12 @@
         "count": 0,
         "type": ""
       },
-      "attack": {
-        "type": "",
-        "modifier": 0
-      },
-      "save": {
-        "type": "agility",
-        "modifier": 0
-      },
       "duration": "instantaneous",
-      "damage": {
-        "dieNumber": 1,
-        "dieSize": 4,
-        "modifier": 0,
-        "type": "fire"
-      },
       "effect": {
         "options": [
           {
             "title": "",
-            "text": "Searing flames shoot from your outstretched hands.",
+            "text": "You project a line of searing flames from your outstretched hands.",
             "note": "",
             "damage": {
               "dieNumber": 0,
@@ -223,6 +209,20 @@
             }
           }
         ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
       },
       "skill": {
         "primary": [
