@@ -103,7 +103,7 @@
         ]
       },
       "attack_results": {
-        "cs": "Double damage + 1d4 persistent fire damage.",
+        "cs": "Double damage\n1d4 persistent fire damage",
         "s": "",
         "f": "",
         "cf": "Missed. No effect."
