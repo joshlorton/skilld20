@@ -1327,7 +1327,7 @@
             "count": 1,
             "length": "action"
           },
-          "component": "V or S",
+          "component": "V | S",
           "effect": "Repair 1 damage to barrier.",
           "mana": 1,
           "results": null
@@ -1339,7 +1339,7 @@
             "count": 2,
             "length": "action"
           },
-          "component": "V or S",
+          "component": "V | S",
           "effect": "Repair 4 damage to barrier.",
           "mana": 2,
           "results": null
@@ -1375,7 +1375,7 @@
             "count": null,
             "length": "reaction"
           },
-          "component": "V or S",
+          "component": "V | S",
           "effect": "Use your Raise a Shield reaction to defend an adjacent ally.",
           "mana": 6,
           "results": null
@@ -1389,7 +1389,7 @@
             "count": 1,
             "length": "action"
           },
-          "component": "V or S",
+          "component": "V | S",
           "effect": "Dismiss your Force Barrier.",
           "mana": 0,
           "results": null
@@ -1418,10 +1418,10 @@
           "variant": "",
           "attribute": "duration",
           "actions": {
-            "count": 1,
+            "count": 3,
             "length": "action"
           },
-          "component": "",
+          "component": "V S",
           "effect": "Destroy your shield and create a 10'-emanation of force that attempts to Shove.",
           "mana": 9,
           "results": {
