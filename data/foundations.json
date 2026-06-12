@@ -1445,7 +1445,19 @@
           },
           "component": "",
           "effect": "Increase barrier's hardness by 1.",
-          "mana": 4,
+          "mana": 3,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "Increase barrier's hit points by 2.",
+          "mana": 3,
           "results": null
         }
       ],
