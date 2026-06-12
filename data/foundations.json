@@ -1187,6 +1187,270 @@
       ],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Force Barrier",
+      "mana": 6,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "force"
+      ],
+      "traditions": [
+        "arcane",
+        "bardic",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "bardic tune: protection"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": "self"
+      },
+      "duration": "1 minutes",
+      "effect": {
+        "options": [
+          {
+            "title": "Shield",
+            "text": "You raise a magical buckler-sized barrier of force that hovers near you. You are treated as having used the Raise a Shield action, granting you an AC bonus of +1, for the effect's duration. You can use the Shield Block reaction with your barrier against physical and force attacks, including those from incorporeal sources. Your barrier has Hardness 5, 10 Hit Points, and doesn't require a hand to use. You cannot create another shield for 10 minutes if yours is destroyed for any reason.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          },
+          {
+            "title": "Emergency",
+            "text": "You raise a magical buckler-sized barrier of force that hovers near you. You are treated as having used the Raise a Shield  action, granting you an AC bonus of +1, for the effect's duration. As part of casting, you use the Shield Block reaction with your barrier against physical and force attacks, including those from incorporeal sources. Your barrier has Hardness 5, 10 Hit Points, and doesn't require a hand to use. You cannot create another shield for 10 minutes if yours is destroyed for any reason.",
+            "note": "Cast: Reaction to being attacked. Duration: until the end of your next turn.",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [
+          "Armor (Shield)"
+        ],
+        "cs": [
+          "Increase hardness by 2",
+          "Increase HP by 4",
+          "Increase size by 1 step (buckler < shield < tower < fortress < 5' wall)"
+        ],
+        "s": "",
+        "f": "",
+        "cf": [
+          "Your barriers only block physical or force attacks, not both, for the next 8 hours. Roll a d6 at the time of casting to determine which: 1-3 physical, 4-6 force",
+          "You suffer 1d4 force damage; all squares adjacent to you suffer 1 force damage",
+          "You gain weakness force 3 for 1d3 minutes",
+          "You gain weakness mental 3 for 1d4+1 minutes",
+          "You are stunned 1",
+          "You are grappled for 1d4 rounds, Str DC 16",
+          "You are knocked prone, Str DC 18",
+          "You are pushed back 5', Str DC 20",
+          "You are immobilized until the start of your next turn, Str DC 24",
+          "You are unable to cast Force Barrier for 1d4 minutes"
+        ]
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "V or S",
+          "effect": "Repair 1 damage to barrier.",
+          "mana": 1,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "V or S",
+          "effect": "Repair 4 damage to barrier.",
+          "mana": 2,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 3,
+            "length": "action"
+          },
+          "component": "V S",
+          "effect": "Repair 9 damage to barrier.",
+          "mana": 3,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "V S",
+          "effect": "Renew barrier to its original duration.",
+          "mana": 4,
+          "results": null
+        },
+        {
+          "variant": "Shield",
+          "attribute": "effect",
+          "actions": {
+            "count": null,
+            "length": "reaction"
+          },
+          "component": "V or S",
+          "effect": "Use your Raise a Shield reaction to defend an adjacent ally.",
+          "mana": 6,
+          "results": null
+        }
+      ],
+      "dismiss": [
+        {
+          "variant": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "V or S",
+          "effect": "Dismiss your Force Barrier.",
+          "mana": 0,
+          "results": null
+        },
+        {
+          "variant": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 3,
+            "length": "action"
+          },
+          "component": "V S",
+          "effect": "Destroy your shield and create a 5'-emanation of force that attempts to Shove.",
+          "mana": 3,
+          "results": {
+            "type": "save",
+            "saveType": "strength",
+            "attackType": "",
+            "cs": "You push creatures and objects within the area up to 10' away from you.",
+            "s": "You push creatures and objects within the area up to 5' away from you.",
+            "f": "No effect.",
+            "cf": "You lose your balance, fall, and land prone."
+          }
+        },
+        {
+          "variant": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "Destroy your shield and create a 10'-emanation of force that attempts to Shove.",
+          "mana": 9,
+          "results": {
+            "type": "save",
+            "saveType": "strength",
+            "attackType": "",
+            "cs": "You push creatures and objects within the area up to 10' away from you.",
+            "s": "You push creatures and objects within the area up to 5' away from you.",
+            "f": "No effect.",
+            "cf": "You lose your balance, fall, and land prone."
+          }
+        }
+      ],
+      "heightened": [
+        {
+          "variant": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "Increase barrier's hardness by 1.",
+          "mana": 4,
+          "results": null
+        }
+      ],
+      "variants": [],
+      "components": []
     }
   ]
 }
