@@ -765,7 +765,7 @@
       "mana": 2,
       "rarity": "uncommon",
       "difficulty": "average",
-      "image": "assets/img/foundations/affect_fire_ar2-1.png",
+      "image": "assets/img/foundations/affect_fire.png",
       "note": "",
       "traits": [
         "fire",
