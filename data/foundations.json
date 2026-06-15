@@ -1193,7 +1193,7 @@
       "mana": 6,
       "rarity": "common",
       "difficulty": "average",
-      "image": "",
+      "image": "assets/img/foundations/force_barrier.png",
       "note": "",
       "traits": [
         "force"
