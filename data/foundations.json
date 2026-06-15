@@ -311,7 +311,7 @@
       "mana": 7,
       "rarity": "uncommon",
       "difficulty": "hard",
-      "image": "assets/img/foundations/animate_dead_ar2-1.png",
+      "image": "assets/img/foundations/animate_dead.png",
       "note": "",
       "traits": [
         "animation",
@@ -345,21 +345,7 @@
         "count": 1,
         "type": "corpse"
       },
-      "attack": {
-        "type": "",
-        "modifier": 0
-      },
-      "save": {
-        "type": "",
-        "modifier": 0
-      },
       "duration": "permanent",
-      "damage": {
-        "dieNumber": 0,
-        "dieSize": 0,
-        "modifier": 0,
-        "type": ""
-      },
       "effect": {
         "options": [
           {
@@ -382,6 +368,20 @@
             }
           }
         ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
       },
       "skill": {
         "primary": [],
