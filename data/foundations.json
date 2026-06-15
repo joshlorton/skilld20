@@ -986,7 +986,7 @@
       "mana": 4,
       "rarity": "common",
       "difficulty": "average",
-      "image": "",
+      "image": "assets/img/foundations/detect.png",
       "note": "",
       "traits": [
         "detection"
