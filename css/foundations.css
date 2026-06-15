@@ -334,19 +334,18 @@ body {
 .effect-row-main input[type="text"]   { width: 80px; min-width: 80px; flex-shrink: 0; }
 .effect-row-main .effect-desc,
 .effect-row-main .effect-note-ta { flex: 1; min-height: 60px; width: 0; min-width: 0; resize: vertical; }
+.effect-row-main .effect-row-remove { align-self: flex-start; }
 .effect-base-wrap  { padding: 8px 0 4px; }
+.effect-extra-row .form-row,
+.row-results-section .form-row { margin-bottom: 0; }
 .effect-extra-row  { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
-.effect-extra-header {
+.option-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 6px;
 }
-.effect-extra-label {
-  font-size: 10px; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.5px;
-  font-family: var(--font-ui);
-}
+.option-header .effect-row-remove { flex-shrink: 0; }
 .effect-row-remove {
   background: transparent; border: none;
   color: #f07070; cursor: pointer;
@@ -401,6 +400,7 @@ body {
   grid-template-columns: 110px 100px 50px 84px 60px 1fr 46px;
   gap: 4px;
   padding: 0 0 2px;
+  flex: 1;
 }
 .ht-row {
   display: grid;
@@ -527,12 +527,13 @@ details[open] > summary.section-heading::before {
 .sv-results-entry.row-cf .sv-results-label { color: #c04040; }
 
 /* Components editor rows */
-.comp-editor-row { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
+.comp-editor-row { border: 1px solid var(--border); padding: 4px; margin-bottom: 6px; }
 .comp-editor-labels {
   display: grid;
-  grid-template-columns: 70px 90px 50px 84px 52px 90px 70px;
+  grid-template-columns: 70px 90px 50px 84px 52px 90px 70px 24px;
   gap: 4px;
   padding: 0 0 2px;
+  align-items: center;
 }
 .comp-editor-main {
   display: grid;
@@ -557,14 +558,10 @@ details[open] > summary.section-heading::before {
 }
 .sd-row-wrap .row-results-section, .ht-row-wrap .row-results-section {
   border: none;
-  border-top: 1px solid var(--border);
   margin-top: 4px;
-  padding-top: 4px;
 }
 .row-results-section {
   border: 1px solid var(--border);
-  border-top: none;
-  padding: 4px 8px;
   background: var(--bg);
 }
 .row-results-section .form-row { display: flex; gap: 4px; align-items: center; }
@@ -726,6 +723,7 @@ details[open] > summary.section-heading::before {
   grid-template-columns: 70px 90px 50px 84px 52px 1fr 46px;
   gap: 4px;
   padding: 0 0 2px;
+  flex: 1;
 }
 .sd-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-ui); }
 .sd-row {

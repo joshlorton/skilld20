@@ -935,8 +935,11 @@ function buildSdRow(data) {
   const parsed = parseLegacyAction(data.actions);
   const wrap = el('div', { class: 'sd-row-wrap' });
 
-  const header = el('div', { class: 'effect-extra-header' });
-  header.appendChild(el('span', { class: 'effect-extra-label' }, 'Option'));
+  const header = el('div', { class: 'option-header' });
+  const headerLabels = el('div', { class: 'sd-labels' });
+  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
+    headerLabels.appendChild(el('span', { class: 'sd-label' }, l)));
+  header.appendChild(headerLabels);
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeBtn.addEventListener('click', () => wrap.remove());
   header.appendChild(removeBtn);
@@ -1005,11 +1008,6 @@ function buildSdSection(title, containerId, initialData) {
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 
-  const labels = el('div', { class: 'sd-labels' });
-  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
-    labels.appendChild(el('span', { class: 'sd-label' }, l)));
-  wrap.appendChild(labels);
-
   const container = el('div', { id: containerId });
   const rows = Array.isArray(initialData)
     ? initialData
@@ -1058,8 +1056,11 @@ function buildHtRow(data) {
   data = data || {};
   const wrap = el('div', { class: 'ht-row-wrap' });
 
-  const header = el('div', { class: 'effect-extra-header' });
-  header.appendChild(el('span', { class: 'effect-extra-label' }, 'Option'));
+  const header = el('div', { class: 'option-header' });
+  const headerLabels = el('div', { class: 'ht-labels' });
+  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
+    headerLabels.appendChild(el('span', { class: 'sd-label' }, l)));
+  header.appendChild(headerLabels);
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeBtn.addEventListener('click', () => wrap.remove());
   header.appendChild(removeBtn);
@@ -1127,11 +1128,6 @@ function buildHtSection(initialData) {
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 
-  const labels = el('div', { class: 'ht-labels' });
-  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
-    labels.appendChild(el('span', { class: 'sd-label' }, l)));
-  wrap.appendChild(labels);
-
   const container = el('div', { id: 'heightened-rows' });
   const rows = Array.isArray(initialData) ? initialData : [];
   if (rows.length) rows.forEach(r => container.appendChild(buildHtRow(r)));
@@ -1168,16 +1164,12 @@ function buildComponentRow(data) {
   const parsed = parseLegacyAction(data.actions);
   const wrap = el('div', { class: 'comp-editor-row' });
 
-  const header = el('div', { class: 'effect-extra-header' });
-  header.appendChild(el('span', { class: 'effect-extra-label' }, 'Component'));
+  const lblRow = el('div', { class: 'comp-editor-labels' });
+  ['Component', 'Attribute', 'Count', 'Length', 'Type', 'Rarity', 'Price'].forEach(l =>
+    lblRow.appendChild(el('span', { class: 'sd-label' }, l)));
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeBtn.addEventListener('click', () => wrap.remove());
-  header.appendChild(removeBtn);
-  wrap.appendChild(header);
-
-  const lblRow = el('div', { class: 'comp-editor-labels' });
-  ['Option', 'Attribute', 'Count', 'Length', 'Type', 'Rarity', 'Price'].forEach(l =>
-    lblRow.appendChild(el('span', { class: 'sd-label' }, l)));
+  lblRow.appendChild(removeBtn);
   wrap.appendChild(lblRow);
 
   const mainRow = el('div', { class: 'comp-editor-main' });
