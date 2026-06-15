@@ -625,8 +625,8 @@ function renderActionSection(title, items, rowFn) {
   if (!items?.length) return null;
   const active = items.filter(i => i && (i.effect || i.description || hasValue(i.actions)));
   if (!active.length) return null;
-  const section = el('div', { class: 'section-action' });
-  section.appendChild(el('div', { class: 'section-heading' }, title));
+  const section = el('details', { class: 'section-action', open: true });
+  section.appendChild(el('summary', { class: 'section-heading' }, title));
   const body = el('div', { class: 'section-action-body' });
   body.appendChild(el('div', { class: 'result-col-heading' }, title));
   const content = el('div', { class: 'result-col-content' });
@@ -646,19 +646,25 @@ function renderSustainDismiss(f) {
   const sections = [];
 
   if (sustainItems.length) {
-    const sec = el('div', { class: 'section-sd' });
-    sec.appendChild(el('div', { class: 'result-col-heading' }, 'Sustain'));
+    const sec = el('details', { class: 'section-sd', open: true });
+    sec.appendChild(el('summary', { class: 'section-heading' }, 'Sustain'));
+    const body = el('div', { class: 'section-sd-body' });
+    body.appendChild(el('div', { class: 'result-col-heading' }, 'Sustain'));
     const rows = el('div', { class: 'result-col-content' });
     sustainItems.forEach((s, i) => rows.appendChild(sustainRow(s, i)));
-    sec.appendChild(rows);
+    body.appendChild(rows);
+    sec.appendChild(body);
     sections.push(sec);
   }
   if (dismissItems.length) {
-    const sec = el('div', { class: 'section-sd' });
-    sec.appendChild(el('div', { class: 'result-col-heading' }, 'Dismiss'));
+    const sec = el('details', { class: 'section-sd', open: true });
+    sec.appendChild(el('summary', { class: 'section-heading' }, 'Dismiss'));
+    const body = el('div', { class: 'section-sd-body' });
+    body.appendChild(el('div', { class: 'result-col-heading' }, 'Dismiss'));
     const rows = el('div', { class: 'result-col-content' });
     dismissItems.forEach((d, i) => rows.appendChild(sustainRow(d, i)));
-    sec.appendChild(rows);
+    body.appendChild(rows);
+    sec.appendChild(body);
     sections.push(sec);
   }
   return sections;
@@ -927,6 +933,15 @@ function collectRowResults(container) {
 function buildSdRow(data) {
   data = data || {};
   const parsed = parseLegacyAction(data.actions);
+  const wrap = el('div', { class: 'sd-row-wrap' });
+
+  const header = el('div', { class: 'effect-extra-header' });
+  header.appendChild(el('span', { class: 'effect-extra-label' }, 'Option'));
+  const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
+  removeBtn.addEventListener('click', () => wrap.remove());
+  header.appendChild(removeBtn);
+  wrap.appendChild(header);
+
   const row = el('div', { class: 'sd-row' });
 
   // Option
@@ -976,7 +991,6 @@ function buildSdRow(data) {
   if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
   row.appendChild(manaIn);
 
-  const wrap = el('div', { class: 'sd-row-wrap' });
   wrap.appendChild(row);
   wrap.appendChild(buildRowResultsSection(data.results));
   return wrap;
@@ -1042,6 +1056,15 @@ const HT_ATTRIBUTES = [
 
 function buildHtRow(data) {
   data = data || {};
+  const wrap = el('div', { class: 'ht-row-wrap' });
+
+  const header = el('div', { class: 'effect-extra-header' });
+  header.appendChild(el('span', { class: 'effect-extra-label' }, 'Option'));
+  const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
+  removeBtn.addEventListener('click', () => wrap.remove());
+  header.appendChild(removeBtn);
+  wrap.appendChild(header);
+
   const row = el('div', { class: 'ht-row' });
 
   const varIn = el('input', { class: 'form-input', type: 'text',
@@ -1090,7 +1113,6 @@ function buildHtRow(data) {
   if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
   row.appendChild(manaIn);
 
-  const wrap = el('div', { class: 'ht-row-wrap' });
   wrap.appendChild(row);
   wrap.appendChild(buildRowResultsSection(data.results));
   return wrap;
