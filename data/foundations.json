@@ -1014,8 +1014,8 @@
       "range": "",
       "area": {
         "size": 30,
-        "shape": "",
-        "type": ""
+        "shape": "sphere",
+        "type": "emanation"
       },
       "targets": {
         "count": 0,
