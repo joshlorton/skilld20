@@ -1019,14 +1019,14 @@
       },
       "targets": {
         "count": 0,
-        "type": "a general category OR specific type object, substance, or active magical effect"
+        "type": "a general type of object, a specific type object, a substance, or an active magical effect"
       },
       "duration": "until the end of your next turn",
       "effect": {
         "options": [
           {
             "title": "Detect",
-            "text": "Declare what you are attempting to find. You see a faint aura around all qualifying targets within the area.",
+            "text": "Declare target you are attempting to detect. You see a faint aura form around all matching targets within the area of effect.",
             "note": "",
             "damage": {
               "dieNumber": 0,
@@ -1045,7 +1045,7 @@
           },
           {
             "title": "Sense",
-            "text": "Declare what you are attempting to find. You gain a vague directional sense toward the nearest qualifying target. No visual aura.",
+            "text": "Declare target you are attempting to detect. You gain a vague directional sense toward the nearest qualifying target. No visual aura.",
             "note": "",
             "damage": {
               "dieNumber": 0,
@@ -1081,6 +1081,7 @@
       "skill": {
         "primary": [],
         "secondary": [
+          "Craft (target related)",
           "Diplomacy (Gather Information)",
           "Knowledge (target related)",
           "Perception",
@@ -1089,12 +1090,18 @@
           "Subsist)"
         ],
         "cs": [
-          "Extra stuff."
+          "Double area of effect",
+          "Double duration",
+          "Duration increased to 1 minute",
+          "Know relative power of detected targets"
         ],
         "s": "",
         "f": "",
         "cf": [
-          "Bad stuff."
+          "You suffer stunned 1",
+          "You suffer dazzled for 1d4 rounds",
+          "You suffer blinded for 1 round",
+          "You glow with a faint aura for 1 minute"
         ]
       },
       "attack_results": {
@@ -1181,7 +1188,7 @@
             "length": "action"
           },
           "component": "-",
-          "effect": "double area of effect size",
+          "effect": "double size of area or effect",
           "mana": 8,
           "results": null
         }
