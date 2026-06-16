@@ -443,7 +443,7 @@ function specRowCast(f) {
 }
 
 function renderSpecs(f) {
-  const content = el('div', { class: 'result-col-content' });
+  const content = el('div', { class: 'section-col-content' });
   const add = r => r && content.appendChild(r);
 
   add(specRowCast(f));
@@ -463,7 +463,7 @@ function renderSpecs(f) {
 
   if (!content.children.length) return null;
   const section = el('div', { class: 'base-specs' });
-  section.appendChild(el('div', { class: 'result-col-heading' }, 'Base'));
+  section.appendChild(el('div', { class: 'section-col-heading' }, 'Base'));
   section.appendChild(content);
   return section;
 }
@@ -483,8 +483,8 @@ function renderEffect(f) {
   if (!allOpts.length && !f.note && !f.attack?.type && !f.save?.type && !f.damage?.dieNumber) return null;
 
   const section = el('div', { class: 'base-effect' });
-  section.appendChild(el('div', { class: 'result-col-heading' }, 'Effect'));
-  const content = el('div', { class: 'result-col-content' });
+  section.appendChild(el('div', { class: 'section-col-heading' }, 'Effect'));
+  const content = el('div', { class: 'section-col-content' });
 
   // Effect options -- all wrapped in effect-option-block
   const multiOpts = allOpts.length > 1;
@@ -495,7 +495,7 @@ function renderEffect(f) {
     const rowCls  = !isOnly ? (oi % 2 === 0 ? ' row-odd' : ' row-even') : '';
     const block   = el('div', { class: `effect-option-block${rowCls}` });
 
-    if (hasTitle) block.appendChild(el('div', { class: 'effect-opt-title ht-vrnt' }, opt.title));
+    if (hasTitle) block.appendChild(el('div', { class: 'effect-opt-title option-name' }, opt.title));
 
     const inner = el('div', { class: 'effect-opt-content' });
     if (opt.text) inner.appendChild(el('p', { class: 'effect-entry' }, opt.text));
@@ -556,8 +556,8 @@ function renderResults(f) {
   // Helper: build one result column
   function buildCol(headingText, buildContent) {
     const col = el('div', { class: 'result-col' });
-    col.appendChild(el('div', { class: 'result-col-heading' }, headingText));
-    const content = el('div', { class: 'result-col-content' });
+    col.appendChild(el('div', { class: 'section-col-heading' }, headingText));
+    const content = el('div', { class: 'section-col-content' });
     buildContent(content);
     col.appendChild(content);
     return col;
@@ -631,12 +631,12 @@ function renderResults(f) {
    ============================================================ */
 
 function renderRowResults(results) {
-  const div = el('div', { class: 'sv-results' });
+  const div = el('div', { class: 'option-results' });
   if (!results?.type) return div;
   const typeLabel = results.type === 'save'
     ? (results.saveType || '').toUpperCase()
     : `${(results.attackType || '').toUpperCase()} ATTACK`;
-  div.appendChild(el('div', { class: 'sv-results-type' }, typeLabel));
+  div.appendChild(el('div', { class: 'option-results-type' }, typeLabel));
   [
     { text: results.cs, label: 'CS', cls: 'row-cs' },
     { text: results.s,  label: 'S',  cls: 'row-s'  },
@@ -644,8 +644,8 @@ function renderRowResults(results) {
     { text: results.cf, label: 'CF', cls: 'row-cf' }
   ].forEach(({ text, label, cls }) => {
     if (!text) return;
-    const entry = el('div', { class: `sv-results-entry ${cls}` });
-    entry.appendChild(el('b', { class: 'sv-results-label' }, label));
+    const entry = el('div', { class: `option-results-entry ${cls}` });
+    entry.appendChild(el('b', { class: 'option-results-label' }, label));
     entry.appendChild(document.createTextNode(` ${text}`));
     div.appendChild(entry);
   });
@@ -653,34 +653,34 @@ function renderRowResults(results) {
 }
 
 function actionRow(item, idx) {
-  const row = el('div', { class: `ht-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'ht-vrnt' }, item.variant || ''));
-  row.appendChild(el('b',    { class: 'ht-attr' }, item.attribute || ''));
-  row.appendChild(el('span', { class: 'sv-sym'  },
+  const row = el('div', { class: `option-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
+  row.appendChild(el('span', { class: 'option-name' }, item.variant || ''));
+  row.appendChild(el('b',    { class: 'option-spec' }, item.attribute || ''));
+  row.appendChild(el('span', { class: 'option-duration'  },
     !isNoAction(item.actions) ? actionSym(item.actions) : ''));
-  row.appendChild(el('span', { class: 'sv-comp' },
+  row.appendChild(el('span', { class: 'option-component' },
     item.component ? sdComponent(item.component) : ''));
-  row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
+  row.appendChild(el('span', { class: 'option-effect' }, item.effect || ''));
   row.appendChild(renderRowResults(item.results));
   const m = Number(item.mana);
-  row.appendChild(el('span', { class: 'sv-mana' },
+  row.appendChild(el('span', { class: 'option-mana' },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
       ? (isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`)) : ''));
   return row;
 }
 
 function componentRow(item, idx) {
-  const row = el('div', { class: `comp-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'ht-vrnt'     }, item.variant   || ''));
-  row.appendChild(el('b',    { class: 'ht-attr'     }, item.attribute  || ''));
-  row.appendChild(el('span', { class: 'sv-sym'      }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
-  row.appendChild(el('span', { class: 'sv-comp'     }, sdComponent(item.component)));
-  row.appendChild(el('span', { class: 'sv-effect'   }, item.effect     || ''));
-  row.appendChild(el('span', { class: 'sv-desc'     }, item.description || ''));
+  const row = el('div', { class: `component-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
+  row.appendChild(el('span', { class: 'option-name'    }, item.variant   || ''));
+  row.appendChild(el('b',    { class: 'option-spec'    }, item.attribute  || ''));
+  row.appendChild(el('span', { class: 'option-duration'  }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'option-component' }, sdComponent(item.component)));
+  row.appendChild(el('span', { class: 'option-effect'  }, item.effect     || ''));
+  row.appendChild(el('span', { class: 'component-desc' }, item.description || ''));
   const _rv = (item.rarity || '').toLowerCase();
-  row.appendChild(el('span', { class: `comp-rarity${_rv ? ` comp-rarity-${_rv}` : ''}` }, item.rarity || ''));
+  row.appendChild(el('span', { class: `component-rarity${_rv ? ` component-rarity-${_rv}` : ''}` }, item.rarity || ''));
   const price = item.price;
-  row.appendChild(el('span', { class: 'comp-price'  },
+  row.appendChild(el('span', { class: 'component-price'  },
     (price !== null && price !== undefined && price !== '') ? `${price} gp` : ''));
   return row;
 }
@@ -695,15 +695,15 @@ function sdComponent(comp) {
 }
 
 function sustainRow(item, idx) {
-  const row = el('div', { class: `sd-view-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'ht-vrnt'   }, item.variant   || ''));
-  row.appendChild(el('b',    { class: 'ht-attr'   }, item.attribute  || ''));
-  row.appendChild(el('span', { class: 'sv-sym'    }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
-  row.appendChild(el('span', { class: 'sv-comp'   }, sdComponent(item.component)));
-  row.appendChild(el('span', { class: 'sv-effect' }, item.effect || ''));
+  const row = el('div', { class: `option-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
+  row.appendChild(el('span', { class: 'option-name'   }, item.variant   || ''));
+  row.appendChild(el('b',    { class: 'option-spec'   }, item.attribute  || ''));
+  row.appendChild(el('span', { class: 'option-duration' }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'option-component' }, sdComponent(item.component)));
+  row.appendChild(el('span', { class: 'option-effect' }, item.effect || ''));
   row.appendChild(renderRowResults(item.results));
   const m = Number(item.mana);
-  row.appendChild(el('span', { class: 'sv-mana'   },
+  row.appendChild(el('span', { class: 'option-mana'   },
     (item.mana !== undefined && item.mana !== null && item.mana !== '')
       ? (isNaN(m) ? String(item.mana) : (m >= 0 ? `+${m}` : `${m}`)) : ''));
   return row;
@@ -713,11 +713,11 @@ function renderActionSection(title, items, rowFn) {
   if (!items?.length) return null;
   const active = items.filter(i => i && (i.effect || i.description || hasValue(i.actions)));
   if (!active.length) return null;
-  const section = el('details', { class: 'section-action', open: true });
+  const section = el('details', { class: 'section-options', open: true });
   section.appendChild(el('summary', { class: 'section-heading' }, title));
-  const body = el('div', { class: 'section-action-body' });
-  body.appendChild(el('div', { class: 'result-col-heading' }, title));
-  const content = el('div', { class: 'result-col-content' });
+  const body = el('div', { class: 'section-options-body' });
+  body.appendChild(el('div', { class: 'section-col-heading' }, title));
+  const content = el('div', { class: 'section-col-content' });
   active.forEach((item, i) => content.appendChild(rowFn(item, i)));
   body.appendChild(content);
   section.appendChild(body);
@@ -734,22 +734,22 @@ function renderSustainDismiss(f) {
   const sections = [];
 
   if (sustainItems.length) {
-    const sec = el('details', { class: 'section-sd', open: true });
+    const sec = el('details', { class: 'section-options', open: true });
     sec.appendChild(el('summary', { class: 'section-heading' }, 'Sustain'));
-    const body = el('div', { class: 'section-sd-body' });
-    body.appendChild(el('div', { class: 'result-col-heading' }, 'Sustain'));
-    const rows = el('div', { class: 'result-col-content' });
+    const body = el('div', { class: 'section-options-body' });
+    body.appendChild(el('div', { class: 'section-col-heading' }, 'Sustain'));
+    const rows = el('div', { class: 'section-col-content' });
     sustainItems.forEach((s, i) => rows.appendChild(sustainRow(s, i)));
     body.appendChild(rows);
     sec.appendChild(body);
     sections.push(sec);
   }
   if (dismissItems.length) {
-    const sec = el('details', { class: 'section-sd', open: true });
+    const sec = el('details', { class: 'section-options', open: true });
     sec.appendChild(el('summary', { class: 'section-heading' }, 'Dismiss'));
-    const body = el('div', { class: 'section-sd-body' });
-    body.appendChild(el('div', { class: 'result-col-heading' }, 'Dismiss'));
-    const rows = el('div', { class: 'result-col-content' });
+    const body = el('div', { class: 'section-options-body' });
+    body.appendChild(el('div', { class: 'section-col-heading' }, 'Dismiss'));
+    const rows = el('div', { class: 'section-col-content' });
     dismissItems.forEach((d, i) => rows.appendChild(sustainRow(d, i)));
     body.appendChild(rows);
     sec.appendChild(body);
