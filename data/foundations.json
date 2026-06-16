@@ -994,8 +994,8 @@
       ],
       "traditions": [
         "arcane",
-        "divine",
         "bardic",
+        "divine",
         "bloodline",
         "pact"
       ],
@@ -1181,7 +1181,7 @@
             "length": "action"
           },
           "component": "-",
-          "effect": "double size of area or effect",
+          "effect": "double area of effect size",
           "mana": 8,
           "results": null
         }
