@@ -235,6 +235,8 @@ body {
   height: auto;
   object-fit: contain;
   display: block;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .trait-tag {
@@ -250,24 +252,17 @@ body {
   white-space: nowrap;
 }
 
-/* Rarity */
-.trait-rarity-common   { background: #1a1a1a; }
-.trait-rarity-uncommon { background: #bd5410; }
-.trait-rarity-rare     { background: #160b65; }
-.trait-rarity-unique   { background: #54116d; }
-
-/* Difficulty */
-.trait-difficulty-easy             { background: #00b050; }
-.trait-difficulty-average          { background: #1a1a1a; }
-.trait-difficulty-hard             { background: #bd5410; }
-.trait-difficulty-very-hard        { background: #160b65; }
-.trait-difficulty-incredibly-hard  { background: #54116d; }
-/* Legacy PF2e difficulty names */
-.trait-difficulty-untrained  { background: #00b050; }
-.trait-difficulty-trained    { background: #1a1a1a; }
-.trait-difficulty-expert     { background: #bd5410; }
-.trait-difficulty-master     { background: #160b65; }
-.trait-difficulty-legendary  { background: #54116d; }
+/* Rarity / Difficulty -- shared color scale (difficulty names mirror rarity tiers) */
+.trait-difficulty-easy, .trait-difficulty-untrained
+  { background: #00b050; }
+.trait-rarity-common, .trait-difficulty-average, .trait-difficulty-trained
+  { background: #1a1a1a; }
+.trait-rarity-uncommon, .trait-difficulty-hard, .trait-difficulty-expert
+  { background: #bd5410; }
+.trait-rarity-rare, .trait-difficulty-very-hard, .trait-difficulty-master
+  { background: #160b65; }
+.trait-rarity-unique, .trait-difficulty-incredibly-hard, .trait-difficulty-legendary
+  { background: #54116d; }
 
 /* Traditions */
 .trait-tradition-arcane    { background: #c8a830; }
@@ -325,7 +320,7 @@ body {
   line-height: 1.55;
   margin-bottom: 1px;
 }
-.effect-option-block { display: flex; align-items: flex-start; margin-bottom: 2px; }
+.effect-option-block { display: flex; align-items: flex-start; margin-bottom: 1px; }
 .effect-opt-title { min-width: 80px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
 .effect-opt-content { flex: 1; min-width: 0; }
 
@@ -419,8 +414,8 @@ body {
 .row-sf  { background: #2e1408; border: 1px solid #7a3018; margin-bottom: 1px; }
 .row-cf  { background: #240606; border: 1px solid #7a1a1a; }
 .result-row {
-  padding-top: 8px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-right: 8px;
   padding-bottom: 4px;
   padding-left: 8px;
 }
@@ -479,7 +474,7 @@ details[open] > summary.section-heading::before {
 .section-action-body, .section-sd-body { display: flex; }
 
 /* Grid-based viewer rows */
-.sd-view-row {
+.sd-view-row, .ht-view-row {
   display: grid;
   grid-template-columns: 70px 70px 50px 40px 1fr 300px 40px;
   padding: 4px 12px;
@@ -542,14 +537,6 @@ details[open] > summary.section-heading::before {
   margin-bottom: 4px;
 }
 .comp-editor-main .form-input { font-size: 12px; padding: 3px 5px; }
-.ht-view-row {
-  display: grid;
-  grid-template-columns: 70px 70px 50px 40px 1fr 300px 40px;
-  padding: 4px 12px;
-  gap: 6px;
-  align-items: center;
-}
-
 /* Row results editor section (below each SD / HT editor row) */
 .sd-row-wrap, .ht-row-wrap {
   border: 1px solid var(--border);

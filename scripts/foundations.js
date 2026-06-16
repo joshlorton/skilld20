@@ -926,6 +926,36 @@ function collectRowResults(container) {
   };
 }
 
+const SD_HT_LABELS = ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'];
+
+function buildAttributeSelect(value) {
+  const sel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
+  sel.appendChild(el('option', { value: '' }, ''));
+  HT_ATTRIBUTES.forEach(({ value: v, label }) => {
+    const o = el('option', { value: v }, label);
+    if (value === v) o.selected = true;
+    sel.appendChild(o);
+  });
+  return sel;
+}
+
+function buildCountLengthPair(parsed) {
+  const countIn = el('input', { type: 'number', min: '0', max: '99',
+    class: 'form-input', 'data-field': 'act-count' });
+  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+
+  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
+  ACTION_LENGTHS.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if (value === parsed.length) o.selected = true;
+    lengthSel.appendChild(o);
+  });
+  const syncCount = () => syncCountToLength(countIn, lengthSel);
+  lengthSel.addEventListener('change', syncCount);
+  syncCount();
+  return { countIn, lengthSel };
+}
+
 /* ============================================================
    EDITOR — SUSTAIN / DISMISS BUILDER
    ============================================================ */
@@ -937,7 +967,7 @@ function buildSdRow(data) {
 
   const header = el('div', { class: 'option-header' });
   const headerLabels = el('div', { class: 'sd-labels' });
-  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
+  SD_HT_LABELS.forEach(l =>
     headerLabels.appendChild(el('span', { class: 'sd-label' }, l)));
   header.appendChild(headerLabels);
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
@@ -953,32 +983,10 @@ function buildSdRow(data) {
   varIn.value = data.variant || '';
   row.appendChild(varIn);
 
-  // Attribute
-  const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
-  attrSel.appendChild(el('option', { value: '' }, ''));
-  HT_ATTRIBUTES.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (data.attribute === value) o.selected = true;
-    attrSel.appendChild(o);
-  });
-  row.appendChild(attrSel);
+  row.appendChild(buildAttributeSelect(data.attribute));
 
-  // Count field
-  const countIn = el('input', { type: 'number', min: '0', max: '99',
-    class: 'form-input', 'data-field': 'act-count' });
-  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+  const { countIn, lengthSel } = buildCountLengthPair(parsed);
   row.appendChild(countIn);
-
-  // Length select
-  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
-  ACTION_LENGTHS.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (value === parsed.length) o.selected = true;
-    lengthSel.appendChild(o);
-  });
-  const syncCount = () => syncCountToLength(countIn, lengthSel);
-  lengthSel.addEventListener('change', syncCount);
-  syncCount();
   row.appendChild(lengthSel);
 
   const compIn = el('input', { class: 'form-input', type: 'text',
@@ -1058,7 +1066,7 @@ function buildHtRow(data) {
 
   const header = el('div', { class: 'option-header' });
   const headerLabels = el('div', { class: 'ht-labels' });
-  ['Option', 'Attribute', 'Count', 'Length', 'Comp', 'Effect', 'Mana'].forEach(l =>
+  SD_HT_LABELS.forEach(l =>
     headerLabels.appendChild(el('span', { class: 'sd-label' }, l)));
   header.appendChild(headerLabels);
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
@@ -1073,32 +1081,12 @@ function buildHtRow(data) {
   varIn.value = data.variant || '';
   row.appendChild(varIn);
 
-  const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
-  attrSel.appendChild(el('option', { value: '' }, ''));
-  HT_ATTRIBUTES.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (data.attribute === value) o.selected = true;
-    attrSel.appendChild(o);
-  });
+  const attrSel = buildAttributeSelect(data.attribute);
   row.appendChild(attrSel);
 
-  // Count field
   const parsed = parseLegacyAction(data.actions);
-  const countIn = el('input', { type: 'number', min: '0', max: '99',
-    class: 'form-input', 'data-field': 'act-count' });
-  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+  const { countIn, lengthSel } = buildCountLengthPair(parsed);
   row.appendChild(countIn);
-
-  // Length select
-  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
-  ACTION_LENGTHS.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (value === parsed.length) o.selected = true;
-    lengthSel.appendChild(o);
-  });
-  const syncCount = () => syncCountToLength(countIn, lengthSel);
-  lengthSel.addEventListener('change', syncCount);
-  syncCount();
   row.appendChild(lengthSel);
 
   const compIn = el('input', { class: 'form-input', type: 'text',
@@ -1179,29 +1167,11 @@ function buildComponentRow(data) {
   varIn.value = data.variant || '';
   mainRow.appendChild(varIn);
 
-  const attrSel = el('select', { class: 'form-input form-select', 'data-field': 'attribute' });
-  attrSel.appendChild(el('option', { value: '' }, ''));
-  HT_ATTRIBUTES.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (data.attribute === value) o.selected = true;
-    attrSel.appendChild(o);
-  });
+  const attrSel = buildAttributeSelect(data.attribute);
   mainRow.appendChild(attrSel);
 
-  const countIn = el('input', { type: 'number', min: '0', max: '99',
-    class: 'form-input', 'data-field': 'act-count' });
-  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
+  const { countIn, lengthSel } = buildCountLengthPair(parsed);
   mainRow.appendChild(countIn);
-
-  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
-  ACTION_LENGTHS.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (value === parsed.length) o.selected = true;
-    lengthSel.appendChild(o);
-  });
-  const syncCount = () => syncCountToLength(countIn, lengthSel);
-  lengthSel.addEventListener('change', syncCount);
-  syncCount();
   mainRow.appendChild(lengthSel);
 
   const typeIn = el('input', { class: 'form-input', type: 'text',
