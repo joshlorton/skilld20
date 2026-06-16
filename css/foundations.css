@@ -318,7 +318,6 @@ body {
   font-size: 14px;
   font-family: var(--font-spec);
   line-height: 1.55;
-  margin-bottom: 1px;
 }
 .effect-option-block { display: flex; align-items: flex-start; margin-bottom: 1px; }
 .effect-opt-title { min-width: 80px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
@@ -414,12 +413,11 @@ body {
 .row-sf  { background: #2e1408; border: 1px solid #7a3018; margin-bottom: 1px; }
 .row-cf  { background: #240606; border: 1px solid #7a1a1a; }
 .result-row {
-  padding-top: 4px;
+  padding-top: 2px;
   padding-right: 8px;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
   padding-left: 8px;
 }
-.result-row.row-cf { padding-bottom: 1px; }
 .row-cs  .result-label { color: #5ec87a; }
 .row-s   .result-label { color: #3ea058; }
 .row-sf  .result-label { color: #c07040; }
@@ -739,6 +737,70 @@ details[open] > summary.section-heading::before {
   color: var(--mana);
   background: var(--row-odd);
 }
+
+/* ============================================================
+   TRAIT GROUPS MANAGER
+   ============================================================ */
+
+.groups-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.groups-panel-header .editor-section-title { margin: 0; }
+
+.group-list { margin-bottom: 8px; }
+
+.group-box {
+  border: 1px solid var(--border);
+  padding: 8px;
+  margin-bottom: 6px;
+}
+.group-box-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.group-label-input {
+  font-weight: 700;
+  font-variant: small-caps;
+  color: var(--heading-fg);
+}
+
+.group-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.group-item-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--row-odd);
+  border: 1px solid var(--border);
+  padding: 3px 6px 3px 10px;
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.group-item-remove {
+  background: transparent;
+  border: none;
+  color: #f07070;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0;
+}
+.group-item-remove:hover { color: #ff4444; }
+
+.group-item-add { display: flex; gap: 6px; }
+.group-item-add .form-input { flex: 1; }
+
+.group-add-btn { margin-bottom: 18px; }
 
 /* ============================================================
    TOKEN MODAL

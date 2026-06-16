@@ -8,6 +8,7 @@ const CONFIG = {
   owner : 'joshlorton',
   repo  : 'skilld20',
   file  : 'data/foundations.json',
+  groupsFile : 'data/trait-groups.json',
   api   : 'https://api.github.com'
 };
 
@@ -21,7 +22,9 @@ const state = {
   sha          : null,
   token        : localStorage.getItem('skd20_token') || '',
   dirty        : false,
-  mode         : 'view'   // 'view' | 'edit'
+  mode         : 'view',   // 'view' | 'edit'
+  groups       : { traits: [], traditions: [], access: [] },
+  groupsSha    : null
 };
 
 /* ============================================================
@@ -244,6 +247,91 @@ async function attemptSave(isRetry) {
   state.sha    = result.content.sha;
   state.dirty  = false;
   setStatus('Saved to GitHub \u2713', 'ok');
+  return true;
+}
+
+/* ============================================================
+   TRAIT GROUPS -- GitHub API (data/trait-groups.json)
+   ============================================================ */
+
+function applyGroupsData(data) {
+  state.groups.traits     = sortGroups(data?.traits);
+  state.groups.traditions = sortGroups(data?.traditions);
+  state.groups.access     = sortGroups(data?.access);
+}
+
+async function loadGroupsData() {
+  try {
+    if (state.token) {
+      const resp = await fetch(
+        `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
+        { headers: ghHeaders() }
+      );
+      if (resp.ok) {
+        const raw  = await resp.json();
+        state.groupsSha = raw.sha;
+        const _b64 = atob(raw.content.replace(/\n/g, ''));
+        const text = new TextDecoder().decode(Uint8Array.from(_b64, c => c.charCodeAt(0)));
+        applyGroupsData(JSON.parse(text));
+        return;
+      }
+    } else {
+      const resp = await fetch(`./${CONFIG.groupsFile}`);
+      if (resp.ok) {
+        applyGroupsData(await resp.json());
+        return;
+      }
+    }
+  } catch (err) { /* fall through to defaults below */ }
+  applyGroupsData(DEFAULT_GROUPS);
+}
+
+async function fetchGroupsSha() {
+  const resp = await fetch(
+    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
+    { headers: ghHeaders() }
+  );
+  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
+  const raw = await resp.json();
+  state.groupsSha = raw.sha;
+}
+
+async function saveGroupsData() {
+  if (!state.token) { setStatus('No token set', 'error'); return false; }
+  setStatus('Saving groups\u2026', 'load');
+  try {
+    return await attemptSaveGroups(false);
+  } catch (err) {
+    setStatus(`Save error: ${err.message}`, 'error');
+    return false;
+  }
+}
+
+async function attemptSaveGroups(isRetry) {
+  const payload = {
+    traits     : sortGroups(state.groups.traits),
+    traditions : sortGroups(state.groups.traditions),
+    access     : sortGroups(state.groups.access)
+  };
+  const json    = JSON.stringify(payload, null, 2);
+  const _enc    = new TextEncoder().encode(json);
+  let   _bin    = ''; _enc.forEach(b => _bin += String.fromCharCode(b));
+  const content = btoa(_bin);
+  const ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
+  const body    = { message: `Update trait groups [${ts}]`, content, sha: state.groupsSha };
+  const resp    = await fetch(
+    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
+    { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+  );
+  if (resp.status === 409 && !isRetry) {
+    setStatus('Conflict detected, refreshing groups\u2026', 'load');
+    await fetchGroupsSha();
+    return attemptSaveGroups(true);
+  }
+  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
+  const result      = await resp.json();
+  state.groupsSha    = result.content.sha;
+  setStatus('Groups saved to GitHub \u2713', 'ok');
   return true;
 }
 
@@ -1407,25 +1495,26 @@ const OPTS = {
   ]
 };
 
-const TRAIT_GROUPS = [
-  { label: 'Condition', items: ['curse', 'disease', 'haste', 'poison', 'reposition', 'slow', 'stun'] },
-  { label: 'Elemental', items: ['air', 'earth', 'fire', 'metal', 'water', 'wood'] },
-  { label: 'Energy',    items: ['acid', 'cold', 'electricity', 'fire', 'force', 'lightning',
-                                'necrotic', 'negative', 'poison', 'positive', 'profane', 'psychic',
-                                'radiant', 'sacred', 'sonic'] },
-  { label: 'Mental',    items: ['charm', 'compulsion', 'emotion', 'fear', 'mental', 'sleep'] },
-  { label: 'Sensory',   items: ['auditory', 'detection', 'olfactory', 'shroud', 'tactile', 'visual'] },
-  { label: 'Other',     items: ['animation', 'creation', 'darkness', 'enhancement', 'healing', 'illusion',
-                                'light', 'luck', 'necromancy', 'polymorph', 'reduction', 'resistance',
-                                'summoning', 'utility', 'ward'] }
-];
-
-const TRADITION_GROUPS = [
-  { label: 'Trained',   items: ['arcane', 'divine', 'bardic'] },
-  { label: 'Untrained', items: ['bloodline', 'pact'] }
-];
-
-const ACCESS_GROUPS = [
+/* Fallback data used only if data/trait-groups.json cannot be fetched
+   (e.g. first run before the file has been committed to the repo). */
+const DEFAULT_GROUPS = {
+  traits: [
+    { label: 'Condition', items: ['curse', 'disease', 'haste', 'poison', 'reposition', 'slow', 'stun'] },
+    { label: 'Elemental', items: ['air', 'earth', 'fire', 'metal', 'water', 'wood'] },
+    { label: 'Energy',    items: ['acid', 'cold', 'electricity', 'fire', 'force', 'lightning',
+                                  'necrotic', 'negative', 'poison', 'positive', 'profane', 'psychic',
+                                  'radiant', 'sacred', 'sonic'] },
+    { label: 'Mental',    items: ['charm', 'compulsion', 'emotion', 'fear', 'mental', 'sleep'] },
+    { label: 'Other',      items: ['animation', 'creation', 'darkness', 'enhancement', 'healing', 'illusion',
+                                  'light', 'luck', 'necromancy', 'polymorph', 'reduction', 'resistance',
+                                  'summoning', 'utility', 'ward'] },
+    { label: 'Sensory',   items: ['auditory', 'detection', 'olfactory', 'shroud', 'tactile', 'visual'] }
+  ],
+  traditions: [
+    { label: 'Trained',   items: ['arcane', 'bardic', 'divine'] },
+    { label: 'Untrained', items: ['bloodline', 'pact'] }
+  ],
+  access: [
   { label: 'Arcane School', items: [
     { value: 'arcane school: elemental: air',   label: 'elemental: air'   },
     { value: 'arcane school: elemental: earth', label: 'elemental: earth' },
@@ -1496,13 +1585,32 @@ const ACCESS_GROUPS = [
     { value: 'divine specialty: windwalker',             label: 'windwalker'             }
   ]},
   { label: 'Pact', items: [
-    { value: 'pact: the fathomless', label: 'the fathomless' },
     { value: 'pact: genie: air',     label: 'genie: air'     },
     { value: 'pact: genie: earth',   label: 'genie: earth'   },
     { value: 'pact: genie: fire',    label: 'genie: fire'    },
-    { value: 'pact: genie: water',   label: 'genie: water'   }
+    { value: 'pact: genie: water',   label: 'genie: water'   },
+    { value: 'pact: the fathomless', label: 'the fathomless' }
   ]}
-];
+  ]
+};
+
+/* ============================================================
+   TRAIT GROUP SORTING -- groups and items always alphabetical
+   ============================================================ */
+
+function groupItemLabel(item) {
+  return String(typeof item === 'object' ? item.label : item).toLowerCase();
+}
+
+function sortGroupItems(items) {
+  return [...(items || [])].sort((a, b) => groupItemLabel(a).localeCompare(groupItemLabel(b)));
+}
+
+function sortGroups(groups) {
+  return [...(groups || [])]
+    .map(g => ({ label: g.label, items: sortGroupItems(g.items) }))
+    .sort((a, b) => String(a.label || '').toLowerCase().localeCompare(String(b.label || '').toLowerCase()));
+}
 
 function parseDuration(dur) {
   if (!dur) return { count: '', length: '', custom: '' };
@@ -1541,9 +1649,9 @@ function buildEditor(f) {
   imgPathIn.value = f.image || '';
   imgWrap.appendChild(imgPathIn);
   form.appendChild(imgWrap);
-  form.appendChild(edGroupedCheckboxes('Traits',      'ed-traits',     f.traits,     TRAIT_GROUPS,      'form-label-tag-traits'));
-  form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, TRADITION_GROUPS,  'form-label-tag-traditions'));
-  form.appendChild(edGroupedCheckboxes('Access',      'ed-access',     f.access,     ACCESS_GROUPS,     'form-label-tag-access'));
+  form.appendChild(edGroupedCheckboxes('Traits',      'ed-traits',     f.traits,     state.groups.traits,     'form-label-tag-traits'));
+  form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, state.groups.traditions, 'form-label-tag-traditions'));
+  form.appendChild(edGroupedCheckboxes('Access',      'ed-access',     f.access,     state.groups.access,     'form-label-tag-access'));
 
   // Cast
   form.appendChild(sec('Cast'));
@@ -1795,6 +1903,7 @@ function updateButtons() {
   document.getElementById('btn-edit').style.display    = (t && s && ev)     ? '' : 'none';
   document.getElementById('btn-cancel').style.display  = ed                 ? '' : 'none';
   document.getElementById('btn-save-gh').style.display = (t && (state.dirty || ed)) ? '' : 'none';
+  document.getElementById('btn-groups').style.display  = t                  ? '' : 'none';
 }
 
 /* ============================================================
@@ -1803,6 +1912,167 @@ function updateButtons() {
 
 function openModal()  { document.getElementById('modal-overlay').style.display = 'flex'; document.getElementById('token-input').value = state.token; }
 function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+
+/* ============================================================
+   TRAIT GROUPS MANAGER
+   ============================================================ */
+
+const GROUP_CATEGORIES = [
+  { key: 'traits',     label: 'Traits'     },
+  { key: 'traditions', label: 'Traditions' },
+  { key: 'access',     label: 'Access'     }
+];
+
+function collectGroupsPanel() {
+  const result = { traits: [], traditions: [], access: [] };
+  GROUP_CATEGORIES.forEach(({ key }) => {
+    const boxes = document.querySelectorAll(
+      `#groups-content .group-list[data-category="${key}"] .group-box`);
+    result[key] = Array.from(boxes).map(box => {
+      const label = box.querySelector('.group-label-input').value.trim();
+      const items = Array.from(box.querySelectorAll('.group-item-chip')).map(chip => {
+        if (key === 'access') return { value: chip.dataset.value, label: chip.dataset.label };
+        return chip.dataset.label;
+      });
+      return { label, items };
+    });
+  });
+  return result;
+}
+
+function refreshGroupsPanel(data) {
+  const sorted = {
+    traits     : sortGroups(data.traits),
+    traditions : sortGroups(data.traditions),
+    access     : sortGroups(data.access)
+  };
+  renderGroupsPanel(sorted, document.getElementById('groups-content'));
+}
+
+function buildGroupBox(catKey, group, gi) {
+  const box = el('div', { class: 'group-box' });
+
+  const header = el('div', { class: 'group-box-header' });
+  const labelIn = el('input', { class: 'form-input group-label-input', type: 'text',
+    value: group.label || '' });
+  header.appendChild(labelIn);
+
+  const removeGroupBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
+  removeGroupBtn.addEventListener('click', () => {
+    if (!confirm(`Remove group "${group.label}" and all its items?`)) return;
+    const fresh = collectGroupsPanel();
+    fresh[catKey].splice(gi, 1);
+    refreshGroupsPanel(fresh);
+  });
+  header.appendChild(removeGroupBtn);
+  box.appendChild(header);
+
+  labelIn.addEventListener('blur', () => refreshGroupsPanel(collectGroupsPanel()));
+  labelIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); labelIn.blur(); } });
+
+  const itemsWrap = el('div', { class: 'group-items' });
+  (group.items || []).forEach(item => {
+    const isObj = typeof item === 'object';
+    const val   = isObj ? item.value : item;
+    const lbl   = isObj ? item.label : item;
+    const chip  = el('span', { class: 'group-item-chip', 'data-value': val, 'data-label': lbl }, lbl);
+    const xBtn  = el('button', { class: 'group-item-remove', type: 'button' }, '\u00D7');
+    xBtn.addEventListener('click', () => {
+      const fresh = collectGroupsPanel();
+      fresh[catKey][gi].items = fresh[catKey][gi].items.filter(it => {
+        const v = typeof it === 'object' ? it.value : it;
+        return v !== val;
+      });
+      refreshGroupsPanel(fresh);
+    });
+    chip.appendChild(xBtn);
+    itemsWrap.appendChild(chip);
+  });
+  box.appendChild(itemsWrap);
+
+  const addRow = el('div', { class: 'group-item-add' });
+  const addIn  = el('input', { class: 'form-input', type: 'text', placeholder: 'Add item\u2026' });
+  const addBtn = el('button', { class: 'btn btn-secondary', type: 'button' }, '+');
+  const doAdd = () => {
+    const text = addIn.value.trim();
+    if (!text) return;
+    const fresh = collectGroupsPanel();
+    const g = fresh[catKey][gi];
+    if (catKey === 'access') {
+      g.items.push({ value: `${(g.label || '').toLowerCase()}: ${text}`, label: text });
+    } else {
+      g.items.push(text);
+    }
+    refreshGroupsPanel(fresh);
+  };
+  addBtn.addEventListener('click', doAdd);
+  addIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doAdd(); } });
+  addRow.appendChild(addIn);
+  addRow.appendChild(addBtn);
+  box.appendChild(addRow);
+
+  return box;
+}
+
+function renderGroupsPanel(data, container) {
+  container.innerHTML = '';
+  GROUP_CATEGORIES.forEach(({ key, label }) => {
+    container.appendChild(el('div', { class: 'editor-section-title' }, label));
+
+    const list = el('div', { class: 'group-list', 'data-category': key });
+    (data[key] || []).forEach((group, gi) => list.appendChild(buildGroupBox(key, group, gi)));
+    container.appendChild(list);
+
+    const addGroupBtn = el('button', { class: 'btn btn-secondary group-add-btn', type: 'button' }, '+ Add Group');
+    addGroupBtn.addEventListener('click', () => {
+      const fresh = collectGroupsPanel();
+      fresh[key].push({ label: 'New Group', items: [] });
+      refreshGroupsPanel(fresh);
+    });
+    container.appendChild(addGroupBtn);
+  });
+}
+
+function buildGroupsManagerPanel() {
+  const wrap = el('div', { class: 'editor-form' });
+
+  const header = el('div', { class: 'groups-panel-header' });
+  header.appendChild(el('div', { class: 'editor-section-title', style: 'margin:0; flex:1;' }, 'Manage Trait Groups'));
+  const saveBtn   = el('button', { class: 'btn btn-primary',   type: 'button' }, 'Save Groups');
+  const cancelBtn = el('button', { class: 'btn btn-secondary', type: 'button' }, 'Close');
+  header.appendChild(saveBtn);
+  header.appendChild(cancelBtn);
+  wrap.appendChild(header);
+
+  const content = el('div', { id: 'groups-content' });
+  wrap.appendChild(content);
+  renderGroupsPanel({
+    traits     : sortGroups(state.groups.traits),
+    traditions : sortGroups(state.groups.traditions),
+    access     : sortGroups(state.groups.access)
+  }, content);
+
+  saveBtn.addEventListener('click', async () => {
+    const data = collectGroupsPanel();
+    state.groups.traits     = sortGroups(data.traits);
+    state.groups.traditions = sortGroups(data.traditions);
+    state.groups.access     = sortGroups(data.access);
+    await saveGroupsData();
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    document.getElementById('groups').style.display = 'none';
+    if (state.currentIndex >= 0 && state.mode === 'view') {
+      document.getElementById('viewer').style.display = '';
+    } else if (state.mode === 'edit') {
+      document.getElementById('editor').style.display = '';
+    } else {
+      document.getElementById('empty-state').style.display = '';
+    }
+  });
+
+  return wrap;
+}
 
 /* ============================================================
    INIT & EVENTS
@@ -1934,9 +2204,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Manage Trait Groups
+  document.getElementById('btn-groups').addEventListener('click', () => {
+    document.getElementById('empty-state').style.display = 'none';
+    document.getElementById('viewer').style.display      = 'none';
+    document.getElementById('editor').style.display      = 'none';
+    const panel = document.getElementById('groups');
+    panel.style.display = '';
+    panel.innerHTML = '';
+    panel.appendChild(buildGroupsManagerPanel());
+  });
+
   /* ----------------------------------------------------------
      Now load data -- errors here no longer affect buttons.
      ---------------------------------------------------------- */
   loadData();
+  loadGroupsData();
 
 });
