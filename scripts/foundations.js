@@ -99,6 +99,13 @@ function syncCountToLength(countIn, lengthSel) {
   countIn.style.opacity = off ? '0.3' : '1';
 }
 
+function clampManaInput(manaIn) {
+  manaIn.addEventListener('blur', () => {
+    const v = parseFloat(manaIn.value);
+    if (!isNaN(v) && v < 0) manaIn.value = '0';
+  });
+}
+
 function buildActionPair(actVal, idPrefix) {
   const parsed = parseLegacyAction(actVal);
   const wrap   = el('div', { class: 'action-pair' });
@@ -654,7 +661,7 @@ function renderRowResults(results) {
 
 function actionRow(item, idx) {
   const row = el('div', { class: `option-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'option-name' }, item.variant || ''));
+  row.appendChild(el('span', { class: 'option-name' }, item.name || ''));
   row.appendChild(el('b',    { class: 'option-spec' }, item.attribute || ''));
   row.appendChild(el('span', { class: 'option-duration'  },
     !isNoAction(item.actions) ? actionSym(item.actions) : ''));
@@ -671,7 +678,7 @@ function actionRow(item, idx) {
 
 function componentRow(item, idx) {
   const row = el('div', { class: `component-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'option-name'    }, item.variant   || ''));
+  row.appendChild(el('span', { class: 'option-name'    }, item.name   || ''));
   row.appendChild(el('b',    { class: 'option-spec'    }, item.attribute  || ''));
   row.appendChild(el('span', { class: 'option-duration'  }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'option-component' }, sdComponent(item.component)));
@@ -696,7 +703,7 @@ function sdComponent(comp) {
 
 function sustainRow(item, idx) {
   const row = el('div', { class: `option-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
-  row.appendChild(el('span', { class: 'option-name'   }, item.variant   || ''));
+  row.appendChild(el('span', { class: 'option-name'   }, item.name   || ''));
   row.appendChild(el('b',    { class: 'option-spec'   }, item.attribute  || ''));
   row.appendChild(el('span', { class: 'option-duration' }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'option-component' }, sdComponent(item.component)));
@@ -1051,24 +1058,24 @@ function buildCountLengthPair(parsed) {
 function buildSdRow(data) {
   data = data || {};
   const parsed = parseLegacyAction(data.actions);
-  const wrap = el('div', { class: 'sd-row-wrap' });
+  const wrap = el('div', { class: 'option-row-wrap' });
 
   const header = el('div', { class: 'option-header' });
-  const headerLabels = el('div', { class: 'sd-labels' });
+  const headerLabels = el('div', { class: 'option-labels' });
   SD_HT_LABELS.forEach(l =>
-    headerLabels.appendChild(el('span', { class: 'sd-label' }, l)));
+    headerLabels.appendChild(el('span', { class: 'option-label' }, l)));
   header.appendChild(headerLabels);
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeBtn.addEventListener('click', () => wrap.remove());
   header.appendChild(removeBtn);
   wrap.appendChild(header);
 
-  const row = el('div', { class: 'sd-row' });
+  const row = el('div', { class: 'option-fields' });
 
   // Option
   const varIn = el('input', { class: 'form-input', type: 'text',
-    placeholder: 'Option', 'data-field': 'variant' });
-  varIn.value = data.variant || '';
+    placeholder: 'Option', 'data-field': 'name' });
+  varIn.value = data.name || '';
   row.appendChild(varIn);
 
   row.appendChild(buildAttributeSelect(data.attribute));
@@ -1086,8 +1093,9 @@ function buildSdRow(data) {
   efTa.value = data.effect || '';
   row.appendChild(efTa);
 
-  const manaIn = el('input', { class: 'form-input', type: 'number', 'data-field': 'mana' });
+  const manaIn = el('input', { class: 'form-input', type: 'number', min: '0', 'data-field': 'mana' });
   if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
+  clampManaInput(manaIn);
   row.appendChild(manaIn);
 
   wrap.appendChild(row);
@@ -1098,9 +1106,9 @@ function buildSdRow(data) {
 function buildSdSection(title, containerId, initialData) {
   const wrap = el('div', { class: 'form-field form-field-wide' });
 
-  const heading = el('div', { class: 'sd-heading' });
+  const heading = el('div', { class: 'options-heading' });
   heading.appendChild(el('span', {}, title));
-  const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
+  const addBtn = el('button', { class: 'options-add-btn', type: 'button' }, '+');
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 
@@ -1117,12 +1125,12 @@ function buildSdSection(title, containerId, initialData) {
 }
 
 function collectSdRows(containerId) {
-  const wraps = document.querySelectorAll(`#${containerId} .sd-row-wrap`);
+  const wraps = document.querySelectorAll(`#${containerId} .option-row-wrap`);
   return Array.from(wraps).map(wrap => {
     const get = f => wrap.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const m = get('mana');
     return {
-      variant   : get('variant'),
+      name      : get('name'),
       attribute : get('attribute'),
       actions   : collectAction(get('act-count'), get('act-length')),
       component : get('component'),
@@ -1150,23 +1158,23 @@ const HT_ATTRIBUTES = [
 
 function buildHtRow(data) {
   data = data || {};
-  const wrap = el('div', { class: 'ht-row-wrap' });
+  const wrap = el('div', { class: 'option-row-wrap' });
 
   const header = el('div', { class: 'option-header' });
-  const headerLabels = el('div', { class: 'ht-labels' });
+  const headerLabels = el('div', { class: 'option-labels' });
   SD_HT_LABELS.forEach(l =>
-    headerLabels.appendChild(el('span', { class: 'sd-label' }, l)));
+    headerLabels.appendChild(el('span', { class: 'option-label' }, l)));
   header.appendChild(headerLabels);
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeBtn.addEventListener('click', () => wrap.remove());
   header.appendChild(removeBtn);
   wrap.appendChild(header);
 
-  const row = el('div', { class: 'ht-row' });
+  const row = el('div', { class: 'option-fields' });
 
   const varIn = el('input', { class: 'form-input', type: 'text',
-    placeholder: 'Variant', 'data-field': 'variant' });
-  varIn.value = data.variant || '';
+    placeholder: 'Option', 'data-field': 'name' });
+  varIn.value = data.name || '';
   row.appendChild(varIn);
 
   const attrSel = buildAttributeSelect(data.attribute);
@@ -1188,6 +1196,7 @@ function buildHtRow(data) {
 
   const manaIn = el('input', { class: 'form-input', type: 'number', min: '0', 'data-field': 'mana' });
   if (data.mana !== undefined && data.mana !== '') manaIn.value = String(data.mana);
+  clampManaInput(manaIn);
   row.appendChild(manaIn);
 
   wrap.appendChild(row);
@@ -1198,9 +1207,9 @@ function buildHtRow(data) {
 function buildHtSection(initialData) {
   const wrap = el('div', { class: 'form-field form-field-wide' });
 
-  const heading = el('div', { class: 'sd-heading' });
+  const heading = el('div', { class: 'options-heading' });
   heading.appendChild(el('span', {}, 'Heightened'));
-  const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
+  const addBtn = el('button', { class: 'options-add-btn', type: 'button' }, '+');
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 
@@ -1215,12 +1224,12 @@ function buildHtSection(initialData) {
 }
 
 function collectHeightenedRows() {
-  const wraps = document.querySelectorAll('#heightened-rows .ht-row-wrap');
+  const wraps = document.querySelectorAll('#heightened-rows .option-row-wrap');
   return Array.from(wraps).map(wrap => {
     const get = f => wrap.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const m = get('mana');
     return {
-      variant   : get('variant'),
+      name      : get('name'),
       attribute : get('attribute'),
       actions   : collectAction(get('act-count'), get('act-length')),
       component : get('component'),
@@ -1242,7 +1251,7 @@ function buildComponentRow(data) {
 
   const lblRow = el('div', { class: 'comp-editor-labels' });
   ['Component', 'Attribute', 'Count', 'Length', 'Type', 'Rarity', 'Price'].forEach(l =>
-    lblRow.appendChild(el('span', { class: 'sd-label' }, l)));
+    lblRow.appendChild(el('span', { class: 'option-label' }, l)));
   const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeBtn.addEventListener('click', () => wrap.remove());
   lblRow.appendChild(removeBtn);
@@ -1251,8 +1260,8 @@ function buildComponentRow(data) {
   const mainRow = el('div', { class: 'comp-editor-main' });
 
   const varIn = el('input', { class: 'form-input', type: 'text',
-    placeholder: 'Option', 'data-field': 'variant' });
-  varIn.value = data.variant || '';
+    placeholder: 'Option', 'data-field': 'name' });
+  varIn.value = data.name || '';
   mainRow.appendChild(varIn);
 
   const attrSel = buildAttributeSelect(data.attribute);
@@ -1299,9 +1308,9 @@ function buildComponentRow(data) {
 
 function buildComponentsSection(f) {
   const wrap = el('div', { class: 'form-field form-field-wide' });
-  const heading = el('div', { class: 'sd-heading' });
+  const heading = el('div', { class: 'options-heading' });
   heading.appendChild(el('span', {}, 'Components'));
-  const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
+  const addBtn = el('button', { class: 'options-add-btn', type: 'button' }, '+');
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
   const container = el('div', { id: 'component-rows' });
@@ -1317,7 +1326,7 @@ function collectComponentRows() {
     const get = f => row.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const num = f => { const x = get(f); return x !== '' ? parseFloat(x) : null; };
     return {
-      variant     : get('variant'),
+      name        : get('name'),
       attribute   : get('attribute'),
       actions     : collectAction(get('act-count'), get('act-length')),
       component   : get('component'),
@@ -1326,7 +1335,7 @@ function collectComponentRows() {
       rarity      : get('rarity'),
       price       : num('price')
     };
-  }).filter(r => r.effect || r.description || r.variant);
+  }).filter(r => r.effect || r.description || r.name);
 }
 
 function dfNum(label, field, val, min) {
@@ -1407,9 +1416,9 @@ function buildEffectRow(data) {
 function buildEffectSection(f) {
   const wrap = el('div', { class: 'form-field form-field-wide' });
 
-  const heading = el('div', { class: 'sd-heading' });
+  const heading = el('div', { class: 'options-heading' });
   heading.appendChild(el('span', {}, 'Effect'));
-  const addBtn = el('button', { class: 'sd-add-btn', type: 'button' }, '+');
+  const addBtn = el('button', { class: 'options-add-btn', type: 'button' }, '+');
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 

@@ -389,20 +389,20 @@ body {
 .skill-label  { font-weight: 700; font-size: 12px; font-family: var(--font-ui); color: var(--text-muted); text-transform: uppercase; }
 
 /* Heightened structured editor */
-.ht-labels {
+.option-labels {
   display: grid;
   grid-template-columns: 110px 100px 50px 84px 60px 1fr 46px;
   gap: 4px;
   padding: 0 0 2px;
   flex: 1;
 }
-.ht-row {
+.option-fields {
   display: grid;
   grid-template-columns: 110px 100px 50px 84px 60px 1fr 46px;
   gap: 4px;
   margin-bottom: 4px;
 }
-.ht-row .form-input { font-size: 12px; padding: 3px 5px; }
+.option-fields .form-input { font-size: 12px; padding: 3px 5px; }
 
 /* Action pair (count + length) -- used in Cast section only */
 .action-pair { display: flex; gap: 2px; }
@@ -535,12 +535,12 @@ details[open] > summary.section-heading::before {
 }
 .comp-editor-main .form-input { font-size: 12px; padding: 3px 5px; }
 /* Row results editor section (below each SD / HT editor row) */
-.sd-row-wrap, .ht-row-wrap {
+.option-row-wrap {
   border: 1px solid var(--border);
   padding: 8px;
   margin-bottom: 6px;
 }
-.sd-row-wrap .row-results-section, .ht-row-wrap .row-results-section {
+.option-row-wrap .row-results-section {
   border: none;
   margin-top: 4px;
 }
@@ -677,7 +677,7 @@ details[open] > summary.section-heading::before {
 .form-results-col { display: flex; flex-direction: column; min-width: 0; }
 
 /* Sustain / Dismiss structured editor */
-.sd-heading {
+.options-heading {
   background: var(--heading-bg);
   color: var(--heading-fg);
   font-variant: small-caps;
@@ -691,7 +691,7 @@ details[open] > summary.section-heading::before {
   align-items: center;
   margin: 18px 0 4px;
 }
-.sd-add-btn {
+.options-add-btn {
   background: transparent;
   border: none;
   color: var(--heading-fg);
@@ -701,22 +701,8 @@ details[open] > summary.section-heading::before {
   padding: 0 2px;
   font-weight: 400;
 }
-.sd-add-btn:hover { opacity: 0.75; }
-.sd-labels {
-  display: grid;
-  grid-template-columns: 70px 90px 50px 84px 52px 1fr 46px;
-  gap: 4px;
-  padding: 0 0 2px;
-  flex: 1;
-}
-.sd-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-ui); }
-.sd-row {
-  display: grid;
-  grid-template-columns: 70px 90px 50px 84px 52px 1fr 46px;
-  gap: 4px;
-  margin-bottom: 4px;
-}
-.sd-row .form-input   { font-size: 12px; padding: 3px 5px; }
+.options-add-btn:hover { opacity: 0.75; }
+.option-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-ui); }
 .checkbox-container   { display: flex; flex-direction: column; gap: 4px; padding: 4px 0; }
 .checkbox-section     { display: flex; flex-direction: column; gap: 2px; }
 .checkbox-section-label {
