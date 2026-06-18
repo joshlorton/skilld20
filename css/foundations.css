@@ -727,14 +727,6 @@ details[open] > summary.section-heading::before {
    TRAIT GROUPS MANAGER
    ============================================================ */
 
-.groups-panel-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.groups-panel-header .editor-section-title { margin: 0; }
-
 .group-list { margin-bottom: 8px; }
 
 .group-box {

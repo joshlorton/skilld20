@@ -22,9 +22,9 @@ const state = {
   sha          : null,
   token        : localStorage.getItem('skd20_token') || '',
   dirty        : false,
-  mode         : 'view',   // 'view' | 'edit'
-  groups       : { traits: [], traditions: [], access: [] },
-  groupsSha    : null
+  mode         : 'view',   // 'view' | 'edit' | 'traits'
+  traits       : { general: [], traditions: [], access: [] },
+  traitsSha    : null
 };
 
 /* ============================================================
@@ -258,16 +258,16 @@ async function attemptSave(isRetry) {
 }
 
 /* ============================================================
-   TRAIT GROUPS -- GitHub API (data/trait-groups.json)
+   TRAITS MANAGER -- GitHub API (data/trait-groups.json)
    ============================================================ */
 
-function applyGroupsData(data) {
-  state.groups.traits     = sortGroups(data?.traits);
-  state.groups.traditions = sortGroups(data?.traditions);
-  state.groups.access     = sortGroups(data?.access);
+function applyTraitsData(data) {
+  state.traits.general     = sortGroups(data?.general);
+  state.traits.traditions  = sortGroups(data?.traditions);
+  state.traits.access      = sortGroups(data?.access);
 }
 
-async function loadGroupsData() {
+async function loadTraitsData() {
   try {
     if (state.token) {
       const resp = await fetch(
@@ -276,69 +276,69 @@ async function loadGroupsData() {
       );
       if (resp.ok) {
         const raw  = await resp.json();
-        state.groupsSha = raw.sha;
+        state.traitsSha = raw.sha;
         const _b64 = atob(raw.content.replace(/\n/g, ''));
         const text = new TextDecoder().decode(Uint8Array.from(_b64, c => c.charCodeAt(0)));
-        applyGroupsData(JSON.parse(text));
+        applyTraitsData(JSON.parse(text));
         return;
       }
     } else {
       const resp = await fetch(`./${CONFIG.groupsFile}`);
       if (resp.ok) {
-        applyGroupsData(await resp.json());
+        applyTraitsData(await resp.json());
         return;
       }
     }
   } catch (err) { /* fall through to defaults below */ }
-  applyGroupsData(DEFAULT_GROUPS);
+  applyTraitsData(DEFAULT_TRAITS_DATA);
 }
 
-async function fetchGroupsSha() {
+async function fetchTraitsSha() {
   const resp = await fetch(
     `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
     { headers: ghHeaders() }
   );
   if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
   const raw = await resp.json();
-  state.groupsSha = raw.sha;
+  state.traitsSha = raw.sha;
 }
 
-async function saveGroupsData() {
+async function saveTraitsData() {
   if (!state.token) { setStatus('No token set', 'error'); return false; }
-  setStatus('Saving groups\u2026', 'load');
+  setStatus('Saving traits\u2026', 'load');
   try {
-    return await attemptSaveGroups(false);
+    return await attemptSaveTraits(false);
   } catch (err) {
     setStatus(`Save error: ${err.message}`, 'error');
     return false;
   }
 }
 
-async function attemptSaveGroups(isRetry) {
+async function attemptSaveTraits(isRetry) {
   const payload = {
-    traits     : sortGroups(state.groups.traits),
-    traditions : sortGroups(state.groups.traditions),
-    access     : sortGroups(state.groups.access)
+    general    : sortGroups(state.traits.general),
+    traditions : sortGroups(state.traits.traditions),
+    access     : sortGroups(state.traits.access)
   };
   const json    = JSON.stringify(payload, null, 2);
   const _enc    = new TextEncoder().encode(json);
   let   _bin    = ''; _enc.forEach(b => _bin += String.fromCharCode(b));
   const content = btoa(_bin);
   const ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
-  const body    = { message: `Update trait groups [${ts}]`, content, sha: state.groupsSha };
+  const body    = { message: `Update trait groups [${ts}]`, content, sha: state.traitsSha };
   const resp    = await fetch(
     `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
     { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
   );
   if (resp.status === 409 && !isRetry) {
-    setStatus('Conflict detected, refreshing groups\u2026', 'load');
-    await fetchGroupsSha();
-    return attemptSaveGroups(true);
+    setStatus('Conflict detected, refreshing traits\u2026', 'load');
+    await fetchTraitsSha();
+    return attemptSaveTraits(true);
   }
   if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
   const result      = await resp.json();
-  state.groupsSha    = result.content.sha;
-  setStatus('Groups saved to GitHub \u2713', 'ok');
+  state.traitsSha    = result.content.sha;
+  setStatus('Traits saved to GitHub \u2713', 'ok');
   return true;
 }
 
@@ -1506,8 +1506,8 @@ const OPTS = {
 
 /* Fallback data used only if data/trait-groups.json cannot be fetched
    (e.g. first run before the file has been committed to the repo). */
-const DEFAULT_GROUPS = {
-  traits: [
+const DEFAULT_TRAITS_DATA = {
+  general: [
     { label: 'Condition', items: ['curse', 'disease', 'haste', 'poison', 'reposition', 'slow', 'stun'] },
     { label: 'Elemental', items: ['air', 'earth', 'fire', 'metal', 'water', 'wood'] },
     { label: 'Energy',    items: ['acid', 'cold', 'electricity', 'fire', 'force', 'lightning',
@@ -1658,9 +1658,9 @@ function buildEditor(f) {
   imgPathIn.value = f.image || '';
   imgWrap.appendChild(imgPathIn);
   form.appendChild(imgWrap);
-  form.appendChild(edGroupedCheckboxes('Traits',      'ed-traits',     f.traits,     state.groups.traits,     'form-label-tag-traits'));
-  form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, state.groups.traditions, 'form-label-tag-traditions'));
-  form.appendChild(edGroupedCheckboxes('Access',      'ed-access',     f.access,     state.groups.access,     'form-label-tag-access'));
+  form.appendChild(edGroupedCheckboxes('Traits',      'ed-traits',     f.traits,     state.traits.general,     'form-label-tag-traits'));
+  form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, state.traits.traditions, 'form-label-tag-traditions'));
+  form.appendChild(edGroupedCheckboxes('Access',      'ed-access',     f.access,     state.traits.access,     'form-label-tag-access'));
 
   // Cast
   form.appendChild(sec('Cast'));
@@ -1874,6 +1874,7 @@ function showPanel(which, content) {
   document.getElementById('empty-state').style.display = 'none';
   document.getElementById('viewer').style.display      = which === 'viewer' ? '' : 'none';
   document.getElementById('editor').style.display      = which === 'editor' ? '' : 'none';
+  document.getElementById('traits').style.display      = which === 'traits' ? '' : 'none';
 
   const panel = document.getElementById(which);
   panel.innerHTML = '';
@@ -1907,12 +1908,15 @@ function updateButtons() {
   const s  = state.currentIndex >= 0;
   const ev = state.mode === 'view';
   const ed = state.mode === 'edit';
+  const tr = state.mode === 'traits';
 
-  document.getElementById('btn-new').style.display     = t                  ? '' : 'none';
-  document.getElementById('btn-edit').style.display    = (t && s && ev)     ? '' : 'none';
-  document.getElementById('btn-cancel').style.display  = ed                 ? '' : 'none';
-  document.getElementById('btn-save-gh').style.display = (t && (state.dirty || ed)) ? '' : 'none';
-  document.getElementById('btn-groups').style.display  = t                  ? '' : 'none';
+  document.getElementById('btn-new').style.display          = (t && !tr)                       ? '' : 'none';
+  document.getElementById('btn-edit').style.display         = (t && s && ev && !tr)             ? '' : 'none';
+  document.getElementById('btn-cancel').style.display       = (ed)                               ? '' : 'none';
+  document.getElementById('btn-save-gh').style.display      = (t && (state.dirty || ed) && !tr)  ? '' : 'none';
+  document.getElementById('btn-traits').style.display       = (t && !tr)                        ? '' : 'none';
+  document.getElementById('btn-cancel-traits').style.display = tr                                ? '' : 'none';
+  document.getElementById('btn-save-traits').style.display   = (t && tr)                          ? '' : 'none';
 }
 
 /* ============================================================
@@ -1926,17 +1930,17 @@ function closeModal() { document.getElementById('modal-overlay').style.display =
    TRAIT GROUPS MANAGER
    ============================================================ */
 
-const GROUP_CATEGORIES = [
-  { key: 'traits',     label: 'Traits'     },
+const TRAITS_CATEGORIES = [
+  { key: 'general',    label: 'General'    },
   { key: 'traditions', label: 'Traditions' },
   { key: 'access',     label: 'Access'     }
 ];
 
-function collectGroupsPanel() {
-  const result = { traits: [], traditions: [], access: [] };
-  GROUP_CATEGORIES.forEach(({ key }) => {
+function collectTraitsPanel() {
+  const result = { general: [], traditions: [], access: [] };
+  TRAITS_CATEGORIES.forEach(({ key }) => {
     const boxes = document.querySelectorAll(
-      `#groups-content .group-list[data-category="${key}"] .group-box`);
+      `#traits-content .group-list[data-category="${key}"] .group-box`);
     result[key] = Array.from(boxes).map(box => {
       const label = box.querySelector('.group-label-input').value.trim();
       const items = Array.from(box.querySelectorAll('.group-item-chip')).map(chip => {
@@ -1949,13 +1953,13 @@ function collectGroupsPanel() {
   return result;
 }
 
-function refreshGroupsPanel(data) {
+function refreshTraitsPanel(data) {
   const sorted = {
-    traits     : sortGroups(data.traits),
+    general    : sortGroups(data.general),
     traditions : sortGroups(data.traditions),
     access     : sortGroups(data.access)
   };
-  renderGroupsPanel(sorted, document.getElementById('groups-content'));
+  renderTraitsPanel(sorted, document.getElementById('traits-content'));
 }
 
 function buildGroupBox(catKey, group, gi) {
@@ -1969,14 +1973,14 @@ function buildGroupBox(catKey, group, gi) {
   const removeGroupBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
   removeGroupBtn.addEventListener('click', () => {
     if (!confirm(`Remove group "${group.label}" and all its items?`)) return;
-    const fresh = collectGroupsPanel();
+    const fresh = collectTraitsPanel();
     fresh[catKey].splice(gi, 1);
-    refreshGroupsPanel(fresh);
+    refreshTraitsPanel(fresh);
   });
   header.appendChild(removeGroupBtn);
   box.appendChild(header);
 
-  labelIn.addEventListener('blur', () => refreshGroupsPanel(collectGroupsPanel()));
+  labelIn.addEventListener('blur', () => refreshTraitsPanel(collectTraitsPanel()));
   labelIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); labelIn.blur(); } });
 
   const itemsWrap = el('div', { class: 'group-items' });
@@ -1987,12 +1991,12 @@ function buildGroupBox(catKey, group, gi) {
     const chip  = el('span', { class: 'group-item-chip', 'data-value': val, 'data-label': lbl }, lbl);
     const xBtn  = el('button', { class: 'group-item-remove', type: 'button' }, '\u00D7');
     xBtn.addEventListener('click', () => {
-      const fresh = collectGroupsPanel();
+      const fresh = collectTraitsPanel();
       fresh[catKey][gi].items = fresh[catKey][gi].items.filter(it => {
         const v = typeof it === 'object' ? it.value : it;
         return v !== val;
       });
-      refreshGroupsPanel(fresh);
+      refreshTraitsPanel(fresh);
     });
     chip.appendChild(xBtn);
     itemsWrap.appendChild(chip);
@@ -2005,14 +2009,14 @@ function buildGroupBox(catKey, group, gi) {
   const doAdd = () => {
     const text = addIn.value.trim();
     if (!text) return;
-    const fresh = collectGroupsPanel();
+    const fresh = collectTraitsPanel();
     const g = fresh[catKey][gi];
     if (catKey === 'access') {
       g.items.push({ value: `${(g.label || '').toLowerCase()}: ${text}`, label: text });
     } else {
       g.items.push(text);
     }
-    refreshGroupsPanel(fresh);
+    refreshTraitsPanel(fresh);
   };
   addBtn.addEventListener('click', doAdd);
   addIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doAdd(); } });
@@ -2023,9 +2027,9 @@ function buildGroupBox(catKey, group, gi) {
   return box;
 }
 
-function renderGroupsPanel(data, container) {
+function renderTraitsPanel(data, container) {
   container.innerHTML = '';
-  GROUP_CATEGORIES.forEach(({ key, label }) => {
+  TRAITS_CATEGORIES.forEach(({ key, label }) => {
     container.appendChild(el('div', { class: 'editor-section-title' }, label));
 
     const list = el('div', { class: 'group-list', 'data-category': key });
@@ -2034,51 +2038,24 @@ function renderGroupsPanel(data, container) {
 
     const addGroupBtn = el('button', { class: 'btn btn-secondary group-add-btn', type: 'button' }, '+ Add Group');
     addGroupBtn.addEventListener('click', () => {
-      const fresh = collectGroupsPanel();
+      const fresh = collectTraitsPanel();
       fresh[key].push({ label: 'New Group', items: [] });
-      refreshGroupsPanel(fresh);
+      refreshTraitsPanel(fresh);
     });
     container.appendChild(addGroupBtn);
   });
 }
 
-function buildGroupsManagerPanel() {
+function buildTraitsManagerPanel() {
   const wrap = el('div', { class: 'editor-form' });
 
-  const header = el('div', { class: 'groups-panel-header' });
-  header.appendChild(el('div', { class: 'editor-section-title', style: 'margin:0; flex:1;' }, 'Manage Trait Groups'));
-  const saveBtn   = el('button', { class: 'btn btn-primary',   type: 'button' }, 'Save Groups');
-  const cancelBtn = el('button', { class: 'btn btn-secondary', type: 'button' }, 'Close');
-  header.appendChild(saveBtn);
-  header.appendChild(cancelBtn);
-  wrap.appendChild(header);
-
-  const content = el('div', { id: 'groups-content' });
+  const content = el('div', { id: 'traits-content' });
   wrap.appendChild(content);
-  renderGroupsPanel({
-    traits     : sortGroups(state.groups.traits),
-    traditions : sortGroups(state.groups.traditions),
-    access     : sortGroups(state.groups.access)
+  renderTraitsPanel({
+    general    : sortGroups(state.traits.general),
+    traditions : sortGroups(state.traits.traditions),
+    access     : sortGroups(state.traits.access)
   }, content);
-
-  saveBtn.addEventListener('click', async () => {
-    const data = collectGroupsPanel();
-    state.groups.traits     = sortGroups(data.traits);
-    state.groups.traditions = sortGroups(data.traditions);
-    state.groups.access     = sortGroups(data.access);
-    await saveGroupsData();
-  });
-
-  cancelBtn.addEventListener('click', () => {
-    document.getElementById('groups').style.display = 'none';
-    if (state.currentIndex >= 0 && state.mode === 'view') {
-      document.getElementById('viewer').style.display = '';
-    } else if (state.mode === 'edit') {
-      document.getElementById('editor').style.display = '';
-    } else {
-      document.getElementById('empty-state').style.display = '';
-    }
-  });
 
   return wrap;
 }
@@ -2213,21 +2190,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Manage Trait Groups
-  document.getElementById('btn-groups').addEventListener('click', () => {
-    document.getElementById('empty-state').style.display = 'none';
-    document.getElementById('viewer').style.display      = 'none';
-    document.getElementById('editor').style.display      = 'none';
-    const panel = document.getElementById('groups');
-    panel.style.display = '';
-    panel.innerHTML = '';
-    panel.appendChild(buildGroupsManagerPanel());
+  // Manage Traits
+  document.getElementById('btn-traits').addEventListener('click', () => {
+    state.mode = 'traits';
+    showPanel('traits', buildTraitsManagerPanel());
+    updateButtons();
+  });
+
+  // Save Traits
+  document.getElementById('btn-save-traits').addEventListener('click', async () => {
+    const data = collectTraitsPanel();
+    state.traits.general    = sortGroups(data.general);
+    state.traits.traditions = sortGroups(data.traditions);
+    state.traits.access     = sortGroups(data.access);
+    const ok = await saveTraitsData();
+    if (ok) {
+      state.mode = 'view';
+      renderList();
+      if (state.currentIndex >= 0) {
+        showPanel('viewer', renderViewer(state.foundations[state.currentIndex]));
+      } else {
+        document.getElementById('empty-state').style.display = '';
+        document.getElementById('traits').style.display      = 'none';
+      }
+      updateButtons();
+    }
+  });
+
+  // Close Traits (Cancel)
+  document.getElementById('btn-cancel-traits').addEventListener('click', () => {
+    state.mode = 'view';
+    if (state.currentIndex >= 0) {
+      showPanel('viewer', renderViewer(state.foundations[state.currentIndex]));
+    } else {
+      document.getElementById('empty-state').style.display = '';
+      document.getElementById('traits').style.display      = 'none';
+    }
+    renderList();
+    updateButtons();
   });
 
   /* ----------------------------------------------------------
      Now load data -- errors here no longer affect buttons.
      ---------------------------------------------------------- */
   loadData();
-  loadGroupsData();
+  loadTraitsData();
 
 });

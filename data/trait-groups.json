@@ -1,5 +1,5 @@
 {
-  "traits": [
+  "general": [
     {
       "label": "Condition",
       "items": [
@@ -122,10 +122,6 @@
         {
           "value": "arcane school: elemental: water",
           "label": "elemental: water"
-        },
-        {
-          "value": "arcane school: necromancy",
-          "label": "necromancy"
         }
       ]
     },
