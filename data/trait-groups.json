@@ -3,7 +3,9 @@
     {
       "label": "Condition",
       "items": [
+        "blinded",
         "curse",
+        "deafened",
         "disease",
         "haste",
         "poison",
