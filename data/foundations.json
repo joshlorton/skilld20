@@ -1567,6 +1567,107 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Enhance Creature",
+      "mana": 8,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "assets/img/foundations/enhance_creature.png",
+      "note": "",
+      "traits": [
+        "enhancement"
+      ],
+      "traditions": [
+        "arcane",
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "divine domain: animal"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 1,
+        "type": "creature"
+      },
+      "duration": "1 minutes",
+      "effect": {
+        "options": [
+          {
+            "title": "",
+            "text": "You enhance a creature physically or mentally.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
