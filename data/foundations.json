@@ -1464,6 +1464,109 @@
       ],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Illumination",
+      "mana": 3,
+      "rarity": "common",
+      "difficulty": "easy",
+      "image": "assets/img/foundations/illumination2.png",
+      "note": "",
+      "traits": [
+        "darkness",
+        "light",
+        "visual"
+      ],
+      "traditions": [
+        "arcane",
+        "divine",
+        "pact"
+      ],
+      "access": [
+        "divine domain: moon",
+        "divine domain: sun"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": "an object or point within reach"
+      },
+      "duration": "1 hours",
+      "effect": {
+        "options": [
+          {
+            "title": "",
+            "text": "You make the touched object glow with candlelight or you create a floating light that glows as brightly as a candle.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
