@@ -1745,11 +1745,18 @@
         "secondary": [],
         "cs": [
           "+3 resistance",
-          "choose an additional"
+          "choose an additional energy type",
+          "double duration",
+          "choose an additional target within 15'"
         ],
-        "s": "",
-        "f": "",
-        "cf": []
+        "s": "Expected effect.",
+        "f": "No effect.",
+        "cf": [
+          "you suffer weakness equal to the attempted resistance value for the same duration",
+          "you suffer weakness equal to half the attempted  resistance value for 10x the duration",
+          "you cannot cast spells with the same energy trait for 1 minute",
+          "you suffer damage of the same energy type equal to half the attempted resistance value"
+        ]
       },
       "attack_results": {
         "cs": "",
