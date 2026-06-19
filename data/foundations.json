@@ -1832,7 +1832,7 @@
             "length": "action"
           },
           "component": "S",
-          "effect": "any damage resisted is stored as mana pool that can be used to cast spells with the same energy trait; 1 damage resisted = 1 mana; this mana pool lasts for 2 hours; when the time runs out, the mana harmlessly disperses",
+          "effect": "any damage resisted is stored as mana pool that can be used to cast spells with the same energy trait; 1 damage resisted = 1 mana; this mana pool lasts for 2 hours; when this duration ends, the mana harmlessly disperses",
           "mana": 16,
           "results": null
         },
