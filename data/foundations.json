@@ -1668,6 +1668,189 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Resistance",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "assets/img/foundations/resistance.png",
+      "note": "",
+      "traits": [
+        "resistance"
+      ],
+      "traditions": [],
+      "access": [
+        "bardic tune: protection",
+        "divine domain: protection"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 1,
+        "type": "creature or object"
+      },
+      "duration": "1 rounds",
+      "effect": {
+        "options": [
+          {
+            "title": "",
+            "text": "You protect your target against one type of energy chosen at the time of casting. Your target gains resistance 3 to the chosen type of energy.",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [
+        {
+          "name": "Adapt",
+          "attribute": "effect",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "V S",
+          "effect": "change resistance to another energy type",
+          "mana": 6,
+          "results": null
+        }
+      ],
+      "dismiss": [],
+      "heightened": [
+        {
+          "name": "",
+          "attribute": "targets",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "-",
+          "effect": "+1 target",
+          "mana": 10,
+          "results": null
+        },
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "-",
+          "effect": "increase duration 1 step",
+          "mana": 10,
+          "results": null
+        },
+        {
+          "name": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "-",
+          "effect": "+1 resistance",
+          "mana": 2,
+          "results": null
+        },
+        {
+          "name": "Reflect",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "any damage resisted is reflected back at the source if within 30'",
+          "mana": 8,
+          "results": null
+        },
+        {
+          "name": "Reservoir",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "any damage resisted is stored as mana pool that can be used to cast spells with the same energy trait; 1 damage resisted = 1 mana; this mana pool lasts for 2 hours; when the time runs out, the mana harmlessly disperses",
+          "mana": 16,
+          "results": null
+        },
+        {
+          "name": "Reservoir",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "increase mana pool's duration 1 step",
+          "mana": 10,
+          "results": null
+        }
+      ],
+      "variants": [],
+      "components": []
     }
   ]
 }
