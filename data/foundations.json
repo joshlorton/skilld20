@@ -1496,8 +1496,8 @@
       },
       "range": "",
       "area": {
-        "size": 0,
-        "shape": "",
+        "size": 5,
+        "shape": "sphere",
         "type": ""
       },
       "targets": {
@@ -1509,7 +1509,7 @@
         "options": [
           {
             "title": "",
-            "text": "You make the touched object glow with candlelight or you create a floating light that glows as brightly as a candle.",
+            "text": "You make the touched object glow with candlelight or you create a floating light that glows as brightly as a candle. Both provide 5' of dim light.",
             "note": "",
             "damage": {
               "dieNumber": 0,
@@ -1545,10 +1545,16 @@
       "skill": {
         "primary": [],
         "secondary": [],
-        "cs": [],
-        "s": "",
-        "f": "",
-        "cf": []
+        "cs": [
+          "double area",
+          "double duration"
+        ],
+        "s": "Expected effect.",
+        "f": "No effect.",
+        "cf": [
+          "you are blinded for 1 round",
+          "you are dazzled for 1d4 rounds"
+        ]
       },
       "attack_results": {
         "cs": "",
@@ -1562,9 +1568,140 @@
         "f": "",
         "cf": ""
       },
-      "sustain": [],
-      "dismiss": [],
-      "heightened": [],
+      "sustain": [
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "-",
+          "effect": "extend the duration until the end of your next turn",
+          "mana": 2,
+          "results": null
+        },
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "extend the duration for 10 minutes",
+          "mana": 3,
+          "results": null
+        }
+      ],
+      "dismiss": [
+        {
+          "name": "Flash",
+          "attribute": "effect",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "V S",
+          "effect": "end your light spell in a bright flash that can dazzle or blind any creature within your spell's area of bright light.",
+          "mana": 9,
+          "results": {
+            "type": "save",
+            "saveType": "dexterity",
+            "attackType": "",
+            "cs": "No effect.",
+            "s": "No effect.",
+            "f": "Dazzled for 1d4 rounds.",
+            "cf": "Blinded for 1 round, then dazzled for 1d4 rounds."
+          }
+        }
+      ],
+      "heightened": [
+        {
+          "name": "",
+          "attribute": "area size",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "increase area to 10' of dim light",
+          "mana": 2,
+          "results": null
+        },
+        {
+          "name": "Bright",
+          "attribute": "area size",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "increase area to 5' of bright light + 5' of dim light",
+          "mana": 3,
+          "results": null
+        },
+        {
+          "name": "Bright",
+          "attribute": "area size",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "increase area by an additional 5' of bright light + 5' of dim light",
+          "mana": 3,
+          "results": null
+        },
+        {
+          "name": "Daylight",
+          "attribute": "area size",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "V",
+          "effect": "increase area to 5' of daylight + 5' of bright light + 5' of dim light",
+          "mana": 9,
+          "results": null
+        },
+        {
+          "name": "Daylight",
+          "attribute": "area size",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "",
+          "effect": "increase area by an additional 5' of daylight + 5' of bright light + 5' of dim light",
+          "mana": 5,
+          "results": null
+        },
+        {
+          "name": "Cone",
+          "attribute": "area shape",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "change area to a cone 2x as long as the sphere's radius",
+          "mana": 1,
+          "results": null
+        },
+        {
+          "name": "Line",
+          "attribute": "area shape",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "change area to a cone 3x as long as the sphere's radius",
+          "mana": 1,
+          "results": null
+        }
+      ],
       "variants": [],
       "components": []
     },
