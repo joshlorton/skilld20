@@ -1743,7 +1743,10 @@
       "skill": {
         "primary": [],
         "secondary": [],
-        "cs": [],
+        "cs": [
+          "+3 resistance",
+          "choose an additional"
+        ],
         "s": "",
         "f": "",
         "cf": []
@@ -1845,8 +1848,40 @@
           },
           "component": "S",
           "effect": "increase mana pool's duration 1 step",
-          "mana": 10,
+          "mana": 8,
           "results": null
+        },
+        {
+          "name": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "V S",
+          "effect": "choose an additional type of energy to to gain resistance against",
+          "mana": 8,
+          "results": null
+        },
+        {
+          "name": "Weakness",
+          "attribute": "effect",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "V S",
+          "effect": "Reverse resistance to weakness.",
+          "mana": 4,
+          "results": {
+            "type": "save",
+            "saveType": "constitution",
+            "attackType": "",
+            "cs": "No effect. Target gains immunity to further attempts for 1 hour.",
+            "s": "No effect.",
+            "f": "Targets suffers weakness against chosen energy type. Duration and modifier remain the same.",
+            "cf": "Targets suffers weakness against chosen energy type. Duration doubles. Modifier remains the same."
+          }
         }
       ],
       "variants": [],
