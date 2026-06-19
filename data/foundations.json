@@ -1871,7 +1871,7 @@
             "length": "action"
           },
           "component": "V S",
-          "effect": "Reverse resistance to weakness.",
+          "effect": "Reverse resistance into weakness.",
           "mana": 4,
           "results": {
             "type": "save",
