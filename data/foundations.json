@@ -1879,8 +1879,8 @@
             "attackType": "",
             "cs": "No effect. Target gains immunity to further attempts for 1 hour.",
             "s": "No effect.",
-            "f": "Target suffers weakness against chosen energy type. Duration and modifier remain the same.",
-            "cf": "Target suffers weakness against chosen energy type. Duration doubles. Modifier remains the same."
+            "f": "Target suffers weakness against chosen energy type. Duration and weakness value remain the same.",
+            "cf": "Target suffers weakness against chosen energy type. Duration remains the same. Weakness value doubles."
           }
         }
       ],
