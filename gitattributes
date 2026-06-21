@@ -1,0 +1,27 @@
+# ============================================================
+# SKILLd20 -- .gitattributes
+# ============================================================
+# Ensures consistent line endings regardless of OS or editor
+# (relevant for GitHub Desktop on Windows, which may have
+# core.autocrlf enabled by default) and correct binary
+# handling for image assets.
+# ============================================================
+
+# Default: normalize all text files to LF on commit
+* text=auto eol=lf
+
+# Explicit text files -- always LF
+*.js    text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.svg   text eol=lf
+
+# Binary files -- never diff, never normalize line endings
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
