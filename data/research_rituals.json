@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "Rituals",
+    "subtitle": "Folk & Alchemical Reference",
+    "description": "The rites, places, and occasions historically tied to light or darkness, drawn from folklore, alchemy, and seasonal custom.",
+    "groupField": "category",
+    "groupOrder": [
+      "Time",
+      "Place",
+      "Reason",
+      "Other"
+    ],
+    "tagField": "tag",
+    "tags": [
+      "light",
+      "darkness",
+      "neutral"
+    ]
+  },
+  "items": [
+    {
+      "id": "r-witching-hour",
+      "name": "The Witching Hour",
+      "category": "Time",
+      "tag": "darkness",
+      "origin": "European folklore, formalized 18th c.",
+      "summary": "Midnight or 3 a.m. — the hour when supernatural power is believed strongest and the dead draw near.",
+      "detail": "Folklore across Europe holds that at the stroke of midnight (or, in later tradition, 3 a.m.) the boundary between the living and the dead blurs and witches’ power peaks. The term itself first appears in print in 1762, though Shakespeare references “the very witching time of night” in Hamlet (c. 1600). Specific folk instructions exist in many cultures for what to do, or avoid doing, at this hour.",
+      "notes": "Modern colloquial use (the “witching hour” of a colicky infant) descends directly from this belief."
+    },
+    {
+      "id": "r-beltane",
+      "name": "Beltane Fires",
+      "category": "Time",
+      "tag": "light",
+      "origin": "Gaelic Ireland, Scotland, Isle of Man",
+      "summary": "May Eve bonfires marking the symbolic release of the sun after winter’s captivity.",
+      "detail": "Cormac’s 10th-century glossary describes cattle being driven between two bonfires (“the two fires”, the likely origin of the name) to protect them from disease before the herds moved to summer pasture. Household hearths were extinguished beforehand and relit from the shared communal blaze, the “need-fire” or teineigen, symbolizing renewal. Frazer records the belief that Beltane bonfires across Scotland, Wales, the Isle of Man, and Central Europe served explicitly as a precaution against witchcraft.",
+      "notes": "Counterpart festival to Samhain on the opposite point of the wheel of the year; both are liminal “thin” points between worlds."
+    },
+    {
+      "id": "r-midwinter-mistletoe",
+      "name": "Midwinter Mistletoe Gathering",
+      "category": "Time",
+      "tag": "neutral",
+      "origin": "Druidic and later folk-magical Britain",
+      "summary": "Mistletoe cut at the winter solstice, the year’s longest night, for protection through the dark months.",
+      "detail": "Robert Graves’s reconstructed Celtic Tree Calendar assigns December 23rd, deep midwinter, specifically to mistletoe. The plant was gathered with a non-ferrous tool, with the cutter’s consent rituals and offerings to the host tree, and never allowed to touch the ground before being bound into a protective amulet for the home.",
+      "notes": "The timing places the year’s darkest point as the moment to harvest a plant later used for protection — darkness as the occasion for gathering a light-season ward."
+    },
+    {
+      "id": "r-threshold",
+      "name": "The Threshold (Doorway / Lintel)",
+      "category": "Place",
+      "tag": "neutral",
+      "origin": "Near-universal",
+      "summary": "The single most common site for protective material magic — the boundary between inside and outside, safe and unsafe.",
+      "detail": "Iron horseshoes, rowan branches, jet crosses, and St. John’s Wort juice rubbed on lintels and posts all converge on the same architectural feature: the doorway. As a literal threshold between the protected interior and the uncontrolled exterior, it became the default location for ward-placement across unrelated traditions.",
+      "notes": "The doorway’s symbolic role as a liminal space mirrors the symbolic role of dusk/dawn as liminal times."
+    },
+    {
+      "id": "r-bog-marsh",
+      "name": "Bogs, Marshes & Wetlands",
+      "category": "Place",
+      "tag": "darkness",
+      "origin": "British Isles, continental Europe",
+      "summary": "The natural habitat of the will-o’-the-wisp, where unburied dead were believed to linger restlessly.",
+      "detail": "Will-o’-the-wisps (ignis fatuus, “foolish fire” in Latin) are recorded since at least 1340 as canwyll corff — “corpse candle” — in Welsh tradition. Bodies lost in bogs were frequently never recovered, leaving funerary rites incomplete; folklore filled that gap by imagining the dead as restless lights haunting the place they vanished. Scottish “spunkies” were said to actively and mockingly mislead travelers into the mire.",
+      "notes": "First scientific treatment by Isaac Newton in Opticks (1704), attributing the lights to vapors from putrefying water."
+    },
+    {
+      "id": "r-graveside",
+      "name": "The Graveside / Wake House",
+      "category": "Place",
+      "tag": "light",
+      "origin": "Egypt, Greece, Ireland; near-universal funerary practice",
+      "summary": "Candles placed around the dead to light their journey and keep vigil over the body until burial.",
+      "detail": "Ancient Egyptians lit oil lamps during burial rites to illuminate the deceased’s journey through the afterlife. In the Irish wake tradition, candles were placed at the head and foot of the body, partly to help the soul “walk through purgatory” and partly to keep continuous light over the threshold between life and death for the full three-day wake. A window was traditionally opened to let the soul leave, and mirrors covered.",
+      "notes": "The Old English root of “wake” (wacu) means “watch” or “vigil” — staying awake was the entire point."
+    },
+    {
+      "id": "r-protect-livestock",
+      "name": "Protection of Livestock",
+      "category": "Reason",
+      "tag": "light",
+      "origin": "Gaelic pastoral Europe",
+      "summary": "Practical magic for survival — driving cattle between bonfires before the move to summer pasture.",
+      "detail": "The core documented purpose of the Beltane fires, per Cormac’s glossary: cattle driven between two need-fires to protect them from disease as herds moved onto open summer grazing. This is described by modern folklorists as “practical magic, survival magic, seasonal community magic” rather than purely symbolic ritual.",
+      "notes": "One of the clearest cases of a fire ritual with a stated, specific, practical purpose rather than generalized warding."
+    },
+    {
+      "id": "r-ward-witchcraft",
+      "name": "Warding Off Witchcraft",
+      "category": "Reason",
+      "tag": "neutral",
+      "origin": "Scotland, Wales, Central Europe",
+      "summary": "Bonfires, iron, and specific herbs deployed explicitly against the perceived threat of malevolent magic.",
+      "detail": "Frazer’s survey of European folk practice concludes that Beltane bonfires functioned, in his words, “simply as a precaution against witchcraft” in Scotland, Wales, the Isle of Man, and much of Central Europe — a conclusion echoed in the Czech Palí čarodejnic (“burning of the witches”) festival held on the same date.",
+      "notes": "Distinct from generalized protection: this is warding against a specifically human (witch) rather than supernatural (fae, ghost) threat."
+    },
+    {
+      "id": "r-guide-dead",
+      "name": "Guiding the Souls of the Dead",
+      "category": "Reason",
+      "tag": "light",
+      "origin": "Egypt, Greece, Rome, Japan",
+      "summary": "Light as psychopomp — illuminating a path for the departed rather than protecting the living.",
+      "detail": "Greco-Roman funerals used candles and torches at gravesites to honor the dead and invoke divine favor for their passage. Japanese Obon lanterns are hung specifically to guide ancestral spirits home for the festival, and in some regional traditions, released onto water afterward to send the spirits back. The Macedonians lit candles for up to 40 days post-death specifically to ward off ghosts and demons that might harm the departing soul.",
+      "notes": "Distinguishes ritual light used for the dead’s benefit from ritual light used for the living’s protection — a meaningful folkloric distinction."
+    },
+    {
+      "id": "r-cleanse-fertility",
+      "name": "Cleansing & Fertility",
+      "category": "Reason",
+      "tag": "light",
+      "origin": "Gaelic Beltane tradition",
+      "summary": "Leaping the bonfire to take its flame inside oneself, encouraging conception and purification alike.",
+      "detail": "Couples wishing to conceive would leap the Beltane fire directly, on the belief described by scholar Vivianne Crowley that “to leap the bonfire was to take the flame inside yourself” — fire’s light, life, and solar power passed bodily into the leaper. Morning dew collected on May 1st was separately said to confer witch-power on the gatherer and protect against the evil eye.",
+      "notes": "Combines two reasons (purification and fertility) in a single act, reflecting how folk ritual rarely separates motives as cleanly as modern categorization implies."
+    },
+    {
+      "id": "r-need-fire",
+      "name": "The Need-Fire (Teineigen)",
+      "category": "Other",
+      "tag": "light",
+      "origin": "Gaelic Ireland, Scotland, Isle of Man",
+      "summary": "A single communal flame, kindled fresh, from which every household fire was relit.",
+      "detail": "Before Beltane, every individual hearth fire in a community was deliberately extinguished. A new “need-fire” was then kindled at a central location — by some accounts through friction alone, not from existing flame — and burning torches were carried from it to every home and farm, restarting all domestic fires from one shared, ritually pure source.",
+      "notes": "The deliberate extinguishing-then-relighting structure (darkness imposed, then light restored communally) is the clearest ritual enactment of a darkness→light narrative in this list."
+    },
+    {
+      "id": "r-corpse-candle-omen",
+      "name": "Corpse Candle as Omen",
+      "category": "Other",
+      "tag": "darkness",
+      "origin": "Wales",
+      "summary": "A floating light foretelling a coming death, rather than guiding one already passed.",
+      "detail": "Welsh tradition treats the canwyll corff (“corpse candle”) as predictive rather than retrospective — the light is seen hovering near a home or moving along the path to a graveyard before a death occurs, shifting its folkloric role from psychopomp to omen. This is a meaningfully different function from the Scottish “spunkie,” which actively misleads the living rather than forewarning them.",
+      "notes": "Demonstrates how the same physical phenomenon (an unexplained floating light) accrued entirely different ritual meanings depending on regional tradition."
+    },
+    {
+      "id": "r-soyal",
+      "name": "Soyal (Winter Solstice Ceremony)",
+      "category": "Time",
+      "tag": "light",
+      "origin": "Hopi, with Zuni parallels",
+      "summary": "A 16-day kiva ceremony to physically turn the sun back from its farthest point and guarantee its return.",
+      "detail": "Held at the winter solstice, the year's shortest day, Soyal is built on the belief that the sun has traveled as far from the earth as it ever will, and that only the most powerful humans can persuade it to turn back. Inside underground kivas, priests stage a symbolic battle: shield-bearers representing drought, fire, darkness, and cold attack a bearer carrying the sun's shield, who is driven back and forth between two groups before the sun is ritually saved. The Soyal Katsina enters two weeks prior, deliberately appearing tired and unbalanced — as if just waking from a long sleep — to mark the start of the rite.",
+      "notes": "The longest single ceremony in the Hopi ceremonial cycle; purification, fasting, and pahos-offering all happen within its 16-day span, not as separate events."
+    },
+    {
+      "id": "r-zuni-shalako",
+      "name": "Shalako / Summer Solstice Rites",
+      "category": "Time",
+      "tag": "light",
+      "origin": "Zuni",
+      "summary": "Dances and rituals marking the longest day of the year and the renewal of life.",
+      "detail": "The Zuni perform Shalako around the summer solstice as a series of dances and rituals celebrating the sun's highest point and the renewal of life it brings to crops and community. It functions as the seasonal mirror to Soyal's winter-solstice sun-rescue, marking abundance rather than scarcity.",
+      "notes": "Pairs structurally with Soyal the way Beltane pairs with Samhain in Gaelic tradition — opposite solar points treated as the year's two great turning ceremonies."
+    },
+    {
+      "id": "r-kupala-wreath",
+      "name": "The Kupala Wreath-Float",
+      "category": "Reason",
+      "tag": "light",
+      "origin": "Ukraine, Poland, Belarus, Russia",
+      "summary": "Floating a flower wreath on a river to divine romantic fortune by how the current carries it.",
+      "detail": "Young women weave wreaths from wildflowers gathered earlier in the day, sometimes fixing a lit candle in the center so a suitor can find the right one in the dark. Floated on rivers at night, a wreath drifting swiftly forward signals a destined marriage; one that circles uncertainly predicts uncertain love; one that sinks, burns, or tangles in the reeds predicts the weaver will remain unmarried. Young men downriver swim out to retrieve the wreaths of women they're interested in.",
+      "notes": "Combines fire (the candle), water (the river), and plant material (the wreath) into a single divinatory act — an unusually multi-material ritual compared to most entries in this list."
+    },
+    {
+      "id": "r-kupala-fire-leap",
+      "name": "Leaping the Kupala Bonfire",
+      "category": "Reason",
+      "tag": "light",
+      "origin": "Slavic midsummer practice, all regions",
+      "summary": "Jumping a bonfire, often in pairs, for purification and to test or seal a romantic bond.",
+      "detail": "Couples leap the Kupala bonfire together; tradition holds that if their joined hands stay clasped throughout the jump, the couple is destined to marry. The act doubles as purification, with the fire's heat understood to burn away the past year's misfortune. Morning-after dew from the same night was separately gathered and used to wash the face for beauty and health, or run through by farmers' cattle for vigor.",
+      "notes": "Structurally near-identical in mechanism and purpose to the Gaelic Beltane fire-leap recorded by Vivianne Crowley, despite the two traditions having no direct contact."
+    },
+    {
+      "id": "r-fern-flower-search",
+      "name": "The Fern Flower Search",
+      "category": "Reason",
+      "tag": "darkness",
+      "origin": "Polish, Ukrainian, Belarusian Kupala tradition",
+      "summary": "A midnight forest search for a flower that doesn't exist, undertaken in pairs as much for courtship as for treasure.",
+      "detail": "Young couples leave the riverside bonfire together and walk into the forest specifically to search for the legendary fern flower, said to bloom for one instant at midnight. The search itself, as much as any treasure found, was understood as the point — folk tradition treats the expedition as a sanctioned occasion for courtship under cover of a magical pretext.",
+      "notes": "A rare entry where the stated supernatural reason (finding a magic flower) and the actual social function (unchaperoned courtship) are both openly acknowledged within the same tradition."
+    },
+    {
+      "id": "r-lyutich",
+      "name": "Lyutich (Chernobog's Day)",
+      "category": "Time",
+      "tag": "darkness",
+      "origin": "Ancient Rus calendar, per later folkloric reconstruction",
+      "summary": "The last day of February, set aside to appease the dark god and avert winter's last threats.",
+      "detail": "Lyutich, the final day of February in the old Rus calendar, was dedicated to Chernobog specifically to seek his favor against the harshness of winter's end and the threats of disease and famine that came with it. Rather than worship in the celebratory sense, the day's rites were framed as appeasement — acknowledging a feared power to avert disaster rather than to honor a beloved one.",
+      "notes": "Scholarly caveat: the Belobog/Chernobog duality itself is contested by historians (notably Josef Dobrovsky in the 18th century), who suspect later Christian chroniclers projected moral dualism onto a Slavic religious framework that may not have actually divided gods into good/evil camps this cleanly."
+    },
+    {
+      "id": "r-belobog-dawn",
+      "name": "Belobog's Dawn and Solstice Rites",
+      "category": "Time",
+      "tag": "light",
+      "origin": "West Slavic (Polabian) folk tradition, per later reconstruction",
+      "summary": "Sacred fires lit at sunrise and at the summer solstice, with offerings of white flowers, milk, and honey.",
+      "detail": "Where Belobog was venerated, rites centered on sunrise itself and on the summer solstice, involving the lighting of sacred fires and offerings of white flowers, milk, and honey — pale, light-colored materials chosen to match the god's white/light portfolio. Belobog's symbols were carved into protective household amulets.",
+      "notes": "Place names containing bel- or biel- (“white”) across former West Slavic Polabian territory in modern Germany are the strongest surviving evidence for this tradition, though Belobog's existence as a genuine standalone deity (versus a later folk-invented counterpart to Chernobog) remains scholarly disputed."
+    },
+    {
+      "id": "r-three-horsemen",
+      "name": "Passage of the Three Horsemen",
+      "category": "Time",
+      "tag": "neutral",
+      "origin": "Vasilisa the Beautiful, Russian",
+      "summary": "White, red, and black riders who mark the passage of dawn, day, and night as Baba Yaga's own servants.",
+      "detail": "On her journey to Baba Yaga's hut, Vasilisa witnesses three horsemen pass in sequence: one in white at dawn, one in red as the sun rises and day begins, and one in black as night falls. Baba Yaga later explains the riders are her servants, representing day, the sun, and the night respectively — and warns that asking about anything else inside the hut would have cost Vasilisa her life.",
+      "notes": "Functions as a fairy-tale dramatization of the same day/night cycle that real-world solstice rituals (Soyal, Beltane, Kupala) exist to influence or mark."
+    },
+    {
+      "id": "r-midnight-curfew",
+      "name": "The Midnight Curfew",
+      "category": "Time",
+      "tag": "darkness",
+      "origin": "Cinderella, Charles Perrault (1697) and later versions",
+      "summary": "A magical deadline at the stroke of midnight, after which all enchantment reverts and the spell-caster's gift is undone.",
+      "detail": "Cinderella's fairy godmother's transformations — gown, coach, footmen — are bound to expire precisely at midnight, forcing Cinderella to leave the prince's ball at the first stroke of the hour or be exposed in her ordinary rags. The deadline is absolute and non-negotiable within the tale's internal logic, with the single glass slipper left behind in her rushed departure becoming the mechanism of the story's resolution.",
+      "notes": "Midnight functions here as a hard boundary between an enchanted, light-and-spectacle state and an ordinary, dark/plain one — a narrative use of the same witching-hour liminality documented in the Time category's folkloric entries."
+    },
+    {
+      "id": "r-cantrip-threshold",
+      "name": "The Free-Cast / Cantrip Light Threshold",
+      "category": "Other",
+      "tag": "light",
+      "origin": "Modern d20 design convention, rooted in AD&D 2e's non-cumulative Light rule",
+      "summary": "A design lineage: 2e's non-stacking Light spell anticipates the modern cantrip rule where skill investment outpaces a spell's cost.",
+      "detail": "AD&D 2e's Light spell is explicitly non-cumulative — casting it twice does not produce a brighter glow, only a redundant one. This sits at the root of a design lineage that later systems (including PF2e's heightened cantrips and your own Foundation cantrip-threshold rule) formalize more explicitly: a basic light effect is something a sufficiently trained caster should never have to think twice about casting.",
+      "notes": "Included as a cross-reference for SKILLd20's own Cantrip Rule (Spellcraft rank + Foundation rank ≥ mana cost) rather than as folklore — useful design-history context, not source material to imitate directly."
+    }
+  ]
+}
