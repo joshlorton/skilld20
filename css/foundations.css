@@ -99,7 +99,7 @@ body {
 #search:focus { border-color: var(--heading-fg); }
 #search::placeholder { color: var(--text-muted); }
 
-#foundation-list { flex: 1; overflow-y: auto; }
+#item-list { flex: 1; overflow-y: auto; }
 
 .list-item {
   padding: 7px 13px;
@@ -162,7 +162,7 @@ body {
    FOUNDATION CARD — VIEWER
    ============================================================ */
 
-.foundation-card {
+.entry-card {
   max-width: none;
   font-family: var(--font-spec);
   font-size: 15px;
@@ -170,7 +170,7 @@ body {
 }
 
 /* Heading row */
-.foundation-heading {
+.entry-heading {
   background: var(--heading-bg);
   color: var(--heading-fg);
   display: flex;
@@ -184,7 +184,7 @@ body {
   font-weight: 700;
   letter-spacing: 1px;
 }
-.foundation-mana {
+.entry-cost {
   color: var(--mana);
   font-variant: small-caps;
   font-size: 27px;
