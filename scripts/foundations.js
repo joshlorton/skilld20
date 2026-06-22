@@ -195,18 +195,18 @@ async function loadData() {
       const _b64   = atob(raw.content.replace(/\n/g, ''));
       const text  = new TextDecoder().decode(Uint8Array.from(_b64, c => c.charCodeAt(0)));
       const data  = JSON.parse(text);
-      state.foundations = data.foundations || [];
-      setStatus(`Loaded from GitHub (${state.foundations.length})`, 'ok');
+      state.entries = data.foundations || [];
+      setStatus(`Loaded from GitHub (${state.entries.length})`, 'ok');
     } else {
       const resp = await fetch(`./${CONFIG.file}`);
       if (!resp.ok) throw new Error(`Fetch ${resp.status}: ${resp.statusText}`);
       const data = await resp.json();
-      state.foundations = data.foundations || [];
+      state.entries = data.foundations || [];
       setStatus('Viewer mode :: no token', '');
     }
   } catch (err) {
     setStatus(`Error: ${err.message}`, 'error');
-    state.foundations = [];
+    state.entries = [];
   }
   renderList();
   updateButtons();
@@ -234,7 +234,7 @@ async function saveData() {
 }
 
 async function attemptSave(isRetry) {
-  const json    = JSON.stringify({ foundations: state.foundations }, null, 2);
+  const json    = JSON.stringify({ foundations: state.entries }, null, 2);
   const _enc    = new TextEncoder().encode(json);
   let   _bin    = ''; _enc.forEach(b => _bin += String.fromCharCode(b));
   const content = btoa(_bin);
@@ -806,13 +806,13 @@ function renderVariants(f) {
    ============================================================ */
 
 function renderViewer(f) {
-  const card = el('div', { class: 'foundation-card' });
+  const card = el('div', { class: 'entry-card' });
 
   // Heading
-  const heading = el('div', { class: 'foundation-heading' });
+  const heading = el('div', { class: 'entry-heading' });
   heading.appendChild(el('span', { class: 'foundation-name' }, f.name || 'Unnamed'));
   if (f.mana !== undefined && f.mana !== '') {
-    heading.appendChild(el('span', { class: 'foundation-mana' }, `Foundation ${f.mana}`));
+    heading.appendChild(el('span', { class: 'entry-cost' }, `Foundation ${f.mana}`));
   }
   card.appendChild(heading);
 
@@ -1827,11 +1827,11 @@ function collectEditor() {
    ============================================================ */
 
 function renderList() {
-  const list   = document.getElementById('foundation-list');
+  const list   = document.getElementById('item-list');
   const search = document.getElementById('search').value.toLowerCase();
   list.innerHTML = '';
 
-  const filtered = state.foundations.filter(f =>
+  const filtered = state.entries.filter(f =>
     !search || (f.name || '').toLowerCase().includes(search)
   );
 
@@ -1843,17 +1843,17 @@ function renderList() {
 
   if (!sorted.length) {
     list.appendChild(el('div', { class: 'list-empty' },
-      state.foundations.length ? 'No matches.' : 'No foundations yet.'));
+      state.entries.length ? 'No matches.' : 'No foundations yet.'));
     return;
   }
 
   sorted.forEach(f => {
-    const idx  = state.foundations.indexOf(f);
+    const idx  = state.entries.indexOf(f);
     const item = el('div', {
       class: `list-item${idx === state.currentIndex ? ' list-item-active' : ''}`,
       'data-index': idx
     }, f.name || '(unnamed)');
-    item.addEventListener('click', () => selectFoundation(idx));
+    item.addEventListener('click', () => selectItem(idx));
     list.appendChild(item);
   });
 }
@@ -1862,11 +1862,11 @@ function renderList() {
    NAVIGATION
    ============================================================ */
 
-function selectFoundation(idx) {
+function selectItem(idx) {
   state.currentIndex = idx;
   state.mode         = 'view';
   renderList();
-  showPanel('viewer', renderViewer(state.foundations[idx]));
+  showPanel('viewer', renderViewer(state.entries[idx]));
   updateButtons();
 }
 
@@ -1884,9 +1884,9 @@ function showPanel(which, content) {
     const deleteBtn = document.getElementById('btn-delete');
     if (deleteBtn) {
       deleteBtn.addEventListener('click', () => {
-        const name = state.foundations[state.currentIndex]?.name || 'this foundation';
+        const name = state.entries[state.currentIndex]?.name || 'this foundation';
         if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
-        state.foundations.splice(state.currentIndex, 1);
+        state.entries.splice(state.currentIndex, 1);
         state.currentIndex = -1;
         state.dirty        = true;
         state.mode         = 'view';
@@ -2138,8 +2138,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // New Foundation
   document.getElementById('btn-new').addEventListener('click', () => {
     const f = { name: 'New Foundation', mana: 0 };
-    state.foundations.push(f);
-    state.currentIndex = state.foundations.length - 1;
+    state.entries.push(f);
+    state.currentIndex = state.entries.length - 1;
     state.mode  = 'edit';
     state.dirty = true;
     renderList();
@@ -2151,7 +2151,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-edit').addEventListener('click', () => {
     if (state.currentIndex < 0) return;
     state.mode = 'edit';
-    showPanel('editor', buildEditor(state.foundations[state.currentIndex]));
+    showPanel('editor', buildEditor(state.entries[state.currentIndex]));
     updateButtons();
   });
 
@@ -2159,7 +2159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-cancel').addEventListener('click', () => {
     state.mode = 'view';
     if (state.currentIndex >= 0) {
-      showPanel('viewer', renderViewer(state.foundations[state.currentIndex]));
+      showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
     } else {
       document.getElementById('empty-state').style.display = '';
       document.getElementById('editor').style.display      = 'none';
@@ -2173,7 +2173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.mode === 'edit') {
       try {
         const updated = collectEditor();
-        state.foundations[state.currentIndex] = updated;
+        state.entries[state.currentIndex] = updated;
       } catch (e) {
         setStatus(e.message, 'error');
         return;
@@ -2184,7 +2184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.mode = 'view';
       renderList();
       if (state.currentIndex >= 0) {
-        showPanel('viewer', renderViewer(state.foundations[state.currentIndex]));
+        showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
       }
       updateButtons();
     }
@@ -2208,7 +2208,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.mode = 'view';
       renderList();
       if (state.currentIndex >= 0) {
-        showPanel('viewer', renderViewer(state.foundations[state.currentIndex]));
+        showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
       } else {
         document.getElementById('empty-state').style.display = '';
         document.getElementById('traits').style.display      = 'none';
@@ -2221,7 +2221,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-cancel-traits').addEventListener('click', () => {
     state.mode = 'view';
     if (state.currentIndex >= 0) {
-      showPanel('viewer', renderViewer(state.foundations[state.currentIndex]));
+      showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
     } else {
       document.getElementById('empty-state').style.display = '';
       document.getElementById('traits').style.display      = 'none';
