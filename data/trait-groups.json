@@ -84,6 +84,7 @@
         "olfactory",
         "shroud",
         "tactile",
+        "thermal",
         "visual"
       ]
     }
@@ -325,6 +326,10 @@
           "label": "travel"
         },
         {
+          "value": "divine domain: trickery",
+          "label": "trickery"
+        },
+        {
           "value": "divine domain: undeath",
           "label": "undeath"
         },
@@ -371,6 +376,14 @@
       "label": "Pact",
       "items": [
         {
+          "value": "pact: draconic: the lord",
+          "label": "draconic: the lord"
+        },
+        {
+          "value": "pact: draconic: the queen",
+          "label": "draconic: the queen"
+        },
+        {
           "value": "pact: genie: air",
           "label": "genie: air"
         },
@@ -387,8 +400,8 @@
           "label": "genie: water"
         },
         {
-          "value": "pact: the fathomless",
-          "label": "the fathomless"
+          "value": "pact: great old one: the deep",
+          "label": "great old one: the deep"
         }
       ]
     }
