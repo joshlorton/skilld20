@@ -2052,7 +2052,8 @@
         "pact"
       ],
       "access": [
-        "bloodline: fey"
+        "bloodline: fey",
+        "divine domain: trickery"
       ],
       "cast": {
         "actions": {
