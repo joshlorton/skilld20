@@ -1816,7 +1816,10 @@
       "traits": [
         "resistance"
       ],
-      "traditions": [],
+      "traditions": [
+        "bardic",
+        "divine"
+      ],
       "access": [
         "bardic tune: protection",
         "divine domain: protection"
