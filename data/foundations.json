@@ -2128,13 +2128,17 @@
       "image": "",
       "note": "",
       "traits": [
-        "mental"
+        "mental",
+        "illusion"
       ],
       "traditions": [
         "arcane",
+        "bloodline",
         "pact"
       ],
-      "access": [],
+      "access": [
+        "bloodline: fey"
+      ],
       "cast": {
         "actions": {
           "count": 1,
