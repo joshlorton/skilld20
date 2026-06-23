@@ -1,0 +1,2715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKILLd20 &mdash; Materials</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/materials.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+
+    <header id="topbar">
+      <div id="topbar-left">
+        <span id="app-title">SKILLd20</span>
+        <span id="app-subtitle">Material Components</span>
+      </div>
+      <div id="topbar-right">
+        <span id="status-text"></span>
+        <button id="btn-traits"        class="btn btn-secondary" style="display:none">Manage Traits</button>
+        <button id="btn-cancel-traits" class="btn btn-secondary" style="display:none">Close</button>
+        <button id="btn-save-traits"   class="btn btn-primary"   style="display:none">Save Traits</button>
+        <button id="btn-token"         class="btn btn-icon"      title="GitHub Token">&#9881;</button>
+      </div>
+    </header>
+
+    <nav id="nav-rail">
+      <a href="index.html"      class="nav-rail-item"><span class="nav-rail-sym">&#9670;</span><span class="nav-rail-label">Foundations</span></a>
+      <a href="feats.html"      class="nav-rail-item"><span class="nav-rail-sym">&#9733;</span><span class="nav-rail-label">Feats</span></a>
+      <a href="skills.html"     class="nav-rail-item"><span class="nav-rail-sym">&#9678;</span><span class="nav-rail-label">Skills</span></a>
+      <a href="materials.html"  class="nav-rail-item"><span class="nav-rail-sym">&#10022;</span><span class="nav-rail-label">Materials</span></a>
+      <a href="rituals.html"    class="nav-rail-item"><span class="nav-rail-sym">&#8853;</span><span class="nav-rail-label">Rituals</span></a>
+      <a href="crafting.html"   class="nav-rail-item"><span class="nav-rail-sym">&#9874;</span><span class="nav-rail-label">Crafting</span></a>
+      <a href="rules.html"      class="nav-rail-item"><span class="nav-rail-sym">&#8801;</span><span class="nav-rail-label">Rules</span></a>
+    </nav>
+
+    <div id="main">
+      <aside id="sidebar">
+        <div id="search-wrap">
+          <input id="search" type="text" placeholder="Search materials&hellip;" autocomplete="off">
+        </div>
+        <div id="item-list">
+          <div class="list-item list-item-active" data-target="gems">Gems</div>
+          <div class="list-item" data-target="herbs">Herbs &amp; Plants</div>
+          <div class="list-item" data-target="metals">Metals</div>
+          <div class="list-item" data-target="treatments">Metal Treatments</div>
+          <div class="list-item" data-target="stones">Stones</div>
+          <div class="list-item" data-target="woods">Woods</div>
+          <div class="list-item" data-target="enchanted">Enchanted Materials</div>
+          <div class="list-item" data-target="spells">Enchantment Spells</div>
+        </div>
+      </aside>
+      <div id="sidebar-handle" title="Drag to resize"></div>
+
+      <main id="content">
+<section id="mat-gems" class="mat-section">
+<h2 class="mat-category-title">Gems</h2>
+<h3 class="mat-subsource">Volo&#x27;s Guide to All Things Magical</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Rarity/Category</th>
+<th>Magical Effect</th>
+<th>Incorrect Believed Effect</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Agni Mani</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Found as meteoritic glass in deserts; vaporizes in any blast (fireball, bead of force) but negates 1d4 points of blast damage per stone worn or carried.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Alabaster</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">No known magical properties; impervious to moisture short-term, making it a good potion container.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Alestone (Clinozoisite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Deflects solid projectiles; bearer must make a Dexterity check to catch or snatch it; increases effective AC by 1 vs. projectiles from the side the stone is on.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">More is not better — only one stone&#x27;s protection applies regardless of quantity.</td>
+</tr>
+<tr>
+<td class="mat-name">Alexandrite</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Favored focal stone for luck, favor, and protection items (luckstones, lodestones).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Appears greenish in daylight, reddish under magical light.</td>
+</tr>
+<tr>
+<td class="mat-name">Algae (Algae Quartz)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">All beings or items in contact with it make saving throws vs. polymorph or shape-change at +2 bonus — even if the change is willing.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Amaratha (Shieldstone)</td>
+<td class="mat-cat">Jewel (soft)</td>
+<td class="mat-effect">Absorbs electricity within 10 ft radius; a 1-inch-diameter sphere absorbs up to 6 points of electrical damage and is then consumed at that volume rate. Excess discharge beyond the stone&#x27;s capacity still affects targets normally.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Too soft for exposed ring or staff settings; suited to protected locations on personal jewelry or ornamental armor.</td>
+</tr>
+<tr>
+<td class="mat-name">Amber</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Spell component and spell ink ingredient in lightning and electrical enchantments (shocking grasp through chain lightning).</td>
+<td class="mat-false">Falsely believed to ward off disease and plague.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Amethyst</td>
+<td class="mat-cat">Fancy (nine secrets)</td>
+<td class="mat-effect">Component in communication spells (magic mouth) and Wisdom-augmenting magics; can be transformed into an ioun stone. Worn whole at mornbright (half-hour centered on 8 a.m.) by a being who wears as many pure amethysts as Wisdom points: grants the magical defense adjustment and spell immunities of Wisdom 23 (without bonus spells).</td>
+<td class="mat-false">Falsely said to ward off drunkenness and neutralize poison.</td>
+<td class="mat-notes">Represents safety in seer visions; romance when seen in women&#x27;s dreams.</td>
+</tr>
+<tr>
+<td class="mat-name">Andar (Andalusite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Powdered, boiled with an amethyst/gold/silver dragon scale, then combined with an oily base: alternative ingredient for a potion of treasure finding.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Angélar&#x27;s Skin (Aasimon&#x27;s Skin)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Powdered, mixed with seawater, and followed by polymorph self, water breathing, and a free action variant: induces controlled were-shark transformation (permanent, manageable).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Named for the sorcerer Angélar who underwent the transformation. Pink coral, shallow tropical reefs.</td>
+</tr>
+<tr>
+<td class="mat-name">Aquamarine</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Orgonils ritual (exact process unknown, held as a secret in Telflamm): sacrificing an aquamarine causes another gemstone to become two identical copies.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Archon (Fluorspar/Blue John)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Glows with a faint greenish radiance when magically invisible objects or creatures come within 20 feet.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Also see Fluorspar (the gem-grade variety).</td>
+</tr>
+<tr>
+<td class="mat-name">Augelite</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Magically inert; in fact lessens spell effects in its vicinity: –1 damage per die for spells within 10 ft; +2 bonus to all saves vs. spells and magical effects within the same area.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Cannot be carved into delicate shapes without splitting.</td>
+</tr>
+<tr>
+<td class="mat-name">Aventurine (Love Stone)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Powdered, penetrates magical disguises; touch shatters most illusion and transformation magics.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Azurite</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Prevents all heat damage to any being in direct flesh-to-gem contact; reduces most fire/flame damage by half.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Related to malachite but restricted to fire protection only.</td>
+</tr>
+<tr>
+<td class="mat-name">Banded Agate</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered in sleeping drafts: used as a spell ink ingredient and potion base.</td>
+<td class="mat-false">Powder not actually effective as a sleep aid on its own.</td>
+<td class="mat-notes">Also used as a calming &quot;soothe stone&quot; by merchants during negotiations.</td>
+</tr>
+<tr>
+<td class="mat-name">Beljuril (Fireflashil)</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Periodically absorbs ambient heat, light, and vibration within 30 ft and discharges as sparkling cold flash (harmless). Chips mounted at the end of lightning wands add 1d6 damage beyond normal. Powdered, prized in spell ink and item-enchanting baths for all electricity-related magic.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Usually fist-sized; extremely hard to cut. Flash rate varies randomly regardless of size.</td>
+</tr>
+<tr>
+<td class="mat-name">Black Opal</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">Powdered, mixed with powdered orl and introduced to open flame in the proper way: explosion dealing 6d8 (within 10 ft), 4d8 (11–20 ft), 2d8 (21–30 ft); save vs. petrification for half. Items within 10 ft must save vs. disintegration; 11–20 ft vs. crushing blow.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Black Sapphire</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Once cut and polished, prevents temporal stasis, time stop, all chronomancy spells, and time sphere spells from functioning within 30 ft. Such magics cease if the gem is brought within 30 ft; some resume after it leaves, others are ended permanently depending on their nature.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Mostly from the Great Rift; prized by dwarves.</td>
+</tr>
+<tr>
+<td class="mat-name">Bloodstone</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Laid on an open wound: instantly closes it, banishes disease and blood poisoning, stops bleeding (dissolves in doing so). Works once per being per lunar cycle. Alternative component for invisibility, divination, and storm magics.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Combined with a sprig of heliotrope: full alternative for the invisibility spell.</td>
+</tr>
+<tr>
+<td class="mat-name">Bluestone (Sodalite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered and added to water lit by any magical radiance: acts as either neutralize poison or heals 1d2 damage. Added to any magical healing potion: adds a neutralize poison function plus 1d4 additional healing.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Blue Quartz</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Used in scrying spells; best gem for gems of seeing; sliced and treated for magical eyes (eyes of the eagle, etc.).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Boakhar (Wulfenite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Erupts in a 7-foot jet of flame lasting 1 round when a magic missile is cast or passes within 10 ft — consuming the gem and dealing 2d4+2 fire damage.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Found in old Sembian/Calishite furniture inlays. Ignites flammable substances touched, never the item the gem came from.</td>
+</tr>
+<tr>
+<td class="mat-name">Brandeen (Stibiotantalite)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Cure for deafness: powdered and added to sap of any living hardwood, a message spell cast on the mixture (vowel sounds only), kept out of sunlight, and drunk within a day.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Carnelian (Sard)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Component in luck- and protection-against-evil spells and items. All saves and ability checks of wearers aided by +1; once properly enspelled and then sacrificed, allows a failed save, system shock, or resurrection roll to be rerolled at +2/+20% bonus (gem vanishes in a flash).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Chalcedony</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Used in magical items warding undead or with necromantic powers; preferred when human bone is to be avoided. Powdered, enchanted simply: tasteless antidote to alcohol (added to a drink, prevents drunkenness).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Chalcedony is a broad category including carnelians, chrysoprase, and agates; &quot;chalcedony&quot; used specifically refers to the white/gray/black uncolored variety.</td>
+</tr>
+<tr>
+<td class="mat-name">Chrysoberyl</td>
+<td class="mat-cat">Fancy (nine secrets)</td>
+<td class="mat-effect">Used in protection-from-magic-jar, possession, and incorporation-necromancy enchantments; forged with chips/stones into a weapon with the right enchantments: weapon can strike ethereal and gaseous foes at all times. Dust + juice of specific flower: cures mummy rot and all molds/fungal growths instantly on contact. Certain Netherese message stones. Can be transformed into an ioun stone.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Chrysocolla</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Neutralizes alcohol on contact; ingredient in animate dead spell inks and castings (often thrown as powder into a fire).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Chrysoprase (Stormrock in Cormyr)</td>
+<td class="mat-cat">Semiprecious (nine secrets)</td>
+<td class="mat-effect">Used in items and inks for invisibility magic and for seeing invisible beings and objects. Can be transformed into an ioun stone.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Citrine (False Topaz)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Prevents magic jar attacks from affecting any being wearing or carrying one; conversely, whole citrines are a favored gemstone for use as the jar itself.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Clelophane</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Echo effect: 70% chance to record a silent 3D mental image of the bearer and their surroundings when a spell is cast by or on them. 70% chance to overwrite prior echoes; otherwise adds a new image. Echoes can be called up repeatedly at will; appear as a slightly luminous 10-ft globe beside the stone for 3 rounds.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Images persist indefinitely, always at perfect clarity even if the original scene was confused.</td>
+</tr>
+<tr>
+<td class="mat-name">Coral</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Powdered: highly effective ingredient in potions of healing and extra-healing — reroll all 1s and 2s on hit dice restored.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Pink and crimson varieties used as gemstones.</td>
+</tr>
+<tr>
+<td class="mat-name">Corstal (Petalite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">When touched by magical radiance of any kind (fireball to faerie fire), mirrors that light&#x27;s hue and intensity within itself, becoming a light source for 2d12 rounds before fading.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Crown of Silver (Psilomelane Chalcedony)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered and applied to ferrous metals: prevents rusting. Ingredient in spell ink and component of the everbright spell. Can substitute for iron filings in most castings (such as protection from evil).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Black metallic bands within the stone.</td>
+</tr>
+<tr>
+<td class="mat-name">Datchas (Datolite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">If powdered datchas is ingested by a wizard (with a nonalcoholic drink), it doubles the duration of a spider climb spell affecting them.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Diamond</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Near-universal spell ink ingredient (especially vision, divination, and locating-object spells). Best gems for gems of seeing. Essential in a helm of brilliance. Worn at throat or head: wards off dream visions and enchantment/charm magics; +2 bonus to all saves vs. enchantment/charm. Diamond dust used in neutralize poison processes. Best used at highsun (noon).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Powdered diamond used at noon: increases magical working efficacy by 2 or 25%.</td>
+</tr>
+<tr>
+<td class="mat-name">Dioptase (Diopside)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Dissolves in an already-enchanted liquid in 2 turns; each stone dissolved into such a liquid restores 1 hit point when drunk.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Disthene (Kyanite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered ingredient in spell inks for controlled fiery effects (shaped flames, not explosive).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Emerald</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Used in fertility, health, growth, and lie-detection spells and items. Worn on flesh directly contacting the flesh of a living deceiver: shatters to reveal the falsehood (does not trigger on the wearer&#x27;s own lies). When mounted on healing or growth items: +2 bonus to all those item&#x27;s saving throws; adds 2d4 extra charges; item spontaneously recharges (1 charge on a 5–6 on 1d6 each night). Use at waterclock (2 p.m.) for 20% better odds.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Kings wear emerald rings at parleys to detect treachery without a spell.</td>
+</tr>
+<tr>
+<td class="mat-name">Epidote</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Ingredient in potions of undead control and in protection-from-undead scroll inks.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Euclase</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">If a spell is cast on one or on a bearer: automatically triggers a flame strike effect (6d8/3d8 on save), consuming the gem.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Eye Agate</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered in sleeping drafts.</td>
+<td class="mat-false">Powder does not actually improve sleep drafts&#x27; effectiveness.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Fire Agate</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Whole stones dissolved in fire lizard or pyrolisk blood: most favored base for potions of fire resistance.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Fire Opal</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">Used in items that cause, release, or control fire; essential in helms of brilliance. A whole mounted fire opal adds 1 point per die to damage done by any fire-producing magical item it adorns (not cumulative with multiple fire opals).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Flamedance (Rhodizite)</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Stone and items set with it automatically succeed at all saves vs. normal and magical fire. Beings wearing one or more flamedance gems: +3 bonus to all fire-related saving throws.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Very rare; hard; ideal for carving.</td>
+</tr>
+<tr>
+<td class="mat-name">Fluorspar (Fluorite)</td>
+<td class="mat-cat">Ornamental (multiple grades)</td>
+<td class="mat-effect">All forms, including Archon/Blue John: glows with a faint greenish radiance when magically invisible (not merely disguised or ethereal) objects or creatures come within 20 feet.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Pink/red varieties (&quot;cabra stones&quot;) are the rare, more valuable type.</td>
+</tr>
+<tr>
+<td class="mat-name">Frost Agate (Frost Stone)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Polyhedron-cut versions often become luckstones. Powder in potions: ensures peaceful miscibility — removes any chance of explosion or of a failed potion being poisonous.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Skilled cutting required to produce faceted version without splitting.</td>
+</tr>
+<tr>
+<td class="mat-name">Garnet</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Properly enchanted weapons set with garnets deal double or triple normal damage. Enchantments should commence at high morn (half-hour centered on 11 a.m.).</td>
+<td class="mat-false">Generally considered useless in magical work.</td>
+<td class="mat-notes">Thought by some fading faiths to be divine avatar&#x27;s hardened blood.</td>
+</tr>
+<tr>
+<td class="mat-name">Gold Sheen (Gold Sheen Obsidian)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Added to any spell creating radiance: caster precisely controls the spell&#x27;s color. Added to invisibility magics: increases duration by 1d3 rounds.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Also see Sheen (the broader obsidian variety).</td>
+</tr>
+<tr>
+<td class="mat-name">Goldline (Cacoxenite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Consumed in open flame with the right spells: a relatively easy way to give a bladed metal weapon a bonus enchantment.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Greenstone (Chlorastrolite)</td>
+<td class="mat-cat">Ornamental (nine secrets)</td>
+<td class="mat-effect">Finest stones enchanted into greenstone amulets: wearer is immune to many mind-influencing spells (as ongoing mind blank). Powdered: component in spells resisting mental attacks and protective barriers. Can be transformed into an ioun stone.</td>
+<td class="mat-false">Nystul&#x27;s magic aura is often used on cheap stones to fake valuable amulets.</td>
+<td class="mat-notes">Powdered greenstone must be used with care; reports of it completely negating some spells.</td>
+</tr>
+<tr>
+<td class="mat-name">Hambergyle (Hambergite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Held in a flame while a light spell is pronounced over it: creates a continual light effect at the cost of the gem, which vaporizes.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Heliodor (Golden Beryl)</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Component in all priest sun-sphere spells in place of missing components (provided they need not be specially constructed). Essential ingredient in forging a sun blade.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Hematite</td>
+<td class="mat-cat">Ornamental (nine secrets)</td>
+<td class="mat-effect">Strong magical affinity with blood and life forces; especially responsive to healing and necromancy enchantments. Used in periapts of healing and periapts of foul rotting. Can be transformed into an ioun stone.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Horn Coral (Night Coral)</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Wearer who touches it with one of their own tears gains the ability to water walk (as the 3rd-level priest spell) for up to 6 turns; gem dissolves when the effect ends. Some special pieces become only inert for a turn and can then be reactivated.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Hornbill Ivory</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Material component in spells and items concerned with flight.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">From hornbill beaks, not true ivory.</td>
+</tr>
+<tr>
+<td class="mat-name">Hyaline (Milky Quartz)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Glows with a blue radiance when active magic takes effect, is launched, or passes within 20 feet.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Hydrophane</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Used in water-oriented potions and items (water breathing, control water elementals). When used as an additional component in color spray: targets save at –1.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Opaque white when dry; transparent and iridescent when soaked in water.</td>
+</tr>
+<tr>
+<td class="mat-name">Hypersthene (Bronzite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Wyvern warding: bearer is not seen or struck by a wyvern watch spell; they can pass through its warded area freely while the spell remains active.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Iol (Iolite/Cordierite/Violet Stone)</td>
+<td class="mat-cat">Semiprecious (nine secrets)</td>
+<td class="mat-effect">Best gemstone type to transform into ioun stones (with the proper secret spells).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Commonly displays a color-change effect when viewed from different angles.</td>
+</tr>
+<tr>
+<td class="mat-name">Iris Agate</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Spell reflection: spells hurled at a screen or statue of iris agate rebound directly back at their source.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Sometimes placed as false guard statues or silhouettes in vault doorways.</td>
+</tr>
+<tr>
+<td class="mat-name">Irtios (Danburite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Prevents mildew, rot, and molds from affecting any organic substance in contact with it; protection includes yellow mold, mummy rot, and fungal diseases. Extends to a living or undead creature in continuous direct-flesh contact.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Ivory (Dentine)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Dragon teeth and fangs of certain magical creatures (such as displacer beasts) have magical uses; common beast ivory generally does not.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Unicorn horn (alicorn) is not ivory; commands thousands of gp from alchemists.</td>
+</tr>
+<tr>
+<td class="mat-name">Jacinth (Hyacinth/Flamegem)</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Ingredient in potions and items protecting against fire (rings of fire resistance). Has an inner flickering flame visible from afar (not bright enough to illuminate).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Found only in the Realms; other crystal spheres have an inferior garnet substitute.</td>
+</tr>
+<tr>
+<td class="mat-name">Jade (Jadeite/Nephrite)</td>
+<td class="mat-cat">Fancy/Hardstone</td>
+<td class="mat-effect">Powdered: preferred base for spell inks for all illusion/phantasm spells; substitute for nonorganic components in all such castings. Essential ingredient in enchantment baths for illusion-capable items. Use in such processes initially at candleglass time (half-hour centered on 9 p.m.).</td>
+<td class="mat-false">Said to enhance musical ability — when certain simple enchantments are laid upon it, jade actually confers perfect pitch and sharp hearing to all who wear it.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Jargoon</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Magic missile cast into a held jargoon: gem explodes (1d4+2 damage to caster), but the number of missiles in the spell is doubled. Missiles behave normally in all other respects.</td>
+<td class="mat-false">Falsely credited with preventing a lycanthrope from changing out of human form.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Jasmal</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">Hard enough to hold a cutting edge; can be worked into small nonmetallic weapons. In rows along a blade: holds multiple or complex enchantments that visit upon victims when the jasmals strike. Powdered: ingredient in enchantment baths for magical armor and in ink formulae for Veladar&#x27;s Vambrace.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Jasper</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Crushed: universal substitute ingredient in potions, antidotes, and items protecting against or neutralizing poison. Drinks stored in carved jasper vessels for at least a day are purged of all poisons, taints, and corrosive powers.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Preferred stone for both periapts of foul rotting and periapts of proof against poison.</td>
+</tr>
+<tr>
+<td class="mat-name">Jet</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Used in magic jars (favored gemstone). Certain treatments or spells cast too close to jet may free a long-imprisoned mage or creature from within — or summon a wizshade.</td>
+<td class="mat-false">Stone of mourning and sorrow; fell reputation partly due to magic jar use.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Kings Tears (Frozen Tears/Lich Weepings)</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Presence within 90 feet reduces casting time of legend lore to 2 turns and brings a name, word of activation, or key term regarding the subject into the caster&#x27;s mind. A secret high-level ritual allows a spellcaster to permanently gain 1 point of Wisdom by sacrificing one. Can be cut into up to four gems of insight with proper enchantments.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Extremely rare; unique to the Realms; never yet cut, fractured, or chipped by any means. Each contains a vivid, unchanging scene from a long-dead ruler&#x27;s life.</td>
+</tr>
+<tr>
+<td class="mat-name">Kornerupine</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Green variety only: if a magic mouth spell is cast on one and the last word left unsaid, it records all sounds within 20 ft for 4 rounds when the final word is later spoken. Records indefinitely; cannot be added to, silenced, or altered without shattering the stone.</td>
+<td class="mat-false">Brown variety has no known properties.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Laeral&#x27;s Tears (Beryllonite)</td>
+<td class="mat-cat">Fancy (nine secrets)</td>
+<td class="mat-effect">Rarest of the nine secrets; can be transformed into an ioun stone. When prepared by a complex secret process known to Rashemani witches: absorbs all harm done to the wearer until the stone shatters — typically 24 points of damage before crumbling.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Lapis Lazuli</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Best gemstone for a periapt of health if ruby is unavailable. Powdered: principal base ingredient in potions of heroism and super-heroism.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">The deeper the blue, the more valuable.</td>
+</tr>
+<tr>
+<td class="mat-name">Lumachella (Fire Marble)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Powdered: ingredient in spell inks and components for both water breathing and airy water spells.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Luriyl (Apatite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Glows and vibrates slightly when touched by magical tracer or scrutiny (any scrying or clairaudience spell) — warns of unseen eavesdroppers.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Luspeel (Magnetite)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Considered vital by many for properly tempering swords that will bear multiple enchantments.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Ferromagnetic; used in temple furnishings for dramatic effect.</td>
+</tr>
+<tr>
+<td class="mat-name">Lynx Eye (Green-flash Labradorite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Dissolved in griffon blood or tears of a catoblepas: forms either a base for all healing or necromantically helpful potions, or an alternative ingredient in Keoghtom&#x27;s ointment.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Green-flash variety of labradorite.</td>
+</tr>
+<tr>
+<td class="mat-name">Malachite</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Component in priest elemental-sphere spells and wizard spells involving ice, cold, fire, and heat. Powdered: ingredient in enchantment baths for items of warmth, fire resistance, and cold resistance.</td>
+<td class="mat-false">Falsely rumored to prevent falls.</td>
+<td class="mat-notes">Often set on rings of feather falling to exploit the false rumor for sales.</td>
+</tr>
+<tr>
+<td class="mat-name">Malacon</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Unique magical trap/delay: a spell can be cast into a malacon for later release in one of three ways — when dropped or struck; when the caster wills it forth (gem vaporizes); or at a preset time (gem dwindles). Specialized spells are needed to call forth a malacon&#x27;s magic if one is not the original caster.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Marble (Calcite)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Magically inert (so far as is known).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Meerschaum (Sepiolite)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Can be converted into bone replacements by the stretchbone wizard spell, becoming indistinguishable from real bone for purposes of animate dead or similar magic.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Rumors of clairaudience and wizard eye casting through prepared distant meerschaum, and of necromantic uses, remain unconfirmed.</td>
+</tr>
+<tr>
+<td class="mat-name">Mellochrysos</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">If held in open flame within a day of a light spell being cast on it: a single flame rises from the stone and burns for up to 12 hours, dwindling the stone away slowly. The flame is not extinguished by wind or water (even full immersion). Can be thrown to start long-duration fires in hard-to-reach places. Counter: phenalope.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Microcline (Amazonstone)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered and dissolved in sap of any deciduous tree: most versatile and abundant alternative to octopus/squid ink as a base for spell inks.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Moonbar</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered: used in ink formulae, potions, and spell components for magic controlling, healing, or creating undead; can replace important missing ingredients related to necromancy.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Naturally large rectangular crystals with smooth surfaces.</td>
+</tr>
+<tr>
+<td class="mat-name">Moonstone</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">True uses: powdered, component in abjuration and barrier spells; in evocation spells, used as a magical storage medium and for sudden energy redirection. Moonstones can substitute for many nonorganic abjuration/evocation components.</td>
+<td class="mat-false">Falsely said to force lycanthropes into animal form when seen.</td>
+<td class="mat-notes">Considered sacred to Selûne. Glows faintly for about an hour in darkness after light is removed.</td>
+</tr>
+<tr>
+<td class="mat-name">Moss Agate</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Ground fine: ingredient in medicines inducing enforced deep sleep; in all potions, causes normally incompatible substances to mix stably — always a safe additive, removing any chance of explosive or poisonous potion failure.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Mykaro (Smithsonite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Cures blindness when powdered, mixed with any nonalcoholic drink, a wizard eye spell&#x27;s viewing component is passed through the mixture, and the afflicted being drinks within 1 turn. Effect in 1d4+1 rounds (longer if eyeballs must regenerate).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Mynteer (Phenakite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Spell ink ingredient for levitation, telekinesis, and force-construct spells (unseen servant, Tenser&#x27;s floating disc, etc.).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Nelvine (Albite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Spell and ink component in magics that disguise or change appearance without altering true nature.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Nune (Staurolite/Cross Stone/Fairy Stone)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered ingredient in dispel magic spell ink; used in the bath during formative enchantment of a wand of negation.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Cross-shaped crystals up to 1 inch across.</td>
+</tr>
+<tr>
+<td class="mat-name">Obsidian</td>
+<td class="mat-cat">Ornamental (nine secrets)</td>
+<td class="mat-effect">Material component in spells emulating the priestly blade barrier spell; used in obsidian steed figurines. Best known of the nine secrets; can be transformed into an ioun stone.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Too fragile for most other magical uses.</td>
+</tr>
+<tr>
+<td class="mat-name">Octel (Scheelite)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">When touched to a ring of free action, becomes &quot;awakened&quot; — glows bright enough to illuminate 2 ft in darkness and permanently prevents all paralyzation and hold magics from affecting anyone touching or bearing it.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">The awakened property is permanent once gained.</td>
+</tr>
+<tr>
+<td class="mat-name">Onyx</td>
+<td class="mat-cat">Semiprecious (nine secrets)</td>
+<td class="mat-effect">Contact with onyx aids in safe, relatively painless childbirths. Can be transformed into an ioun stone. Any unenchanted amount of onyx on a being: –1 penalty to all saves and ability checks.</td>
+<td class="mat-false">Generally considered unlucky.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Oolite (Ool Stones)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered: ingredient in castings and spell inks of purification and neutralization magics.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Too small to cut; usually polished and mounted in patterns.</td>
+</tr>
+<tr>
+<td class="mat-name">Opal</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Near-universal component in items that store spells for later release without loss of efficacy. Can replace missing components when other components are lacking. Never use in items that invoke both fire and lightning — immediately causes a chain lightning (12d6)-equivalent explosion that spawns Melf&#x27;s minute meteors at each new target. Best used at twilight (6 p.m.); using it then increases enchanting odds by 2 or 25%.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Ophealine (Axinite)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">When worn: prevents all magical hold spells and paralyzations. Warning: so deadening to magic that it cannot itself be used in any castings or spell preparations — the magic fails.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Called &quot;knuckle stones&quot; on Waterdeep streets; often sharpened and worn as a punching weapon.</td>
+</tr>
+<tr>
+<td class="mat-name">Orbaline (Benitoite)</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Renders objects (not living things or undead) in contact with it resistant to fire: +4 bonus to item saves vs. normal fire, +5 vs. magical fire.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Orblen (Honeystone)</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">If a healing spell is cast into it: radiates warmth and golden light in a 60-ft radius for 12 turns; beings in the radiance gain potion of vitality effects; remaining 6+ consecutive turns also cures 2d6 damage. If an invocation/evocation or combat-sphere spell is cast into it: explodes as a triple-strength meteor swarm (twelve 2-ft-diameter spheres, 10d4 damage each, 20 ft in all directions).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Orl</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">See Black Opal — same explosive combination: powdered orl + powdered black opal + open flame = the explosion described under Black Opal.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Red-hued orls are most valued.</td>
+</tr>
+<tr>
+<td class="mat-name">Orprase (Pollucite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Powdered and mixed with wine consecrated to Tymora by a full priest of the goddess (at least 3 oz liquid + 1 stone): imbiber gains +6 bonus to their next save or ability check, however far in the future.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">In high demand among Tymora&#x27;s faithful.</td>
+</tr>
+<tr>
+<td class="mat-name">Pearl</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Material component of spells transforming acids into harmless water and of neutralize poison. Basis for pearl of power, pearl of the sirines, and pearl of wisdom. Powdered: valued in enchanting all magical mirrors.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Rare rainbow and black pearls are most valuable.</td>
+</tr>
+<tr>
+<td class="mat-name">Peridot</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Used in abjuration spells and protective items: one peridot per spell level (consumed) provides the equivalent of a proper component for casting or warding.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Phenalope (Rhodonite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Prohibits all magical flames (including fireballs) from igniting or remaining alight within 60 ft — manifests as a momentary flash and puff of smoke only. Also extinguishes nonmagical fires (6-in-8 chance per round; 4-in-8 for oil-based fires); prevents reignition.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Found in palace floor mosaics for protection.</td>
+</tr>
+<tr>
+<td class="mat-name">Pipestone (Catlinite)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Can substitute for wood in any wizard (not priest) spell.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Psaedros (Lepidolite)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">A hand-sized or larger mass can replace both the fire and holy water as material components of a wind walk spell.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Colors fade with prolonged sunlight.</td>
+</tr>
+<tr>
+<td class="mat-name">Rainbow Obsidian</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Pass stone for prismatic magics: can pierce shells of prismatic spells without triggering them or being harmed, and can bring inorganic materials attached to it through as well. Living creatures and undead wearing it still face normal prismatic effects.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Raindrop (Flawless Cassiterite)</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">See also Woodtine. Temporarily darkens when touched to any gemstone, metal, or stone that bore a deliberate enchantment but no longer does — more sensitive than detection spells, which only reveal the strongest residual enchantments.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Ravenar (Black Tourmaline/Schorl)</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">Shares the tourmaline property: any spell of any level or class cast into a ravenar is transformed into three 6d6 straight-line lightning bolts radiating in directions chosen by the caster; consumes the gem.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Also see Tourmaline (all varieties share this property).</td>
+</tr>
+<tr>
+<td class="mat-name">Red Tears (Tempus Weeping)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Universal substitute for all material components of healing spells (if not specially constructed); ingredient in inks for mending-object spells.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Teardrop-shaped, cherry-red, blood-crimson, or fiery orange crystals.</td>
+</tr>
+<tr>
+<td class="mat-name">Rhodochrosite (Rosenstone)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered in a special tea (full eyeball-sized stone): 20% chance of acting as neutralize poison or cure disease; entire batch must be consumed by one being.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Rock Crystal</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Common component in spells requiring gemstone material of a stated value without specifying the type. When treated with two minor secret spells plus Veladar&#x27;s Vambrace: becomes fusible like glass, then solidifies harder than normal — usable for mace heads, climbing spikes, or spear/ram heads.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Rogue Stone</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Increases all chances of magic going wild, going wrong, or magic-related saving throw failures by 1 per stone within 20 ft (cumulative if multiple stones are together). Used in the gemjump spell.</td>
+<td class="mat-false">Primitive tribes believe them to be sentient dragon or hero essences.</td>
+<td class="mat-notes">Always found as singletons; no two rogue stones in one place at once; origin rock type unknown.</td>
+</tr>
+<tr>
+<td class="mat-name">Rosaline (Unionite/Thulite/Pink Zoisite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Trichroic crystals with the right color combination (rare): each crystal consumed negates one layer of a prismatic spell (outermost first). Identifying which crystals work is a deadly process that consumes the stone during testing.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Most rosaline crystals do not have the right nature; identifying the correct ones is itself dangerous.</td>
+</tr>
+<tr>
+<td class="mat-name">Ruby</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">All items concerned with improving personal fortune (augmenting ability checks, saves, and survival rolls) can be made with +25% chance of enchanting succeeding if one ruby per function is powdered into the process (+10% if only one ruby for a multi-function item). Ruby dust widely used in sun-sphere and elemental priest spells and abjuration, alteration, and evocation wizard spells. Best at summer sunset (~5 p.m., +2 or 25% to efficacy). Essential in a helm of brilliance; preferred for healing items.</td>
+<td class="mat-false">Generally considered lucky.</td>
+<td class="mat-notes">Can correctly ward lightning and earthquakes; in very rare cases, contain unknown living creatures released when the gem is carefully shattered.</td>
+</tr>
+<tr>
+<td class="mat-name">Rusteen (Microlite)</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Spell component for wall of force and forcecage magics.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Saganite (Needlestone/Love Stone/Hairstone)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Added to components of any spell with direct explosion or burst-of-flame effects: augments damage by 1 point per die.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Samarskite</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Reduces all damage done by undead attacks by 1 point per attack (or per die of damage for multi-die attacks) for any being wearing or carrying it.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Used as mourning gemstone.</td>
+</tr>
+<tr>
+<td class="mat-name">Sanidine</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Any piece the size of the caster&#x27;s thumb or larger: sole spell component for all spells involving water or purification (if components need not be specially constructed).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Favored by Bedine and other desert nomadic peoples.</td>
+</tr>
+<tr>
+<td class="mat-name">Sapphire</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Widely used in items related to magical prowess, the mind, and the element of air. Wearer partially protected against fear, anger, despair, and insanity effects; +2 bonus to all saves vs. emotion/mind-clouding magic (charms, feeblemind, insanity) or a normal save when none would ordinarily be allowed. A whole sapphire (5,000+ gp) in an enchantment bath plus powdered sapphire: 55% chance of raising a weapon&#x27;s magical bonus by 1. As spell component: spells last for the longest possible time and deal maximum damage in their first round. Best at midmorn (10 a.m.).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Sarbossa (Thomsonite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Added to components of spells involving shape transformation of a victim: adds 1d2 rounds to spell duration.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Found in nodules up to 1 inch in volcanic cavities.</td>
+</tr>
+<tr>
+<td class="mat-name">Sardonyx</td>
+<td class="mat-cat">Semiprecious (nine secrets)</td>
+<td class="mat-effect">Used in spells and items affecting Wisdom. Same magical uses as kings tears. Can be transformed into an ioun stone. Sardonyx gemstones sometimes (not reliably) guard against magic missile: 2-in-6 chance of absorbing 1 point of damage per missile (not per spell); gem is never harmed.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Satin Spar (Feather Gypsum)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Partially negates magic missiles: any missile aimed at the bearer vaporizes a satin spar stone worn/carried/touched, but deals only half damage.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Too fragile to wear normally.</td>
+</tr>
+<tr>
+<td class="mat-name">Scapra (Fine Scapolite)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">When added to components of a guards and wards spell (consumed in casting): permits addition of either one extra magical effect beyond the normal five, or one phantasmal force effect. One extra effect per gemstone, maximum five additions.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Serpentine (Williamsite)</td>
+<td class="mat-cat">Semiprecious/Hardstone</td>
+<td class="mat-effect">Each stone (gemstone or the right hardstone variety) functions once against cold and once against fire as the priestly resist fire or resist cold spell, then crumbles. Multiple serpentines on one bearer: only one activates per trigger event.</td>
+<td class="mat-false">Malachite is falsely rumored to prevent falls; serpentine is actually the fire/cold protection stone.</td>
+<td class="mat-notes">Only jewelers, expert miners (most dwarves), and experienced wizards or priests can reliably identify the magically active variety from inert serpentine.</td>
+</tr>
+<tr>
+<td class="mat-name">Shandon (Natrolite)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">When an ironguard spell is cast on one shandon already affixed to a garment that has at least six other shandons: the ironguard effect becomes permanent to the garment. Metal does not catch on the garment and poisons from metal weapons still take effect. Ends if the enspelled shandon is crushed, shattered, or separated from the garment.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Tiny; colorless; too small to impress untrained observers.</td>
+</tr>
+<tr>
+<td class="mat-name">Sharpstone (Novaculite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Any amount consumed in a casting increases the radius of spell effects by 10 ft at the cost of 1 die of damage (or 1 round of duration for spells without damage). Multiple stones or large amounts cannot stack.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Sheen (Obsidian Varieties)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Sheen (all varieties) added to spells creating radiance: caster precisely controls the spell&#x27;s color. When added to invisibility magics: +1d3 rounds of duration.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Gold sheen is a semiprecious gem-grade variety; most other sheens are ornamental. Both share these properties.</td>
+</tr>
+<tr>
+<td class="mat-name">Shou Lung Amethyst</td>
+<td class="mat-cat">Gem (imported)</td>
+<td class="mat-effect">Used to protect noblemen in Kara-Tur; puissant magical powers otherwise unknown to Faerûnian wizards.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Eastern import; deep purple corundum.</td>
+</tr>
+<tr>
+<td class="mat-name">Shou Lung Emerald</td>
+<td class="mat-cat">Gem (imported)</td>
+<td class="mat-effect">Harder and more lustrous than Faerûnian emerald; little is known of its magical properties in the West.</td>
+<td class="mat-false">Legend says only three exist; at least a dozen caches are known in the West, discrediting this.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Shou Lung Topaz</td>
+<td class="mat-cat">Gem (imported)</td>
+<td class="mat-effect">Reputed magical properties unknown to Faerûnian wizards; often used in items associated with felines.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Eastern import; fiery yellow corundum.</td>
+</tr>
+<tr>
+<td class="mat-name">Silkstone</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered: reliable substitute component in spells and inks for life-energy draining and restoration. Worn around the neck: shadows (undead) always hesitate for 1 round when confronting a bearer — they will not attack in that round, but will if the bearer attacks them.</td>
+<td class="mat-false">Falsely said to ward off spirits generally.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Sinhalite</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">No sort of magical darkness can form or persist within 20 feet of a sinhalite.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Found only in streambed or vanished-stream gravels.</td>
+</tr>
+<tr>
+<td class="mat-name">Skydrop (Clear Tektite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Renders any being touching, carrying, or wearing it immune to petrification.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Meteoritic glass from desert gravel fields.</td>
+</tr>
+<tr>
+<td class="mat-name">Smoky Quartz (Cairngorm/Moorland Topaz)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">The black morion variety only: used in necromantic and necromancy spell inks and bone-strengthening baths; makes bone as hard as steel and renders it immune to hostile necromancies.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Much of what is called cairngorm is actually heat-colored glass.</td>
+</tr>
+<tr>
+<td class="mat-name">Snowflake Obsidian</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">A thumbnail-sized or larger piece worn/carried on an outer surface reduces dragon breath weapon damage by 1d4 points per die (minimum 1 per die). Consumed in doing so; no effect on breath weapon transformations or incidental effects.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Soapstone (Steatite)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Reputed to have magical properties related to fire and capture of warmth; as yet a mystery.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Sphene</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Wards off lightning (including from spells): saving throws vs. lightning +4 bonus; damage rolls –1 point per die.</td>
+<td class="mat-false">Little known outside specialized circles.</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Spinel</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Specially crushed and ingested: allows any spellcasting being to instantly recall the last spell it cast.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Spodumene (Kunzite/Hiddenite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Opens wizard lock doors and items on contact, provided it is sprinkled with at least three drops of holy water (water is consumed; gem is not).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Kunzite fades in color over time — faded form called ghost stone.</td>
+</tr>
+<tr>
+<td class="mat-name">Star Diopside</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Winks and flashes vigorously when any active illusion/phantasm magic (a magically disguised person) passes within 10 feet.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Stones with a four- or six-rayed star are the valuable variety.</td>
+</tr>
+<tr>
+<td class="mat-name">Star Metal (Meteoritic Iron)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Combined in small amounts with alloys: adds sharpness and flexible temper to bladed weapons; reputedly heightens strength and duration of all enchantments in blades containing it. Valued in the thousands of gp per workable chunk.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Most specimens are thumb-sized or smaller.</td>
+</tr>
+<tr>
+<td class="mat-name">Star Rose Quartz</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Alternative spell component in all abjuration wizard spells and protection-sphere priest spells (if components need not be specially constructed). When worn or carried: 14% chance of magically redirecting a spell aimed at the bearer to some other target.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Star Ruby</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">If a wraithform spell is cast on one that has already received a knock spell: becomes a thick red vapor. Inhaled by a mammalian being: combines the effects of an elixir of health, a regeneration spell, and a heal spell. Cannot raise the dead but restores the recently revived to full vitality.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">1 in 100 rubies is a star ruby.</td>
+</tr>
+<tr>
+<td class="mat-name">Star Sapphire</td>
+<td class="mat-cat">Jewel</td>
+<td class="mat-effect">Material component of minor globe of invulnerability or globe of invulnerability — each case raises the spell level of spells warded off by 1. Used in antimagic shell (normally no component needed): increases duration by 14 turns and maintains it during the caster&#x27;s sleep. Many other uses in protective items.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">1 in 1,000 sapphires is a star sapphire.</td>
+</tr>
+<tr>
+<td class="mat-name">Sulabra (Argillite)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Magically inert (so far as is known).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Sunstone (Oligoclase)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Stores light-related and energy-discharge magics for later release; activator touches the stone and speaks the last word of the spell incantation to discharge it at a chosen target (or random target if the activator did not concentrate). Activation destroys the stone. Need not be the original caster to activate.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Tabasheer</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Crushed and a cure light wounds spell cast on the powder while on the tongue or in an open wound of a being: grants 3d6 temporary hit points for 24 hours. Damage is taken from these phantom hit points first; each lost is gone permanently. Does not increase level, spell abilities, or anything else.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Found in joints of certain bamboo varieties.</td>
+</tr>
+<tr>
+<td class="mat-name">Tchazar (Aragonite)</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">In any cut: clouds scrying magics from seeing anything within 2 feet of it. Frequently used on coffers, collars, reading desks, locks, and bracers. Power is instantly lost if the stone shatters.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Tempskya (Petrified Wood)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Alternative material component in all spells concerned with petrification and enchantments for items concerning petrification.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Thuparlial (Prehnite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered: ingredient in spell ink formulae and casting components for pyrotechnics and heat metal spells.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Red Wizards experiment with using it as a fire-spell replacement component; no success reported.</td>
+</tr>
+<tr>
+<td class="mat-name">Tiger Eye Agate</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered: commercially expected in potions of undead control and tomb/death inscription inks — market demand persists despite no true magical property.</td>
+<td class="mat-false">Falsely said to repel spirits and undead.</td>
+<td class="mat-notes">Buyers expect it; alchemists include it; it does nothing.</td>
+</tr>
+<tr>
+<td class="mat-name">Tomb Jade</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Powdered: ingredient in potions of undead control. Brandished by a priest who has already failed a turning attempt: allows a second turning attempt at +1 bonus.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Jade reddened or browned through burial. Jade turned green by nearby buried bronze is no more valuable than normal jade.</td>
+</tr>
+<tr>
+<td class="mat-name">Topaz</td>
+<td class="mat-cat">Precious</td>
+<td class="mat-effect">Prolongs faerie fire spells cast upon it to last 6d4 days. Ensures the item it is mounted on is immune to breakage or change of state (disintegration, petrification, melting, corrosion). Best gemstone for a gem of brightness (enchantments make it as hard as mithral). Naturally stores any healing spell cast on it; released by placing the gem into an open wound (melts away) or powdering it and drinking in milk or wine from a mithral goblet.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Tourmaline</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Any spell of any level or class cast into a tourmaline is transformed into three 6d6 straight-line lightning bolts in directions chosen by the caster, consuming the tourmaline. Black variety (ravenar) is a gem-grade stone; all other hues share this property as fancy-grade stones.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Tremair (Hexagonite)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Worn next to skin: makes the wearer immune to all magical curses.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Sometimes sewn onto debutantes&#x27; gowns to signal availability.</td>
+</tr>
+<tr>
+<td class="mat-name">Turquoise</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Used in enchantment baths for flight items; best worked at foredawn (half-hour centered on 5 a.m.). Grants stability in flight (despite wind disturbances) to items enchanted with it.</td>
+<td class="mat-false">Gleaming near gold is thought to bring prosperity (folk belief). Turquoise sliver in a horse&#x27;s harness said to bring good luck and protection (folk belief).</td>
+<td class="mat-notes">Elves prize specimens without mottlings for sky-related spells.</td>
+</tr>
+<tr>
+<td class="mat-name">Turritella</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">Magically inert (so far as is known, despite much speculation).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Dark brown agate with silicified spiral shells.</td>
+</tr>
+<tr>
+<td class="mat-name">Ulvaen (Amblygonite)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Touched to an open wound or placed on the tongue (for internal injuries): melts away in 1d4+1 rounds and heals in sequence. Roll 1d4 repeatedly: 1 = stops and heals 2d4 (first roll), 1d6+1 (second), 1d4+1 (third), or 1d10 (fourth) damage, ending the stone&#x27;s work; any other result advances to the next healing stage (stop bleeding → restore organs → close wounds → full regeneration).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Variscite (Lucinite/Peganite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Poisonous to lycanthropes. Mounted on an arrowtip or blade: triples damage on first strike against a particular lycanthrope (no further damage from that variscite to that individual for one day). Worn as a gemstone: can deal 1d6+4 damage once if pressed into an open wound on a lycanthrope or put in contact with their tongue (must reach the bloodstream).</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Violine</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Upon contact with a being with mummy rot: consumed but negates the mummy rot. A mummy brought into contact with any amount of violine: suffers 4d4 damage. If the mummy is destroyed, the resulting dust is ineffective for magical uses.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Water Opal</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">Used in crafting magical scrying devices (crystal balls). Powdered and mixed with holy water: creates an elixir of health without any enchantments needed.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Clear, translucent; iridescent color play.</td>
+</tr>
+<tr>
+<td class="mat-name">Waterstar (Achroite/Colorless Tourmaline)</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Shares tourmaline property: any spell cast into it transforms into three 6d6 straight-line lightning bolts, consuming the stone.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Must be entirely free of flaws; yields large faceted gemstones.</td>
+</tr>
+<tr>
+<td class="mat-name">Webstone (Spiderweb Obsidian)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">When carried in direct flesh-to-stone contact: protects the bearer from all harmful gaseous and airborne particulate effects (smoke, poisonous gases, airborne fungal spores). Each contact with such things partially vaporizes the stone at a variable rate. Protection varies wildly from specimen to specimen.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Witherite</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">When set in a special electrum setting and worn in direct flesh-to-stone contact: provides immunity to withering magics, psionic withering, and the reversed damaging form of necromantic sphere priest spells.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Wonderstone</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Glows with eerie blue-green or deep royal blue radiance for 5d4 rounds after direct contact with a spell effect, magical item, or any being or item bearing an active enchantment.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Used as magic detectors at entryways; also popular in wealthy furniture for mood lighting.</td>
+</tr>
+<tr>
+<td class="mat-name">Woodtine</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Shares raindrop&#x27;s property: temporarily darkens when touched to any gem, metal, or stone that once bore a deliberate enchantment but no longer does. More sensitive than most detection spells.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes">Brown fibrous variety of cassiterite; a corruption of &quot;wood tin.&quot;</td>
+</tr>
+<tr>
+<td class="mat-name">Xylopal (Lithoxyle/Opalized Wood)</td>
+<td class="mat-cat">Hardstone</td>
+<td class="mat-effect">A hand-sized piece or collection of fragments can replace both the lodestone and iron filings in casting the 7th-level wizard spell reverse gravity.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Zarbrina (Cerussite)</td>
+<td class="mat-cat">Ornamental</td>
+<td class="mat-effect">Powdered: acceptable alternative ingredient in spell inks for illusion magic.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Zendalure</td>
+<td class="mat-cat">Gem</td>
+<td class="mat-effect">Powdered and mixed with water: creates &quot;seasonsteal,&quot; a glycerine-like perfect preservative that keeps mammalian, reptilian, or avian parts completely undecayed indefinitely, so long as fully immersed and kept from direct sunlight. Remains stored this way are considered fresh for healing magics and other magical processes.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Ziose</td>
+<td class="mat-cat">Fancy</td>
+<td class="mat-effect">Unleashes six magic missile pulses (1d4+1 each) per round for up to seven continuous rounds, activated by the last intelligent being to touch it, at will, up to 30 ft distance; no concentration needed. After seven rounds, falls inert for 2 turns. If never used for seven continuous rounds, no rest period required.</td>
+<td class="mat-false">—</td>
+<td class="mat-notes"></td>
+</tr>
+<tr>
+<td class="mat-name">Zircon</td>
+<td class="mat-cat">Semiprecious</td>
+<td class="mat-effect">Takes enchantments readily; one of the favorite base stones for gem, scarab, or eye magical items (cut into cusps).</td>
+<td class="mat-false">Occasionally passed off as more valuable stones.</td>
+<td class="mat-notes">Anyone with gemcutting knowledge can tell the difference.</td>
+</tr>
+</tbody></table></div><h3 class="mat-subsource">Treasures of Middle-earth</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Adamant</td>
+<td class="mat-notes">Made only by Celebrimbor among the High Jewel Smiths. Harder than diamond or laen, yet colorable like laen and faceted like diamond — clear, brilliant, brighter than diamond. Used as the setting-stone of Nenya, Galadriel&#x27;s Ring.</td>
+</tr>
+<tr>
+<td class="mat-name">Diamond</td>
+<td class="mat-notes">Most prized by Men and Dwarves; the Mírdain find white stones &quot;dull.&quot; Elves covet the very scarce colored varieties, especially blues and pale violets.</td>
+</tr>
+<tr>
+<td class="mat-name">Emerald</td>
+<td class="mat-notes">Called &quot;Elfstones&quot; by mortals; favored by the Firstborn for their bright green color, often set in jewelry.</td>
+</tr>
+<tr>
+<td class="mat-name">Laen (&quot;Long Thread&quot;)</td>
+<td class="mat-notes">Crystal lattice structure gives great strength. Gains rigidity with heat; must be chilled to temperatures beyond cold to soften and sculpt. Natural laen is black or smoky; can be cleared and tinted any transparent color.</td>
+</tr>
+<tr>
+<td class="mat-name">Opal</td>
+<td class="mat-notes">Cloudy, rainbow-hued; favored by Elves for rings and weapon pommels. Fire Opal (red-blue-violet) highly prized; Black Opal rarer still and uniquely beautiful.</td>
+</tr>
+<tr>
+<td class="mat-name">Ruby</td>
+<td class="mat-notes">Favorite stone of Noldorin smiths (used in Narya, one of the Three). Richest dark reds preferred by Elves; Men prefer brighter shades; Morgoth/Sauron&#x27;s servants favor dark blood-reds or cloudy varieties.</td>
+</tr>
+<tr>
+<td class="mat-name">Sapphire</td>
+<td class="mat-notes">Pure blue most prized by Elves (used in Vilya, one of the Three); yellow variety also valued. Black Sapphire very rare and ominous.</td>
+</tr>
+<tr>
+<td class="mat-name">Violet Garnet</td>
+<td class="mat-notes">The only garnet taken seriously by the Noldor — clear pale violet, delicate and beautiful. Dwarves enjoy common dark reds; Men use most varieties, preferring violet; brown-green varieties favored in the south. Often found in large clumps of interlocking crystals.</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="mat-herbs" class="mat-section" style="display:none">
+<h2 class="mat-category-title">Herbs &amp; Plants</h2>
+<h3 class="mat-subsource">Treasures of Middle-earth</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Cost</th>
+<th>Effect</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Akbutege</td>
+<td class="mat-cost">25 gp</td>
+<td class="mat-effect">Eating the leaf heals 1–10 hits.</td>
+<td class="mat-notes">Laurel-family shrub, southern wetlands.</td>
+</tr>
+<tr>
+<td class="mat-name">Alambas</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Crushed-grass juice heals 4 sq ft of even 3rd-degree burns.</td>
+<td class="mat-notes">Succulent grass.</td>
+</tr>
+<tr>
+<td class="mat-name">Aloe</td>
+<td class="mat-cost">5 bp</td>
+<td class="mat-effect">Juice heals 1–4 hits (5/dose for burns); only 20% effective on major wounds; doubles minor cut/burn healing rate; mild anesthetic.</td>
+<td class="mat-notes">Cultivated in gardens in the North.</td>
+</tr>
+<tr>
+<td class="mat-name">Arfandas</td>
+<td class="mat-cost">2 sp</td>
+<td class="mat-effect">Poultice doubles fracture-healing rate.</td>
+<td class="mat-notes">Juice cannot be preserved.</td>
+</tr>
+<tr>
+<td class="mat-name">Arlan</td>
+<td class="mat-cost">9 sp</td>
+<td class="mat-effect">Poultice cures 1–6 (wild) or 4–9 (domestic) hits of bruise/concussion; root is a decongestant (+20 RR vs. colds, 5x respiratory recovery).</td>
+<td class="mat-notes">Species debated alongside Arlian&#x27;s Slipper.</td>
+</tr>
+<tr>
+<td class="mat-name">Arlian&#x27;s Slipper</td>
+<td class="mat-cost">1 bp</td>
+<td class="mat-effect">Boiled root vapor: +20 RR vs. cold, 5x respiratory recovery rate.</td>
+<td class="mat-notes">Considered by some the same species as Arlan.</td>
+</tr>
+<tr>
+<td class="mat-name">Arnuminas</td>
+<td class="mat-cost">6 bp</td>
+<td class="mat-effect">Doubles healing rate for bruises, sprains, and pulled tendons; reduces swelling.</td>
+<td class="mat-notes">Dried/salve form less effective than fresh.</td>
+</tr>
+<tr>
+<td class="mat-name">Arunya</td>
+<td class="mat-cost">2 bp</td>
+<td class="mat-effect">Root juice causes deep sleep; 1 hour of sleep equals 4 hours&#x27; rest; used in surgery as an anaesthetic.</td>
+<td class="mat-notes">Addictive after 2+ consecutive days of use.</td>
+</tr>
+<tr>
+<td class="mat-name">Asp Glands</td>
+<td class="mat-cost">100 gp</td>
+<td class="mat-effect">Large doses (2–3) are a powerful organ restorer.</td>
+<td class="mat-notes">Side effect: fits of madness recurring over the following days.</td>
+</tr>
+<tr>
+<td class="mat-name">Athelas (&quot;Kingsfoil&quot;)</td>
+<td class="mat-cost">Up to 300 gp</td>
+<td class="mat-effect">Eases pain and mental suffering; cures diseases; neutralizes minor poisons; defeats the Black Breath; slows major poisons; triples healing rate on any wound.</td>
+<td class="mat-notes">By the late Third Age, Gondorians believed it had only a pleasant scent and mild headache-curing use, having forgotten its true power. Power is &quot;seemingly unbounded&quot; in the hands of a rightful King.</td>
+</tr>
+<tr>
+<td class="mat-name">Attanar</td>
+<td class="mat-cost">8 gp</td>
+<td class="mat-effect">Poultice reduces fever.</td>
+<td class="mat-notes">Streamside moss.</td>
+</tr>
+<tr>
+<td class="mat-name">Avhail</td>
+<td class="mat-cost">3 bp</td>
+<td class="mat-effect">Fruit is the base ingredient of biotaille brandy.</td>
+<td class="mat-notes">No direct healing effect.</td>
+</tr>
+<tr>
+<td class="mat-name">Balaak</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">4 oz dose heals even the most badly shattered bone.</td>
+<td class="mat-notes">Tidal-marsh reed.</td>
+</tr>
+<tr>
+<td class="mat-name">Barani</td>
+<td class="mat-cost">2 bp</td>
+<td class="mat-effect">Tea reduces nausea and vomiting.</td>
+<td class="mat-notes">Common wild ground plant.</td>
+</tr>
+<tr>
+<td class="mat-name">Black Clover</td>
+<td class="mat-cost">25 gp</td>
+<td class="mat-effect">Poison. Pollen causes burning lungs, coughing, vomiting; prolonged exposure can kill.</td>
+<td class="mat-notes">Refined into Drúedain hunting-dart poison.</td>
+</tr>
+<tr>
+<td class="mat-name">Black Vines</td>
+<td class="mat-cost">205 gp</td>
+<td class="mat-effect">Poison. Contact causes euphoric paralysis while the vine smothers the victim; death in 2–20 rounds unless aided.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Bodezlist (&quot;Daggerleaf&quot;)</td>
+<td class="mat-cost">4 gp</td>
+<td class="mat-effect">Heart-tissue water source equal to a day&#x27;s water ration.</td>
+<td class="mat-notes">The plant&#x27;s 1–6 or 1–10+20 dagger-equivalent cuts to anyone blundering in are a real hazard, not a folk belief.</td>
+</tr>
+<tr>
+<td class="mat-name">Bog-land Grass</td>
+<td class="mat-cost">1 bp</td>
+<td class="mat-effect">Fibers woven into waterproof rope/baskets.</td>
+<td class="mat-notes">Invasive marsh weed; no medicinal use.</td>
+</tr>
+<tr>
+<td class="mat-name">Blue Pine</td>
+<td class="mat-cost">1 cp</td>
+<td class="mat-effect">Edible seeds (pine nuts), minor nutrition.</td>
+<td class="mat-notes">Wood valued separately for tannic-acid preservative qualities (see Woods).</td>
+</tr>
+<tr>
+<td class="mat-name">Boneset</td>
+<td class="mat-cost">14 gp</td>
+<td class="mat-effect">Triples fracture-healing rate (root, fresh or dried).</td>
+<td class="mat-notes">Multiple doses do not stack.</td>
+</tr>
+<tr>
+<td class="mat-name">Boskone</td>
+<td class="mat-cost">78 gp</td>
+<td class="mat-effect">Inhaled powder grants heightened/Awareness senses for 10–20 rounds.</td>
+<td class="mat-notes">Highly addictive; severe headache (–30) follows for hours.</td>
+</tr>
+<tr>
+<td class="mat-name">Bright Blue Eyes</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">Tea from 25 flowers grants Elf-sharp vision for 3 hours, once per day.</td>
+<td class="mat-notes">Cannot be stored without losing potency.</td>
+</tr>
+<tr>
+<td class="mat-name">Caj</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Tea halves spellcaster Power Point recovery time for 2 days.</td>
+<td class="mat-notes">5% cumulative monthly chance of fatal &quot;Long Path&quot; euphoric death-wish.</td>
+</tr>
+<tr>
+<td class="mat-name">Carefree Mustard</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Seed plaster heals superficial wounds within an hour; soothes deeper pain.</td>
+<td class="mat-notes">Seeds store; plaster must be used immediately.</td>
+</tr>
+<tr>
+<td class="mat-name">Cicino</td>
+<td class="mat-cost">7 gp</td>
+<td class="mat-effect">+75 disease RR for Ents/Huorns/Trees; +40 for humans.</td>
+<td class="mat-notes">Must soak 10 days in mineral spring water first.</td>
+</tr>
+<tr>
+<td class="mat-name">Coraco</td>
+<td class="mat-cost">85 gp</td>
+<td class="mat-effect">Juice heals 2–20 hits (8 oz dose).</td>
+<td class="mat-notes">Labor-intensive to harvest.</td>
+</tr>
+<tr>
+<td class="mat-name">Craeg-cerflun</td>
+<td class="mat-cost">600 gp</td>
+<td class="mat-effect">Poison/petrification. Boiled root/leaf juice or flower mist; effects range from sleep to coma to partial/total petrification depending on RR result.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Culan</td>
+<td class="mat-cost">50 gp</td>
+<td class="mat-effect">Antispasmodic; reduces certain poison effects.</td>
+<td class="mat-notes">Imported powder/tincture.</td>
+</tr>
+<tr>
+<td class="mat-name">Curfalaka</td>
+<td class="mat-cost">5 gp</td>
+<td class="mat-effect">Fruit heals muscle injuries.</td>
+<td class="mat-notes">Swamp-jungle shrub.</td>
+</tr>
+<tr>
+<td class="mat-name">Darsurion</td>
+<td class="mat-cost">35 bp</td>
+<td class="mat-effect">Rubbed leaf heals 1–6 hits (concussion).</td>
+<td class="mat-notes">Rocky-slope shrub.</td>
+</tr>
+<tr>
+<td class="mat-name">Deadly Milk-White Trumpet (&quot;Datura&quot;)</td>
+<td class="mat-cost">1 sp</td>
+<td class="mat-effect">Poison. Pollen causes blindness/nausea/madness; seeds cause battle-euphoria (1 seed) up to lethal doses (kills Men/Hobbits at 2+, Dwarves at 3+, Orcs at 10+; Elves immune).</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Delrean</td>
+<td class="mat-cost">9 sp</td>
+<td class="mat-effect">Leaf acts as insect repellent; attackers must RR vs. 7th-level shroud.</td>
+<td class="mat-notes">Bark makes a pleasant drink.</td>
+</tr>
+<tr>
+<td class="mat-name">Dragul</td>
+<td class="mat-cost">25 gp</td>
+<td class="mat-effect">Tea grants +10 to observation-based maneuvers for ~1 hour.</td>
+<td class="mat-notes">Addictive with regular use; severe withdrawal.</td>
+</tr>
+<tr>
+<td class="mat-name">Dwarves&#x27; Eyebright</td>
+<td class="mat-cost">3 gp</td>
+<td class="mat-effect">Tea grants +50 to dim/dark-condition sighting (up to 50&#x27; infravision for Men).</td>
+<td class="mat-notes">Habitual users develop violet-tinted eye-whites.</td>
+</tr>
+<tr>
+<td class="mat-name">Elbin&#x27;s Basket (Elben&#x27;s Basket)</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Root extract doubles the drinker&#x27;s action speed for 1 round.</td>
+<td class="mat-notes">Difficult to extract.</td>
+</tr>
+<tr>
+<td class="mat-name">Elendil&#x27;s Basket (&quot;Elendil&#x27;s Spear&quot;)</td>
+<td class="mat-cost">8 gp</td>
+<td class="mat-effect">Root liquid slows poison 10x; purifies foul water; effect lasts 12 hrs.</td>
+<td class="mat-notes">Rare red tundra flower.</td>
+</tr>
+<tr>
+<td class="mat-name">Eredena</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">Buds spike heart rate, strength, speed, and thought.</td>
+<td class="mat-notes">Genuinely dangerous: failed RR vs. 20th-level poison can cause fainting, heart attack, or death. Ents do not know its effect on humans.</td>
+</tr>
+<tr>
+<td class="mat-name">Faghiu</td>
+<td class="mat-cost">330 gp</td>
+<td class="mat-effect">Love-potion juice; victim will not harm the giver for 1–100 days and will serve them faithfully.</td>
+<td class="mat-notes">High-altitude flower.</td>
+</tr>
+<tr>
+<td class="mat-name">Feduilas</td>
+<td class="mat-cost">11 sp</td>
+<td class="mat-effect">+20 RR vs. Mentalism/Essence attacks for 1–5 hours.</td>
+<td class="mat-notes">–10 agility/quickness during effect; mildly addictive intoxicant.</td>
+</tr>
+<tr>
+<td class="mat-name">Fleabane</td>
+<td class="mat-cost">3 bp</td>
+<td class="mat-effect">Repels bloodsucking insects and pests (95% fresh juice, 80% powder).</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Frostheal (&quot;Jojojopo&quot;)</td>
+<td class="mat-cost">27 gp</td>
+<td class="mat-effect">Cures frostbite.</td>
+<td class="mat-notes">High-altitude alpine herb.</td>
+</tr>
+<tr>
+<td class="mat-name">Golden Cress</td>
+<td class="mat-cost">4 gp</td>
+<td class="mat-effect">Ointment closes and heals 1–5 hits of bleeding wounds in 1–5 rounds.</td>
+<td class="mat-notes">Wound will not reopen once closed.</td>
+</tr>
+<tr>
+<td class="mat-name">Gorfang (&quot;Dread-beard&quot;)</td>
+<td class="mat-cost">150 gp</td>
+<td class="mat-effect">Poison. Reddish mist causes sleep; juice can be fatal.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Gumumiti leaves (&quot;Welwal&quot;)</td>
+<td class="mat-cost">1 gp</td>
+<td class="mat-effect">Reduces stun duration by 3 rounds.</td>
+<td class="mat-notes">From the teak tree (see Woods).</td>
+</tr>
+<tr>
+<td class="mat-name">Haruella</td>
+<td class="mat-cost">250 gp</td>
+<td class="mat-effect">Used against the Undead (specific mechanic against wights).</td>
+<td class="mat-notes">Formula is a deep secret.</td>
+</tr>
+<tr>
+<td class="mat-name">Harwite</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">Heals 10–50 hits when chewed; filter/ingredient in Ent Draughts.</td>
+<td class="mat-notes">Forest-floor moss.</td>
+</tr>
+<tr>
+<td class="mat-name">Healer&#x27;s Chamomile</td>
+<td class="mat-cost">7 gp</td>
+<td class="mat-effect">Triples healing rate during 2–12 hour induced sleep.</td>
+<td class="mat-notes">More than 2 doses in 3 days risks permanent impairment (01–25 chance per repeat dose). Patient wakes ravenous and irritable.</td>
+</tr>
+<tr>
+<td class="mat-name">Hiam Moss</td>
+<td class="mat-cost">9 gp</td>
+<td class="mat-effect">Mood elevator; sustains one person a full day without food.</td>
+<td class="mat-notes">1–5% chance of fatal first-use allergic reaction; maximum 4 consecutive days&#x27; use.</td>
+</tr>
+<tr>
+<td class="mat-name">Hopper Mushrooms (&quot;Tarnas&quot; / &quot;False Tarnas&quot;)</td>
+<td class="mat-cost">220 gp</td>
+<td class="mat-effect">Tea repairs any organ damage.</td>
+<td class="mat-notes">Often confused with True Tarnas due to shared nickname. Causes 1–10 hours of nausea (–50) as a side effect.</td>
+</tr>
+<tr>
+<td class="mat-name">Hrast</td>
+<td class="mat-cost">3 gp</td>
+<td class="mat-effect">Nourishing fruit; sustains a traveler nearly a full day.</td>
+<td class="mat-notes">Least common of three Gaj tree species.</td>
+</tr>
+<tr>
+<td class="mat-name">Karfar</td>
+<td class="mat-cost">150 gp</td>
+<td class="mat-effect">Poison. Pasty, lethal poison from Juha tree leaves; easy to apply to weapons or food.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Kelventari</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Berry juice heals 3rd-degree burns fully, lesser burns 1–10 hits; eliminates scarring.</td>
+<td class="mat-notes">Rare; short fruiting season.</td>
+</tr>
+<tr>
+<td class="mat-name">Kirtir</td>
+<td class="mat-cost">5 gp</td>
+<td class="mat-effect">+10 Quickness for 1 hour (with –5 Agility); can cause weight loss in smaller doses.</td>
+<td class="mat-notes">After-effect: –30 Constitution bonus for 1–10 hours, total exhaustion; overdose risks hallucination/seizure/death.</td>
+</tr>
+<tr>
+<td class="mat-name">Kiseoboba (&quot;Sourberry&quot;)</td>
+<td class="mat-cost">1 sp</td>
+<td class="mat-effect">Numbs the sensation of thirst (does not replace actual water need).</td>
+<td class="mat-notes">Users can mistakenly believe they no longer need water — a real, stated danger of the herb. 5th-level RR (Intuition-modified) to avoid the false confidence.</td>
+</tr>
+<tr>
+<td class="mat-name">Klytun</td>
+<td class="mat-cost">27 gp</td>
+<td class="mat-effect">Poison. Root paste induces 1–10 day catatonic trance.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Lainimit leaves (&quot;Welwal&quot;)</td>
+<td class="mat-cost">1 gp</td>
+<td class="mat-effect">Reduces stun duration by 2 rounds.</td>
+<td class="mat-notes">From the mahogany tree.</td>
+</tr>
+<tr>
+<td class="mat-name">Latha</td>
+<td class="mat-cost">10 sp</td>
+<td class="mat-effect">+10 RR vs. disease; heals 12 hits.</td>
+<td class="mat-notes">Mild analgesic; good for headaches and toothaches.</td>
+</tr>
+<tr>
+<td class="mat-name">Lawrim</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Skin contact causes itchy rash/numbness; boiled and squeezed yields an oily level-2 poison causing shock then temporary paralysis.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Lemsang (&quot;Way-throne&quot; / &quot;Great-meal&quot;)</td>
+<td class="mat-cost">4 gp</td>
+<td class="mat-effect">1 lb feeds a person for a week.</td>
+<td class="mat-notes">Associated in folk-tale with Lembas, but unrelated.</td>
+</tr>
+<tr>
+<td class="mat-name">Lichen Gloriosa (&quot;Loth-nu-Fuin&quot;)</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Sharpens blades to cut stone without resharpening.</td>
+<td class="mat-notes">Must be used immediately on gathering; cannot be stored.</td>
+</tr>
+<tr>
+<td class="mat-name">Lothfelag (&quot;Cave-flower&quot; / &quot;Durin&#x27;s Tears&quot;)</td>
+<td class="mat-cost">1,000 gp</td>
+<td class="mat-effect">Preserves living tissue; absolves pain; can restore lost life.</td>
+<td class="mat-notes">Exceptionally rare; subject of Dwarvish legend and verse.</td>
+</tr>
+<tr>
+<td class="mat-name">Lothgalen / Loth Nenond (&quot;Green-flower&quot;)</td>
+<td class="mat-cost">240 gp</td>
+<td class="mat-effect">Secretion (Nen Calgalen) is a deadly injected poison causing burning agony, paralysis, and sometimes death. Vines also make exceptionally strong rope.</td>
+<td class="mat-notes">Dwarves generally scorn its use as a poison even in war.</td>
+</tr>
+<tr>
+<td class="mat-name">Lus</td>
+<td class="mat-cost">3 gp</td>
+<td class="mat-effect">Poison. Fast-acting; first symptom is always blindness; severity scales from temporary blindness to death by RR margin.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Madarch (&quot;Pelenaur&quot; / &quot;Encircling Fire&quot;)</td>
+<td class="mat-cost">100 gp</td>
+<td class="mat-effect">Diluted juice heals all cuts/damaged blood vessels within 2 hours.</td>
+<td class="mat-notes">Undiluted use reopens wounds and can cause fatal vein rupture — a real &quot;more is worse&quot; trap flagged in the text as a moral about greed.</td>
+</tr>
+<tr>
+<td class="mat-name">Madwort</td>
+<td class="mat-cost">26 gp</td>
+<td class="mat-effect">Poison. Paste causes 11–20 rounds of madness; severe cases cause permanent Reasoning stat loss.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Melem Loza (&quot;Balm Vine&quot;)</td>
+<td class="mat-cost">150 gp</td>
+<td class="mat-effect">Halves 2nd-degree-or-less burn effects; doubles effect of healing magic used alongside it.</td>
+<td class="mat-notes">Rare; difficult to distinguish from similar vines.</td>
+</tr>
+<tr>
+<td class="mat-name">Mirenna</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Berry juice heals 10 hits instantly.</td>
+<td class="mat-notes">Warriors carry one between cheek and teeth for emergency use.</td>
+</tr>
+<tr>
+<td class="mat-name">Miretar&#x27;s Crown</td>
+<td class="mat-cost">24 gp</td>
+<td class="mat-effect">Stops bleeding when laid across a wound.</td>
+<td class="mat-notes">Rare high-meadow flower.</td>
+</tr>
+<tr>
+<td class="mat-name">Nelthandon</td>
+<td class="mat-cost">1 gp</td>
+<td class="mat-effect">Powerful emetic, whether boiled or eaten raw.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Numenelos</td>
+<td class="mat-cost">100 gp</td>
+<td class="mat-effect">Nerve regeneration and repair.</td>
+<td class="mat-notes">Moss from the White Tree&#x27;s base at Fornost.</td>
+</tr>
+<tr>
+<td class="mat-name">Phacalus</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">Permanently raises Presence/Intuition/Intelligence (RM: Presence/Reasoning/Intuition/Empathy/Memory) by 1 each, up to stat cap.</td>
+<td class="mat-notes">35% chance of severe negative reaction per dose — toxic coma or allergic reaction ranging from rash to death.</td>
+</tr>
+<tr>
+<td class="mat-name">Pipeweed (&quot;Galenas&quot; / &quot;Leaf&quot; / &quot;Westmansweed&quot;)</td>
+<td class="mat-cost">4 sp</td>
+<td class="mat-effect">Recreational smoking herb.</td>
+<td class="mat-notes">Brought from Númenor; popularized in the Shire by Tobold &quot;Old Toby&quot; Hornblower c. T.A. 2700.</td>
+</tr>
+<tr>
+<td class="mat-name">Rivertraveller (&quot;Gort&quot;)</td>
+<td class="mat-cost">12 gp</td>
+<td class="mat-effect">Raises Presence for 2 hours (then –50 for 1–10 hours).</td>
+<td class="mat-notes">Euphoric stimulant/hallucinogen; used in Breffraen chieftain-selection rites.</td>
+</tr>
+<tr>
+<td class="mat-name">Rose Trees (Mir-melellen nectar)</td>
+<td class="mat-cost">50 gp</td>
+<td class="mat-effect">Nectar grants +25 to enchantment spells cast on a covered object; cleanses poison from the body.</td>
+<td class="mat-notes">Hedges form impassable thorny barriers.</td>
+</tr>
+<tr>
+<td class="mat-name">Sailchas</td>
+<td class="mat-cost">50 gp</td>
+<td class="mat-effect">+10 morale, +10 RR, +5 DB for 3–7 days while worn.</td>
+<td class="mat-notes">Believed to be a harbinger of good luck by Cardolan folk.</td>
+</tr>
+<tr>
+<td class="mat-name">Sarah-Pokes-Her-Head</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">Aged root (1 lunar cycle) sustains 3 people for a week.</td>
+<td class="mat-notes">Root is bitter and burning before aging — a real property, not a misconception. Related to jack-in-the-pulpit.</td>
+</tr>
+<tr>
+<td class="mat-name">Sha</td>
+<td class="mat-cost">10 gp</td>
+<td class="mat-effect">Powder grants infravision (up to 300&#x27;, 1–5 rounds at a time).</td>
+<td class="mat-notes">Side effect: 1–5 days of severe diarrhea beginning 11–20 hours after use.</td>
+</tr>
+<tr>
+<td class="mat-name">Silraen</td>
+<td class="mat-cost">35 sp</td>
+<td class="mat-effect">Powerful analgesic.</td>
+<td class="mat-notes">Side effect: drowsiness.</td>
+</tr>
+<tr>
+<td class="mat-name">Sindoluin</td>
+<td class="mat-cost">45 sp</td>
+<td class="mat-effect">Anti-coagulant tincture.</td>
+<td class="mat-notes">Small blue flower.</td>
+</tr>
+<tr>
+<td class="mat-name">Slird</td>
+<td class="mat-cost">34 gp</td>
+<td class="mat-effect">Poison. Fast-acting (level 2) circulatory poison; paralyzes 1–6 extremities for 1–100 days.</td>
+<td class="mat-notes">Also listed under Woods (the Slird tree&#x27;s fruit; see Section 6.5).</td>
+</tr>
+<tr>
+<td class="mat-name">Splayfoot Goodwort</td>
+<td class="mat-cost">23 gp</td>
+<td class="mat-effect">Mashed seeds instill confidence and purpose in good characters.</td>
+<td class="mat-notes">Causes dizziness/confusion (–50, 1–4 hours) specifically when given to evil beings — an intentional moral-alignment effect. Marsh plant near the Gladden Fields.</td>
+</tr>
+<tr>
+<td class="mat-name">Suranie</td>
+<td class="mat-cost">2 gp</td>
+<td class="mat-effect">Berry relieves fainting (equivalent to 1-round stun relief).</td>
+<td class="mat-notes">&quot;Smelling salts&quot; equivalent.</td>
+</tr>
+<tr>
+<td class="mat-name">Sweet Sorrel</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">Cures lung/throat/airway ailments; antidote to poisonous gases; relieves lung-spasms; breaks certain trance/sleep states (see White Mountain Poppy).</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Tartec</td>
+<td class="mat-cost">4 sp</td>
+<td class="mat-effect">Refined Tartella — deeper euphoria at 1/4 dose.</td>
+<td class="mat-notes">Permanently reduces Reasoning/Intelligence by 1 per dose; faster and worse addiction than Tartella.</td>
+</tr>
+<tr>
+<td class="mat-name">Tartella</td>
+<td class="mat-cost">4 sp</td>
+<td class="mat-effect">Euphoric-relaxant; 1–10 hours of euphoria.</td>
+<td class="mat-notes">Tolerance builds after 2–5 doses; severe withdrawal (nausea, headaches, chills, seizures).</td>
+</tr>
+<tr>
+<td class="mat-name">Teldalion</td>
+<td class="mat-cost">5 gp</td>
+<td class="mat-effect">Poultice reduces inflammation.</td>
+<td class="mat-notes">Found only in deep forests.</td>
+</tr>
+<tr>
+<td class="mat-name">Touch-grass</td>
+<td class="mat-cost">1 bp</td>
+<td class="mat-effect">Changes shape on touch by different races for 1 hour (scouting/tracking tool).</td>
+<td class="mat-notes">Inedible.</td>
+</tr>
+<tr>
+<td class="mat-name">True Tarnas</td>
+<td class="mat-cost">95 gp</td>
+<td class="mat-effect">Boiled bulb heals any organ damage.</td>
+<td class="mat-notes">Often confused with Hopper Mushrooms (&quot;False Tarnas&quot;) due to shared common name. Only the dormant bulb has medicinal value, not the flower.</td>
+</tr>
+<tr>
+<td class="mat-name">Tulaxar</td>
+<td class="mat-cost">75 gp</td>
+<td class="mat-effect">Styptic — stops all bleeding within 1–10 rounds.</td>
+<td class="mat-notes">Healer&#x27;s garden herb.</td>
+</tr>
+<tr>
+<td class="mat-name">Tyr-fira</td>
+<td class="mat-cost">1,200 gp</td>
+<td class="mat-effect">Said to be life-restoring if given within 56 days of death.</td>
+<td class="mat-notes">Possibly extinct by the book&#x27;s present day — &quot;purely a matter of conjecture&quot; per the text.</td>
+</tr>
+<tr>
+<td class="mat-name">White Lily</td>
+<td class="mat-cost">2 sp</td>
+<td class="mat-effect">Used to brew Meathran (Dunnish national drink); nectar used in Cranor manufacture (see Metals).</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">White Mountain Poppy</td>
+<td class="mat-cost">75 gp</td>
+<td class="mat-effect">Single dose: trance state, –100 all actions but doubles detection/information-spell range and effect. Double dose: deep aware sleep. Triple dose: 6–12 hour unwakeable sleep.</td>
+<td class="mat-notes">Highly addictive. Sweet Sorrel breaks the trance in 4–10 rounds.</td>
+</tr>
+<tr>
+<td class="mat-name">White-Berried Yew</td>
+<td class="mat-cost">103 gp</td>
+<td class="mat-effect">Poison when ripe. Historically used for honor-suicide; unripe berries merely induce vomiting.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Wight Orchid</td>
+<td class="mat-cost">—</td>
+<td class="mat-effect">Root induces astral-projection-like trance (range 10 mi/level); spirit can pass non-magical barriers.</td>
+<td class="mat-notes">Genuinely risky: RR failures can strand or &quot;lose&quot; the spirit, killing the body in 2–12 days.</td>
+</tr>
+<tr>
+<td class="mat-name">Wild Persimmons</td>
+<td class="mat-cost">3 sp</td>
+<td class="mat-effect">Edible fruit, low nutrition (100 needed for a meal).</td>
+<td class="mat-notes">Anduin Valley riverside tree.</td>
+</tr>
+<tr>
+<td class="mat-name">Winclamit</td>
+<td class="mat-cost">100 gp</td>
+<td class="mat-effect">Heals 3–300 hits (boiled fruit).</td>
+<td class="mat-notes">Does not thrive where timber has been heavily logged.</td>
+</tr>
+<tr>
+<td class="mat-name">Witan (&quot;Drugo-sreca&quot; / &quot;Second Chance&quot;)</td>
+<td class="mat-cost">15 gp</td>
+<td class="mat-effect">Relieves 2 rounds of stun when swallowed.</td>
+<td class="mat-notes">Causes excessive spitting as a side effect of chewing. Carried by fighters of the Bozishnarod.</td>
+</tr>
+<tr>
+<td class="mat-name">Wolfstooth</td>
+<td class="mat-cost">5 gp</td>
+<td class="mat-effect">Poison. Root paste causes irregular heartbeat; moderate exposure damages Constitution (–15 to –20 temporary); severe exposure can cause fatal heart failure.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Yellow Hemlock</td>
+<td class="mat-cost">3 sp</td>
+<td class="mat-effect">Resin stops bleeding on contact immediately, any severity.</td>
+<td class="mat-notes">Tree also listed in Section 6.5 (Woods); wood used for carving/laminating.</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="mat-metals" class="mat-section" style="display:none">
+<h2 class="mat-category-title">Metals</h2>
+<h3 class="mat-subsource">Volo&#x27;s Guide to All Things Magical</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Magical Properties and Item Saving Throws</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Adamant</td>
+<td class="mat-type">Pure metal</td>
+<td class="mat-desc">Hardest substance on Toril but brittle. Shields against all fire and heat (magical or not): wearer strides through small fires unscathed; takes only 1d6 from fireball-equivalent exposure to exposed areas. Auto-succeeds vs. normal fire, cold, and electricity. +6 vs. magical fire. +4 vs. acid, disintegration, lightning. –4 vs. crushing blow and fall unless enchanted to compensate. Takes enchantments readily. Worth five times its weight in gold.</td>
+<td class="mat-notes">Jet black with rainbow-edged reflections. Brittle — sword of adamant would snap if struck. Best found in Waterdeep and the Great Rift. Styluses for engraving; dwarven experimental use only in larger items.</td>
+</tr>
+<tr>
+<td class="mat-name">Adamantine</td>
+<td class="mat-type">Alloy (5/8 adamant + 2/8 silver + 1/8 electrum, or mithral + steel in a secret process)</td>
+<td class="mat-desc">Adds +2 bonus to saving throws of awakening, enchant an item, holy vesting, and wondrous web spells cast on it. Auto-succeeds vs. normal fire, cold, and electricity. +4 vs. acid, crushing blow, disintegration, fall, magical fire, and lightning.</td>
+<td class="mat-notes">Black with clear green sheen in candlelight; sharpens to purple-white under magical radiances and will-o-wisps. Must be worked at very high temperatures by expert dwarven smiths. Best nonmithral armor material.</td>
+</tr>
+<tr>
+<td class="mat-name">Arandur</td>
+<td class="mat-type">Rare natural metal</td>
+<td class="mat-desc">Bonds with other metals so well that Merald&#x27;s Meld and crown meld are unnecessary when enchanting items made of it with other metals. Famous for holding an exceptionally sharp edge even under abuse. Partially absorbs magic missile energy: bearer takes 1d2 fewer points per bolt (minimum 1). Auto-succeeds vs. fall, normal fire, cold, electricity. +3 vs. acid, crushing blow, disintegration, magical fire, lightning.</td>
+<td class="mat-notes">Silver-blue with green reflective shine. Found in igneous rock as streaks in vitreous glass; must be tempered with red or blue dragon blood in forging. Once exclusive to gnomes; now also worked by elven smiths of Evereska and Evermeet. Favored for swords of sharpness and vorpal weapons.</td>
+</tr>
+<tr>
+<td class="mat-name">Copper</td>
+<td class="mat-type">Pure metal</td>
+<td class="mat-desc">Best widely available purifier and amalgamator. An item not suited to a wizard&#x27;s or priest&#x27;s faith or purpose can be made usable by adding at least half the item&#x27;s weight in copper. Holy or unholy water stored in copper vessels for 2d4 months is neutralized to plain water. Items primarily of copper save at normal metal listings.</td>
+<td class="mat-notes">No magical bonuses to saving throws beyond the standard metal tables.</td>
+</tr>
+<tr>
+<td class="mat-name">Darksteel</td>
+<td class="mat-type">Secret alloy (Ironstar clan)</td>
+<td class="mat-desc">Absorbs all natural and magical lightning or electrical energy (not heat or magic missiles) without conducting any of it to the wearer. Remarkably, can be melted and recast without destroying or usually altering existing enchantments on it. Takes new enchantments readily even when already dweomer-laden. Auto-succeeds vs. fall, normal fire, cold, electricity. +3 vs. acid, crushing blow, disintegration, magical fire. +5 vs. lightning.</td>
+<td class="mat-notes">Silvery when polished or cut, but with a deep gleaming purple luster on exposed surfaces. Possibly extinct Ironstar dwarven clan&#x27;s secret; only old ingots remain. Valued at 10–12x gold by weight; Neverwinter and Waterdeep smiths offer 7,000+ gp for an intact ingot.</td>
+</tr>
+<tr>
+<td class="mat-name">Dlarun</td>
+<td class="mat-type">Halfling metal</td>
+<td class="mat-desc">Steadies the mind of any being in direct bare-flesh contact with it: +1 bonus to all saves vs. enchantment/charm and illusion/phantasm spells and similar psionic or spell-like effects. Auto-succeeds vs. fall, normal fire, cold, electricity (treated as arandur in the text for saving throws). +1 vs. acid, crushing blow, disintegration, magical fire, lightning.</td>
+<td class="mat-notes">Bone-white; often mistaken for ivory; distinctive greenish sheen in candlelight and near magical radiances. Derived from clay dug from certain riverbanks by a complex halfling process; kept as close a secret as possible.</td>
+</tr>
+<tr>
+<td class="mat-name">Gold</td>
+<td class="mat-type">Pure metal</td>
+<td class="mat-desc">Holds multiple conflicting enchantments without destabilizing each other or the item. Makes all dweomerflow magics entering an item containing even very small amounts of gold automatically succeed (no saving throw needed for magical charge transfers at the receiving end). Items primarily of gold save at normal metal listings.</td>
+<td class="mat-notes">No bonus to item saving throws.</td>
+</tr>
+<tr>
+<td class="mat-name">Hizagkuur</td>
+<td class="mat-type">Extremely rare white metal</td>
+<td class="mat-desc">Reflects all magic cast at it 100% back at its source. Deals 2d12 electrical damage per touch (or per round of continued contact) to all beings touching it. Auto-succeeds vs. normal fire, cold, electricity. +6 vs. magical fire and lightning. +1 vs. acid, crushing blow, fall, disintegration.</td>
+<td class="mat-notes">Cannot be used in magical items or worn items — immediately injurious. Named for its dwarven discoverer. Found only as soft clay or flaky mud deep in the Underdark. Must be cast into its final form within one day of preparation or it becomes permanently inert. Used only as sheathing for fortress gates, vault doors, and sealed hatches.</td>
+</tr>
+<tr>
+<td class="mat-name">Mithral (Truemetal)</td>
+<td class="mat-type">Pure metal</td>
+<td class="mat-desc">Against magical attacks: roll 1d12 each time magic contacts it. Odd: nothing. Even: either +1 bonus to saving throws for nearby beings (the wearer) or –1 point per die of magical damage (whichever is more favorable to the mithral wearer). Lightest metal hard enough for armor. Auto-succeeds vs. normal fire, cold, electricity. +2 vs. acid, disintegration, magical fire, lightning. +6 vs. crushing blow and fall.</td>
+<td class="mat-notes">Silvery-blue and shining. Can be combined with steel to derive adamantine. Extremely valuable. Can be combined with silver in dwarven alloy processes to create lightning-warding alloys.</td>
+</tr>
+<tr>
+<td class="mat-name">Silver</td>
+<td class="mat-type">Pure metal</td>
+<td class="mat-desc">The most magical of all metals. If silver is the dominant ingredient (60%+) of an item and the item involves moon-related magics, electricity or lightning, or pure energy discharges (magic missiles): all saving throws for awakening, enchant an item, holy vesting, wondrous web, Merald&#x27;s meld, crown meld, Obar&#x27;s lesser purification, Azundel&#x27;s purification, higher consecration, and other purification spells automatically succeed. At 50–60% silver: +4 bonus to all such saves. For all other item types: 50%+ silver content gives +2 bonus to rolls for purification, strengthening, and melding spell success. Items primarily of silver save at normal metal listings.</td>
+<td class="mat-notes">&quot;The sheath and shield of Art.&quot; Certain elven folk and senior Harpers know additional secret silver processes.</td>
+</tr>
+<tr>
+<td class="mat-name">Telstang</td>
+<td class="mat-type">Alloy (copper + mithral + platinum + silver)</td>
+<td class="mat-desc">The wearer and all organic material in contact with or encased in it cannot be affected by paralyzation, polymorph, disintegrate, petrification, shape change, or similar attacks. However, also cannot benefit from beneficial magical state changes (spider climb, water breathing, etc.). Auto-succeeds vs. normal fire, cold, electricity. +2 vs. acid, disintegration, magical fire, lightning. Saves normally vs. crushing blow and fall.</td>
+<td class="mat-notes">Dull silver in hue; a &quot;singing metal&quot; (clear bell tone when struck). Never oxidizes; lasts forever if not struck or dropped. Too brittle for weapons or armor; worn as bracers, buckles, brooches, pendants. Originally a gnomish secret; adopted by halflings and certain elven and orc peoples.</td>
+</tr>
+<tr>
+<td class="mat-name">Zardazil</td>
+<td class="mat-type">Rare amber-to-red ferromagnetic metal</td>
+<td class="mat-desc">When a zardazil weapon wounds its first creature (sometimes done deliberately): after 1 full turn, the weapon permanently body-phases with that being and can never harm them again; instead it passes harmlessly through their body. The weapon can be carried concealed inside the body (attached to a nonmetal anchor to prevent falling through). Out of reach of all spells targeting it through the body. Does not affect bodily processes, weight, or spells on the person.</td>
+<td class="mat-notes">Very soft; never used in pure form — alloyed or used as sheathing only. Found only around the Lake of Steam and in Raurin sand fissures. Blade does not pass through clothing harmlessly; sheath can also body-phase if all-metal with zardazil. Multiple anchors can prevent unintended weapon exposure.</td>
+</tr>
+</tbody></table></div><h3 class="mat-subsource">Treasures of Middle-earth &amp;mdash; Metals</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Description</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Adarcer</td>
+<td class="mat-desc">White alloy of ang (iron), glôin (&quot;True-coal&quot;), and durang (titanium). Extremely strong but rigid and difficult to work once forged. Can cleave iron without dulling.</td>
+<td class="mat-notes">Bonus: +15</td>
+</tr>
+<tr>
+<td class="mat-name">Alcam (&quot;Tin&quot;)</td>
+<td class="mat-desc">Soft, silvery metal normally used to make evyth (bronze). Dwarves use it to line water-basins and for decorative filigree. Elves employ it as building facings, roofing, and combine it with paer to make bronze.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Ang (&quot;Iron&quot;)</td>
+<td class="mat-desc">Pure ang is silver-white, malleable, and ductile — rare even in Moria. The more common variety is dark grey and harder. Found throughout the mines of the northern Deeps.</td>
+<td class="mat-notes">Bonus: –20 (pure form costs 0.005 gp/oz)</td>
+</tr>
+<tr>
+<td class="mat-name">Arborang</td>
+<td class="mat-desc">Alloy (iron/carbon/varies); high steel.</td>
+<td class="mat-notes">Bonus: +10</td>
+</tr>
+<tr>
+<td class="mat-name">Arheled</td>
+<td class="mat-desc">Listed in the properties chart; description not given in the prose sections.</td>
+<td class="mat-notes">Bonus: +10</td>
+</tr>
+<tr>
+<td class="mat-name">Borang (&quot;Steadfast-iron&quot; / &quot;Steel&quot;)</td>
+<td class="mat-desc">Alloy of ang, morasarn (carbon), and trace metals. Strong and durable; cheaper and more pliable than adarcer. The Mírdain consider it unattractive but use it extensively.</td>
+<td class="mat-notes">Bonus: +5 (0.5 gp/oz)</td>
+</tr>
+<tr>
+<td class="mat-name">Celeb (&quot;Silver&quot;)</td>
+<td class="mat-desc">Used for decorative inlays, chalices, plates, and cups. Despite its malleability, stronger than mal (gold). Prized and used extensively by the Noldor.</td>
+<td class="mat-notes">30 gp/oz</td>
+</tr>
+<tr>
+<td class="mat-name">Celebur (&quot;Burning Silver&quot;)</td>
+<td class="mat-desc">Weak uranium-like ore. Known to Dwarves, who avoid it. Required for the making of mithrarian.</td>
+<td class="mat-notes">90 gp/oz</td>
+</tr>
+<tr>
+<td class="mat-name">Cranor (&quot;Tree-gold&quot;)</td>
+<td class="mat-desc">Golden translucent resin, invented by the ancient Daen folk of the White Mountains. Made from Sorglasora sap and White Lily nectar. Nearly as hard as a diamond and highly resistant to fracture. Stores static electricity up to 1,000 volts, released as a Lightning Bolt-equivalent attack when an ungrounded object touches it. Used to entomb Dunnish chieftains.</td>
+<td class="mat-notes">10,000 gp/oz</td>
+</tr>
+<tr>
+<td class="mat-name">Eog (&quot;Ang Eöl&quot; / &quot;Eöl&#x27;s Iron&quot;)</td>
+<td class="mat-desc">Fusion of mithril, durang (titanium), and unknown materials from an Elven recipe of the House of Eöl. Requires both the hottest and coldest forges of Khazad-dûm. Harder than adarcer, stronger than ithilnaur. Dampens Essence manipulation within a radius depending on the spellcaster. Comes in white, red, black, blue, and grey.</td>
+<td class="mat-notes">Approx. 0.04–2 gp/oz per chart; Bonus: +30</td>
+</tr>
+<tr>
+<td class="mat-name">Evyth (&quot;Bronze&quot;)</td>
+<td class="mat-desc">Alloy of alcam and paer. Used by Dwarves for decoration; traded to Men of Rhovanion as a cheap ang substitute. Favorite common metal of the Elves for building, sculpture, and decoration.</td>
+<td class="mat-notes">~90,000 gp/oz per chart (likely OCR error); Bonus: –10</td>
+</tr>
+<tr>
+<td class="mat-name">Galnin (&quot;Aluminium&quot;)</td>
+<td class="mat-desc">Silvery-white, light, and non-tarnishing/non-corroding. Extremely rare. Dwarves consider it insubstantial; most of what they mine goes to the Noldor. Used as an undercoat for mithrarian application at Amon Lind.</td>
+<td class="mat-notes">0.00005 gp/oz; Bonus: –15</td>
+</tr>
+<tr>
+<td class="mat-name">Galvorn (&quot;Shining Black&quot;)</td>
+<td class="mat-desc">Rarest metal in Middle-earth; first developed by Eöl. Malleable yet cut/puncture-resistant; the hardest substance when specially forged. Made partly from meteoric iron. Only Celebrimbor and Fendomë among the Eregion smiths might have rediscovered the process.</td>
+<td class="mat-notes">500 gp/oz; Bonus: +40</td>
+</tr>
+<tr>
+<td class="mat-name">Heled</td>
+<td class="mat-desc">Glass, listed in the properties chart.</td>
+<td class="mat-notes">Bonus: –50</td>
+</tr>
+<tr>
+<td class="mat-name">Ithildin (&quot;Moon-star&quot;)</td>
+<td class="mat-desc">Soft, silvery Elven metal invented by Celebrimbor, fused from mithril and other substances. Appears dull by day; glows silvery-white under moonlight and starlight. Used almost exclusively for secret inscriptions and magical purposes. May be the medium for Dwarvish Moon-letters.</td>
+<td class="mat-notes">300 gp/oz; Bonus: –20</td>
+</tr>
+<tr>
+<td class="mat-name">Ithilnaur (&quot;Moon-fire&quot;)</td>
+<td class="mat-desc">Mithril alloyed with titanium and other metals, folded and hammered dozens of times to create an extremely strong laminate. Hard, maintains a keen edge, and somewhat flexible. Surprisingly common in Moria; rarer elsewhere. Resembles pure silver in appearance.</td>
+<td class="mat-notes">~66,000 gp/oz per chart; Bonus: +20</td>
+</tr>
+<tr>
+<td class="mat-name">Kregora</td>
+<td class="mat-desc">Extremely ductile; too malleable for weapons or jewelry, and oxidizes to a dull yellow patina. Its utility lies in blocking Mentalism, Channeling, and Essence spells from passing through surfaces lined with wire, threads, or netting of the substance.</td>
+<td class="mat-notes">1,000 gp/oz; Bonus: –20</td>
+</tr>
+<tr>
+<td class="mat-name">Laen (&quot;Long Thread&quot;)</td>
+<td class="mat-desc">Volcanic glass. Gains rigidity with heat; must be chilled to sculpt. Natural color black or smoky; can be cleared or tinted. Treated further in Section 6.4 (Stones / Mirond).</td>
+<td class="mat-notes">5 gp/oz per chart; Bonus: –5</td>
+</tr>
+<tr>
+<td class="mat-name">Mal (&quot;Gold&quot;)</td>
+<td class="mat-desc">Soft, non-tarnishing; does not corrode. Dwarves value it above all metals save mithril. Elves prize it as a beautiful metal and use it in strong alloys unknown to Dwarves. Mixed with mithglín to make white-gold.</td>
+<td class="mat-notes">30 gp/oz; Bonus: +20</td>
+</tr>
+<tr>
+<td class="mat-name">Mithglín (&quot;Gleaming Grey&quot; / &quot;Platinum&quot;)</td>
+<td class="mat-desc">Rare, shining hue; difficult to forge, requiring high temperatures and hard labor. Resulting jewelry is more durable than gold or silver work. Often combined with mal to form workable white-gold.</td>
+<td class="mat-notes">10 gp/oz; Bonus: –20</td>
+</tr>
+<tr>
+<td class="mat-name">Mithin (&quot;Pale Grey&quot; / &quot;Beryllium&quot;)</td>
+<td class="mat-desc">Rare, strong, light material used mostly in jewelry. Few smiths, even among the Elves, know how to work it. Dwarves delight in creating seemingly fragile baubles from it.</td>
+<td class="mat-notes">~150,000 gp/oz per chart; Bonus: +20</td>
+</tr>
+<tr>
+<td class="mat-name">Mithrarian (&quot;Abyss of High Silver&quot;)</td>
+<td class="mat-desc">Legendary alloy of mithril, eog, and celebur, introduced by Annatar (Sauron in disguise) to the Gwaith-i-Mírdain. Objects coated in mithrarian float without weight, and the material resists all counter-spells. Never made in any reputable smithy; only perfected at Amon Lind in the Misty Mountains.</td>
+<td class="mat-notes">~200 gp/oz per chart; Bonus: –20</td>
+</tr>
+<tr>
+<td class="mat-name">Mithril (&quot;True-silver&quot; / &quot;Grey Brilliance&quot;)</td>
+<td class="mat-desc">Shining white and malleable like silver, but never tarnishes and alloys to produce enchanted metals of incomparable quality. Always appears polished. The single known vein runs from the Seventh Deep of Moria under Barazinbar. Dwarves dug so deeply for it that they released the Balrog; no mithril came from Moria after T.A. 1980. Valued above all other metals by Dwarves and treasured by Elves and Dúnedain alike.</td>
+<td class="mat-notes">~150 gp/oz per chart; Bonus: –20</td>
+</tr>
+<tr>
+<td class="mat-name">Ogamur (&quot;From Gamur&quot;)</td>
+<td class="mat-desc">Extremely flexible and elastic black metal, ideal for springs and impact-absorbing devices. Derived from an Eastern Dwarf-house recipe withheld from the Noldor, who must purchase it from Durin&#x27;s folk.</td>
+<td class="mat-notes">0.004 gp/oz; Bonus: –5</td>
+</tr>
+<tr>
+<td class="mat-name">Paer (&quot;Copper&quot;)</td>
+<td class="mat-desc">Reddish-gold; common and low in value. Used by Dwarves for water-troughs, basins, and evyth production. Men use it for pots, pans, gutters, statues, and roofing. The Noldor regard it more highly and use it for building and pipe-work.</td>
+<td class="mat-notes">50 gp/oz; Bonus: +20</td>
+</tr>
+<tr>
+<td class="mat-name">Tasarang (&quot;Willow-iron&quot; / &quot;Shalk&quot;)</td>
+<td class="mat-desc">Bends easily with tremendous spring, but does not stretch. Extremely light — even lighter than galnin. White chalk-like ore found below limestone. More than one metalworker claims it glows. Used to make powerful bows; the material&#x27;s rarity makes this impractical in most situations.</td>
+<td class="mat-notes">0.15 gp/oz; Bonus: +15 (bows)</td>
+</tr>
+</tbody></table></div><h3 class="mat-subsource">Treasures of Middle-earth &amp;mdash; Properties Chart</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Material</th>
+<th>Bonus</th>
+<th>Value (gp/oz)</th>
+<th>Cost Factor</th>
+<th>Time (hrs/oz)</th>
+<th>Description</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Adarcer</td>
+<td class="mat-bonus">+15</td>
+<td class="mat-cost">0.05</td>
+<td>0.7</td>
+<td>5</td>
+<td class="mat-notes">Alloy (iron/carbon/titanium)</td>
+</tr>
+<tr>
+<td class="mat-name">Alcam</td>
+<td class="mat-bonus">—</td>
+<td class="mat-cost">1</td>
+<td>0.002</td>
+<td>0.3</td>
+<td class="mat-notes">Tin</td>
+</tr>
+<tr>
+<td class="mat-name">Ang</td>
+<td class="mat-bonus">–20</td>
+<td class="mat-cost">0.005</td>
+<td>0.002</td>
+<td>0.5</td>
+<td class="mat-notes">Iron</td>
+</tr>
+<tr>
+<td class="mat-name">Arborang</td>
+<td class="mat-bonus">+10</td>
+<td class="mat-cost">—</td>
+<td>0.15</td>
+<td>1.5</td>
+<td class="mat-notes">Alloy (iron/carbon/varies), high steel</td>
+</tr>
+<tr>
+<td class="mat-name">Arheled</td>
+<td class="mat-bonus">+10</td>
+<td class="mat-cost">—</td>
+<td>—</td>
+<td>—</td>
+<td class="mat-notes">Alloy (iron/carbon), low steel</td>
+</tr>
+<tr>
+<td class="mat-name">Borang</td>
+<td class="mat-bonus">+5</td>
+<td class="mat-cost">0.5</td>
+<td>0.2</td>
+<td>0.5</td>
+<td class="mat-notes">Alloy (iron/carbon/varies), low steel</td>
+</tr>
+<tr>
+<td class="mat-name">Celeb</td>
+<td class="mat-bonus">—</td>
+<td class="mat-cost">30</td>
+<td>0.05</td>
+<td>1</td>
+<td class="mat-notes">Silver</td>
+</tr>
+<tr>
+<td class="mat-name">Celebur</td>
+<td class="mat-bonus">—</td>
+<td class="mat-cost">90</td>
+<td>0.01</td>
+<td>0.5</td>
+<td class="mat-notes">Uranium</td>
+</tr>
+<tr>
+<td class="mat-name">Cranor</td>
+<td class="mat-bonus">—</td>
+<td class="mat-cost">10,000</td>
+<td>1,000</td>
+<td>800</td>
+<td class="mat-notes">Resin (nearly as hard as diamond when cured)</td>
+</tr>
+<tr>
+<td class="mat-name">Eog</td>
+<td class="mat-bonus">+30</td>
+<td class="mat-cost">0.04*</td>
+<td>5</td>
+<td>20</td>
+<td class="mat-notes">Enchanted alloy (mithril/titanium/special)</td>
+</tr>
+<tr>
+<td class="mat-name">Evyth</td>
+<td class="mat-bonus">–10</td>
+<td class="mat-cost">90,000*</td>
+<td>50</td>
+<td>100</td>
+<td class="mat-notes">Alloy (tin/copper), bronze</td>
+</tr>
+<tr>
+<td class="mat-name">Galnin</td>
+<td class="mat-bonus">–15</td>
+<td class="mat-cost">0.00005</td>
+<td>0.01</td>
+<td>0.5</td>
+<td class="mat-notes">Aluminium</td>
+</tr>
+<tr>
+<td class="mat-name">Galvorn</td>
+<td class="mat-bonus">+40</td>
+<td class="mat-cost">500</td>
+<td>300</td>
+<td>300</td>
+<td class="mat-notes">Enchanted alloy (meteoric iron/special)</td>
+</tr>
+<tr>
+<td class="mat-name">Heled</td>
+<td class="mat-bonus">–50</td>
+<td class="mat-cost">—</td>
+<td>0.001</td>
+<td>0.1</td>
+<td class="mat-notes">Glass</td>
+</tr>
+<tr>
+<td class="mat-name">Ithildin</td>
+<td class="mat-bonus">–20</td>
+<td class="mat-cost">300</td>
+<td>20</td>
+<td>36</td>
+<td class="mat-notes">Enchanted alloy (mithril/special)</td>
+</tr>
+<tr>
+<td class="mat-name">Ithilnaur</td>
+<td class="mat-bonus">+20</td>
+<td class="mat-cost">66,000*</td>
+<td>20</td>
+<td>36</td>
+<td class="mat-notes">Enchanted alloy (mithril/special)</td>
+</tr>
+<tr>
+<td class="mat-name">Kregora</td>
+<td class="mat-bonus">–20</td>
+<td class="mat-cost">1,000</td>
+<td>600</td>
+<td>60</td>
+<td class="mat-notes">Enchanted alloy (mithril/gold/uranium/special)</td>
+</tr>
+<tr>
+<td class="mat-name">Laen</td>
+<td class="mat-bonus">–5</td>
+<td class="mat-cost">5*</td>
+<td>10</td>
+<td>20</td>
+<td class="mat-notes">Enchanted glass</td>
+</tr>
+<tr>
+<td class="mat-name">Mal</td>
+<td class="mat-bonus">+20</td>
+<td class="mat-cost">30</td>
+<td>0.01</td>
+<td>0.5</td>
+<td class="mat-notes">Gold</td>
+</tr>
+<tr>
+<td class="mat-name">Mithglín</td>
+<td class="mat-bonus">–20</td>
+<td class="mat-cost">10</td>
+<td>10</td>
+<td>15</td>
+<td class="mat-notes">Titanium (usually alloyed)</td>
+</tr>
+<tr>
+<td class="mat-name">Mithin</td>
+<td class="mat-bonus">+20</td>
+<td class="mat-cost">150,000*</td>
+<td>0.1</td>
+<td>1</td>
+<td class="mat-notes">Beryllium</td>
+</tr>
+<tr>
+<td class="mat-name">Mithrarian</td>
+<td class="mat-bonus">–20</td>
+<td class="mat-cost">200*</td>
+<td>1,000</td>
+<td>900</td>
+<td class="mat-notes">Enchanted alloy (mithril/uranium/special)</td>
+</tr>
+<tr>
+<td class="mat-name">Mithril</td>
+<td class="mat-bonus">–20</td>
+<td class="mat-cost">150*</td>
+<td>5</td>
+<td>10</td>
+<td class="mat-notes">Enchanted metal; True-silver</td>
+</tr>
+<tr>
+<td class="mat-name">Ogamur</td>
+<td class="mat-bonus">–5</td>
+<td class="mat-cost">0.004</td>
+<td>5</td>
+<td>20</td>
+<td class="mat-notes">Enchanted alloy; 2oz = +5 bowstring</td>
+</tr>
+<tr>
+<td class="mat-name">Paer</td>
+<td class="mat-bonus">+20</td>
+<td class="mat-cost">50</td>
+<td>0.001</td>
+<td>0.3</td>
+<td class="mat-notes">Copper</td>
+</tr>
+<tr>
+<td class="mat-name">Tasarang</td>
+<td class="mat-bonus">–20</td>
+<td class="mat-cost">0.15</td>
+<td>0.15</td>
+<td>8</td>
+<td class="mat-notes">Enchanted metal, Shalk; makes +15 bows</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="mat-treatments" class="mat-section" style="display:none">
+<h2 class="mat-category-title">Metal Treatments</h2>
+<h3 class="mat-subsource">Volo&#x27;s Guide to All Things Magical &amp;mdash; Treatments</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Source</th>
+<th>Effect</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Blueshine</td>
+<td class="mat-cat">Dwarven process; duplicated by the wizard Toth&#x27;s 4th-level Alteration spell (Wiz 4; V, S, M; Touch; Permanent; Cast 4)</td>
+<td class="mat-effect">Purges all oxidation; prevents future rusting; purges fractures and blemishes; treated metals glow with a deep blue sheen in available light. +1 bonus to all item saves vs. acid and all corrosive effects (venom, various bloods, ochre jelly secretions, black dragon acid).</td>
+<td class="mat-notes">Toth was slain by Red Wizards for developing the spell; the spell was already stolen by a rival before their attempt to suppress it. Spell material component: a small piece of cobalt blue glass or a chip of a blue-hued gemstone.</td>
+</tr>
+<tr>
+<td class="mat-name">Everbright</td>
+<td class="mat-cat">Dwarven process; no spell equivalent discovered yet</td>
+<td class="mat-effect">Grants an enduring bright shine (like chromium); immune to tarnishing, discoloration, acidic corrosion, and rusting — including rust monster antenna attacks. Protection does not fade with time.</td>
+<td class="mat-notes">Can be broken if: item is shattered into more than three pieces, or comes into contact with lava, dragon fire, spellfire, or forge heat exceeding that of the everbright process itself. At least three mages and one archpriest have conducted long-running research to create a spell equivalent, all without success.</td>
+</tr>
+<tr>
+<td class="mat-name">Halabar&#x27;s Stealth</td>
+<td class="mat-cat">Process devised by the House of Halabar merchant clan, Murann</td>
+<td class="mat-effect">Renders metallic items nonferromagnetic, nonreflective, and silent (no clanging even when struck against other metals or stone). Items can take dyes and paints (even bare sword blades).</td>
+<td class="mat-notes">Formula known only to Halabar&#x27;s descendants, who guard it viciously. Still strikes sparks at sharp impact and conducts lightning normally. Secret formula; rumored intelligent shapechanger agents defend it against lore thieves.</td>
+</tr>
+</tbody></table></div><h3 class="mat-subsource">Volo&#x27;s Guide &amp;mdash; Named Processes</h3>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Everbright</span><span class="spell-level">Metal Treatment</span></div><div class="spell-stats">Dwarven metallurgical process; a wizard spell (Wiz 4, Alteration) duplicating its effects was developed by Toth of Calimport and published here for the first time (the wizard was killed by Red Wizards attempting to suppress it, but the spell had already been stolen by a rival and survived).</div><div class="spell-body">Level 4 / Casting time 4 / Components V, S, M / Range touch / Area the metal parts of one item not exceeding the caster&#x27;s body volume / Duration permanent / Saving throw none.<br><br>Purges all existing oxidation from metals and prevents future rusting. Purges fractures and blemishes from the item, leaving it whole and appearing like new. All treated metals glow with a deep blue sheen when they catch available light. Grants +1 bonus to all item saving throws vs. acid and all corrosive effects — venom, various creature bloods, ochre jelly secretions, black dragon acid.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name"></span><span class="spell-level">Metal Treatment</span></div><div class="spell-stats">Dwarven metallurgical process. No spell equivalent has been found despite long-running research by at least three mages (Athlagh of the Many Locks, Halandrar Crowncloak, and Spelargh of Phelzol) and one archpriest (Beltorvan Duircragh, Bright Blade of Tempus in the Bloodbright Temple of Dolselar).</div><div class="spell-body"><br><br></div></div>
+
+</section>
+<section id="mat-stones" class="mat-section" style="display:none">
+<h2 class="mat-category-title">Stones</h2>
+<h3 class="mat-subsource">Treasures of Middle-earth</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Description</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Dirielong (&quot;Gazing-rock&quot;)</td>
+<td class="mat-desc">Broad Dwarvish category for softer metamorphic and sedimentary stones used decoratively or where Naurond is unwieldy. Sub-types: &quot;Block-stones&quot; (colored marble and softer &quot;Wet-rocks&quot;/limestone), and &quot;Slab-stones&quot; (schist, flint, slate). Limestone cave formations — stalactites and stalagmites — are called &quot;Aulë&#x27;s Tears&quot; by Dwarves and preserved wherever possible during delving.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Naurond (&quot;Fire-rock&quot;)</td>
+<td class="mat-desc">General Dwarvish term for volcanic/igneous rock; the stone that binds Moria. Coarse granite near the surface; smooth black basalt deeper in. A light pumice variety from the &quot;Domes&quot; of the Fifth Deep is used as a polishing/grinding material; rarely sold to non-Dwarves.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Mirond (&quot;Jewel-rock&quot;)</td>
+<td class="mat-desc">Dwarvish classification system for gems and glasses. Two principal categories: Fenen (&quot;Veils&quot; / &quot;Hidden Crystals&quot; / &quot;Glasses&quot;) and Maegelenath (&quot;Sharp-stars&quot; / &quot;Bold Crystals&quot; / &quot;Gemstones&quot;). Of the glasses, laen is the most intriguing — as hard as diamond, smooth, without cleavage points, and colorable when worked.</td>
+<td class="mat-notes">Quartzes and obsidians provide most of Moria&#x27;s glasses; no single Dwarven gemstone is considered preeminent.</td>
+</tr>
+<tr>
+<td class="mat-name">Ulgond</td>
+<td class="mat-desc">Elven liquid stone poured into wood molds; hardens after a few days to a hardness exceeding any natural rock. Used extensively by the Gwaith-i-Mírdain.</td>
+<td class="mat-notes">—</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="mat-woods" class="mat-section" style="display:none">
+<h2 class="mat-category-title">Woods</h2>
+<h3 class="mat-subsource">Volo&#x27;s Guide to All Things Magical</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Location</th>
+<th>Magical Properties (Items)</th>
+<th>Magical Properties (Components)</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Beetle Palm</td>
+<td>Cormanthor midwood</td>
+<td class="mat-effect">Wood conveys no special properties to items.</td>
+<td class="mat-false">Nuts used as substitute components in the goodberry priest spell: nourish creatures up to Huge size or heal 1d2+2 damage; no daily maximum; nuts remain magical and do not rot for one year.</td>
+<td class="mat-notes">Oily, very flammable; burns nearly 3x as long as other wood with half the smoke. Nuts are black, bitter, plum-sized. Casting badberry on beetle palm nuts does not work — the whole batch simply goes bad instead.</td>
+</tr>
+<tr>
+<td class="mat-name">Blueleaf</td>
+<td>North of Amn to Impiltur; rare specimens in Chessenta, Turmish, Border Kingdoms</td>
+<td class="mat-effect">Durable, neutral wood — neither aids nor hampers enchantment.</td>
+<td class="mat-false">If the sole consumed component in a spell (not counting a holy symbol or item being altered), reduces casting time by 1, to a minimum of 1.</td>
+<td class="mat-notes">Electric blue leaves; yielding blue dye. Yields leaping blue flames when burned.</td>
+</tr>
+<tr>
+<td class="mat-name">Calantra</td>
+<td>Forest of Tethir; north Chult to Shaar</td>
+<td class="mat-effect">All item saving throws at +2 bonus over other woods. Increases to +3 bonus if the item is at least 20% calantra and bears any enchantment (not cumulative beyond +3).</td>
+<td class="mat-false">No special properties; can be used safely wherever any nonspecific wood product is called for.</td>
+<td class="mat-notes">Heartwood of the calan tree; red-barked, low, gnarly crown. Exceptionally durable; resists frost, fire (even dragon breath), and floods.</td>
+</tr>
+<tr>
+<td class="mat-name">Chime Oak</td>
+<td>Northern East Starwood, Cormanthor</td>
+<td class="mat-effect">Items primarily of chime oak: auto-succeed at all item saves vs. cold. Items with less than 45% chime oak retain a +1 bonus vs. cold.</td>
+<td class="mat-false">Can substitute for normal oak interchangeably in spells but otherwise has no special component properties.</td>
+<td class="mat-notes">Resembles a glass oak; leaves freeze solid in autumn and tinkle like wind chimes — attractive to basilisks. Wood becomes silvery-white when dry. Sweet, pure sound in magical musical instruments.</td>
+</tr>
+<tr>
+<td class="mat-name">Duskwood</td>
+<td>Widespread throughout Faerûn</td>
+<td class="mat-effect">Suitable for staves and rods. Severely hinders item enchantment: caster of every eternal flame involved must save vs. spell at –2 or the spell fails, destroying prior enchantments on the item. Exception: augments fire-resistance items and spells by +1 point per die of fiery damage warded.</td>
+<td class="mat-false">In fire-related spell components: adds 20% chance of total spell failure (applied after casting; all other components consumed, duskwood remains). Exception for fire-resistance spells: augments protection by 1 point per die.</td>
+<td class="mat-notes">Hardest wood in common use; most mast spars and roof beams in Faerûn. Smolders rather than blazes; survives forest fires.</td>
+</tr>
+<tr>
+<td class="mat-name">Felsul</td>
+<td>Rocky northern lands, Anauroch edges</td>
+<td class="mat-effect">Unsuitable for magical use generally.</td>
+<td class="mat-false">Universal replacement component for spells hastening withering, decay, or increasing damage — one chip of felsul (wood, bark, or root) suffices per spell, replacing normal components (if not specially constructed).</td>
+<td class="mat-notes">Gnarled, twisted, crumbling bark; grows on crags and cliff edges. Felsul root prized for carving small holy symbols and figurines. Yellow-and-purple flowers in early spring yield perfume worth up to 3 gp per sack in scarce years.</td>
+</tr>
+<tr>
+<td class="mat-name">Hiexel</td>
+<td>Common in the Dales (ravines and hillsides)</td>
+<td class="mat-effect">Unsuitable for magical items: unstable nature causes any such item to break after 1d2 years of service at most.</td>
+<td class="mat-false">Cannot be used as a component for any magic involving water or liquids. Universal replacement for spells involving mists or vapors: increases casting time by 1, no other effect.</td>
+<td class="mat-notes">Brittle, green, waxy wood; rots easily; produces thick oily smoke when ignited. Bark is silver-green, resistant to burning and rot; used as book binding and building facing in damp locations.</td>
+</tr>
+<tr>
+<td class="mat-name">Laspar</td>
+<td>Everywhere north of mid-Tethyr and west of Thay</td>
+<td class="mat-effect">Unsuitable for magical items and all permanent magic.</td>
+<td class="mat-false">Universal replacement component for spells involving transformations of shape or state: decreases casting time by 1.</td>
+<td class="mat-notes">Squat cedar-like evergreen; pitchy wood that spits many sparks, unsafe for burning. Boiled needles are an effective laxative; crushed needles used in quality torch and candle scents.</td>
+</tr>
+<tr>
+<td class="mat-name">Phandar</td>
+<td>Rare; seldom north of mid-High Forest; heavily cut</td>
+<td class="mat-effect">Ideal for durable magical items that need not be straight. Essential ingredient in all healing potions and enchanted unguents. Prolongs all wondrous web or holy vesting spells cast on items at least partially of phandar wood by one additional round. Requires no purification magics.</td>
+<td class="mat-false">No special component properties noted.</td>
+<td class="mat-notes">Greenish-brown wood with curving grain; makes striking wave patterns when cut. Hardy — thrives even from waste boughs; stumps regrow; practically extinction-proof despite heavy cutting.</td>
+</tr>
+<tr>
+<td class="mat-name">Roseneedle Pine</td>
+<td>Cormanthor riverbanks (Ashaba); temperate forests throughout</td>
+<td class="mat-effect">No special item properties noted.</td>
+<td class="mat-false">Tinctures from tubers or flowers: used in preparation of items controlling or summoning aquatic life. Needles: universal replacement for any sort of fish or fish part required as a material component in a spell.</td>
+<td class="mat-notes">Miniature evergreen (max 3 ft tall). Roots spread 10+ ft with fat potato-sized tubers. Tubers also double as exceptional fishing bait, doubling a day&#x27;s catch.</td>
+</tr>
+<tr>
+<td class="mat-name">Shadowtop</td>
+<td>Widespread except arctic; most common large magical wood</td>
+<td class="mat-effect">Much used in staves, rods, and wands. Crown melds never necessary when item contains shadow wood — Merald&#x27;s meld joins on shadow wood automatically succeed at their saving throws and die rolls (treat as having a crown meld). Always considered properly harvested and bathed for whatever enchantment it will receive, regardless of actual procurement.</td>
+<td class="mat-false">No special component properties noted.</td>
+<td class="mat-notes">Soaring giants of Faerûn&#x27;s forests; 90+ ft tall; 20+ ft diameter at base; feathery dense leaf crown. Wood is fibrous and tough; splits under structural stress. Burns slowly, cleanly, and very hot with little smoke.</td>
+</tr>
+<tr>
+<td class="mat-name">Silverbark</td>
+<td>Wet ground, bogs, and swamps throughout Faerûn</td>
+<td class="mat-effect">Unsuitable for lance shafts, structural work, or most long-term items.</td>
+<td class="mat-false">Universal replacement component in all purification and antitoxin magics: reduces casting time by 1 and replaces all other normally required components (unless specially constructed).</td>
+<td class="mat-notes">Thin, straight; max 15 ft tall, 4 inches diameter. Reddish wood; very brittle once dry. Sap: essential in poison antidotes and sweet water potions.</td>
+</tr>
+<tr>
+<td class="mat-name">Suth</td>
+<td>Shaar edges, Chondath, and farther south</td>
+<td class="mat-effect">Items primarily of suth wood: +2 bonus to item saves vs. crushing blow and fall.</td>
+<td class="mat-false">Suth wood slivers or bark chips: can replace all components (if not specially constructed) for barkskin, armor, and similar toughening spells, and for Veladar&#x27;s Vambrace and holy might. Suth sap: essential ingredient in the oil used to anoint metal armor and shields before enchanting them to improve their AC.</td>
+<td class="mat-notes">Tangled, nearly horizontal growth; interlocking stands form impassable walls. Hard enough to require the finest tools. Preferred shield wood (never shatters; fire-resistant if pre-soaked).</td>
+</tr>
+<tr>
+<td class="mat-name">Vundwood</td>
+<td>Tunland; south of Iriaebor into Western Heartlands and Green Fields</td>
+<td class="mat-effect">Echo property: items made of vundwood spontaneously gain 1d4 charges from nowhere once every 1d12 months, unless the item is totally exhausted of charges.</td>
+<td class="mat-false">Universal replacement for all consumed components in any priest or wizard spell involving recalling an already-cast spell or augmenting/altering the caster&#x27;s spell capacity (e.g., Rary&#x27;s mnemonic enhancer).</td>
+<td class="mat-notes">Short, scrubby; max 15 ft; no central trunk; many radiating branches. Reddish-brown wood with a cinnamon smell.</td>
+</tr>
+<tr>
+<td class="mat-name">Weirwood</td>
+<td>Rare; deep forests of Faerûn; protected by dryads, treants, druids, and rangers</td>
+<td class="mat-effect">Does not burn in normal fire. Any magically generated radiance (dancing lights, etc.) brought into contact with cut or living weirwood lingers around it for 1d4+1 rounds after the source expires or is removed — unless the weirwood bears any active enchantment on itself (which negates this property).</td>
+<td class="mat-false">Replaces all spells normally requiring oak or holly (bark, leaves, berries, or wood). Can replace any one non-specially-constructed consumed component in spells creating magical radiance or providing protection or resistance to fire. Used as an extra component in creation/mending spells (mending, wondrous web, awakening, enchant an item, holy vesting, ritual of transference): +1 bonus to all saves and ability checks in the spellcasting.</td>
+<td class="mat-notes">Resembles an oak but with brown leaves having a silver upper sheen and velvety black undersides. Warm, clear sound in musical instruments.</td>
+</tr>
+<tr>
+<td class="mat-name">Zalantar (Blackwood)</td>
+<td>Subtropical; common along Chult&#x27;s shores and southern Faerûn coasts</td>
+<td class="mat-effect">+2 bonus to saving throws for priest or wizard awakening and wizard enchant an item spells. +1 bonus to all item saving throws for any enchanted or nonenchanted item wholly or partially of zalantar while in use. Glows faint mauve when undead beings are within a 70-ft spherical radius.</td>
+<td class="mat-false">No special component properties noted.</td>
+<td class="mat-notes">Black wood; white-to-beige leaves. Grows from a single root with 8+ trunks splaying like fingers. Up to 80 ft tall, average 40 ft. Strong, easily worked; used in southern buildings, wagons, litters, wheels. Southern sorcerers use it almost exclusively for rods, staves, and wands.</td>
+</tr>
+</tbody></table></div><h3 class="mat-subsource">Treasures of Middle-earth</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Description</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Black Cypress</td>
+<td class="mat-desc">Up to 200&#x27; tall; dark trunk, scale-like leaves. Grows throughout the Western Dominions of the Metharn. Produces some of the finest ship-building lumber in Middle-earth. Hard to work, but finished items are exceptionally strong (equivalent to –5 iron).</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Blue Pine</td>
+<td class="mat-desc">Most common evergreen of the Rhudaur; bluish-silver wood. High tannic-acid content acts as a natural preservative — structures last twice as long as those of other woods. Large cones carry edible seeds (pine nuts).</td>
+<td class="mat-notes">Also listed under Herbs (Section 6.2) for its edible seeds.</td>
+</tr>
+<tr>
+<td class="mat-name">Chap-beech</td>
+<td class="mat-desc">Bark gleams unearthly white (especially under the new moon); leaves hiss in the wind. Seed pods are stinging and venomous on bare skin — immobilize the victim. &quot;Walls&quot; of Chap-beech guard the path to Dol Guldur. Only Beijabar raccoons (leather-pawed and immune to the venom) harvest the nuts safely; the roasted kernels are nutritious and pleasant.</td>
+<td class="mat-notes">Twenty-five roasted kernels make a meal.</td>
+</tr>
+<tr>
+<td class="mat-name">Dírwood</td>
+<td class="mat-desc">Darkest black conifer of the extreme northern latitudes. When properly cured, as hard as the toughest steel and holds an edge as well or better. A different curing process yields a springy laminate for bows with exceptional range. Focuses the Essence while growing; particularly suited to Alchemical use.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Furry Oak</td>
+<td class="mat-desc">Related to White Oak; round-lobed deep-red leaves with a quarter-inch of fuzz on the underside. Grows very large acorns (big as plums); all fall on the same day each autumn. Edible raw or baked; stores indefinitely if kept dry.</td>
+<td class="mat-notes">Squirrels and Woodman-wives scramble to gather the harvest; Elves of Lórien frequently cross the river for them.</td>
+</tr>
+<tr>
+<td class="mat-name">Goldwood</td>
+<td class="mat-desc">Reaches 300&#x27; in height and 60&#x27; in girth; ancient, rare, and exceedingly tough. Used by the Fuinar of Valagalen as homesites — Elves carve rooms inside the living trunk without endangering it. Grows southwest of Endor around the Bay of Drel.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Grape-leaf Magnolia</td>
+<td class="mat-desc">Most abundant broad-leaf evergreen in Mirkwood. Blood-red flowers in July. Honey made from the nectar is dark red, sweet, nutritious, and intoxicating in excess. Beijabar make Magnolia Mead from it; drunk only at solemn or festive feasts.</td>
+<td class="mat-notes">Groves are unapproachable in peak bloom due to swarming bees.</td>
+</tr>
+<tr>
+<td class="mat-name">Greddon</td>
+<td class="mat-desc">One of three tree types in the Gaj (&quot;The Grove&quot;) of Far Harad; valued for its strong, sinuous wood.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Gumumiti (&quot;Teak&quot;)</td>
+<td class="mat-desc">Tall tropical hardwood, 120&#x27; in common growth; resinous yellow-brown wood. Found throughout Tathorn, Taur Galen, and Thunderwood, and in smaller form in the Yellow Mountains and Valagalen. Used for rich inlays, furniture, saddles, and shields. Requires frequent reoiling or it cracks.</td>
+<td class="mat-notes">Leaves also medicinal (see Herbs: Lainimit leaves / Welwal).</td>
+</tr>
+<tr>
+<td class="mat-name">Juha</td>
+<td class="mat-desc">Great tower of the southern forests; mast timber for the tallest ships of Umbar. Grows for years as a tiny shoot; lowest branches are ~100&#x27; up by the time the trunk is climbable. Harvested for spars and later for masts.</td>
+<td class="mat-notes">Source of the lethal Karfar poison from its leaves (see Herbs).</td>
+</tr>
+<tr>
+<td class="mat-name">Lainimit (&quot;Mahogany&quot;)</td>
+<td class="mat-desc">Reddish-brown or tan; hard, beautiful, and highly useful. Common and tall (up to 90&#x27;). Major source of revenue in the Eastern Dominions. Also produces the medicinal Welwal leaves (see Herbs).</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Lebethron</td>
+<td class="mat-desc">Dark hardwood; common in Gondor and the Ered Nimrais. Renowned for beauty and durability; used for masts of Gondor&#x27;s finest vessels. (A Lebethron box houses the Silver Crown of the realm.) High Knights wield Lebethron lances; Gondorian Rangers carry Lebethron staffs. Faramir gave Sam and Frodo walking staves of this wood.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Mallorn (&quot;Gold-tree&quot;; pl. Mellyrn)</td>
+<td class="mat-desc">Hardy, strong, able to grow to great heights, with branches suited to the platforms and structures of the Silvan Elves. Trunks covered in smooth silver-white or grey bark. Leaves turn pure gold in late autumn and remain until spring, when pale gold blossoms emerge. Do not die of old age; immune to all disease and plague. Not native to Middle-earth — originated in the Undying Lands; likely related to Laurelin of the Two Trees. Brought to Lórien via Galadriel with seeds gifted by Gil-galad (received from the Númenórean King Tar-Aldarion). The second Party Tree in the Shire was a mallorn — the only one in Eriador.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Oiolairé</td>
+<td class="mat-desc">Glossy, sweet-scented evergreen; once grew around Fornost Erain. Destroyed forever when Angmar&#x27;s invaders burned the lands of Arthedain.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Shadamabo (&quot;Rosewood&quot;)</td>
+<td class="mat-desc">Heavy, hard, reddish tropical hardwood; up to 100&#x27; tall. Used for sturdy furniture and durable spears.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Slird</td>
+<td class="mat-desc">Short citrus tree; fine orange-yellow wood with a permanent fresh scent. Used for chests and wardrobes to keep clothes smelling pleasant and to discourage moths.</td>
+<td class="mat-notes">Bright red fruit is poisonous (see Herbs).</td>
+</tr>
+<tr>
+<td class="mat-name">Sorglasora (&quot;Gold-pine&quot; / &quot;Carlorthôn&quot;)</td>
+<td class="mat-desc">Rare red-leaved conifer, now found only in isolated mountain valleys in Lebennin, hidden among common pines. Principal ingredient in Cranor manufacture. Prized by the Dunnish people but nearly cut to extinction by their over-harvesting.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Tordi</td>
+<td class="mat-desc">Common among the Gaj of Far Harad; up to 80&#x27; tall with broad, faintly reddish leaves spreading more horizontally than vertically. Strong and flexible when steamed; holds its shape. Used for ship ribs and other applications requiring both strength and give.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Usamiti (&quot;Ebony&quot;)</td>
+<td class="mat-desc">Hard, dense, often jet black; as prized as jade or gold. Tropical and rare even in the Eastern Dominions where it is most commonly found.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Yellow Hemlock</td>
+<td class="mat-desc">Graceful pyramidal evergreen, up to 75&#x27;. Fairly soft for an evergreen; useful for carvings, amulets, grills, necklace beads, and other decorative purposes. Layers can be laminated for larger sculptures and totems.</td>
+<td class="mat-notes">Resin is a powerful coagulant (see Herbs).</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="mat-enchanted" class="mat-section" style="display:none">
+<h2 class="mat-category-title">Enchanted Materials</h2>
+<h3 class="mat-subsource">Treasures of Middle-earth</h3>
+<div class="mat-table-wrap"><table class="mat-table"><thead><tr>
+<th>Name</th>
+<th>Description</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td class="mat-name">Dragon Horn</td>
+<td class="mat-desc">Essentially unbreakable. Size and rib pattern signals a drake&#x27;s power and denotes its stature in the species hierarchy. Prized for musical instruments and bow-making; can be ground to produce a host of enchanted potions.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Dragonskin</td>
+<td class="mat-desc">Highly valued as armor material; strength varies with the dragon&#x27;s age (overlapping plates grow thicker over time). To harvest, an adventurer must contend with the dragon&#x27;s toxic blood while cutting the scales and underlying hide. Making usable armor requires both an armourer and an alchemist.</td>
+<td class="mat-notes">—</td>
+</tr>
+<tr>
+<td class="mat-name">Dragon Blood</td>
+<td class="mat-desc">Caustic and enchanted; difficult to store, transport, and utilize due to its corrosive properties. Can be made into potions granting the imbiber temporary ability to use mind-manipulating spells. Grows more powerful and more dangerously acidic as the dragon ages.</td>
+<td class="mat-notes">—</td>
+</tr>
+</tbody></table></div>
+</section>
+<section id="mat-spells" class="mat-section" style="display:none">
+<h2 class="mat-category-title">Enchantment Spells</h2>
+<h3 class="mat-subsource">Wizard Spells</h3>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Dweomerflow</span><span class="spell-level">Wiz 4 (Alteration)</span></div><div class="spell-stats">4 / Components: V, S &ensp;|&ensp; 20 yards or touch / — / One person or one item &ensp;|&ensp; 1 round &ensp;|&ensp; ST: Special</div><div class="spell-body">Two casting modes. **Mode 1 (spell redirect):** Cast on a spellcaster (self or another); the recipient&#x27;s next spell flows into a prepared receptacle — a focal stone, crystal ball, magical item needing recharging, or similar vessel — instead of taking its normal effect. No saving throws apply. If no valid receptacle is in range when the spell takes effect, a ghostly radiance appears and fades within the round; the spell is wasted. **Mode 2 (charge transfer):** Transfers charges or stored spells from one item to another. The caster must touch both items to bridge the energy. Both items save vs. spell: if the sending item fails, the spell is ruined but nothing is lost; if the receiving item fails, the transferred charge or spell is lost — sometimes spectacularly.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Merald&#x27;s Meld</span><span class="spell-level">Wiz 4 (Alteration)</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; Touch / — / Two nonliving objects &ensp;|&ensp; Permanent &ensp;|&ensp; ST: None</div><div class="spell-body">Permanently binds two objects together without physical fasteners. The caster touches both items and positions them in the desired join; the magic fuses them unbreakably under normal circumstances. Living or undead material cannot be melded. The two items are not altered — a given item can be involved in any number of melds. The join can be broken by four *dispel magic* spells targeted specifically at it, unless a *crown meld* was later applied, in which case the item is entirely impervious to dispel magic. If the item fails an item saving throw, a meld is more likely to fail (separating the pieces cleanly) than the materials themselves are to be damaged — unless a crown meld was applied, in which case joins never separate this way. *Material components:* a flake or drop of resin, an iron filing, a strand of spider silk, and a paste of ground legumes.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Obar&#x27;s Lesser Purification</span><span class="spell-level">Wiz 4 (Abjuration)</span></div><div class="spell-stats">4 / Components: V, S, M &ensp;|&ensp; 3 yards / One item or volume of liquid or raw materials no greater than the caster&#x27;s body volume / — &ensp;|&ensp; Permanent &ensp;|&ensp; ST: None</div><div class="spell-body">Destroys curses, magical tracers, and remnants of previous magics on a single nonliving item or body of liquid. Causes the target to glow to reveal active or dormant dweomers, but does not trigger, identify, or alter them. Also works on dry or powdered materials gathered into a continuous volume. Does not affect recently living materials (dead less than a month, or undead). Secondary function: purges liquids — potions, tinctures, unguents — of natural or magical impurities simultaneously with the main dweomer-purging. *Material components:* a pinch of limestone dust, a pinch of salt, and three drops of a *potion of sweet water.* ### 5th Level</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Abeyance</span><span class="spell-level">Wiz 5 (Alteration)</span></div><div class="spell-stats">5 / Components: V, S &ensp;|&ensp; Touch / — / 1 focal stone or 1 magical item &ensp;|&ensp; Special &ensp;|&ensp; ST: None</div><div class="spell-body">Two modes. **Mode 1 (freeze a focal stone):** Freezes a spell already cast into a focal stone, holding it in suspension indefinitely. The abeyance is broken by a *dweomerflow*, *wondrous web*, or *holy vesting* spell (which conveys the stored magic onward without releasing it), by shattering the focal stone (which releases the spell instantly), or by certain other extraction spells. *Dispel magic* is specifically not one of these. **Mode 2 (delay an item activation):** The caster touches a magical item (not an artifact) with bare flesh at casting; the next time that item is activated, its effect is delayed 1 round. The abeyance then dissipates.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Eternal Flame</span><span class="spell-level">Wiz 5 (Alteration, Necromancy)</span></div><div class="spell-stats">5 / Components: V, S, M &ensp;|&ensp; Touch / One item or body not exceeding twice the caster&#x27;s own body volume / — &ensp;|&ensp; Special &ensp;|&ensp; ST: None</div><div class="spell-body">Two targets. **On an item:** Imbues the item with a receptive neutral enchantment so that later spells cast at it (or transferred into it via *dweomerflow*) enter it without a saving throw, transfer failure, or damage — up to one spell or effect per level of the *eternal flame* caster. Does not make the item usable; only allows it to hold magics. The window for imbuing powers closes when an *awakening* spell is cast. If the item is shattered before awakening, stored magics release explosively. **On a mammalian body (living, dead, or undead):** The next spell to contact the prepared body takes full effect at maximum potency with no saving throw, system shock, or resurrection survival roll required. Exceptions: enchantment/charm and illusion/phantasm spells are not affected by eternal flame. *Material component:* a spark struck by a dweomer-bearing item against a rock, bladed weapon, or dweomer-bearing metal item; neither item is harmed.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Focal Stone</span><span class="spell-level">Wiz 5 (Alteration)</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; Touch / — / 1 clear or translucent crystalline gemstone no larger than the caster&#x27;s balled fist &ensp;|&ensp; Permanent &ensp;|&ensp; ST: Special (item save vs. magical fire at casting; failure destroys the gem)</div><div class="spell-body">Restructures a clear or translucent crystalline gemstone to hold a spell dweomer. On success the stone glows with a soft internal radiance and emits a faint dweomer. Exceptional-quality stones may receive a +1 to +3 bonus to the saving throw. Special property: if immersed in a poisonous liquid the focal stone turns vivid purple; it can then be commanded by touch and will to neutralize the poison, after which it dissolves and is destroyed. Common misconceptions aside, a focal stone cannot trap passing spells or draw in enchanted creatures. It resists natural and magical heat, flame, lava, extreme cold, and mineral contamination, but not deliberate crushing. Shattering it releases any stored spell instantly in a manner the DM determines. *Dispel magic* has no effect on a focal stone or its contents. *Material component:* a pinch of opal dust of any type.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Veladar&#x27;s Vambrace</span><span class="spell-level">Wiz 5 (Alteration)</span></div><div class="spell-stats">5 / Components: V, S, M &ensp;|&ensp; Touch / One item no larger in volume than the caster&#x27;s body volume / — &ensp;|&ensp; Permanent &ensp;|&ensp; ST: None</div><div class="spell-body">Strengthens inorganic substances so they do not rot or age. The item may contain organic substances (glues, etc.) only if they are less than one-tenth of total volume; otherwise the spell fails. Existing fractures and blemishes are purged; the item appears like new. Fragile substances are hardened, and hard substances made more resilient; the item gains +5 on all saving throws vs. acid, crushing blow, disintegration, fall, normal fire, and cold. *Material components:* a whole diamond of not less than 2,000 gp value; a sliver or chunk of ironwood of the same size or larger than the diamond; a piece of chitin of about the same size from a beholder, ankheg, or bulette; and a drop of giant slug spittle. ### 6th Level</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Crown Meld</span><span class="spell-level">Wiz 6 (Alteration)</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; Touch / — / One item &ensp;|&ensp; Permanent &ensp;|&ensp; ST: None</div><div class="spell-body">Required when more than four different substances are used in a magical item&#x27;s construction, or when four or more *Merald&#x27;s meld* spells are applied. Weaves multiple preexisting melds into a resilient whole, treating all joined pieces as one unflawed continuous object. When the item must make a saving throw, it uses the most favorable saving throw of any of its component substances for each situation (e.g., a wood-and-glass scepter saves as thin wood vs. a fall but as glass vs. fire). A crown-melded item is entirely impervious to dispel magic targeting its joins and never separates at a meld due to a failed item saving throw. *Material components:* a lump of resin as large as the caster&#x27;s thumb, an iron nail, a strand of spider silk, a handful of paste of ground legumes, and a flawless diamond of any size and at least 2,000 gp value.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Wondrous Web</span><span class="spell-level">Wiz 6 (Alteration)</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; Touch / Special / — &ensp;|&ensp; 1 round/level &ensp;|&ensp; ST: Special</div><div class="spell-body">Transfers magical powers from source items into a destination item at one power or control property per round. Sources may be potions, spell scrolls, parchments inscribed with magical command words, focal stones, or existing magical items. The transfer creates a visible humming network of glowing white lines of force between all items involved. Powers are held in the destination item in stable magical stasis until an *awakening* spell is cast. Only existing magical items get a saving throw: base 7 for items with fewer than three functions; base 9 plus one per function beyond four for items with four or more functions. A successful save means no effect; failure means a random function is drawn out. Charge-based functions lose 1d4 charges per round rather than the function itself; non-charge functions are permanently stripped. If ended prematurely by the caster&#x27;s will or by *dispel magic*, magic in transit is lost; already-transferred powers and untouched sources are unaffected. Missiles striking a *wondrous web* are teleported 1d6×10 feet in a random direction but are otherwise unharmed. *Material components:* six strands of spider silk and a piece of fishing net or lace. ### 7th Level</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Awakening</span><span class="spell-level">Wiz 7 (Enchantment, Invocation)</span></div><div class="spell-stats">2 rounds / Components: V, S, M &ensp;|&ensp; Touch / — / One item &ensp;|&ensp; Permanent &ensp;|&ensp; ST: Special</div><div class="spell-body">Activates a multi-enchantment item. Requires *eternal flame* and usually *wondrous web* (or *holy vesting*) and *dweomerflow* castings first. Can also be used to add new powers to an existing *enchant an item* item once all original powers have been used at least once. The item makes a saving throw using the caster&#x27;s save vs. spell, modified: –1 per being other than the caster who contributed magic; +1 per *Merald&#x27;s meld* and *crown meld* existing on the item; +1 if both *eternal flame* and *Veladar&#x27;s vambrace*, *Nulathoe&#x27;s ninemen*, or *holy might* were cast on the item. A natural 1 always fails. Failure: roll 1d6 — 1 or 2, explosion as a fireball (1d6 damage per caster level) and item destroyed; 4–6, item collapses to magically inert dust carried away by a sudden wind. Success: item activates instantly; a flash of light may occur but is never a harmful discharge. *Material components:* a wizard spell scroll bearing at least as many spells as the item has functions; a gem of any kind worth at least 2,500 gp per item function; and a living plant that has been magically altered.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Azundel&#x27;s Purification</span><span class="spell-level">Wiz 7 (Abjuration)</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; 3 yards / One item or volume of liquid or raw materials no greater than the caster&#x27;s body volume / — &ensp;|&ensp; Permanent &ensp;|&ensp; ST: None</div><div class="spell-body">The more potent version of *Obar&#x27;s lesser purification*. Destroys curses, magical tracers, and remnants of previous magics, and additionally expunges existing wizard spells and wizard-imposed spell-like abilities without triggering them. Priest spells and priest-imposed abilities on the item are not removed but glow to indicate their presence. Does not trigger, alter, or identify any dweomers. Also purges liquids of natural or magical impurities simultaneously. Does not affect recently living or undead materials. Cast twice on the same item (regardless of time between castings), all component parts of the item are refined to the finest possible state: internal and visible imperfections removed, craftsmanship raised to the highest level, making the item ready for the most powerful and complex enchantments. *Material components:* a pinch of dust from a powdered focal stone, a flawless diamond of any size or value, and at least three drops of a *potion of sweet water.*</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Blood Link</span><span class="spell-level">Wiz 7 (Necromancy)</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; Touch / — / 1 sentient creature &ensp;|&ensp; 1 turn &ensp;|&ensp; ST: Neg.</div><div class="spell-body">Can only be used in conjunction with a *permanency* or *permanency prayer* spell; must be cast within 1 turn of either to have any effect. Drains the 1-point Constitution loss involved in casting permanency from a touched sentient creature instead of from the caster. Unwitting or unwilling targets save to negate the loss. If the target can move and is hostile or suspicious, a successful attack roll is required to touch them. Good- and neutral-aligned casters risk alignment shift unless divine command or other mitigating circumstances apply. *Material components:* a short chain carved from zalantar wood, three walnut shell halves, and a drop of blood.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Dweomer Divination</span><span class="spell-level">Wiz 8 (Divination)</span></div><div class="spell-stats">3 rounds / Components: V, S &ensp;|&ensp; Touch / — / One item &ensp;|&ensp; 1 round/level &ensp;|&ensp; ST: None</div><div class="spell-body">Reveals information about an enchanted item in a sequential unfolding process, one category of information per round, until the spell expires or all information has been gained. A repeat casting on a previously examined item skips already-known information. Sequence: (1) all dweomers present; (2) alignment/class restrictions and special benefits; (3) primary function fully revealed (how it works); (4) words of activation for the primary power; (5) any flaws or gaps in the primary power. This cycle repeats for each additional power in descending order of strength, then reveals control words and restrictions, recharging methods, and finally images of how the item was made. On normal (non-enchanted) items, performs as a sophisticated *detect magic* only. Ends immediately if the caster loses contact with the item for a full round or if the item has no dweomer. Provides no protection against curses or traps identified in the process, and may not reveal unintended side effects. Note: even non-enchanted items can bear trace dweomers if touched by spells — lasting 1 day per spell level for normal spells, and months or years per spell level for permanent or trigger-based magics.</div></div>
+<h3 class="mat-subsource">Priest Spells</h3>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Dweomerflow</span><span class="spell-level">Pr 4 (Alteration) — Sphere: All</span></div><div class="spell-stats">7 / Components: V, S &ensp;|&ensp; 20 yards or touch / — / One person or one item &ensp;|&ensp; 1 round &ensp;|&ensp; ST: Special</div><div class="spell-body">Functionally identical to the wizard version, with one significant addition unique to the priest version: a **holy water font or consecrated altar** can accept up to a dozen flowed spells as a repository. Any being of the faith who touches the altar and wills the magics forth may release them one per round thereafter, with silent mental control over targeting. Beings unfamiliar with the stored magics need 1 round of contact per stored spell to identify and control them; one random magic is revealed at a time to beings of the same faith (or via *dweomer divination*). Spells of 5th level or higher must be accompanied by an *abeyance* cast on the altar or vessel within 1 turn of being flowed in, or they erupt at a random time and random target. Altars commonly store offensive spells for lesser priests defending holy ground; damaging, defiling, or using cold iron on an altar almost always activates stored magics on the spot. ### 5th Level</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Abeyance</span><span class="spell-level">Pr 5 (Alteration) — Sphere: All</span></div><div class="spell-stats">8 / Components: V, S &ensp;|&ensp; Touch / — / 1 focal stone or 1 magical item &ensp;|&ensp; Special &ensp;|&ensp; ST: None</div><div class="spell-body">Identical in function to the wizard version. Freezes a spell held in a focal stone for indefinite suspension, or delays a magical item&#x27;s next activation by 1 round.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Eternal Flame</span><span class="spell-level">Pr 5 (Alteration, Necromancy) — Sphere: All, Elemental Fire, Necromantic</span></div><div class="spell-stats">8 / Components: V, S, M &ensp;|&ensp; Touch / One item or body not exceeding twice the caster&#x27;s own body volume / — &ensp;|&ensp; Special &ensp;|&ensp; ST: None</div><div class="spell-body">Identical in function to the wizard version, with the same dual use on items and mammalian bodies. Imbues an item with a receptive neutral enchantment to hold magics; or fully attunes a body to receive the next spell at maximum potency with no saves or survival rolls required. Enchantment/charm and illusion/phantasm spells are exempt from the body-attuning effect in both versions. *Material component:* identical to the wizard version.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Focal Stone</span><span class="spell-level">Pr 5 (Alteration) — Sphere: All, Elemental Earth</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; Touch / — / 1 clear or translucent crystalline gemstone no larger than the caster&#x27;s balled fist &ensp;|&ensp; Permanent &ensp;|&ensp; ST: Special (item save vs. magical fire)</div><div class="spell-body">Identical in function to the wizard version. Transforms the internal structure of a qualifying gemstone to hold a spell dweomer. Same glow, same poison-neutralization property, same immunity to heat and cold but not crushing. *Material component:* identical — a pinch of opal dust. ### 6th Level</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Higher Consecration</span><span class="spell-level">Pr 6 (Alteration, Evocation) — Sphere: All</span></div><div class="spell-stats">2 rounds / Components: V, S, M &ensp;|&ensp; Touch / — / One item &ensp;|&ensp; Permanent &ensp;|&ensp; ST: Special (item save vs. spell)</div><div class="spell-body">Dedicates an item to the service of the caster&#x27;s deity, cleansing it of all other influences and other deities&#x27; marks. The item makes a saving throw using the caster&#x27;s save vs. spell, modified cumulatively: +1 if crafted by or for the faith; +1 if cast on a consecrated altar or sacred ground; +1 if at the deity&#x27;s express or dream command; +1 if all material components were personally made or gathered by the caster; –1 if unholy water is omitted; –1 if holy water is omitted; –2 if plain water is used; –2 if the item is known to be flawed or incomplete. Success is typically shown by a brief levitation and blue-white glow, though the deity may choose another color, wreathe the item in flame, or make it vanish if the priest is deemed unworthy. *Material components:* the priest&#x27;s holy symbol; a spark struck from flint by cold iron (all three consumed in casting); a pinch of dung-heap earth on which plants have grown; a drop of holy water; a drop of unholy water; and a sealed vial of air from an enclosed space in which a dragon used its breath weapon within 1 turn of sealing.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Holy Might</span><span class="spell-level">Pr 6 (Alteration) — Sphere: All, Creation</span></div><div class="spell-stats">9 / Components: V, S, M &ensp;|&ensp; Touch / One item no larger in volume than twice the caster&#x27;s body volume / — &ensp;|&ensp; Permanent &ensp;|&ensp; ST: None</div><div class="spell-body">Priest counterpart to *Veladar&#x27;s Vambrace*. Strengthens inorganic substances against rot and age. Same rule on organic content (must be less than one-tenth by volume). Purges fractures and blemishes; item appears like new. Grants +6 (vs. +5 for *Veladar&#x27;s Vambrace*) on saving throws vs. acid, crushing blow, disintegration, fall, normal fire, and cold. Allows item volume up to twice the caster&#x27;s body (vs. equal to the caster&#x27;s body for the wizard version). *Material components:* a whole, unflawed ruby, emerald, or sapphire of not less than 3,000 gp value; a sliver or chunk of duskwood of the same size or larger; a piece of chitin of similar size from a beholder, ankheg, or bulette; a piece of obsidian of any size; and black dragon acid.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Holy Vesting</span><span class="spell-level">Pr 6 (Alteration, Evocation) — Sphere: All, Creation</span></div><div class="spell-stats">3 rounds / Components: V, S, M &ensp;|&ensp; Touch / Special / — &ensp;|&ensp; 1 turn + 1 round/3 levels &ensp;|&ensp; ST: Special</div><div class="spell-body">Priest counterpart to *Wondrous Web*, with the same purpose and general mechanics: transfers magical powers from source items into a destination item at one power per round, creating a visible shimmering in the air between connected items. Key differences from *Wondrous Web*: the saving throws for drained items are higher (base 9 for fewer than three functions; base 11 plus one per function beyond four); and when cast on an altar dedicated to the caster&#x27;s deity, the spell is immune to *dispel magic*. Missiles striking the caster during casting have the normal chance of ruining it, but after casting is complete only the caster&#x27;s death or unconsciousness can end it prematurely. *Material components:* one drop of holy water consecrated to the caster&#x27;s deity for the recipient item, plus one additional drop per source item; and a stick or block of burned incense. ### 7th Level</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Awakening</span><span class="spell-level">Pr 7 (Enchantment, Invocation) — Sphere: All, Creation</span></div><div class="spell-stats">3 rounds / Components: V, S, M &ensp;|&ensp; Touch / — / One item &ensp;|&ensp; Permanent &ensp;|&ensp; ST: Special</div><div class="spell-body">Identical in purpose to the wizard version. Key difference in the –1 modifier: co-contributors who are clergy of the same faith as the caster do **not** impose the penalty (wizard version penalizes all non-caster contributors). Additional bonus: +1 if the awakening is cast on or before an altar of the caster&#x27;s deity. Otherwise identical saving throw modifiers and failure/success results. *Material components:* a priest spell scroll bearing at least as many spells as the item has functions; a gem of any kind worth at least 2,500 gp per function; and a living plant magically altered.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Blood Link</span><span class="spell-level">Pr 7 (Necromancy) — Sphere: Necromantic</span></div><div class="spell-stats">1 round / Components: V, S, M &ensp;|&ensp; Touch / — / 1 sentient creature &ensp;|&ensp; 1 turn &ensp;|&ensp; ST: Neg.</div><div class="spell-body">Identical in function to the wizard version. *Material components:* a short chain carved from zalantar wood, a drop of blood, a drop of holy water, and a drop of unholy water (priest version adds holy and unholy water vs. the wizard version&#x27;s three walnut shell halves).</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Dweomer Divination</span><span class="spell-level">Pr 7 (Divination) — Sphere: Divination</span></div><div class="spell-stats">3 rounds / Components: V, S &ensp;|&ensp; Touch / — / One item &ensp;|&ensp; 1 round/level &ensp;|&ensp; ST: None</div><div class="spell-body">Identical in function to the wizard version. Reveals enchantment details in the same sequential round-by-round structure: dweomers present, alignment/class restrictions, primary function, activation words, flaws/gaps — then repeating for secondary powers, then control words, recharging methods, and creation imagery.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Permanency Prayer</span><span class="spell-level">Pr 7 (Alteration) — Sphere: All, Creation</span></div><div class="spell-stats">3 rounds / Components: V, S &ensp;|&ensp; Touch / — / One item&#x27;s enchantments &ensp;|&ensp; Permanent &ensp;|&ensp; ST: Special</div><div class="spell-body">Renders the enchantments on an item permanent. Cannot make the effects of cast spells permanent on a creature — only on an item&#x27;s powers. Base 12-in-20 chance of success, modified cumulatively: +1 if cast on a consecrated altar or sacred spot; +1 if the caster performed an exceptional service for the deity within the season (and cast no other *permanency prayer* this season); +3 if the item is being made per the deity&#x27;s direct or dream-vision command; –1 if the caster intends personal gain or aggrandizement; –2 if the item is flawed, damaged, or incomplete. Whether it succeeds or fails, the caster loses 1 point of Constitution (negated if a *blood link* has been cast within the previous turn to transfer the loss to another). The caster knows the outcome by a feeling of exaltation (success) or chill foreboding (failure) when touching the item after casting. No material components.</div></div>
+<div class="spell-entry"><div class="spell-header"><span class="spell-name">Ritual of Transference</span><span class="spell-level">Pr 7 (Alteration) — Sphere: All, Creation</span></div><div class="spell-stats">1 turn / Components: V, S, M &ensp;|&ensp; 20 yards / — / One item or being &ensp;|&ensp; 1 turn (after the casting turn) &ensp;|&ensp; ST: Special</div><div class="spell-body">A cooperative ritual allowing participants to cast spells into a prepared item or being, transfer charges between items, or infuse an item or being with powers from another magical item, altar, or artifact. The caster must have physically touched the destination or at least one donor source at some prior time; no contact during casting is required. A continuous droning chant by at least one participant must be maintained throughout the casting turn; the original caster may stop chanting if others continue. Additional priests join by casting their own *ritual of transference* or a *combine* spell and touching the initial caster with bare flesh. After the casting turn, the ritual remains active for 1 turn during which participants cast spells or transfer charges into the recipient. Each incoming magic triggers a separate saving throw: for an item, base 12-in-20 per magic; for a being, normal save vs. spell. Cumulative modifiers: +2 per additional participating priest; +1 if the recipient is on or in an altar or sacred spot; –1 per magic contributed by a non-initial-caster; –1 per participant not serving the same deity; –2 if any hostile magic affects the recipient or any participant; –5 per participant slain or deliberately wounded during casting. Only spell-like powers can be transferred into beings; purely mechanical item abilities cannot. Beings can later release stored magics by act of will or absorb them as healing energy (one release per round). *Material components* (specific not stated in the text; implied to include prayer materials and holy implements). ## Metal Treatments (pp. 58–59) These are not spells but durable material processes that modify metal permanently. Blueshine has since been reproduced as a wizard spell; Everbright has not. ### Blueshine ### Everbright</div></div>
+
+</section>
+
+        <div id="traits" class="panel" style="display:none"></div>
+      </main>
+    </div>
+
+  </div>
+
+  <div id="modal-overlay" style="display:none">
+    <div id="modal">
+      <h3>GitHub Token</h3>
+      <p>Personal Access Token with <strong>repo</strong> scope. Stored only in your browser&#x27;s localStorage &mdash; never committed to GitHub.</p>
+      <input id="token-input" type="password" placeholder="ghp_&hellip;" autocomplete="off">
+      <div id="modal-buttons">
+        <button id="btn-token-save"   class="btn btn-primary">Save</button>
+        <button id="btn-token-clear"  class="btn btn-danger">Clear</button>
+        <button id="btn-token-cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/shared.js" defer></script>
+  <script src="scripts/materials.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+/* ============================================================
+   SKILLd20 Materials -- materials.css
+   Section-specific styles. Requires shared.css.
+   ============================================================ */
+
+.mat-section { padding-bottom: 40px; }
+
+.mat-category-title {
+  background: var(--heading-bg);
+  color: var(--heading-fg);
+  font-variant: small-caps;
+  font-weight: 700;
+  font-size: 23px;
+  padding: 5px 12px;
+  margin-bottom: 14px;
+  font-family: var(--font-ui);
+  letter-spacing: 2px;
+}
+.mat-subsource {
+  color: var(--heading-fg);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 20px 0 8px;
+  padding: 3px 10px;
+  background: #1a1a1a;
+  border-left: 3px solid var(--heading-bg);
+}
+.mat-table-wrap { overflow-x: auto; margin-bottom: 20px; }
+.mat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.mat-table th {
+  background: var(--heading-bg);
+  color: var(--heading-fg);
+  text-align: left;
+  padding: 5px 8px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.mat-table tbody tr:nth-child(odd)  { background: var(--row-odd); }
+.mat-table tbody tr:nth-child(even) { background: var(--row-even); }
+.mat-table td {
+  padding: 4px 8px;
+  vertical-align: top;
+  line-height: 1.45;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.mat-name   { font-weight: 700; white-space: nowrap; color: var(--heading-fg); min-width: 120px; }
+.mat-cat    { color: var(--text-attr); font-size: 11px; white-space: nowrap; min-width: 90px; }
+.mat-effect { max-width: 420px; }
+.mat-false  { color: var(--text-muted); font-style: italic; font-size: 12px; max-width: 180px; }
+.mat-notes  { color: var(--text-muted); font-size: 12px; max-width: 220px; }
+.mat-type   { color: var(--text-attr); font-size: 11px; white-space: nowrap; }
+.mat-bonus  { text-align: center; font-weight: 700; color: var(--mana); white-space: nowrap; }
+.mat-cost   { text-align: right; white-space: nowrap; color: var(--price); font-weight: 700; }
+.mat-desc   { max-width: 480px; }
+
+.spell-entry { border: 1px solid var(--border); margin-bottom: 12px; }
+.spell-header {
+  background: var(--heading-bg);
+  padding: 4px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.spell-name  { font-weight: 700; font-variant: small-caps; font-size: 17px; color: var(--heading-fg); }
+.spell-level { font-size: 11px; color: var(--heading-fg); font-family: var(--font-ui); opacity: 0.8; white-space: nowrap; }
+.spell-stats {
+  font-size: 11px; color: var(--text-muted); font-family: var(--font-ui);
+  padding: 3px 10px; border-bottom: 1px solid var(--border);
+  background: var(--row-odd);
+}
+.spell-body { font-size: 13px; padding: 7px 10px; line-height: 1.55; background: var(--row-even); }
