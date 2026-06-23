@@ -2277,6 +2277,84 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Force Bolt",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "force"
+      ],
+      "traditions": [
+        "arcane",
+        "bloodline",
+        "pact"
+      ],
+      "access": [],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
