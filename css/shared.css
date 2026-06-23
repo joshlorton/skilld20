@@ -64,6 +64,36 @@ body {
 #main          { display: flex; flex: 1; overflow: hidden; }
 
 /* ============================================================
+   NAV STRIP
+   ============================================================ */
+
+#nav-strip {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  padding: 0 14px;
+  gap: 2px;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.1s;
+}
+.nav-link:hover      { color: var(--text); }
+.nav-link-active     { color: var(--heading-fg); border-bottom-color: var(--heading-bg); }
+
+/* ============================================================
    SIDEBAR
    ============================================================ */
 

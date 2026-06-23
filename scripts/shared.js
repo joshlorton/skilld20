@@ -633,6 +633,12 @@ function buildTraitsManagerPanel() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Active nav link -- matches current filename; handles trailing-slash roots
+  const page = window.location.pathname.replace(/\/$/, '/index.html').split('/').pop() || 'index.html';
+  document.querySelectorAll('#nav-strip .nav-link').forEach(link => {
+    if (link.getAttribute('href') === page) link.classList.add('nav-link-active');
+  });
+
   // Search
   document.getElementById('search').addEventListener('input', renderList);
 
