@@ -1,161 +1,20 @@
 'use strict';
 
 /* ============================================================
-   CONFIG
+   FOUNDATIONS -- foundations.js
+   Foundation-specific code. Requires shared.js.
    ============================================================ */
 
-const CONFIG = {
-  owner : 'joshlorton',
-  repo  : 'skilld20',
-  file  : 'data/foundations.json',
-  groupsFile : 'data/trait-groups.json',
-  api   : 'https://api.github.com'
-};
+/* Extend shared CONFIG with this section's data file path */
+CONFIG.file = 'data/foundations.json';
+
+/* Extend shared state with Foundation-specific fields */
+state.entries = [];
+state.sha     = null;
 
 /* ============================================================
-   STATE
+   FOUNDATION-SPECIFIC UTILITIES
    ============================================================ */
-
-const state = {
-  foundations  : [],
-  currentIndex : -1,
-  sha          : null,
-  token        : localStorage.getItem('skd20_token') || '',
-  dirty        : false,
-  mode         : 'view',   // 'view' | 'edit' | 'traits'
-  traits       : { general: [], traditions: [], access: [] },
-  traitsSha    : null
-};
-
-/* ============================================================
-   UTILITIES
-   ============================================================ */
-
-const ACTION_LENGTHS = [
-  { value: 'reaction', label: '↺ Reaction' },
-  { value: 'action',   label: 'Action'     },
-  { value: 'round',    label: 'Round'      },
-  { value: 'minute',   label: 'Minute'     },
-  { value: 'hour',     label: 'Hour'       },
-  { value: 'day',      label: 'Day'        },
-  { value: 'week',     label: 'Week'       }
-];
-
-function parseLegacyAction(val) {
-  if (val === null || val === undefined) return { count: '', length: 'action' };
-  if (typeof val === 'object') return { count: val.count ?? '', length: val.length ?? 'action' };
-  const s = String(val).trim();
-  if (s === '' || s === '-') return { count: 0,  length: 'action' };
-  if (s === 'F' || s === '0') return { count: 0, length: 'action' };
-  if (s === 'R') return { count: '', length: 'reaction' };
-  const n = parseInt(s, 10);
-  if (!isNaN(n)) return { count: n, length: 'action' };
-  return { count: '', length: 'action' };
-}
-
-function collectAction(count, length) {
-  if (length === 'reaction') return { count: null, length: 'reaction' };
-  const c = parseInt(count, 10);
-  return { count: isNaN(c) ? 1 : c, length: length || 'action' };
-}
-
-function isNoAction(val) {
-  if (val === null || val === undefined || val === '' || val === '-') return true;
-  if (typeof val === 'object') return false; // objects always have some action value
-  return false;
-}
-
-function actionSym(val) {
-  if (val === null || val === undefined || val === '') return '';
-  if (typeof val === 'object' && val !== null) {
-    const { count, length } = val;
-    if (length === 'reaction') return '↺';
-    if (length === 'action') {
-      const n = parseInt(count, 10);
-      if (isNaN(n) || n <= 0) return '◇';
-      return '◆'.repeat(Math.min(n, 3));
-    }
-    const n = parseInt(count, 10);
-    const c = isNaN(n) ? 1 : n;
-    if (length === 'round')  return c === 1 ? '1 rnd'  : `${c} rnds`;
-    if (length === 'minute') return `${c} min`;
-    if (length === 'hour')   return `${c} hr`;
-    if (length === 'day')    return `${c} day`;
-    if (length === 'week')   return `${c} wk`;
-    return String(val);
-  }
-  // Legacy string format
-  const s = String(val).toUpperCase().trim();
-  if (s === '' || s === '-') return '-';
-  if (s === 'R')  return '↺';
-  if (s === '0' || s === 'F') return '◇';
-  const count = Math.min(parseInt(s, 10) || 1, 3);
-  return '◆'.repeat(count);
-}
-
-function syncCountToLength(countIn, lengthSel) {
-  const off = lengthSel.value === 'reaction';
-  countIn.disabled = off;
-  countIn.style.opacity = off ? '0.3' : '1';
-}
-
-function clampManaInput(manaIn) {
-  manaIn.addEventListener('blur', () => {
-    const v = parseFloat(manaIn.value);
-    if (!isNaN(v) && v < 0) manaIn.value = '0';
-  });
-}
-
-function buildActionPair(actVal, idPrefix) {
-  const parsed = parseLegacyAction(actVal);
-  const wrap   = el('div', { class: 'action-pair' });
-
-  const cAttrs = { type: 'number', min: '0', max: '99', class: 'form-input action-count-inp' };
-  if (idPrefix) cAttrs.id = `${idPrefix}-act-count`; else cAttrs['data-field'] = 'act-count';
-  const countIn = el('input', cAttrs);
-  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
-
-  const lAttrs = { class: 'form-input form-select action-length-sel' };
-  if (idPrefix) lAttrs.id = `${idPrefix}-act-length`; else lAttrs['data-field'] = 'act-length';
-  const lengthSel = el('select', lAttrs);
-  ACTION_LENGTHS.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (value === parsed.length) o.selected = true;
-    lengthSel.appendChild(o);
-  });
-
-  // Only reaction disables count
-  const syncCount = () => syncCountToLength(countIn, lengthSel);
-  lengthSel.addEventListener('change', syncCount);
-  syncCount();
-
-  wrap.appendChild(countIn);
-  wrap.appendChild(lengthSel);
-  return wrap;
-}
-
-function el(tag, attrs, ...children) {
-  const e = document.createElement(tag);
-  if (attrs) {
-    for (const [k, v] of Object.entries(attrs)) {
-      if      (k === 'class') e.className = v;
-      else if (k === 'style') e.style.cssText = v;
-      else e.setAttribute(k, v);
-    }
-  }
-  for (const c of children) {
-    if      (c === null || c === undefined) continue;
-    else if (typeof c === 'string') e.appendChild(document.createTextNode(c));
-    else e.appendChild(c);
-  }
-  return e;
-}
-
-function hasValue(v) {
-  if (v === null || v === undefined || v === '' || v === 0) return false;
-  if (Array.isArray(v)) return v.some(hasValue);
-  return true;
-}
 
 function spellComponent(comp) {
   if (!comp) return '';
@@ -165,61 +24,27 @@ function spellComponent(comp) {
     .filter(Boolean).join(', ');
 }
 
-function setStatus(msg, type) {
-  const s = document.getElementById('status-text');
-  s.textContent = msg;
-  s.className   = type ? `status-${type}` : '';
-}
-
 /* ============================================================
-   GITHUB API
+   GITHUB -- FOUNDATION DATA (data/foundations.json)
    ============================================================ */
 
-function ghHeaders() {
-  const h = { 'Accept': 'application/vnd.github.v3+json' };
-  if (state.token) h['Authorization'] = `token ${state.token}`;
-  return h;
-}
-
 async function loadData() {
-  setStatus('Loading…', 'load');
+  setStatus('Loading\u2026', 'load');
+  state.entries = [];
   try {
-    if (state.token) {
-      const resp = await fetch(
-        `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
-        { headers: ghHeaders() }
-      );
-      if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
-      const raw   = await resp.json();
-      state.sha   = raw.sha;
-      const _b64   = atob(raw.content.replace(/\n/g, ''));
-      const text  = new TextDecoder().decode(Uint8Array.from(_b64, c => c.charCodeAt(0)));
-      const data  = JSON.parse(text);
-      state.entries = data.foundations || [];
-      setStatus(`Loaded from GitHub (${state.entries.length})`, 'ok');
+    const result = await ghReadFile(CONFIG.file);
+    if (result) {
+      state.sha     = result.sha;
+      state.entries = result.data.foundations || [];
+      setStatus(`Loaded (${state.entries.length})`, 'ok');
     } else {
-      const resp = await fetch(`./${CONFIG.file}`);
-      if (!resp.ok) throw new Error(`Fetch ${resp.status}: ${resp.statusText}`);
-      const data = await resp.json();
-      state.entries = data.foundations || [];
-      setStatus('Viewer mode :: no token', '');
+      setStatus('Viewer mode -- no token', '');
     }
   } catch (err) {
     setStatus(`Error: ${err.message}`, 'error');
-    state.entries = [];
   }
   renderList();
   updateButtons();
-}
-
-async function fetchCurrentSha() {
-  const resp = await fetch(
-    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
-    { headers: ghHeaders() }
-  );
-  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
-  const raw = await resp.json();
-  state.sha = raw.sha;
 }
 
 async function saveData() {
@@ -234,113 +59,29 @@ async function saveData() {
 }
 
 async function attemptSave(isRetry) {
-  const json    = JSON.stringify({ foundations: state.entries }, null, 2);
-  const _enc    = new TextEncoder().encode(json);
-  let   _bin    = ''; _enc.forEach(b => _bin += String.fromCharCode(b));
-  const content = btoa(_bin);
-  const ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
-  const body    = { message: `Update foundations [${ts}]`, content, sha: state.sha };
-  const resp    = await fetch(
-    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
-    { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-  );
-  if (resp.status === 409 && !isRetry) {
-    setStatus('Conflict detected, refreshing\u2026', 'load');
-    await fetchCurrentSha();
-    return attemptSave(true);
-  }
-  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
-  const result = await resp.json();
-  state.sha    = result.content.sha;
-  state.dirty  = false;
-  setStatus('Saved to GitHub \u2713', 'ok');
-  return true;
-}
-
-/* ============================================================
-   TRAITS MANAGER -- GitHub API (data/trait-groups.json)
-   ============================================================ */
-
-function applyTraitsData(data) {
-  state.traits.general     = sortGroups(data?.general);
-  state.traits.traditions  = sortGroups(data?.traditions);
-  state.traits.access      = sortGroups(data?.access);
-}
-
-async function loadTraitsData() {
+  const ts = new Date().toISOString().slice(0, 16).replace('T', ' ');
   try {
-    if (state.token) {
-      const resp = await fetch(
-        `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
-        { headers: ghHeaders() }
-      );
-      if (resp.ok) {
-        const raw  = await resp.json();
-        state.traitsSha = raw.sha;
-        const _b64 = atob(raw.content.replace(/\n/g, ''));
-        const text = new TextDecoder().decode(Uint8Array.from(_b64, c => c.charCodeAt(0)));
-        applyTraitsData(JSON.parse(text));
-        return;
-      }
-    } else {
-      const resp = await fetch(`./${CONFIG.groupsFile}`);
-      if (resp.ok) {
-        applyTraitsData(await resp.json());
-        return;
-      }
-    }
-  } catch (err) { /* fall through to defaults below */ }
-  applyTraitsData(DEFAULT_TRAITS_DATA);
-}
-
-async function fetchTraitsSha() {
-  const resp = await fetch(
-    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
-    { headers: ghHeaders() }
-  );
-  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
-  const raw = await resp.json();
-  state.traitsSha = raw.sha;
-}
-
-async function saveTraitsData() {
-  if (!state.token) { setStatus('No token set', 'error'); return false; }
-  setStatus('Saving traits\u2026', 'load');
-  try {
-    return await attemptSaveTraits(false);
+    const newSha = await ghWriteFile(
+      CONFIG.file, state.sha,
+      { foundations: state.entries },
+      `Update foundations [${ts}]`
+    );
+    state.sha   = newSha;
+    state.dirty = false;
+    setStatus('Saved to GitHub \u2713', 'ok');
+    updateButtons();
+    return true;
   } catch (err) {
-    setStatus(`Save error: ${err.message}`, 'error');
-    return false;
+    if (err.status === 409 && !isRetry) {
+      setStatus('Conflict detected, refreshing\u2026', 'load');
+      const r = await ghReadFile(CONFIG.file);
+      if (r) state.sha = r.sha;
+      return attemptSave(true);
+    }
+    throw err;
   }
 }
 
-async function attemptSaveTraits(isRetry) {
-  const payload = {
-    general    : sortGroups(state.traits.general),
-    traditions : sortGroups(state.traits.traditions),
-    access     : sortGroups(state.traits.access)
-  };
-  const json    = JSON.stringify(payload, null, 2);
-  const _enc    = new TextEncoder().encode(json);
-  let   _bin    = ''; _enc.forEach(b => _bin += String.fromCharCode(b));
-  const content = btoa(_bin);
-  const ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
-  const body    = { message: `Update trait groups [${ts}]`, content, sha: state.traitsSha };
-  const resp    = await fetch(
-    `${CONFIG.api}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.groupsFile}`,
-    { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-  );
-  if (resp.status === 409 && !isRetry) {
-    setStatus('Conflict detected, refreshing traits\u2026', 'load');
-    await fetchTraitsSha();
-    return attemptSaveTraits(true);
-  }
-  if (!resp.ok) throw new Error(`GitHub ${resp.status}: ${resp.statusText}`);
-  const result      = await resp.json();
-  state.traitsSha    = result.content.sha;
-  setStatus('Traits saved to GitHub \u2713', 'ok');
-  return true;
-}
 
 /* ============================================================
    RENDERING — TRAIT BAR
@@ -1034,23 +775,6 @@ function buildAttributeSelect(value) {
   return sel;
 }
 
-function buildCountLengthPair(parsed) {
-  const countIn = el('input', { type: 'number', min: '0', max: '99',
-    class: 'form-input', 'data-field': 'act-count' });
-  if (parsed.count !== '' && parsed.count != null) countIn.value = String(parsed.count);
-
-  const lengthSel = el('select', { class: 'form-input form-select', 'data-field': 'act-length' });
-  ACTION_LENGTHS.forEach(({ value, label }) => {
-    const o = el('option', { value }, label);
-    if (value === parsed.length) o.selected = true;
-    lengthSel.appendChild(o);
-  });
-  const syncCount = () => syncCountToLength(countIn, lengthSel);
-  lengthSel.addEventListener('change', syncCount);
-  syncCount();
-  return { countIn, lengthSel };
-}
-
 /* ============================================================
    EDITOR — SUSTAIN / DISMISS BUILDER
    ============================================================ */
@@ -1504,122 +1228,7 @@ const OPTS = {
   ]
 };
 
-/* Fallback data used only if data/trait-groups.json cannot be fetched
-   (e.g. first run before the file has been committed to the repo). */
-const DEFAULT_TRAITS_DATA = {
-  general: [
-    { label: 'Condition', items: ['curse', 'disease', 'haste', 'poison', 'reposition', 'slow', 'stun'] },
-    { label: 'Elemental', items: ['air', 'earth', 'fire', 'metal', 'water', 'wood'] },
-    { label: 'Energy',    items: ['acid', 'cold', 'electricity', 'fire', 'force', 'lightning',
-                                  'necrotic', 'negative', 'poison', 'positive', 'profane', 'psychic',
-                                  'radiant', 'sacred', 'sonic'] },
-    { label: 'Mental',    items: ['charm', 'compulsion', 'emotion', 'fear', 'mental', 'sleep'] },
-    { label: 'Other',      items: ['animation', 'creation', 'darkness', 'enhancement', 'healing', 'illusion',
-                                  'light', 'luck', 'necromancy', 'polymorph', 'reduction', 'resistance',
-                                  'summoning', 'utility', 'ward'] },
-    { label: 'Sensory',   items: ['auditory', 'detection', 'olfactory', 'shroud', 'tactile', 'visual'] }
-  ],
-  traditions: [
-    { label: 'Trained',   items: ['arcane', 'bardic', 'divine'] },
-    { label: 'Untrained', items: ['bloodline', 'pact'] }
-  ],
-  access: [
-  { label: 'Arcane School', items: [
-    { value: 'arcane school: elemental: air',   label: 'elemental: air'   },
-    { value: 'arcane school: elemental: earth', label: 'elemental: earth' },
-    { value: 'arcane school: elemental: fire',  label: 'elemental: fire'  },
-    { value: 'arcane school: elemental: water', label: 'elemental: water' }
-  ]},
-  { label: 'Bardic Tune', items: [
-    { value: 'bardic tune: discovery',          label: 'discovery'  },
-    { value: 'bardic tune: lull',               label: 'lull'       },
-    { value: 'bardic tune: obscure',            label: 'obscure'    },
-    { value: 'bardic tune: protection',         label: 'protection' }
-  ]},
-  { label: 'Bloodline', items: [
-    { value: 'bloodline: draconic',             label: 'draconic'         },
-    { value: 'bloodline: elemental: air',       label: 'elemental: air'   },
-    { value: 'bloodline: elemental: earth',     label: 'elemental: earth' },
-    { value: 'bloodline: elemental: fire',      label: 'elemental: fire'  },
-    { value: 'bloodline: elemental: water',     label: 'elemental: water' },
-    { value: 'bloodline: fey',                  label: 'fey'              },
-    { value: 'bloodline: genie: air',           label: 'genie: air'       },
-    { value: 'bloodline: genie: earth',         label: 'genie: earth'     },
-    { value: 'bloodline: genie: fire',          label: 'genie: fire'      },
-    { value: 'bloodline: genie: water',         label: 'genie: water'     },
-    { value: 'bloodline: planar',               label: 'planar'           },
-    { value: 'bloodline: shadow',               label: 'shadow'           },
-    { value: 'bloodline: undead',               label: 'undead'           }
-  ]},
-  { label: 'Divine Domain', items: [
-    { value: 'divine domain: animal',           label: 'animal'           },
-    { value: 'divine domain: artifice',         label: 'artifice'         },
-    { value: 'divine domain: athletics',        label: 'athletics'        },
-    { value: 'divine domain: chaos',            label: 'chaos'            },
-    { value: 'divine domain: death',            label: 'death'            },
-    { value: 'divine domain: decay',            label: 'decay'            },
-    { value: 'divine domain: destruction',      label: 'destruction'      },
-    { value: 'divine domain: elemental: air',   label: 'elemental: air'   },
-    { value: 'divine domain: elemental: earth', label: 'elemental: earth' },
-    { value: 'divine domain: elemental: fire',  label: 'elemental: fire'  },
-    { value: 'divine domain: elemental: water', label: 'elemental: water' },
-    { value: 'divine domain: fate',             label: 'fate'             },
-    { value: 'divine domain: justice',          label: 'justice'          },
-    { value: 'divine domain: knowledge',        label: 'knowledge'        },
-    { value: 'divine domain: luck',             label: 'luck'             },
-    { value: 'divine domain: magic',            label: 'magic'            },
-    { value: 'divine domain: moon',             label: 'moon'             },
-    { value: 'divine domain: order',            label: 'order'            },
-    { value: 'divine domain: plant',            label: 'plant'            },
-    { value: 'divine domain: protection',       label: 'protection'       },
-    { value: 'divine domain: renewal',          label: 'renewal'          },
-    { value: 'divine domain: repose',           label: 'repose'           },
-    { value: 'divine domain: season: autumn',   label: 'season: autumn'   },
-    { value: 'divine domain: season: spring',   label: 'season: spring'   },
-    { value: 'divine domain: season: summer',   label: 'season: summer'   },
-    { value: 'divine domain: season: winter',   label: 'season: winter'   },
-    { value: 'divine domain: sun',              label: 'sun'              },
-    { value: 'divine domain: time',             label: 'time'             },
-    { value: 'divine domain: travel',           label: 'travel'           },
-    { value: 'divine domain: undeath',          label: 'undeath'          },
-    { value: 'divine domain: war',              label: 'war'              }
-  ]},
-  { label: 'Divine Specialty', items: [
-    { value: 'divine specialty: airwalker',              label: 'airwalker'              },
-    { value: 'divine specialty: deathstalker',           label: 'deathstalker'           },
-    { value: 'divine specialty: firemane',               label: 'firemane'               },
-    { value: 'divine specialty: firewalker',             label: 'firewalker'             },
-    { value: 'divine specialty: icepriestess/icepriest', label: 'icepriestess/icepriest' },
-    { value: 'divine specialty: stormlady/stormlord',    label: 'stormlady/stormlord'    },
-    { value: 'divine specialty: windwalker',             label: 'windwalker'             }
-  ]},
-  { label: 'Pact', items: [
-    { value: 'pact: genie: air',     label: 'genie: air'     },
-    { value: 'pact: genie: earth',   label: 'genie: earth'   },
-    { value: 'pact: genie: fire',    label: 'genie: fire'    },
-    { value: 'pact: genie: water',   label: 'genie: water'   },
-    { value: 'pact: the fathomless', label: 'the fathomless' }
-  ]}
-  ]
-};
 
-/* ============================================================
-   TRAIT GROUP SORTING -- groups and items always alphabetical
-   ============================================================ */
-
-function groupItemLabel(item) {
-  return String(typeof item === 'object' ? item.label : item).toLowerCase();
-}
-
-function sortGroupItems(items) {
-  return [...(items || [])].sort((a, b) => groupItemLabel(a).localeCompare(groupItemLabel(b)));
-}
-
-function sortGroups(groups) {
-  return [...(groups || [])]
-    .map(g => ({ label: g.label, items: sortGroupItems(g.items) }))
-    .sort((a, b) => String(a.label || '').toLowerCase().localeCompare(String(b.label || '').toLowerCase()));
-}
 
 function parseDuration(dur) {
   if (!dur) return { count: '', length: '', custom: '' };
@@ -1738,8 +1347,21 @@ function buildEditor(f) {
   form.appendChild(edJson('Variants (JSON array)', 'ed-variants', f.variants));
 
   if (state.currentIndex >= 0 && state.token) {
-    form.appendChild(el('button', { class: 'btn btn-danger btn-delete', id: 'btn-delete' },
-      `Delete "${f.name || 'this foundation'}"`));
+    const deleteBtn = el('button', { class: 'btn btn-danger btn-delete', id: 'btn-delete' },
+      `Delete "${f.name || 'this foundation'}"`);
+    deleteBtn.addEventListener('click', () => {
+      const name = state.entries[state.currentIndex]?.name || 'this foundation';
+      if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
+      state.entries.splice(state.currentIndex, 1);
+      state.currentIndex = -1;
+      state.dirty        = true;
+      state.mode         = 'view';
+      renderList();
+      document.getElementById('empty-state').style.display = '';
+      document.querySelectorAll('.panel').forEach(p => { p.style.display = 'none'; });
+      updateButtons();
+    });
+    form.appendChild(deleteBtn);
   }
 
   return form;
@@ -1823,42 +1445,6 @@ function collectEditor() {
 }
 
 /* ============================================================
-   LIST
-   ============================================================ */
-
-function renderList() {
-  const list   = document.getElementById('item-list');
-  const search = document.getElementById('search').value.toLowerCase();
-  list.innerHTML = '';
-
-  const filtered = state.entries.filter(f =>
-    !search || (f.name || '').toLowerCase().includes(search)
-  );
-
-  const sorted = filtered.slice().sort((a, b) => {
-    const n1 = (a.name || '').toLowerCase();
-    const n2 = (b.name || '').toLowerCase();
-    return n1 < n2 ? -1 : n1 > n2 ? 1 : 0;
-  });
-
-  if (!sorted.length) {
-    list.appendChild(el('div', { class: 'list-empty' },
-      state.entries.length ? 'No matches.' : 'No foundations yet.'));
-    return;
-  }
-
-  sorted.forEach(f => {
-    const idx  = state.entries.indexOf(f);
-    const item = el('div', {
-      class: `list-item${idx === state.currentIndex ? ' list-item-active' : ''}`,
-      'data-index': idx
-    }, f.name || '(unnamed)');
-    item.addEventListener('click', () => selectItem(idx));
-    list.appendChild(item);
-  });
-}
-
-/* ============================================================
    NAVIGATION
    ============================================================ */
 
@@ -1868,35 +1454,6 @@ function selectItem(idx) {
   renderList();
   showPanel('viewer', renderViewer(state.entries[idx]));
   updateButtons();
-}
-
-function showPanel(which, content) {
-  document.getElementById('empty-state').style.display = 'none';
-  document.getElementById('viewer').style.display      = which === 'viewer' ? '' : 'none';
-  document.getElementById('editor').style.display      = which === 'editor' ? '' : 'none';
-  document.getElementById('traits').style.display      = which === 'traits' ? '' : 'none';
-
-  const panel = document.getElementById(which);
-  panel.innerHTML = '';
-  panel.appendChild(content);
-
-  if (which === 'editor') {
-    const deleteBtn = document.getElementById('btn-delete');
-    if (deleteBtn) {
-      deleteBtn.addEventListener('click', () => {
-        const name = state.entries[state.currentIndex]?.name || 'this foundation';
-        if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
-        state.entries.splice(state.currentIndex, 1);
-        state.currentIndex = -1;
-        state.dirty        = true;
-        state.mode         = 'view';
-        renderList();
-        document.getElementById('empty-state').style.display = '';
-        document.getElementById('editor').style.display      = 'none';
-        updateButtons();
-      });
-    }
-  }
 }
 
 /* ============================================================
@@ -1920,220 +1477,22 @@ function updateButtons() {
 }
 
 /* ============================================================
-   MODAL
+   INIT & EVENTS  (Foundation-specific)
+   Shared listeners (search, sidebar, token modal) are in shared.js.
    ============================================================ */
 
-function openModal()  { document.getElementById('modal-overlay').style.display = 'flex'; document.getElementById('token-input').value = state.token; }
-function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
-
-/* ============================================================
-   TRAIT GROUPS MANAGER
-   ============================================================ */
-
-const TRAITS_CATEGORIES = [
-  { key: 'general',    label: 'General'    },
-  { key: 'traditions', label: 'Traditions' },
-  { key: 'access',     label: 'Access'     }
-];
-
-function collectTraitsPanel() {
-  const result = { general: [], traditions: [], access: [] };
-  TRAITS_CATEGORIES.forEach(({ key }) => {
-    const boxes = document.querySelectorAll(
-      `#traits-content .group-list[data-category="${key}"] .group-box`);
-    result[key] = Array.from(boxes).map(box => {
-      const label = box.querySelector('.group-label-input').value.trim();
-      const items = Array.from(box.querySelectorAll('.group-item-chip')).map(chip => {
-        if (key === 'access') return { value: chip.dataset.value, label: chip.dataset.label };
-        return chip.dataset.label;
-      });
-      return { label, items };
-    });
-  });
-  return result;
+/* Called by shared.js token modal after token is saved or cleared */
+function onTokenChange() {
+  loadData();
+  loadTraitsData();
 }
-
-function refreshTraitsPanel(data) {
-  const sorted = {
-    general    : sortGroups(data.general),
-    traditions : sortGroups(data.traditions),
-    access     : sortGroups(data.access)
-  };
-  renderTraitsPanel(sorted, document.getElementById('traits-content'));
-}
-
-function buildGroupBox(catKey, group, gi) {
-  const box = el('div', { class: 'group-box' });
-
-  const header = el('div', { class: 'group-box-header' });
-  const labelIn = el('input', { class: 'form-input group-label-input', type: 'text',
-    value: group.label || '' });
-  header.appendChild(labelIn);
-
-  const removeGroupBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '\u00D7');
-  removeGroupBtn.addEventListener('click', () => {
-    if (!confirm(`Remove group "${group.label}" and all its items?`)) return;
-    const fresh = collectTraitsPanel();
-    fresh[catKey].splice(gi, 1);
-    refreshTraitsPanel(fresh);
-  });
-  header.appendChild(removeGroupBtn);
-  box.appendChild(header);
-
-  labelIn.addEventListener('blur', () => refreshTraitsPanel(collectTraitsPanel()));
-  labelIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); labelIn.blur(); } });
-
-  const itemsWrap = el('div', { class: 'group-items' });
-  (group.items || []).forEach(item => {
-    const isObj = typeof item === 'object';
-    const val   = isObj ? item.value : item;
-    const lbl   = isObj ? item.label : item;
-    const chip  = el('span', { class: 'group-item-chip', 'data-value': val, 'data-label': lbl }, lbl);
-    const xBtn  = el('button', { class: 'group-item-remove', type: 'button' }, '\u00D7');
-    xBtn.addEventListener('click', () => {
-      const fresh = collectTraitsPanel();
-      fresh[catKey][gi].items = fresh[catKey][gi].items.filter(it => {
-        const v = typeof it === 'object' ? it.value : it;
-        return v !== val;
-      });
-      refreshTraitsPanel(fresh);
-    });
-    chip.appendChild(xBtn);
-    itemsWrap.appendChild(chip);
-  });
-  box.appendChild(itemsWrap);
-
-  const addRow = el('div', { class: 'group-item-add' });
-  const addIn  = el('input', { class: 'form-input', type: 'text', placeholder: 'Add item\u2026' });
-  const addBtn = el('button', { class: 'btn btn-secondary', type: 'button' }, '+');
-  const doAdd = () => {
-    const text = addIn.value.trim();
-    if (!text) return;
-    const fresh = collectTraitsPanel();
-    const g = fresh[catKey][gi];
-    if (catKey === 'access') {
-      g.items.push({ value: `${(g.label || '').toLowerCase()}: ${text}`, label: text });
-    } else {
-      g.items.push(text);
-    }
-    refreshTraitsPanel(fresh);
-  };
-  addBtn.addEventListener('click', doAdd);
-  addIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doAdd(); } });
-  addRow.appendChild(addIn);
-  addRow.appendChild(addBtn);
-  box.appendChild(addRow);
-
-  return box;
-}
-
-function renderTraitsPanel(data, container) {
-  container.innerHTML = '';
-  TRAITS_CATEGORIES.forEach(({ key, label }) => {
-    container.appendChild(el('div', { class: 'editor-section-title' }, label));
-
-    const list = el('div', { class: 'group-list', 'data-category': key });
-    (data[key] || []).forEach((group, gi) => list.appendChild(buildGroupBox(key, group, gi)));
-    container.appendChild(list);
-
-    const addGroupBtn = el('button', { class: 'btn btn-secondary group-add-btn', type: 'button' }, '+ Add Group');
-    addGroupBtn.addEventListener('click', () => {
-      const fresh = collectTraitsPanel();
-      fresh[key].push({ label: 'New Group', items: [] });
-      refreshTraitsPanel(fresh);
-    });
-    container.appendChild(addGroupBtn);
-  });
-}
-
-function buildTraitsManagerPanel() {
-  const wrap = el('div', { class: 'editor-form' });
-
-  const content = el('div', { id: 'traits-content' });
-  wrap.appendChild(content);
-  renderTraitsPanel({
-    general    : sortGroups(state.traits.general),
-    traditions : sortGroups(state.traits.traditions),
-    access     : sortGroups(state.traits.access)
-  }, content);
-
-  return wrap;
-}
-
-/* ============================================================
-   INIT & EVENTS
-   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ----------------------------------------------------------
-     Wire up all event listeners immediately -- before any
+     Wire up Foundation buttons immediately -- before any
      async work -- so a failed fetch can never block buttons.
      ---------------------------------------------------------- */
-
-  // Search
-  document.getElementById('search').addEventListener('input', renderList);
-
-  // Sidebar resize
-  const SIDEBAR_MIN = 140;
-  const SIDEBAR_MAX = 500;
-  const SIDEBAR_KEY = 'skd20_sidebar_width';
-  const root        = document.documentElement;
-
-  const savedWidth = localStorage.getItem(SIDEBAR_KEY);
-  if (savedWidth) root.style.setProperty('--sidebar-width', savedWidth + 'px');
-
-  const handle = document.getElementById('sidebar-handle');
-
-  // Firefox fires dragstart after mousedown even with preventDefault, intercepting mousemove.
-  handle.addEventListener('dragstart', e => e.preventDefault());
-
-  handle.addEventListener('mousedown', e => {
-    e.preventDefault();
-    document.body.style.userSelect = 'none';
-    document.body.style.cursor     = 'col-resize';
-
-    const onMove = mv => {
-      mv.preventDefault();
-      const w = Math.min(Math.max(mv.clientX, SIDEBAR_MIN), SIDEBAR_MAX);
-      root.style.setProperty('--sidebar-width', w + 'px');
-    };
-    const onUp = mv => {
-      document.body.style.userSelect = '';
-      document.body.style.cursor     = '';
-      const w = Math.min(Math.max(mv.clientX, SIDEBAR_MIN), SIDEBAR_MAX);
-      localStorage.setItem(SIDEBAR_KEY, w);
-      document.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseup',   onUp);
-    };
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup',   onUp);
-  });
-
-  // Token button -- must work even before data loads
-  document.getElementById('btn-token').addEventListener('click', openModal);
-
-  document.getElementById('btn-token-save').addEventListener('click', () => {
-    const t = document.getElementById('token-input').value.trim();
-    state.token = t;
-    if (t) localStorage.setItem('skd20_token', t);
-    else   localStorage.removeItem('skd20_token');
-    closeModal();
-    loadData();
-  });
-
-  document.getElementById('btn-token-clear').addEventListener('click', () => {
-    state.token = '';
-    localStorage.removeItem('skd20_token');
-    closeModal();
-    loadData();
-  });
-
-  document.getElementById('btn-token-cancel').addEventListener('click', closeModal);
-
-  document.getElementById('modal-overlay').addEventListener('click', e => {
-    if (e.target.id === 'modal-overlay') closeModal();
-  });
 
   // New Foundation
   document.getElementById('btn-new').addEventListener('click', () => {
@@ -2162,7 +1521,6 @@ document.addEventListener('DOMContentLoaded', () => {
       showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
     } else {
       document.getElementById('empty-state').style.display = '';
-      document.getElementById('editor').style.display      = 'none';
     }
     renderList();
     updateButtons();
@@ -2211,7 +1569,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
       } else {
         document.getElementById('empty-state').style.display = '';
-        document.getElementById('traits').style.display      = 'none';
       }
       updateButtons();
     }
@@ -2224,14 +1581,13 @@ document.addEventListener('DOMContentLoaded', () => {
       showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
     } else {
       document.getElementById('empty-state').style.display = '';
-      document.getElementById('traits').style.display      = 'none';
     }
     renderList();
     updateButtons();
   });
 
   /* ----------------------------------------------------------
-     Now load data -- errors here no longer affect buttons.
+     Load data -- errors here no longer affect buttons.
      ---------------------------------------------------------- */
   loadData();
   loadTraitsData();
