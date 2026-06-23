@@ -324,7 +324,6 @@
         "pact"
       ],
       "access": [
-        "arcane school: necromancy",
         "bloodline: undead",
         "divine domain: undeath"
       ],
@@ -338,9 +337,9 @@
       },
       "range": "",
       "area": {
-        "size": 10,
-        "shape": "",
-        "type": ""
+        "size": 5,
+        "shape": "sphere",
+        "type": "burst"
       },
       "targets": {
         "count": 1,
@@ -426,7 +425,7 @@
       },
       "sustain": [
         {
-          "variant": "Command",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 1,
@@ -438,7 +437,7 @@
           "results": null
         },
         {
-          "variant": "Command",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 3,
@@ -450,7 +449,7 @@
           "results": null
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 1,
@@ -462,7 +461,7 @@
           "results": null
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 3,
@@ -476,7 +475,7 @@
       ],
       "dismiss": [
         {
-          "variant": "Lay to Rest",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 3,
@@ -498,7 +497,7 @@
       ],
       "heightened": [
         {
-          "variant": "",
+          "name": "",
           "attribute": "range",
           "actions": {
             "count": 0,
@@ -510,7 +509,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "area size",
           "actions": {
             "count": 1,
@@ -522,7 +521,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "targets",
           "actions": {
             "count": 1,
@@ -534,7 +533,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "targets",
           "actions": {
             "count": 10,
@@ -546,7 +545,7 @@
           "results": null
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 1,
@@ -558,7 +557,7 @@
           "results": null
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 10,
@@ -570,7 +569,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 1,
@@ -582,7 +581,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 1,
@@ -594,7 +593,7 @@
           "results": null
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "targets",
           "actions": {
             "count": 1,
@@ -617,7 +616,7 @@
       "variants": [],
       "components": [
         {
-          "variant": "",
+          "name": "",
           "attribute": "cast",
           "actions": {
             "count": 1,
@@ -630,7 +629,7 @@
           "price": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "area size",
           "actions": {
             "count": 1,
@@ -643,7 +642,7 @@
           "price": 1
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "targets",
           "actions": {
             "count": 3,
@@ -656,7 +655,7 @@
           "price": 50
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 2,
@@ -669,7 +668,7 @@
           "price": 20
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 1,
@@ -682,7 +681,7 @@
           "price": 45
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 1,
@@ -695,7 +694,7 @@
           "price": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "save",
           "actions": {
             "count": 1,
@@ -708,7 +707,7 @@
           "price": 20
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "sustain",
           "actions": {
             "count": 1,
@@ -721,7 +720,7 @@
           "price": 45
         },
         {
-          "variant": "Control",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 1,
@@ -734,7 +733,7 @@
           "price": 10
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 4,
@@ -747,7 +746,7 @@
           "price": 500
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "save",
           "actions": {
             "count": 1,
