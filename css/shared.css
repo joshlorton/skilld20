@@ -61,37 +61,63 @@ body {
 #app-subtitle  { font-size: 11px; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; }
 #topbar-right  { display: flex; align-items: center; gap: 8px; }
 
-#main          { display: flex; flex: 1; overflow: hidden; }
+#main          { display: flex; flex: 1; overflow: hidden; padding-left: 40px; }
 
 /* ============================================================
-   NAV STRIP
+   NAV RAIL (left overlay; expands on hover)
    ============================================================ */
 
-#nav-strip {
-  display: flex;
-  align-items: stretch;
+#nav-rail {
+  position: fixed;
+  top: var(--topbar-h);
+  left: 0;
+  bottom: 0;
+  width: 40px;
   background: var(--bg);
-  border-bottom: 2px solid var(--heading-bg);
-  flex-shrink: 0;
-  padding: 0 14px;
-  gap: 2px;
+  border-right: 2px solid var(--heading-bg);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+  transition: width 0.2s ease;
 }
-.nav-link {
-  display: inline-flex;
+#nav-rail:hover { width: 180px; }
+
+.nav-rail-item {
+  display: flex;
   align-items: center;
-  padding: 6px 14px;
+  gap: 12px;
+  padding: 11px 0 11px 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+  transition: color 0.1s, background 0.1s;
+  flex-shrink: 0;
+}
+.nav-rail-item:hover       { color: var(--text); background: rgba(26, 143, 168, 0.15); }
+.nav-rail-item.nav-link-active {
+  color: var(--heading-fg);
+  border-left-color: var(--heading-bg);
+}
+
+.nav-rail-sym {
+  font-size: 15px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+}
+.nav-rail-label {
   font-size: 12px;
   font-weight: 700;
   font-family: var(--font-ui);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text-muted);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: color 0.1s;
+  opacity: 0;
+  transition: opacity 0.1s ease 0.1s;
 }
-.nav-link:hover      { color: var(--text); }
-.nav-link-active     { color: var(--heading-fg); border-bottom-color: var(--heading-bg); }
+#nav-rail:hover .nav-rail-label { opacity: 1; }
 
 /* ============================================================
    SIDEBAR
