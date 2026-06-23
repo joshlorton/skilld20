@@ -55,9 +55,9 @@ body {
   gap: 10px;
 }
 
-#topbar-left   { display: flex; align-items: baseline; gap: 10px; }
-#app-title     { font-size: 17px; font-weight: 900; color: var(--heading-fg); letter-spacing: 2px; text-transform: uppercase; }
-#app-subtitle  { font-size: 11px; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; }
+#topbar-left   { display: flex; align-items: center; gap: 0; flex: 1; }
+#app-title     { width: calc(44px + var(--sidebar-width) - 14px); text-align: center; flex-shrink: 0; font-size: 23px; font-weight: 900; color: var(--heading-fg); letter-spacing: 2px; text-transform: uppercase; }
+#app-subtitle  { font-size: 17px; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; }
 #topbar-right  { display: flex; align-items: center; gap: 8px; }
 
 #main          { display: flex; flex: 1; overflow: hidden; padding-left: 44px; }
@@ -85,7 +85,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 0 11px 14px;
+  padding: 8px 0 8px 14px;
   color: #0A2A22;
   text-decoration: none;
   white-space: nowrap;
@@ -103,7 +103,7 @@ body {
   text-align: center;
 }
 .nav-rail-label {
-  font-size: 12px;
+  font-size: 17px;
   font-weight: 700;
   font-family: var(--font-ui);
   text-transform: uppercase;
