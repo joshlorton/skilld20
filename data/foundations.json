@@ -769,9 +769,8 @@
       "note": "",
       "traits": [
         "fire",
-        "fire",
-        "visual",
-        "light"
+        "light",
+        "visual"
       ],
       "traditions": [
         "arcane",
