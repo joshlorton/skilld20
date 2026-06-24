@@ -769,6 +769,7 @@
       "note": "",
       "traits": [
         "fire",
+        "fire",
         "light",
         "visual"
       ],
@@ -804,7 +805,7 @@
         "count": 0,
         "type": "all fires"
       },
-      "duration": "until dismissed",
+      "duration": "until extinguished",
       "effect": {
         "options": [
           {
