@@ -1,7 +1,9 @@
 /* ============================================================
    SKILLd20 Materials -- materials.css
-   Section-specific styles. Requires shared.css.
+   Requires shared.css.
    ============================================================ */
+
+/* ── Category section ─────────────────────────────────────── */
 
 .mat-section { padding-bottom: 40px; }
 
@@ -12,59 +14,115 @@
   font-weight: 700;
   font-size: 23px;
   padding: 5px 12px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   font-family: var(--font-ui);
   letter-spacing: 2px;
 }
+
 .mat-subsource {
   color: var(--heading-fg);
   font-family: var(--font-ui);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 20px 0 8px;
+  margin: 18px 0 0;
   padding: 3px 10px;
   background: #1a1a1a;
   border-left: 3px solid var(--heading-bg);
 }
-.mat-table-wrap { overflow-x: auto; margin-bottom: 20px; }
-.mat-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
+
+/* ── Flex table ────────────────────────────────────────────── */
+
+.mat-table { width: 100%; }
+
+.mat-header-row,
+.mat-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0 8px;
+  min-width: 0;
 }
-.mat-table th {
+
+.mat-header-row {
   background: var(--heading-bg);
-  color: var(--heading-fg);
-  text-align: left;
-  padding: 5px 8px;
-  font-family: var(--font-ui);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: pointer;
+  transition: background 0.08s;
+}
+.mat-row:nth-child(even) { background: var(--row-odd); }
+.mat-row:nth-child(odd)  { background: var(--row-even); }
+.mat-row:hover           { background: rgba(26,143,168,0.18); }
+.mat-row.is-selected     { background: var(--heading-bg) !important; outline: 1px solid var(--heading-fg); }
+
+/* ── Cells ─────────────────────────────────────────────────── */
+
+.mat-cell {
+  font-size: 13px;
+  line-height: 1.4;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  flex-shrink: 0;
+}
+
+.mat-cell.flex-1  { flex: 1; flex-shrink: 1; }
+.mat-cell.flex-2  { flex: 2; flex-shrink: 1; }
+.mat-cell.flex-3  { flex: 3; flex-shrink: 1; }
+
+.mat-header-row .mat-cell {
   font-size: 10px;
+  font-family: var(--font-ui);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  white-space: nowrap;
+  color: var(--heading-fg);
 }
-.mat-table tbody tr:nth-child(odd)  { background: var(--row-odd); }
-.mat-table tbody tr:nth-child(even) { background: var(--row-even); }
-.mat-table td {
-  padding: 4px 8px;
-  vertical-align: top;
-  line-height: 1.45;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-}
-.mat-name   { font-weight: 700; white-space: nowrap; color: var(--heading-fg); min-width: 120px; }
-.mat-cat    { color: var(--text-attr); font-size: 11px; white-space: nowrap; min-width: 90px; }
-.mat-effect { max-width: 420px; }
-.mat-false  { color: var(--text-muted); font-style: italic; font-size: 12px; max-width: 180px; }
-.mat-notes  { color: var(--text-muted); font-size: 12px; max-width: 220px; }
-.mat-type   { color: var(--text-attr); font-size: 11px; white-space: nowrap; }
-.mat-bonus  { text-align: center; font-weight: 700; color: var(--mana); white-space: nowrap; }
-.mat-cost   { text-align: right; white-space: nowrap; color: var(--price); font-weight: 700; }
-.mat-desc   { max-width: 480px; }
 
-.spell-entry { border: 1px solid var(--border); margin-bottom: 12px; }
+/* ── Name cell: primary + nicknames ───────────────────────── */
+
+.mat-name { max-width: 180px; width: 180px; }
+
+.mat-name-primary {
+  font-weight: 700;
+  color: var(--heading-fg);
+  font-family: var(--font-ui);
+}
+
+.mat-name-nicks {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* ── Specific cell widths / styles ─────────────────────────── */
+
+.mat-value   { width: 100px; text-align: right; color: var(--text-attr); font-size: 11px; }
+.mat-cost    { width: 80px;  text-align: right; color: var(--price); font-weight: 700; }
+.mat-bonus   { width: 55px;  text-align: center; color: var(--mana); font-weight: 700; }
+.mat-factor  { width: 60px;  text-align: center; color: var(--text-muted); }
+.mat-type    { width: 90px;  color: var(--text-attr); font-size: 11px; }
+.mat-false   { color: var(--text-muted); font-style: italic; }
+.mat-desc    { color: var(--text); }
+.mat-effect  { color: var(--text); }
+.mat-notes   { color: var(--text-muted); font-size: 12px; }
+
+/* ── Spell cards ───────────────────────────────────────────── */
+
+.spell-entry { border: 1px solid var(--border); margin-bottom: 12px; cursor: pointer; }
+.spell-entry:hover { border-color: var(--heading-fg); }
+.spell-entry.is-selected { border-color: var(--heading-fg); background: rgba(15,96,112,0.12); }
+
 .spell-header {
   background: var(--heading-bg);
   padding: 4px 10px;
@@ -75,9 +133,20 @@
 }
 .spell-name  { font-weight: 700; font-variant: small-caps; font-size: 17px; color: var(--heading-fg); }
 .spell-level { font-size: 11px; color: var(--heading-fg); font-family: var(--font-ui); opacity: 0.8; white-space: nowrap; }
-.spell-stats {
-  font-size: 11px; color: var(--text-muted); font-family: var(--font-ui);
-  padding: 3px 10px; border-bottom: 1px solid var(--border);
-  background: var(--row-odd);
+.spell-stats { font-size: 11px; color: var(--text-muted); font-family: var(--font-ui); padding: 3px 10px; border-bottom: 1px solid var(--border); background: var(--row-odd); }
+.spell-body  { font-size: 13px; padding: 7px 10px; line-height: 1.55; background: var(--row-even); }
+
+/* ── Editor panel ──────────────────────────────────────────── */
+
+.mat-editor { padding-bottom: 40px; }
+
+.mat-ed-name-primary {
+  font-weight: 900;
+  font-variant: small-caps;
+  font-size: 19px;
+  color: var(--heading-fg);
+  padding: 6px 12px;
+  background: var(--heading-bg);
+  margin-bottom: 16px;
+  font-family: var(--font-ui);
 }
-.spell-body { font-size: 13px; padding: 7px 10px; line-height: 1.55; background: var(--row-even); }
