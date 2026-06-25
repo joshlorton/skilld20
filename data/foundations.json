@@ -3357,15 +3357,15 @@
       "components": []
     },
     {
-      "name": "Charm",
+      "name": "Competence",
       "mana": 4,
       "rarity": "common",
       "difficulty": "average",
       "image": "",
       "note": "",
       "traits": [
-        "emotion",
-        "mental"
+        "mental",
+        "enhancement"
       ],
       "traditions": [
         "arcane",
@@ -3375,7 +3375,7 @@
         "pact"
       ],
       "access": [
-        "bloodline: fey"
+        "divine domain: knowledge"
       ],
       "cast": {
         "actions": {
