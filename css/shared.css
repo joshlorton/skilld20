@@ -136,6 +136,19 @@ body {
 }
 #sidebar-handle:hover { background: var(--heading-fg); }
 
+#sidebar-actions {
+  display: flex;
+  gap: 6px;
+  padding: 8px 8px 4px;
+  flex-shrink: 0;
+}
+#sidebar-actions .btn {
+  flex: 1;
+  text-align: center;
+  padding: 5px 4px;
+  font-size: 12px;
+}
+
 #search-wrap { padding: 8px; border-bottom: 1px solid var(--border); }
 
 #search {
