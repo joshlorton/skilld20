@@ -2,18 +2,26 @@
   "gems": [
     {
       "name": "Agni Mani",
-      "nicknames": [],
-      "physical_description": "This black, irregularly shaped glasslike ornamental stone has fallen from the sky in meteoritic form to crash among the sands of Anauroch and other Faerûnian deserts.",
+      "nicknames": [
+        "Agni Mani",
+        "Pearl of Fire",
+        "Pearl of the Divine Fire"
+      ],
+      "physical_description": "meteoric glass; dark charcoal grey-black to a smoky translucent color; very rare; hardness 5.5-7",
       "type": "Ornamental",
-      "location": "",
-      "use": "",
-      "effect": "",
-      "traits": [],
-      "legacy_use": "It is used in garments and the crafting of magical items because in all blasts (such as the explosions caused by fireballs and beads of force), agni manis vaporize but protect beings wearing or carrying them by negating 1d4 points of damage per agni mani stone.",
-      "legacy_effect": "",
-      "legacy_belief": "",
-      "legacy_notes": "",
-      "source": "volos"
+      "location": "sands: beaches, deserts, shallow waters",
+      "use": "clothing and worn items; consumable",
+      "effect": "conversion: resistance 2 vs all burst damage; mental enhancement, competence, confidence, free will",
+      "traits": [
+        "Agni Manitite",
+        "Pearl of Fire",
+        "Pearl of the Divine Fire"
+      ],
+      "legacy_use": "garments and the crafting of magical items",
+      "legacy_effect": "in all blasts (such as the explosions caused by fireballs and beads of force), agni manis vaporize but protect beings wearing or carrying them by negating 1d4 points of damage per agni mani stone",
+      "legacy_belief": "-",
+      "legacy_notes": "This black, irregularly shaped glasslike ornamental stone has fallen from the sky in meteoritic form to crash among the sands of Anauroch and other Faerûnian deserts.",
+      "source": "V'sGtATM"
     },
     {
       "name": "Alabaster",
@@ -28,7 +36,7 @@
       "legacy_effect": "While able to be formed into vessels that are impervious to moisture and evaporation in the short run, and so often used as a container for potions, unguents, and ointments, alabaster has no known magical properties of its own.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Alestone",
@@ -45,7 +53,7 @@
       "legacy_effect": "It is also known to some adventurers as a \"scatterer\" because it can deflect solid objects that approach it very quickly (such as fired arrows, slung stones, and other hurled items). This forces any being trying to catch or snatch up an alestone to make a successful Dexterity ability check to perform the desired action and also increases the effective Armor Class of a being wearing or carrying an alestone on the side from which a projectile attack) is coming by 1. Increasing the amount of alestone does not further augment this protection.",
       "legacy_belief": "",
       "legacy_notes": "More is not better — only one stone's protection applies regardless of quantity.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Alexandrite",
@@ -60,7 +68,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Appears greenish in daylight, reddish under magical light.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Algae",
@@ -77,7 +85,7 @@
       "legacy_effect": "Algae resists changes in shape or state, and all beings or items wearing or otherwise in contact with any algae make saving throws against polymorph or shape-changing spells, spell-like powers, similar psionic sciences or devotions at a +2 bonus; they must save even if they are willing to be transformed.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Amaratha",
@@ -94,7 +102,7 @@
       "legacy_effect": "Shieldstone attracts and absorbs electricity in a 10-foot radius and can be used to protect those who wear it or accompany the wearer from lightning and electrical discharges. Static charges and the like are continuously absorbed by shieldstones without altering them in any way, but a piece of amaratha automatically neutralizes even the most sudden and powerful of electrical effects (such as an electric eel shock, lightning bolt, or the like). A 1-inch-diameter sphere of shieldstone absorbs up to 6 points of electrical damage; in absorbing the charge, the shieldstone is consumed, vaporizing at the rate of a 1-inch-diameter volume per 6 points of damage absorbed. (A 1-inch-diameter stone disappears, and a 2-inch-diameter stone becomes a 1-inch-diameter stone, etc.) If an electrical discharge exceeds the capacity of a shieldstone or group of shieldstones (such as several set in a necklace) to absorb it, all of the amarathas vaporize and the excess points of damage are suffered by those creatures or objects in the vicinity who would have normally been the targets of the discharge.",
       "legacy_belief": "",
       "legacy_notes": "Too soft for exposed ring or staff settings; suited to protected locations on personal jewelry or ornamental armor.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Amber",
@@ -109,7 +117,7 @@
       "legacy_effect": "Amber is often used as a good luck charm to ward off diseases and plague and as a component of spells and magical items with healing- or diseased-related effects. (There is no evidence that it has any real power to protect against such afflictions.) In magical uses, amber serves as a spell component and spell ink ingredient in most enchantments that involve lightning and electrical discharges, from shocking grasp through chain lightning.",
       "legacy_belief": "Falsely believed to ward off disease and plague.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Amethyst",
@@ -124,7 +132,7 @@
       "legacy_effect": "Amethyst is one of the \"nine secrets\"types of gemstones that can be transformed into ioun stones by the proper spellsand also serves as ink ingredient or spell component in magics involving the communication of messages (such as magic mouth spells) and the augmentation of Wisdom. Amethyst represents safety when seen by seers, and romance when seen in the dreams of women. Magic-workers should use it at mornbright.28",
       "legacy_belief": "Falsely said to ward off drunkenness and neutralize poison.",
       "legacy_notes": "Represents safety in seer visions; romance when seen in women's dreams. Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Andar",
@@ -141,7 +149,7 @@
       "legacy_effect": "Andars are known to alchemists and adventurers as the easy half of the two alternative ingredients for a potion of treasure finding. They must be powdered and then boiled with a dragon scale of amethyst, gold, or silver; the scale is the difficult half of the two power ingredients, which must then be combined with an oily base using the process and enchantments that give the potion its powers. Angelar's Skin: Angelar's skin (also known as aasimon's skin) is a fine pink coral suitable for use in jewelry. This fancy \"stone\" is usually found in shallow tropical seas upon isolated reefs or atolls. It is delicate and easily shattered unless properly treated and mounted. Angelar's skin is slowly sun-baked on large, flat rocks to drive off water and tiny dead animals present within it that otherwise would give it an offensive odor and reduce its value for adornment. Found in shallow tropical seas on isolated reefs and atolls, Angelar's skin is associated in legend with the sorcerer Angelar, who became a wereshark (see the MONSTROUS COMPENDIUM® Annual Volume Two) after eating this powdered coral, which had been mixed with sea water, and then receiving the cast spells polymorph self, water breathing, and Angelar's own wizard version of the priest free action spell. Angelar survived the transformation, emerging as a long-lived human who has complete control over his were-transformations into shark form; presumably, other wizards or individuals able to hire others to cast the necessary spells can, too.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Angélar's Skin",
@@ -158,7 +166,7 @@
       "legacy_effect": "Found in shallow tropical seas on isolated reefs and atolls, Angelar's skin is associated in legend with the sorcerer Angelar, who became a wereshark (see the MONSTROUS COMPENDIUM® Annual Volume Two) after eating this powdered coral, which had been mixed with sea water, and then receiving the cast spells polymorph self, water breathing, and Angelar's own wizard version of the priest free action spell. Angelar survived the transformation, emerging as a long-lived human who has complete control over his were-transformations into shark form; presumably, other wizards or individuals able to hire others to cast the necessary spells can, too.",
       "legacy_belief": "",
       "legacy_notes": "Named for the sorcerer Angélar who underwent the transformation. Pink coral, shallow tropical reefs.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Aquamarine",
@@ -173,7 +181,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Archon",
@@ -191,7 +199,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Also see Fluorspar (the gem-grade variety).",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Augelite",
@@ -206,7 +214,7 @@
       "legacy_effect": "The damage done by a spell is lessened by 1 point per die within 10 feet of any augelite stone, and saving throws vs. all spells and magical effects are augmented by a +2 bonus within the same area of effect.",
       "legacy_belief": "",
       "legacy_notes": "Cannot be carved into delicate shapes without splitting.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Aventurine",
@@ -223,7 +231,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Azurite",
@@ -238,7 +246,7 @@
       "legacy_effect": "Its powers are akin to those of malachite but more restricted: Azurite prevents all heat damage to any being in direct (flesh-to-gemstone) contact with it. This lessens most fire and flame damage by half. Among certain Netherese, Halruaan, Myth Drannan, and (later) Calishite families, lucky tokens of azurite were tied to the body in hidden places (such as the armpits) for protective reasons (to lessen damage while cooking, for example).",
       "legacy_belief": "",
       "legacy_notes": "Related to malachite but restricted to fire protection only.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Banded Agate",
@@ -253,7 +261,7 @@
       "legacy_effect": "Although it does not increase the efficacy of sleep-related potions or spells, banded agate powder is used as a spell ink ingredient and a potion base.",
       "legacy_belief": "Powder not actually effective as a sleep aid on its own.",
       "legacy_notes": "Also used as a calming \"soothe stone\" by merchants during negotiations.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Beljuril",
@@ -270,7 +278,7 @@
       "legacy_effect": "At random, beljurils absorb some small amounts of heat, light, and vibratory energy from their surroundings (the area within a 30-foot radius around them) without negating that energy's normal effects. Periodically, they then discharge this stored energy in a sparkling flash. Beljurils usually flash about once per hour, but rates vary from stone to stone, regardless of size or age and for no known reason. Their discharge is silent and cold; the sparks given off are few and do not carry a strong electrical jolt. Beljurils are sometimes used in experiments by alchemists, sages, and artisans, but have not yet proven useful as a power source, but wands of lightning and other magical items that discharge electricity) fashioned with beljuril chips at their ends deal an additional 1d6 points of damage beyond the normal 6d6, and powdered beljuril is a prized ingredient in spell ink formulae and item enchanting baths for all things magical concerned with gathering, storing, or conducting electricity. The gemstones are often used for warning lamps or night beacons by the wealthy.",
       "legacy_belief": "",
       "legacy_notes": "Usually fist-sized; extremely hard to cut. Flash rate varies randomly regardless of size.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Black Opal",
@@ -285,7 +293,7 @@
       "legacy_effect": "Those who work with magic know black opal as a potent explosive: When powdered and mixed with powdered orl and then introduced to any open flame in a particular way, the result is a violent explosion that does 6d8 points of damage to all within 10 feet, 4d8 to all 11 to 20 feet distant, and 2d8 to all 21 to 30 feet distant. A saving throw vs. petrification is allowed to sustain only half damage, and whether owner's save or not, items must make a successful saving throw vs. disintegration if within 10 feet or against crushing blow if 11 to 20 feet away or be destroyed. Items need not save if beyond 20 feet from the blast.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Black Sapphire",
@@ -300,7 +308,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Mostly from the Great Rift; prized by dwarves.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Bloodstone",
@@ -315,7 +323,7 @@
       "legacy_effect": "The magical uses of bloodstone are many. It has long been known that a single bloodstone and a leafy spring of the herb heliotrope can serve as alternative material components for the invisibility spell without altering the magic in any way, but fewer priests and wizards by far know that the gemstone can serve as an alternative material component in most divination and stormrelated magics. A bloodstone laid on an open wound acts as a bloodstaunch, closing the wound, banishing any disease or blood poisoning, and stopping bleeding instantly. It cannot heal damage that has already occurred and dissolves in conferring this boon. Bloodstone healing only works on a particular being once per month (lunar cycle).",
       "legacy_belief": "",
       "legacy_notes": "Combined with a sprig of heliotrope: full alternative for the invisibility spell.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Bluestone",
@@ -332,7 +340,7 @@
       "legacy_effect": "It can be found in old and weathered rocky environments such as the Galena Mountains, the Storm Horns, and the Thunder Peaks, where it is plentiful. It is usually cut cabochon or tumbled in barrels of gravel and sand, because it is very rarely hard enough to be cut in facets. Powdered bluestone added to plain water lit by any magical radiance yields a potion that acts either as a neutralize poison or heals 1d2 points of damage. If added to any magical healing potion, it adds both a neutralize poison function and an additional 1d4 points of restorative boon to the draft.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Blue Quartz",
@@ -347,7 +355,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Boakhar",
@@ -364,7 +372,7 @@
       "legacy_effect": "Such jets are 7 feet long, last for 1 round, consume the gemstones, ignite flammable substances they touch (but never anything touching the gemstone they come from), and deal 2d4+2 points of damage to creatures that come into contact with them.",
       "legacy_belief": "",
       "legacy_notes": "Found in old Sembian/Calishite furniture inlays. Ignites flammable substances touched, never the item the gem came from.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Brandeen",
@@ -381,7 +389,7 @@
       "legacy_effect": "Brandeen's magical use is as a cure for deafness. It is powdered and added to the sap of any living hardwood tree, a message spell is cast on the mixture (the message consisting only of vowel sound utterances). The resultant potion, which must not see sunlight unprotected, must then be drunk within a day.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Carnelian",
@@ -398,7 +406,7 @@
       "legacy_effect": "Though seers consider that dream visions of carnelians mean misfortune will come, the gemstone is used by mages to make luckstones and items that protect against evil or harm, and as a material component in spells concerned with the same ends.29",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Chalcedony",
@@ -413,7 +421,7 @@
       "legacy_effect": "Chalcedony is used in the making of magical items that ward against undead or have necromantic powers, particularly when human bone is to be avoided because the undead to be controlled or resisted are nonhuman in origin. Powdered chalcedony can be enchanted with a simple spell to make it a tasteless, safe antidote to alcoholso that when a pinch is added to a drink, no drunkenness results. (Spies and covert agents often use this powder to remain sober during long feasts.)",
       "legacy_belief": "",
       "legacy_notes": "Chalcedony is a broad category including carnelians, chrysoprase, and agates; \"chalcedony\" used specifically refers to the white/gray/black uncolored variety.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Chrysoberyl",
@@ -428,7 +436,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Chrysocolla",
@@ -443,7 +451,7 @@
       "legacy_effect": "It neutralizes alcohol upon contact and is also a valued ingredient in animate dead spell inks and related castings (often used as a powder thrown into a fire).",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Chrysoprase",
@@ -460,7 +468,7 @@
       "legacy_effect": "It is also one of the \"nine secrets\" (types of gemstones that can be transformed into ioun stones by the proper spells).",
       "legacy_belief": "",
       "legacy_notes": "Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Citrine",
@@ -477,7 +485,7 @@
       "legacy_effect": "It has the magical property of preventing magic jar attacks from affecting any being wearing or carrying a citrine. Conversely, whole citrines are a favored gemstone for use as the \"jar\" itself in the casting of magic jar spells. been properly enspelled can be sacrificed by a being touching it to gain luck. The gem vanishes in a flash of light, and a saving throw, system shock or resurrection survival roll, bend bars/lift gates roll, or ability check that has failed can be attempted again at a +2 or 20% bonus. Elminsrer: Chrysoberyl dust, mixed with the juice of a certain crushed flower, is a sure medicine against mummy rot and all molds and fungal growths, stopping them instantly when directly applied to an affected body part. Any weapon forged with chrysoberyl chips or stones melted into its metal (accompanied by the appropriate and little-known enchantments) can strike ethereal and gaseous foes at all times.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Clelophane",
@@ -492,7 +500,7 @@
       "legacy_effect": "The only known magical property of this gemstone is the \"echo effect\": If a spell is cast by or on a being wearing, touching, or carrying a clelophane, that gemstone is 70% likely to record a still and silent mental three-dimensional image of the being, their surroundings, and the situation. This image is in turn 70% likely to obliterate any and all previous echoes recorded by the stone; otherwise, a new image is added to any previously recorded images. Such echoes can be called forth repeatedly from the stone by grasping it and mentally willing them to appear. They manifest beside the stone, visible for all to see, and are slightly luminous (in other words, they can be seen in the dark and even used as a very dim light source by those lost in darkness); such echo displays last for 3 rounds. Echoes can be called up as often as desired and persist until replaced, even if hundreds of years pass. They are always of perfect lighting and sharp clarity, even if the original situation was confusing or obscured, and the scene they originally record fills a 10-foot-radius globe centered on the stone, appearing in at a similar size next to the stone when replayed.",
       "legacy_belief": "",
       "legacy_notes": "Images persist indefinitely, always at perfect clarity even if the original scene was confused.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Coral",
@@ -507,7 +515,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Pink and crimson varieties used as gemstones.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Corstal",
@@ -524,7 +532,7 @@
       "legacy_effect": "Worn for adornment mainly by nomadic tribes and poor folk, corstals have only one known magical use: When touched by a magical radiance of any sort (from a fiery blast to a faerie fire), they mirror the hue and intensity of that light within themselves, becoming light sources for 2dl2 rounds before the radiance suddenly fades away again.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Crown of Silver",
@@ -541,7 +549,7 @@
       "legacy_effect": "It sees use in spell ink and as a casting component of the everbright spell, and can also serve in place of iron filings in most castings (such as the clerical protection from evil magic).",
       "legacy_belief": "",
       "legacy_notes": "Black metallic bands within the stone.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Datchas",
@@ -558,7 +566,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Diamond",
@@ -573,7 +581,7 @@
       "legacy_effect": "Diamond dust is almost a universal ingredient in spell ink formulae, serving whenever one lacks a substance specific to the magic at hand. It is particularly suited to spells concerning vision, divination, or locating objects. The best gems of seeing are diamonds, and diamonds are essential adornments in a helm of brilliance. Conversely, diamonds worn at the throat or on the head ward off dream visions and enchantment/charm magics.31 In some magics, diamond dust is poisonous, but when combined with certain substances in a secret process, it creates both sweet water potions and empowers both spell inks and item baths concerned with the neutralization of poison. Diamonds are best used in alchemical and sorcerous work at highsun.32",
       "legacy_belief": "",
       "legacy_notes": "Powdered diamond used at noon: increases magical working efficacy by 2 or 25%.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Dioptase",
@@ -590,7 +598,7 @@
       "legacy_effect": "In two turns dioptase dissolves in liquids that have already been enchanted by any spell effectand each gemstone that is so dissolved restores 1 hit point of damage to a creature who drinks the resulting mixture. Few folk in the Realms know of this alternative sort of potion of healing, but word is spreading.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Disthene",
@@ -607,7 +615,7 @@
       "legacy_effect": "(Treat doubled base value versions of this stone as this fine blue variety.) Disthene sees magical use as a powdered contact with the neck or head gives a +2 bonus to all saving throws vs. enchantment/charm spells and equivalent psionic sciences and devotions. ingredient in spell inks and the spells themselves that involve controlled fiery effects (in other words, shaped flames as opposed to explosive).",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Emerald",
@@ -622,7 +630,7 @@
       "legacy_effect": "It is used for adornment, in spell ink formulae, as a spell component, in item enchantment baths, and (as whole, mounted gemstones) as a discharge point in items concerned with fertility, health, and growth. Emerald breaks to reveal falsehood and concealed hatred, and many kings have worn rings carved entirely of emerald to parleys to detect treachery and deceit without the use of spells. When employed in complex magical processes, emerald is best used at \"waterclock.\"33",
       "legacy_belief": "",
       "legacy_notes": "Kings wear emerald rings at parleys to detect treachery without a spell.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Epidote",
@@ -637,7 +645,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Euclase",
@@ -652,7 +660,7 @@
       "legacy_effect": "(Especially valuable samples of euclase are blue euclase.) Euclase reacts violently to magic: If a spell is cast on one of these gemstones or on a being wearing or bearing one, a flame strike identical to the area of effect of the priest spell of that name roars up from the gemstone, consuming it and dealing the usual 6d8 points of damage, or 3d8 if a successful saving throw is made, to beings in contact with it.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Eye Agate",
@@ -667,7 +675,7 @@
       "legacy_effect": "",
       "legacy_belief": "Powder does not actually improve sleep drafts' effectiveness.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Fire Agate",
@@ -682,7 +690,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Fire Opal",
@@ -697,7 +705,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Flamedance",
@@ -714,7 +722,7 @@
       "legacy_effect": "A very pale yellow or green in hue, it sees magical use for the property for which it is named: It can withstand any fire, protecting items set with it and beings wearing it alike.35",
       "legacy_belief": "",
       "legacy_notes": "Very rare; hard; ideal for carving.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Fluorspar",
@@ -731,7 +739,7 @@
       "legacy_effect": "In all of its forms, fluorspar has the same properties: It glows with a faint greenish radiance if magically invisible (not disguised or ethereal) objects or creatures come within 20 feet of it.",
       "legacy_belief": "",
       "legacy_notes": "Pink/red varieties (\"cabra stones\") are the rare, more valuable type.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Frost Agate",
@@ -748,7 +756,7 @@
       "legacy_effect": "In all potions, as it seems to almost ensure peaceful (in other words, nonpoisonous and nonexplosive) potion miscibility.",
       "legacy_belief": "",
       "legacy_notes": "Skilled cutting required to produce faceted version without splitting.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Garnet",
@@ -763,7 +771,7 @@
       "legacy_effect": "",
       "legacy_belief": "Generally considered useless in magical work.",
       "legacy_notes": "Thought by some fading faiths to be divine avatar's hardened blood.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Gold Sheen",
@@ -780,7 +788,7 @@
       "legacy_effect": "Added to any type of spell that creates a radiance, gold sheen allows the caster to precisely control the hue of the spell effect, and when added to invisibility magics, it increases the duration of such spells by 1d3 rounds.",
       "legacy_belief": "",
       "legacy_notes": "Also see Sheen (the broader obsidian variety).",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Goldline",
@@ -797,7 +805,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Greenstone",
@@ -814,7 +822,7 @@
       "legacy_effect": "Greenstones of exceptional size are made into greenstone amulets (protective devices that make the wearer immune to many mind-influencing spells, based on the protections of an ongoing mind blank spell), but not all greenstone jewelry is so enchanted. Often a ruse involving nonmagical greenstones and Nystul's magic aura makes such jewelry appear valuable when it is actually worthless. The smallest and most flawed greenstones are ground to powder for use as material components in spells that resist mental attacking magic and other protective and barrier spells. It should be used with care: There are reports of it completely negating certain spells it was added to. It is also one of the \"nine secrets\" (types of gemstones that can be transformed into ioun stones by the proper spells).37",
       "legacy_belief": "Nystul's magic aura is often used on cheap stones to fake valuable amulets.",
       "legacy_notes": "Powdered greenstone must be used with care; reports of it completely negating some spells. Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hambergyle",
@@ -831,7 +839,7 @@
       "legacy_effect": "Its crystals can be held in a flame and a light spell pronounced over them to create (at the cost of the gemstone, which vaporizes) a continual light effect.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Heliodor",
@@ -848,7 +856,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hematite",
@@ -863,7 +871,7 @@
       "legacy_effect": "Even among powerful mages, few Faerûnians know that hematite is one of the \"nine secrets\" (gemstone varieties that can be transformed into ioun stones by the proper spells).",
       "legacy_belief": "",
       "legacy_notes": "Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Horn Coral",
@@ -880,7 +888,7 @@
       "legacy_effect": "Those who wear horn coral and touch it with one of their own tears can call forth its magical property (as the cost of the gemstone, which dissolves when the effect ceases38): It empowers creatures to water walk (as the 3rd-level priest spell) for up to 6 turns at a time.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hornbill Ivory",
@@ -895,7 +903,7 @@
       "legacy_effect": "This tough substance can be employed as a material component in spells and in the making of certain magical items and tokens concerned with flight.",
       "legacy_belief": "",
       "legacy_notes": "From hornbill beaks, not true ivory.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hyaline",
@@ -912,7 +920,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hydrophane",
@@ -927,7 +935,7 @@
       "legacy_effect": "When used as an additional component in the casting of color spray spells, hydrophanes forces creatures to make a saving throw vs. the spell at a -1 penalty.",
       "legacy_belief": "",
       "legacy_notes": "Opaque white when dry; transparent and iridescent when soaked in water.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hypersthene",
@@ -944,7 +952,7 @@
       "legacy_effect": "Hypersthenes have the magical property of wyvern warding: If worn or carried by any being who encounters a priest's wyvern watch spell, they prevent their bearer from being seen or struck by the spell, so that the spell maintains its vigilance, but the gembearer can freely pass its warded area.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Iol",
@@ -963,7 +971,7 @@
       "legacy_effect": "Iols have strong associations with magic in Faerûnian legend, but few folk know their true magical use: They are the best Volo: Some special pieces of horn coral (the key to identifying them I do not know) do not dissolve but become inert for a turn, after which they may be reactivated. sort of gemstone to transform (with the proper, secret spells) into ioun stones.",
       "legacy_belief": "",
       "legacy_notes": "Commonly displays a color-change effect when viewed from different angles. Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Iris Agate",
@@ -978,7 +986,7 @@
       "legacy_effect": "Its sole magical property is that of spell reflection: A spell that is hurled against a screen or statue of this material rebounds right back at its source. For this reason, false guard statues or silhouettes of iris agate are sometimes placed in vault doorways when magical attacks are expected.",
       "legacy_belief": "",
       "legacy_notes": "Sometimes placed as false guard statues or silhouettes in vault doorways.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Irtios",
@@ -995,7 +1003,7 @@
       "legacy_effect": "Dragon teeth and the fangs of certain creatures of a magical nature (such as displacer beasts) have magical uses and properties, but the ivory of common beasts generally does not. Unicorn horns (alicorns) are technically not ivory, since they are not teeth. It should also be noted that unicorn horns are not used for ornamental carving and that they command prices of thousands of gold pieces from alchemists, as they are held to have mystical properties including the abilities to purify water and food, cure poisoning and disease, return the dead to life, and convey youth and immortality. On a cautionary note, certain Faerûnian religionsespecially followers of Mielikki and Lurue the Unicorntake great exception to people hunting unicorns for their hornsor even owning unicorn horns, except in special circumstances. They have even been known to put to death people convicted of the evil act of killing unicorns.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Ivory",
@@ -1012,7 +1020,7 @@
       "legacy_effect": "This tough substance can be employed as a material component in spells and in the making of certain magical items and tokens concerned with flight.",
       "legacy_belief": "",
       "legacy_notes": "Unicorn horn (alicorn) is not ivory; commands thousands of gp from alchemists.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Jacinth",
@@ -1030,7 +1038,7 @@
       "legacy_effect": "Powdered or whole jacinth is a valued ingredient in the making of potions and items dedicated to protection against fire, such as rings of fire resistance.",
       "legacy_belief": "",
       "legacy_notes": "Found only in the Realms; other crystal spheres have an inferior garnet substitute.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Jade",
@@ -1048,7 +1056,7 @@
       "legacy_effect": "In magical work, powdered jade is the preferred base for spell inks and used as a substitute for all nonorganic spell components for all illusion/phantasm spells. It is an essential ingredient in enchantment baths for magical items that cast illusions as any of their functionsand when so used, should initially be put into such a mixture at candleglass time.39",
       "legacy_belief": "Said to enhance musical ability — when certain simple enchantments are laid upon it, jade actually confers perfect pitch and sharp hearing to all who wear it.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Jargoon",
@@ -1063,7 +1071,7 @@
       "legacy_effect": "Jargoons have a popular use in magic: If a magic missile spell is cast into a jargoon held in the caster's hand, the gemstone explodes violently (dealing the caster 1d4+2 points of damage), but the number of missiles hurled forth by the spell is doubled. In damage, unerring aim, and other specifics, they conform in all respects to the missiles created by an unaltered magic missile spell effect.",
       "legacy_belief": "Falsely credited with preventing a lycanthrope from changing out of human form.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Jasmal",
@@ -1078,7 +1086,7 @@
       "legacy_effect": "It is found in small veins or, very rarely, larger seam deposits in the Thunder Peaks and the Spine of the World mountains. When polished, jasmals catch sunlight or torchlight and give off haloes of amber light, although they themselves remain transparent and colorless. Jasmals are usually cabochon cut and thus appear as small, glassy globes of orange light when worn on cloaks or tunics. Jasmal is so hard that it can hold a cutting edge and even be worked into small nonmetallic weapons or mounted in a row along a blade. In this latter use, it is prized for its ability to take multiple or complex enchantments that the strike of the blade can visit upon victims whenever the jasmals strike for damage. Powdered jasmal is also a favored ingredient in enchantment baths for magical armor and in the ink formula for the spell Veladar's vambrace.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Jasper",
@@ -1093,7 +1101,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Preferred stone for both periapts of foul rotting and periapts of proof against poison.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Jet",
@@ -1108,7 +1116,7 @@
       "legacy_effect": "",
       "legacy_belief": "Stone of mourning and sorrow; fell reputation partly due to magic jar use.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Kings Tears",
@@ -1126,7 +1134,7 @@
       "legacy_effect": "Finally, kings' tears have been rumored to be tied to the process of creating a philosopher's stone, among other magical items.",
       "legacy_belief": "",
       "legacy_notes": "Extremely rare; unique to the Realms; never yet cut, fractured, or chipped by any means. Each contains a vivid, unchanging scene from a long-dead ruler's life.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Kornerupine",
@@ -1141,7 +1149,7 @@
       "legacy_effect": "Brown kornerupines have no known magical properties, but if a magic mouth spell is cast on a green kornerupine and the last word of the incantation is left unsaid, the stone reveals a potent property. It can be carried indefinitely, and when the caster later touches it and utters the missing last word of the spell, the stone does not grow a mouth to utter the usual message, but instead records all sounds that can be heard within 20 feet of it for 4 rounds after the caster says the final spell word. Any number of beings may make the sounds, and noises made purely by items are also be heard when the sounds are called forth and \"played back\" for other listeners). The stone holds these sounds foreveror until it is destroyed. It cannot be used to record other sounds, nor can the sounds be magically silenced or altered without shattering the stone. Such stones can and have been used to record solemn agreements, promises, speeches, whispering conspirators and lovers, and bardic performances. Depending on what a stone has recorded, it may be worth many tens of thousands of gold pieces and that price paid gladly. (After all, what price can one put on words of love from a now-dead beloved or a superb ballad or instrumental minstrelry performed by a famous bard?) Laeral's Tears: Named for the famous sorceress Laeral, these soft, brittle, colorless fancy stone crystals tend to be large and to keep a glossy, magnificent finish. This stone is the rarest and leastknown of the \"nine secrets\" (types of gemstones that can be transformed into ioun stones by the proper spells) and has another important magical use: If prepared by a complex, secret process known to a few senior witches of Rashemen (and involving the casting of many spells), these gemstones can absorb the harm done to warriors who wear them into battle until the stones shatter, exhausted (whereupon they cease to instantly heal all wounds, leaving the warriors to fend for themselves).40",
       "legacy_belief": "Brown variety has no known properties.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Laeral's Tears",
@@ -1158,7 +1166,7 @@
       "legacy_effect": "This stone is the rarest and leastknown of the \"nine secrets\" (types of gemstones that can be transformed into ioun stones by the proper spells) and has another important magical use: If prepared by a complex, secret process known to a few senior witches of Rashemen (and involving the casting of many spells), these gemstones can absorb the harm done to warriors who wear them into battle until the stones shatter, exhausted (whereupon they cease to instantly heal all wounds, leaving the warriors to fend for themselves).40",
       "legacy_belief": "",
       "legacy_notes": "Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Lapis Lazuli",
@@ -1173,7 +1181,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "The deeper the blue, the more valuable.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Lumachella",
@@ -1190,7 +1198,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Luriyl",
@@ -1207,7 +1215,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Luspeel",
@@ -1224,7 +1232,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Ferromagnetic; used in temple furnishings for dramatic effect.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Lynx Eye",
@@ -1241,7 +1249,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Green-flash variety of labradorite.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Malachite",
@@ -1256,7 +1264,7 @@
       "legacy_effect": "It is (falsely) rumored to prevent falls, and to help sales is often set on rings of feather falling and the like as an ornament, Its true magical use is as a material component in priest spells of the elemental sphere and wizard spells concerned with ice, cold, fire, and heat. Powdered, it is a valued ingredient in enchantment baths for items concerned with warmth, fire resistance, and cold resistance.",
       "legacy_belief": "Falsely rumored to prevent falls.",
       "legacy_notes": "Often set on rings of feather falling to exploit the false rumor for sales.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Malacon",
@@ -1271,7 +1279,7 @@
       "legacy_effect": "Malacons have an unusual magical use: Those who know how to modify the castings of their spells can choose to cast them into a malacon for release later in one of three ways: when the gemstone is cracked or destroyed by being dropped or a struck; when the caster touches the gemstone and wills the spell to come forth (whereupon the gemstone vaporizes and the magic is launched under full control of the caster); or when a period of time set by the caster during the initial casting expires (whereupon the gemstone dwindles away to nothing and the magic within is launched in accordanceas to the target, specific location of the area of effect, and so onwith the directions set down during the initial casting). Malacons can thus be used to create death traps, unpleasant gifts, or turn ornately furnished rooms into defensive strongholds for the caster. Note that specialized spells are necessary to call forth a magical spell from a malacon if one is not the being who originally endowed it with a spell.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Marble",
@@ -1288,7 +1296,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Meerschaum",
@@ -1305,7 +1313,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Rumors of clairaudience and wizard eye casting through prepared distant meerschaum, and of necromantic uses, remain unconfirmed.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Mellochrysos",
@@ -1320,7 +1328,7 @@
       "legacy_effect": "Its magical use comes from its reaction to a light spell: If a mellochrysos stone is held in an open flame within a day of a light spell having been cast on the gemstone (the spell can also have just been cast on the gemstone or have been cast some time ago but still be in effect), a single flame rises from the gemstone. The gemstone fuels that flame for up to 12 hours, dwindling away very slowlyand the flame thus produced is not extinguished by wind (including magical breezes) or water (even immersion). An adventurer can therefore carry a flame while swimming underwater or employ the gemstone as a long-term light source. It is also ideal for starting firesparticularly fires designed to harm enemies or their propertybecause the ignited gemstone can easily be thrown into the midst of flammables or hidden away where its flame is not discovered until too late. Would-be arsonists should be aware that there is a counter to such gemstone flames: the gemstone phenalope.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Microcline",
@@ -1337,7 +1345,7 @@
       "legacy_effect": "Powdered and dissolved in the sap of any deciduous tree, microcline is the most versatile and abundant alternative to octopus and squid ink as a base for spell inks.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Moonbar",
@@ -1352,7 +1360,7 @@
       "legacy_effect": "Powdered moonbar is used in ink formulae, potions, and spell components in magic concerned with the control, healing (or cobbling together of disparate bones), and creation of undead. It can serve in the place of important but missing ingredients relating to necromancy.",
       "legacy_belief": "",
       "legacy_notes": "Naturally large rectangular crystals with smooth surfaces.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Moonstone",
@@ -1367,7 +1375,7 @@
       "legacy_effect": "Folk legends say (falsely) that merely seeing this stone forces a lycanthrope into his or her animal form, but magical items that control lycanthropy, affect lycanthropes, or protect against lycanthropy often use moonstones as ornamentation. To dream of moonstones, seers say, is a warning of danger. These semiprecious stones are also considered sacred to Selûne in her faith. The only true magical uses of this gemstone are (in powdered form) as a material component in many spells involving barriers or abjurations, and in many evocation spells as a source of magical storage and sudden, thrusting redirection of that energy. With careful experimentation as to amounts, a wizard can substitute moonstones for many of the nonorganic material components called for in such spells. (This is the so-called \"moonstone magic\" of the sorcerer Pelathyon Hawkryn of Impiltur, whose family owned rich moonstone mines.)",
       "legacy_belief": "Falsely said to force lycanthropes into animal form when seen.",
       "legacy_notes": "Considered sacred to Selûne. Glows faintly for about an hour in darkness after light is removed.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Moss Agate",
@@ -1382,7 +1390,7 @@
       "legacy_effect": "Ground into a fine powder, it serves as an ingredient in medicines that bring on enforced deep sleep, and in the making of all potions, it causes substances that normally clash to mix together in stable tranquillity and so is always a safe additive, removing any possibility of an explosion or of a failed potion being poisonous.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Mykaro",
@@ -1399,7 +1407,7 @@
       "legacy_effect": "The cure takes effect in 1d4+1 rounds unless eyeballs must be regenerated, which slows the remedy until it takes 1 turn.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Mynteer",
@@ -1416,7 +1424,7 @@
       "legacy_effect": "Its magical use is as a spell ink ingredient for magics concerned with levitation, telekinesis, and other constructs of force that move, hold, or carry things (such as unseen servant spells, Tenser's floating disc, and so on).",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Nelvine",
@@ -1433,7 +1441,7 @@
       "legacy_effect": "It sees magical use as a spell or spell ink component in magics that disguise or change the appearance of an object or being (without altering such an item's or person's its true nature).",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Nune",
@@ -1452,7 +1460,7 @@
       "legacy_effect": "Nunes are prized by wizards as a powdered ingredient in the spell ink of the dispel magic spell and in the bath that a wand of negation is immersed in during its formative enchantments.",
       "legacy_belief": "",
       "legacy_notes": "Cross-shaped crystals up to 1 inch across.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Obsidian",
@@ -1467,7 +1475,7 @@
       "legacy_effect": "Obsidian is too fragile for most magical uses, but can be employed as a material component in various wizard spells that emulate the famous priestly blade barrier magic. It is used in the making of the famous obsidian steed figurines and is the best known of the \"nine secrets\" (types of gemstones that can be transformed into ioun stones by the proper spells).",
       "legacy_belief": "",
       "legacy_notes": "Too fragile for most other magical uses. Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Octel",
@@ -1484,7 +1492,7 @@
       "legacy_effect": "More importantly, they prevent all manner of paralyzation and hold magics from affecting anyone touching them or bearing them. These \"awakened\" properties are permanent, once gained.",
       "legacy_belief": "",
       "legacy_notes": "The awakened property is permanent once gained.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Onyx",
@@ -1499,7 +1507,7 @@
       "legacy_effect": "It is one of the \"nine secrets\" (types of gemstones that can be transformed into ioun stones by the proper spells). Contact with onyx aids in safe, relatively painless childbirths, but the stone is otherwise considered unlucky.42",
       "legacy_belief": "Generally considered unlucky.",
       "legacy_notes": "Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Oolite",
@@ -1516,7 +1524,7 @@
       "legacy_effect": "Powdered ool stones are a valued ingredient in the castings and spell inks of purification and neutralization magics.",
       "legacy_belief": "",
       "legacy_notes": "Too small to cut; usually polished and mounted in patterns.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Opal",
@@ -1531,7 +1539,7 @@
       "legacy_effect": "Enchanters are warned never to employ opals in the making of items that evoke both fire and lightning or an immediate chain of small but deadly explosions occurs. When employed in a magical process, opal is best used at twilight.43",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Ophealine",
@@ -1548,7 +1556,7 @@
       "legacy_effect": "When worn, ophealine prevents all manner of magical hold spells and paralyzations from taking effect and is in fact so deadening to magic that it cannot be used in any castings or spell preparations or the magic fails.",
       "legacy_belief": "",
       "legacy_notes": "Called \"knuckle stones\" on Waterdeep streets; often sharpened and worn as a punching weapon.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Orbaline",
@@ -1565,7 +1573,7 @@
       "legacy_effect": "Orbaline renders objects (but not living things or undead) it is in contact with resistant to fire, giving them a +4 bonus to all item saving throws vs. normal fire and a +5 bonus to all item saving throws vs. magical fire.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Orblen",
@@ -1582,7 +1590,7 @@
       "legacy_effect": "Anyone in this radiance is affected as if they had imbibed a potion of vitality; beings who remain within the radiance for at least six consecutive turns also are cured of 2d6 points of damage. If any invocation/evocation school or combat sphere spell is cast into an orblen, however, it explodes in a triple-strength meteor swarm, hurling 12 2-foot-diameter, fiery spheres that cause 10d4 points of damage each outward for 20 feet in all compass directionswith the same overlapping effects as the 9th-level wizard spell of the same name.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Orl",
@@ -1597,7 +1605,7 @@
       "legacy_effect": "Those who work with magic know orl as a potent explosive: When powdered and Mixed with powdered black opal and then introduced to any open flame in a particular way, the result is a violent explosion that does 6d8 points of damage to all within 10 feet, 4d8 to all 11 to 20 feet distant, and 2d8 to all 21 to 30 feet distant. A saving throw vs. petrification is allowed to sustain only half damage, and whether owner's save or not, items must make a successful saving throw vs. disintegration if within 10 feet or against crushing blow if 11 to 20 feet away or be destroyed. Items need not save if beyond 20 feet from the blast.",
       "legacy_belief": "",
       "legacy_notes": "Red-hued orls are most valued.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Orprase",
@@ -1614,7 +1622,7 @@
       "legacy_effect": "Orprase is in high demand by followers of Tymora and a small but growing number of adventurers who have learned a secret of that faith: If orprase is powdered and mixed with wine that has been consecrated to Tymora by a full priest of the goddess and the mixture (of at least 3 ounces of liquid and one gemstone) drunk, the imbiber gains a +6 bonus on his or her next saving throw or ability check (however far in the future that may be).",
       "legacy_belief": "",
       "legacy_notes": "In high demand among Tymora's faithful.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Pearl",
@@ -1629,7 +1637,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Rare rainbow and black pearls are most valuable.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Peridot",
@@ -1644,7 +1652,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Phenalope",
@@ -1661,7 +1669,7 @@
       "legacy_effect": "(An Unleashed fireball spell would manifest only as a momentary flash of light and a puff of smoky vapors outlining the edges of where the fiery blast would have occurred.) Phenalope also inhibits or extinguishes nonmagical fires. Such fires within its radius of effect have a 6 in 8 chance of extinguishing themselves per round, unless the fire is oil-based (whereupon the chance falls to 4 in 8). Once a normal fire is out, no re-ignition can occur.",
       "legacy_belief": "",
       "legacy_notes": "Found in palace floor mosaics for protection.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Pipestone",
@@ -1678,7 +1686,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Psaedros",
@@ -1695,7 +1703,7 @@
       "legacy_effect": "Its only known magical property is that a priest can use a hand-sized or larger total mass of it to replace both the fire and the holy water as the material components of a wind walk spell.",
       "legacy_belief": "",
       "legacy_notes": "Colors fade with prolonged sunlight.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Rainbow Obsidian",
@@ -1710,7 +1718,7 @@
       "legacy_effect": "Its magical use is as a pass stone for prismatic magics: It can pierce the various shells of such spells without ending them or suffering harm and can bring inorganic materials that it is fastened to with it. (In other words, a rainbowobsidian-tipped weapon could strike through a prismatic wall, but a living person or undead creature wearing a rainbow obsidian ring would not escape the normal effects of the prismatic magic.)",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Raindrop",
@@ -1727,7 +1735,7 @@
       "legacy_effect": "Raindrop and woodtine shares the same magical property: They temporarily darken when touched to any gemstone, metal, or stone that has previously borne a deliberate enchantment (as opposed to just being touched by an unleashed spell), but no longer does. Raindrops (and woodtine stones) are more sensitive than the various magical detection and tracer spells, which tend to betray only the strongest of residual, exhausted enchantments as well as active or waiting, untriggered magics.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Ravenar",
@@ -1745,7 +1753,7 @@
       "legacy_effect": "It shares the magical property of all tourmalines: If any sort of spell is cast into a ravenar (regardless of level or class), the gem \"drinks\" the spell and transforms it into an instant burst of lightning bolts: three 6d6, straight-line bolts that radiate out from the ravenar in any directions desired by the caster, consuming the ravenar in the process.",
       "legacy_belief": "",
       "legacy_notes": "Also see Tourmaline (all varieties share this property).",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Red Tears",
@@ -1762,7 +1770,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Teardrop-shaped, cherry-red, blood-crimson, or fiery orange crystals.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Rhodochrosite",
@@ -1779,7 +1787,7 @@
       "legacy_effect": "Its magical use is as an aid in healing. If powdered and consumed in a special tea, an eyeball-sized \"rosenstone\" has a 20% chance of acting as a neutralize poison or cure disease. The entire batch of tea must be consumed by one being to gain the possible benefit.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Rock Crystal",
@@ -1794,7 +1802,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Rogue Stone",
@@ -1809,7 +1817,7 @@
       "legacy_effect": "",
       "legacy_belief": "Primitive tribes believe them to be sentient dragon or hero essences.",
       "legacy_notes": "Always found as singletons; no two rogue stones in one place at once; origin rock type unknown.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Rosaline",
@@ -1828,7 +1836,7 @@
       "legacy_effect": "(Treat the trichroism variety as a higher value stone.) Certain of the threecolored crystals have a magical use: If borne by a being who comes into contact with any prismatic spell, they vanish, but each crystal consumed also negates one layer of the prismatic magic (outermost layer first, and so on). The difficulty is that most rosaline crystals do not have the right nature (color mix) to work in such situations, and identifying the rare \"correct\" stones is a deadly process that consumes the stone while testing it.",
       "legacy_belief": "",
       "legacy_notes": "Most rosaline crystals do not have the right nature; identifying the correct ones is itself dangerous.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Ruby",
@@ -1843,7 +1851,7 @@
       "legacy_effect": "Spellcasters know that all items concerned with improving personal fortune in specific instances (that is, anything that augments ability checks, saving throws, or system shock/resurrection survival rolls) can be made with a +25% probability of the enchantment succeeding if one ruby per item function is powdered and used in the enchantment process. (If an item has multiple func- tions but only one ruby is used, its boon is a +10% bonus.) Ruby dust has a myriad of magical uses, including a key role as an ingredient in spell inks in spells of the elemental and sun spheres or the abjuration, alteration, and evocation schools. It is particularly effective in such uses when employed at \"the time of summer sunset.\" 45 Rubies are essential features of a helm of brilliance and are the preferred gemstones in any item concerned with healing. Correctly used, they can ward off lightnings and earthquakes (both natural and magical), and in very rare instances have been found to contain creatures hitherto unknown in Faerûncreatures that live and grow rapidly once the gemstone is shattered with enough care to release but not harm them.",
       "legacy_belief": "Generally considered lucky.",
       "legacy_notes": "Can correctly ward lightning and earthquakes; in very rare cases, contain unknown living creatures released when the gem is carefully shattered.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Rusteen",
@@ -1860,7 +1868,7 @@
       "legacy_effect": "Its magical use is as a spell component of wall of force and forcecage magics.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Saganite",
@@ -1879,7 +1887,7 @@
       "legacy_effect": "Saganite added to the material components of all spells that involve explosions or outbursts of flame as their direct spell effects augments the usual damage dealt by the spell by an additional 1 point of damage per die.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Samarskite",
@@ -1894,7 +1902,7 @@
       "legacy_effect": "In either use it has the same magical function: The presence of samarskite anywhere on a being diminishes all damage done to that being by any undead attack by 1 point of damage per attack or, if an attack causes multiple dice of damage, per die of damage.",
       "legacy_belief": "",
       "legacy_notes": "Used as mourning gemstone.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sanidine",
@@ -1909,7 +1917,7 @@
       "legacy_effect": "If present in solid form as large as the caster's thumb (or greater), it can serve successfully as the sole spell component for all spells involving either water or purification (provided a component need not be specially constructed).",
       "legacy_belief": "",
       "legacy_notes": "Favored by Bedine and other desert nomadic peoples.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sapphire",
@@ -1924,7 +1932,7 @@
       "legacy_effect": "An important exception to this boosting is magic that causes fear, anger, despair, or insanity: The wearer of a sapphire is partially protected against such effects. In magical processes, sapphires are best used at midmorn.46 stone is carried together, such chances are cumulative. The gemjump spell is detailed in the Pages From the Mages accessory. Elminster: When an item is set with a whole, large sapphire of not less than 5,000 gp value and bathed in a mixture containing powdered sapphire during its enchantment, there is a 55% chance that a magical bonus is augmented by 1; that is, a +1 sword will become a +2 sword. This can be done either when an item is created or to improve an existing one using a special process. As a spell component, sapphires make spells last for the longest possible time and deal the maximum damage in their first round of doing harm. Against magic or psionics that affect emotions or cloud the mind (including charms, feeblemind and geas spells, and insanity-causing effects), sapphires give beings wearing or bearing them a +2 bonus to all saving throws or allow a normal saving throw when none is ordinarily allowed. When dealing with sapphires, \"midmorn\" means a half hour centered on 10 a.m.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sarbossa",
@@ -1941,7 +1949,7 @@
       "legacy_effect": "When used as a component in spells that involve transformations of the shape of a spell victim or recipient, any amount of sarbossa adds 1d2 rounds to the spell duration.",
       "legacy_belief": "",
       "legacy_notes": "Found in nodules up to 1 inch in volcanic cavities.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sardonyx",
@@ -1956,7 +1964,7 @@
       "legacy_effect": "It has the same magical uses and properties as the jewels known as kings' tears and is also one of the \"nine secrets\" (gemstones that can be transformed into ioun stones by the proper spells). Sardonyx gemstones sometimes guard against magic missile damage, but this is not a reliable protection.47",
       "legacy_belief": "",
       "legacy_notes": "Nine Secrets material",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Satin Spar",
@@ -1973,7 +1981,7 @@
       "legacy_effect": "It has the sole magical property of partially negating magic missiles: Any such missile vaporizes a satin spar stone worn, carried, or touched by its target being, but deals only half damage to that being.",
       "legacy_belief": "",
       "legacy_notes": "Too fragile to wear normally.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Scapra",
@@ -1990,7 +1998,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Serpentine",
@@ -2007,7 +2015,7 @@
       "legacy_effect": "",
       "legacy_belief": "Malachite is falsely rumored to prevent falls; serpentine is actually the fire/cold protection stone.",
       "legacy_notes": "Only jewelers, expert miners (most dwarves), and experienced wizards or priests can reliably identify the magically active variety from inert serpentine.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Shandon",
@@ -2024,7 +2032,7 @@
       "legacy_effect": "(The garment is also invisible to metallic items, which do not catch on it.) If the enspelled shandon is ever crushed, shattered, or becomes separated from the garment, the magical effect is ended.",
       "legacy_belief": "",
       "legacy_notes": "Tiny; colorless; too small to impress untrained observers.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sharpstone",
@@ -2041,7 +2049,7 @@
       "legacy_effect": "It has the magical property of increasing the radius of spell effects by 10 feet at the cost of 1 die of damage (or, if a spell does not do direct physical damage, of 1 round of spell duration). Any amount of sharpstone consumed in a casting has this effect; large amounts or multiple stones cannot increase its efficacy.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sheen",
@@ -2058,7 +2066,7 @@
       "legacy_effect": "When added to invisibility magics, it increases the duration of such spells by 1d3 rounds.",
       "legacy_belief": "",
       "legacy_notes": "Gold sheen is a semiprecious gem-grade variety; most other sheens are ornamental. Both share these properties.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Shou Lung Amethyst",
@@ -2073,7 +2081,7 @@
       "legacy_effect": "It is reputed to have puissant magical powers so far unknown even to the most persistent wizards of Faerûn.",
       "legacy_belief": "",
       "legacy_notes": "Eastern import; deep purple corundum.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Shou Lung Emerald",
@@ -2088,7 +2096,7 @@
       "legacy_effect": "",
       "legacy_belief": "Legend says only three exist; at least a dozen caches are known in the West, discrediting this.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Shou Lung Topaz",
@@ -2103,7 +2111,7 @@
       "legacy_effect": "It is rumored to have many magical properties so far unknown to Faerûnian wizards.",
       "legacy_belief": "",
       "legacy_notes": "Eastern import; fiery yellow corundum.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Silkstone",
@@ -2118,7 +2126,7 @@
       "legacy_effect": "",
       "legacy_belief": "Falsely said to ward off spirits generally.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sinhalite",
@@ -2133,7 +2141,7 @@
       "legacy_effect": "Sinhalite has only one magical property: No sort of magical darkness can form or persist within 20 feet of a sinhala.",
       "legacy_belief": "",
       "legacy_notes": "Found only in streambed or vanished-stream gravels.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Skydrop",
@@ -2150,7 +2158,7 @@
       "legacy_effect": "They render any beings touching, carrying, or wearing them immune to petrification.",
       "legacy_belief": "",
       "legacy_notes": "Meteoritic glass from desert gravel fields.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Smoky Quartz",
@@ -2168,7 +2176,7 @@
       "legacy_effect": "Often found in quite large masses, it is much used as a weapon adornment, but only its morion form sees magical use as a spell ink ingredient and spell component in all necromantic and necromancy magics, bone tinctures, and bone-strengthening baths, especially when bony material is to be incorporated into a permanent magical item.48",
       "legacy_belief": "",
       "legacy_notes": "Much of what is called cairngorm is actually heat-colored glass.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Snowflake Obsidian",
@@ -2183,7 +2191,7 @@
       "legacy_effect": "If worn or carried on an outer surface of a being or item, a thumbnail-sized or larger piece of snowflake obsidian reduces any damage done by a dragon breath weapon attack by 1d4 points per die, to a minimum of 1 point per die. The stone is consumed in doing so and has no effects on transformations or incidental effects of the breath weapon attack.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Soapstone",
@@ -2200,7 +2208,7 @@
       "legacy_effect": "It is reputed to have magical properties related to fire and the capture of warmth; but these remain (as yet) a mystery to my investigations.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sphene",
@@ -2215,7 +2223,7 @@
       "legacy_effect": "It has the little-known magical property of warding off lightnings (including those borne of spells), causing saving throws against such effects to be a made at a +4 bonus and all damage rolls from lightning to be made at a penalty of -1 point per die.",
       "legacy_belief": "Little known outside specialized circles.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Spinel",
@@ -2230,7 +2238,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Spodumene",
@@ -2248,7 +2256,7 @@
       "legacy_effect": "Spodumene has the magical property of opening wizard-lock doors and items upon contact, provided it is sprinkled with at least three drops of holy water. (The water is consumed at each functioning, but the gemstone is not.)",
       "legacy_belief": "",
       "legacy_notes": "Kunzite fades in color over time — faded form called ghost stone.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Star Diopside",
@@ -2263,7 +2271,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Stones with a four- or six-rayed star are the valuable variety.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Star Metal",
@@ -2280,7 +2288,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Most specimens are thumb-sized or smaller.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Star Rose Quartz",
@@ -2295,7 +2303,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Star Ruby",
@@ -2310,7 +2318,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "1 in 100 rubies is a star ruby.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Star Sapphire",
@@ -2325,7 +2333,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "1 in 1,000 sapphires is a star sapphire.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sulabra",
@@ -2342,7 +2350,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Sunstone",
@@ -2359,7 +2367,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Tabasheer",
@@ -2374,7 +2382,7 @@
       "legacy_effect": "It has the magical property of infusing beings with temporary extra hit points. If a tabasheer is crushed and a cure light wounds spell cast on the powder while it is on the tongue of (or in an open wound on the body of) a being, the being gains 3d6 hit points for 24 hours (or less, for each one lost is gone for good). Any damage suffered by an augmented being is taken from these phantom hit points first, but gaining them does not increase a being's level, spell abilities, saving throws, or anything else.",
       "legacy_belief": "",
       "legacy_notes": "Found in joints of certain bamboo varieties.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Tchazar",
@@ -2391,7 +2399,7 @@
       "legacy_effect": "(Tchazar gemstones revalued as ornamental are cabochon cut.) Any cut of tchazar has the same curious magical property: It clouds scrying magics from seeing anything but a blur within 2 feet of it. For this reason, coffers, collars, reading desks, locks, keys, and wrist bracers are often adorned with tchazars. If a tchazar shatters, its magical power is instantly lost.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Tempskya",
@@ -2408,7 +2416,7 @@
       "legacy_effect": "Tempskya is known to be useful to wizards as an alternative material component in all spells concerned with petrification and enchantments that create magical items concerned with petrification.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Thuparlial",
@@ -2425,7 +2433,7 @@
       "legacy_effect": "When powdered, it is a valued ingredient in the spell ink formulae and casting components of pyrotechnics and heat metal spellsand Thayan mages who have access to plentiful thuparlials continually experiment with the use of this gemstone as a replacement components for various fiery and heat-related spells (so far without any reported success).",
       "legacy_belief": "",
       "legacy_notes": "Red Wizards experiment with using it as a fire-spell replacement component; no success reported.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Tiger Eye Agate",
@@ -2440,7 +2448,7 @@
       "legacy_effect": "",
       "legacy_belief": "Falsely said to repel spirits and undead.",
       "legacy_notes": "Buyers expect it; alchemists include it; it does nothing.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Tomb Jade",
@@ -2455,7 +2463,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Jade reddened or browned through burial. Jade turned green by nearby buried bronze is no more valuable than normal jade.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Topaz",
@@ -2470,7 +2478,7 @@
       "legacy_effect": "A topaz is the best jewel to use in the making of a gem of brightness because the enchantments used in the making of that item render it as hard as mithral. A topaz also has the natural property of storing any healing spell cast upon it without preparation; the spell is released by placing the gemstone into an open wound, where it melts away, or by powdering it and drinking it in milk or wine from a mithral goblet. (The container cannot be of any other metal or the draft is useless and the magic lost; topaz that stores healing magic has a distinctive cold, sour taste.)",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Tourmaline",
@@ -2485,7 +2493,7 @@
       "legacy_effect": "All shades of tourmaline share the same magical property: If any sort of spell, regardless of level or class, is cast into a tourmaline, the tourmaline \"drinks\" the spell and transforms it into an instant burst of lightning bolts: three 6d6-hp damage straight-line bolts that radiate out from the stone in any directions desired by the caster, consuming the tourmaline in the process.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Tremair",
@@ -2502,7 +2510,7 @@
       "legacy_effect": "Sometimes sewn onto debutantes' gowns in Chessenta, Sembia, and Waterdeep to signal the unmarried availability of the wearer, these fancy stones do just what legends say they do: make anyone who wears them next to their skin immune to all magical curses.",
       "legacy_belief": "",
       "legacy_notes": "Sometimes sewn onto debutantes' gowns to signal availability.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Turquoise",
@@ -2517,7 +2525,7 @@
       "legacy_effect": "Mages use turquoises in the enchantment baths of items concerned with flightand when so used, this stone is best worked in the foredawn.49",
       "legacy_belief": "Gleaming near gold is thought to bring prosperity (folk belief). Turquoise sliver in a horse's harness said to bring good luck and protection (folk belief).",
       "legacy_notes": "Elves prize specimens without mottlings for sky-related spells.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Turritella",
@@ -2532,7 +2540,7 @@
       "legacy_effect": "Many sages speculate that it should have a magical use, but (so far as is presently known) no one has yet discovered just what that use may be.",
       "legacy_belief": "",
       "legacy_notes": "Dark brown agate with silicified spiral shells.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Ulvaen",
@@ -2549,7 +2557,7 @@
       "legacy_effect": "If touched to an open wound (or placed on the tongue, in the case of internal injuries), an ulvaen stone melts away in 1d4+1 rounds, regenerating the human, demihuman, or humanoid body it is contact with, in the following order: stop bleeding, restore organs, close wounds, regain lost hit points. For the efficacy of a particular ulvaen stone, roll 1d4. On a result of 1, the victim gains is healed of 2d4 points of damage, and the stone's power ends. On any other result, bleeding stops; roll 1d4 again. On a result of 1, 1d6+1 points of damage are healed, and the stone's power ends. Any other result means that any damaged organs are healed (as well as the cessation of bleeding); roll 1d4 again. A result of 1 heals 1d4+1 points of damage and ends the work of the stone, but any other result means that all wounds are closed (in addition to ending all bleeding and restoring organs), and 1d4 must be rolled again. A result of 1 means the healed being is healed of 1 point of damage to end the stone's work, but any other result means the stone heals 1d10 points of damage.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Variscite",
@@ -2567,7 +2575,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Violine",
@@ -2582,7 +2590,7 @@
       "legacy_effect": "Upon contact with a being afflicted with mummy rot, violine in any amount is consumed, but it negates the mummy rot. If a mummy is brought into contact with any amount of violine, it suffers 4d4 points of damage. If this destroys it, the mummy dust that results is ineffective for magical uses.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Water Opal",
@@ -2597,7 +2605,7 @@
       "legacy_effect": "They have an additional property: If powdered and mixed with holy causes a webstone to partially vaporize at an irregular, variable rate until nothing is left. The protection a webstone confers also varies wildly and randomly from specimen to specimenfrom complete to nothingwhich keeps the value of webstone low.",
       "legacy_belief": "",
       "legacy_notes": "Clear, translucent; iridescent color play.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Waterstar",
@@ -2615,7 +2623,7 @@
       "legacy_effect": "Waterstar shares the magical property of all true tourmalines: If any sort of spell, regardless of level or class, is cast into a waterstar, the waterstar \"drinks\" the spell and transforms it into an instant burst of lightning bolts: three 6d6-hp damage straight-line bolts that radiate out from the stone in any directions desired by the caster, consuming the waterstar in the process.",
       "legacy_belief": "",
       "legacy_notes": "Must be entirely free of flaws; yields large faceted gemstones.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Webstone",
@@ -2632,7 +2640,7 @@
       "legacy_effect": "If mounted on an arrowtip or blade, it triples the damage done by that weapon on its first strike (only) against a particular lycanthrope. (Thereafter, that individual lycanthrope suffers no further damage from variscite contact for one full day.) If worn as a gemstone, variscite can have a one-time damaging effect of 1d6+4 points only if pressed into an open wound on a lycanthrope or brought into contact with one's tongue; it must reach the bloodstream to do harm.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Witherite",
@@ -2647,7 +2655,7 @@
       "legacy_effect": "Witherites only magical property is that, when set in a special electrum setting and worn in direct, flesh-to-stone contact by a human or demihuman, it provides immunity to withering magics or psionic abilities and the reversed, damaging form of necromantic sphere priest spells.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Wonderstone",
@@ -2662,7 +2670,7 @@
       "legacy_effect": "It has the sole magical property of glowing with an eerie blue-green or deep royal blue radiance for 5d4 rounds after coming into direct contact with a spell effect, magical item, or any being or item that bears an active enchantment. It sees some use at entryways as a magic detector, but it is more often employed in inlay work in the making of furniture for the well-to-do to provide impressive mood lighting for feasts and revels.",
       "legacy_belief": "",
       "legacy_notes": "Used as magic detectors at entryways; also popular in wealthy furniture for mood lighting.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Woodtine",
@@ -2677,7 +2685,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "Brown fibrous variety of cassiterite; a corruption of \"wood tin.\"",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Xylopal",
@@ -2695,7 +2703,7 @@
       "legacy_effect": "For some unknown reason, a hand-sized piece (or collection of fragments) of xylopal can be used as an alternative material component to replace both the lodestone and the iron filings in the casting of the 7th-level wizard spell reverse gravity.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Zarbrina",
@@ -2712,7 +2720,7 @@
       "legacy_effect": "Powdered zarbrina is an acceptable alternative ingredient in spell inks for magics concerned with illusions.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Zendalure",
@@ -2727,7 +2735,7 @@
       "legacy_effect": "",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Ziose",
@@ -2742,7 +2750,7 @@
       "legacy_effect": "One ziose is suspended over a well of glowing enchanted waters in a temple of Mystra in Halruaa as a guardian: Ziose stones of any size have the potent magical property of being able to unleash six magic missile pulses (each dealing 1d4 + 1 points damage) per round whenever this effect is desired by the last intelligent being to touch the stone (so long as the stone is within 30 feet of the being). The controller of the ziose is free to do other things while the stone is operatingeven perform quite exacting tasks such as spellcasting, playing musical instruments, picking locks, and the like. A ziose stone can function continuously in this way for seven rounds, but then falls inert for two turns before being usable again. If it is never used for seven continuous rounds, no rest period is necessary.",
       "legacy_belief": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Zircon",
@@ -2757,7 +2765,7 @@
       "legacy_effect": "Zircons take enchantments readily and are one of the favorite gemstone types to serve as the base for a gem, scarab, or (when cut and ground into cusps) eye magical item.",
       "legacy_belief": "Occasionally passed off as more valuable stones.",
       "legacy_notes": "Anyone with gemcutting knowledge can tell the difference.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Adamant",
@@ -4434,7 +4442,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Jet black with rainbow-edged reflections. Brittle — sword of adamant would snap if struck. Best found in Waterdeep and the Great Rift. Styluses for engraving; dwarven experimental use only in larger items.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Adamantine",
@@ -4451,7 +4459,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Black with clear green sheen in candlelight; sharpens to purple-white under magical radiances and will-o-wisps. Must be worked at very high temperatures by expert dwarven smiths. Best nonmithral armor material.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Arandur",
@@ -4468,7 +4476,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Silver-blue with green reflective shine. Found in igneous rock as streaks in vitreous glass; must be tempered with red or blue dragon blood in forging. Once exclusive to gnomes; now also worked by elven smiths of Evereska and Evermeet. Favored for swords of sharpness and vorpal weapons.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Copper",
@@ -4485,7 +4493,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "No magical bonuses to saving throws beyond the standard metal tables.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Darksteel",
@@ -4502,7 +4510,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Silvery when polished or cut, but with a deep gleaming purple luster on exposed surfaces. Possibly extinct Ironstar dwarven clan's secret; only old ingots remain. Valued at 10–12x gold by weight; Neverwinter and Waterdeep smiths offer 7,000+ gp for an intact ingot.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Dlarun",
@@ -4519,7 +4527,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Bone-white; often mistaken for ivory; distinctive greenish sheen in candlelight and near magical radiances. Derived from clay dug from certain riverbanks by a complex halfling process; kept as close a secret as possible.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Gold",
@@ -4536,7 +4544,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "No bonus to item saving throws.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hizagkuur",
@@ -4553,7 +4561,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Cannot be used in magical items or worn items — immediately injurious. Named for its dwarven discoverer. Found only as soft clay or flaky mud deep in the Underdark. Must be cast into its final form within one day of preparation or it becomes permanently inert. Used only as sheathing for fortress gates, vault doors, and sealed hatches.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Mithral",
@@ -4572,7 +4580,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Silvery-blue and shining. Can be combined with steel to derive adamantine. Extremely valuable. Can be combined with silver in dwarven alloy processes to create lightning-warding alloys.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Silver",
@@ -4589,7 +4597,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "\"The sheath and shield of Art.\" Certain elven folk and senior Harpers know additional secret silver processes.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Telstang",
@@ -4606,7 +4614,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Dull silver in hue; a \"singing metal\" (clear bell tone when struck). Never oxidizes; lasts forever if not struck or dropped. Too brittle for weapons or armor; worn as bracers, buckles, brooches, pendants. Originally a gnomish secret; adopted by halflings and certain elven and orc peoples.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Zardazil",
@@ -4623,7 +4631,7 @@
       "legacy_cost_factor": "",
       "legacy_time_factor": "",
       "legacy_notes": "Very soft; never used in pure form — alloyed or used as sheathing only. Found only around the Lake of Steam and in Raurin sand fissures. Blade does not pass through clothing harmlessly; sheath can also body-phase if all-metal with zardazil. Multiple anchors can prevent unintended weapon exposure.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Adarcer",
@@ -5129,7 +5137,7 @@
       "legacy_use": "Dwarven process; duplicated by the wizard Toth's 4th-level Alteration spell (Wiz 4; V, S, M; Touch; Permanent; Cast 4)",
       "legacy_effect": "Purges all oxidation; prevents future rusting; purges fractures and blemishes; treated metals glow with a deep blue sheen in available light. +1 bonus to all item saves vs. acid and all corrosive effects (venom, various bloods, ochre jelly secretions, black dragon acid).",
       "legacy_notes": "Toth was slain by Red Wizards for developing the spell; the spell was already stolen by a rival before their attempt to suppress it. Spell material component: a small piece of cobalt blue glass or a chip of a blue-hued gemstone.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Everbright",
@@ -5143,7 +5151,7 @@
       "legacy_use": "Dwarven process; no spell equivalent discovered yet",
       "legacy_effect": "Grants an enduring bright shine (like chromium); immune to tarnishing, discoloration, acidic corrosion, and rusting — including rust monster antenna attacks. Protection does not fade with time.",
       "legacy_notes": "Can be broken if: item is shattered into more than three pieces, or comes into contact with lava, dragon fire, spellfire, or forge heat exceeding that of the everbright process itself. At least three mages and one archpriest have conducted long-running research to create a spell equivalent, all without success.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Halabar's Stealth",
@@ -5157,7 +5165,7 @@
       "legacy_use": "Process devised by the House of Halabar merchant clan, Murann",
       "legacy_effect": "Renders metallic items nonferromagnetic, nonreflective, and silent (no clanging even when struck against other metals or stone). Items can take dyes and paints (even bare sword blades).",
       "legacy_notes": "Formula known only to Halabar's descendants, who guard it viciously. Still strikes sparks at sharp impact and conducts lightning normally. Secret formula; rumored intelligent shapechanger agents defend it against lore thieves.",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Everbright",
@@ -5171,7 +5179,7 @@
       "legacy_use": "Dwarven metallurgical process; a wizard spell (Wiz 4, Alteration) duplicating its effects was developed by Toth of Calimport and published here for the first time (the wizard was killed by Red Wizards attempting to suppress it, but the spell had already been stolen by a rival and survived).",
       "legacy_effect": "Purges all existing oxidation from metals and prevents future rusting. Purges fractures and blemishes from the item, leaving it whole and appearing like new. All treated metals glow with a deep blue sheen when they catch available light. Grants +1 bonus to all item saving throws vs. acid and all corrosive effects — venom, various creature bloods, ochre jelly secretions, black dragon acid. | Level 4 / Casting time 4 / Components V, S, M / Range touch / Area the metal parts of one item not exceeding the caster's body volume / Duration permanent / Saving throw none.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "",
@@ -5185,7 +5193,7 @@
       "legacy_use": "Dwarven metallurgical process. No spell equivalent has been found despite long-running research by at least three mages (Athlagh of the Many Locks, Halandrar Crowncloak, and Spelargh of Phelzol) and one archpriest (Beltorvan Duircragh, Bright Blade of Tempus in the Bloodbright Temple of Dolselar).",
       "legacy_effect": "",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     }
   ],
   "stones": [
@@ -5257,7 +5265,7 @@
       "legacy_use": "Nuts used as substitute components in the goodberry priest spell: nourish creatures up to Huge size or heal 1d2+2 damage; no daily maximum; nuts remain magical and do not rot for one year.",
       "legacy_effect": "Wood conveys no special properties to items.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Blueleaf",
@@ -5271,7 +5279,7 @@
       "legacy_use": "If the sole consumed component in a spell (not counting a holy symbol or item being altered), reduces casting time by 1, to a minimum of 1.",
       "legacy_effect": "Durable, neutral wood — neither aids nor hampers enchantment.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Calantra",
@@ -5285,7 +5293,7 @@
       "legacy_use": "No special properties; can be used safely wherever any nonspecific wood product is called for.",
       "legacy_effect": "All item saving throws at +2 bonus over other woods. Increases to +3 bonus if the item is at least 20% calantra and bears any enchantment (not cumulative beyond +3).",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Chime Oak",
@@ -5299,7 +5307,7 @@
       "legacy_use": "Can substitute for normal oak interchangeably in spells but otherwise has no special component properties.",
       "legacy_effect": "Items primarily of chime oak: auto-succeed at all item saves vs. cold. Items with less than 45% chime oak retain a +1 bonus vs. cold.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Duskwood",
@@ -5313,7 +5321,7 @@
       "legacy_use": "In fire-related spell components: adds 20% chance of total spell failure (applied after casting; all other components consumed, duskwood remains). Exception for fire-resistance spells: augments protection by 1 point per die.",
       "legacy_effect": "Suitable for staves and rods. Severely hinders item enchantment: caster of every eternal flame involved must save vs. spell at –2 or the spell fails, destroying prior enchantments on the item. Exception: augments fire-resistance items and spells by +1 point per die of fiery damage warded.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Felsul",
@@ -5327,7 +5335,7 @@
       "legacy_use": "Universal replacement component for spells hastening withering, decay, or increasing damage — one chip of felsul (wood, bark, or root) suffices per spell, replacing normal components (if not specially constructed).",
       "legacy_effect": "Unsuitable for magical use generally.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Hiexel",
@@ -5341,7 +5349,7 @@
       "legacy_use": "Cannot be used as a component for any magic involving water or liquids. Universal replacement for spells involving mists or vapors: increases casting time by 1, no other effect.",
       "legacy_effect": "Unsuitable for magical items: unstable nature causes any such item to break after 1d2 years of service at most.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Laspar",
@@ -5355,7 +5363,7 @@
       "legacy_use": "Universal replacement component for spells involving transformations of shape or state: decreases casting time by 1.",
       "legacy_effect": "Unsuitable for magical items and all permanent magic.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Phandar",
@@ -5369,7 +5377,7 @@
       "legacy_use": "No special component properties noted.",
       "legacy_effect": "Ideal for durable magical items that need not be straight. Essential ingredient in all healing potions and enchanted unguents. Prolongs all wondrous web or holy vesting spells cast on items at least partially of phandar wood by one additional round. Requires no purification magics.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Roseneedle Pine",
@@ -5383,7 +5391,7 @@
       "legacy_use": "Tinctures from tubers or flowers: used in preparation of items controlling or summoning aquatic life. Needles: universal replacement for any sort of fish or fish part required as a material component in a spell.",
       "legacy_effect": "No special item properties noted.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Shadowtop",
@@ -5397,7 +5405,7 @@
       "legacy_use": "No special component properties noted.",
       "legacy_effect": "Much used in staves, rods, and wands. Crown melds never necessary when item contains shadow wood — Merald's meld joins on shadow wood automatically succeed at their saving throws and die rolls (treat as having a crown meld). Always considered properly harvested and bathed for whatever enchantment it will receive, regardless of actual procurement.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Silverbark",
@@ -5411,7 +5419,7 @@
       "legacy_use": "Universal replacement component in all purification and antitoxin magics: reduces casting time by 1 and replaces all other normally required components (unless specially constructed).",
       "legacy_effect": "Unsuitable for lance shafts, structural work, or most long-term items.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Suth",
@@ -5425,7 +5433,7 @@
       "legacy_use": "Suth wood slivers or bark chips: can replace all components (if not specially constructed) for barkskin, armor, and similar toughening spells, and for Veladar's Vambrace and holy might. Suth sap: essential ingredient in the oil used to anoint metal armor and shields before enchanting them to improve their AC.",
       "legacy_effect": "Items primarily of suth wood: +2 bonus to item saves vs. crushing blow and fall.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Vundwood",
@@ -5439,7 +5447,7 @@
       "legacy_use": "Universal replacement for all consumed components in any priest or wizard spell involving recalling an already-cast spell or augmenting/altering the caster's spell capacity (e.g., Rary's mnemonic enhancer).",
       "legacy_effect": "Echo property: items made of vundwood spontaneously gain 1d4 charges from nowhere once every 1d12 months, unless the item is totally exhausted of charges.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Weirwood",
@@ -5453,7 +5461,7 @@
       "legacy_use": "Replaces all spells normally requiring oak or holly (bark, leaves, berries, or wood). Can replace any one non-specially-constructed consumed component in spells creating magical radiance or providing protection or resistance to fire. Used as an extra component in creation/mending spells (mending, wondrous web, awakening, enchant an item, holy vesting, ritual of transference): +1 bonus to all saves and ability checks in the spellcasting.",
       "legacy_effect": "Does not burn in normal fire. Any magically generated radiance (dancing lights, etc.) brought into contact with cut or living weirwood lingers around it for 1d4+1 rounds after the source expires or is removed — unless the weirwood bears any active enchantment on itself (which negates this property).",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Zalantar",
@@ -5469,7 +5477,7 @@
       "legacy_use": "No special component properties noted.",
       "legacy_effect": "+2 bonus to saving throws for priest or wizard awakening and wizard enchant an item spells. +1 bonus to all item saving throws for any enchanted or nonenchanted item wholly or partially of zalantar while in use. Glows faint mauve when undead beings are within a 70-ft spherical radius.",
       "legacy_notes": "",
-      "source": "volos"
+      "source": "V'sGtATM"
     },
     {
       "name": "Black Cypress",
