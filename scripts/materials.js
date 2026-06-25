@@ -117,7 +117,8 @@ async function attemptSave(isRetry) {
   try {
     const newSha = await ghWriteFile(CONFIG.file, state.sha, mstate.data,
                                      'Update materials [' + ts + ']');
-    state.sha = newSha;
+    state.sha   = newSha;
+    state.dirty = false;
     setStatus('Saved to GitHub \u2713', 'ok');
     updateButtons();
     return true;
@@ -144,7 +145,7 @@ function updateButtons() {
   document.getElementById('btn-new').style.display           = (t && !tr)             ? '' : 'none';
   document.getElementById('btn-edit').style.display          = (t && s && ev && !tr)  ? '' : 'none';
   document.getElementById('btn-cancel').style.display        = ed                     ? '' : 'none';
-  document.getElementById('btn-save-gh').style.display       = (t && !tr)             ? '' : 'none';
+  document.getElementById('btn-save-gh').style.display       = (t && state.dirty && !tr)   ? '' : 'none';
   document.getElementById('btn-traits').style.display        = (t && !tr)             ? '' : 'none';
   document.getElementById('btn-cancel-traits').style.display = tr                     ? '' : 'none';
   document.getElementById('btn-save-traits').style.display   = (t && tr)              ? '' : 'none';
@@ -445,9 +446,11 @@ function commitEdit(catKey, idx) {
     mstate.data[catKey][idx] = { ...entries[idx], ...updated };
   }
   mstate.selIdx = -1;
-  state.mode = 'view';
+  state.mode  = 'view';
+  state.dirty = true;
   showCategory(catKey);
   setStatus('Entry saved \u2014 click Save to GitHub to commit', '');
+  updateButtons();
 }
 
 // ── Search ────────────────────────────────────────────────────
