@@ -3267,6 +3267,93 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Natureskin",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "wood",
+        "enhancement",
+        "polymorph"
+      ],
+      "traditions": [
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "divine domain: elemental: earth",
+        "divine domain: plant",
+        "divine domain: season: autumn",
+        "divine domain: season: spring",
+        "divine domain: season: summer",
+        "divine domain: season: winter"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "0'",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 1,
+        "type": "self"
+      },
+      "duration": "1 minutes",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
