@@ -21,23 +21,25 @@ function onTokenChange() { loadData(); loadTraitsData(); }
 
 const COLS = {
   gems: [
-    { key:'name',              label:'Name',             cls:'mat-name' },
-    { key:'description',       label:'Description',      cls:'mat-cell flex-2 mat-desc' },
-    { key:'magical_effect',    label:'Magical Effect',   cls:'mat-cell flex-3 mat-effect' },
-    { key:'incorrect_belief',  label:'Incorrect Belief', cls:'mat-cell flex-2 mat-false' },
-    { key:'notes',             label:'Notes',            cls:'mat-cell flex-1 mat-notes' },
-    { key:'value',             label:'Value',            cls:'mat-value' },
+    { key:'name',                 label:'Name',                cls:'mat-name' },
+    { key:'physical_description', label:'Physical Description',cls:'mat-cell flex-2 mat-desc' },
+    { key:'use',                  label:'Use',                 cls:'mat-cell flex-2 mat-desc' },
+    { key:'magical_effect',       label:'Magical Effect',      cls:'mat-cell flex-3 mat-effect' },
+    { key:'incorrect_belief',     label:'False Belief',        cls:'mat-cell flex-2 mat-false' },
+    { key:'notes',                label:'Notes',               cls:'mat-cell flex-1 mat-notes' },
+    { key:'type',                 label:'Type',                cls:'mat-value' },
   ],
   herbs: [
-    { key:'name',         label:'Name',        cls:'mat-name' },
-    { key:'description',  label:'Description', cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',       label:'Effect',      cls:'mat-cell flex-3 mat-effect' },
-    { key:'notes',        label:'Notes',       cls:'mat-cell flex-2 mat-notes' },
-    { key:'cost',         label:'Cost',        cls:'mat-cost' },
+    { key:'name',                 label:'Name',                cls:'mat-name' },
+    { key:'physical_description', label:'Physical Description',cls:'mat-cell flex-2 mat-desc' },
+    { key:'use',                  label:'Use',                 cls:'mat-cell flex-2 mat-desc' },
+    { key:'effect',               label:'Effect',              cls:'mat-cell flex-3 mat-effect' },
+    { key:'notes',                label:'Notes',               cls:'mat-cell flex-2 mat-notes' },
+    { key:'cost',                 label:'Cost',                cls:'mat-cost' },
   ],
   metals: [
     { key:'name',               label:'Name',              cls:'mat-name' },
-    { key:'description',        label:'Description',       cls:'mat-cell flex-2 mat-desc' },
+    { key:'physical_description',        label:'Physical Description',       cls:'mat-cell flex-2 mat-desc' },
     { key:'type',               label:'Type',              cls:'mat-type' },
     { key:'magical_properties', label:'Magical Properties',cls:'mat-cell flex-3 mat-effect' },
     { key:'bonus',              label:'Bonus',             cls:'mat-bonus' },
@@ -54,12 +56,12 @@ const COLS = {
   ],
   stones: [
     { key:'name',        label:'Name',        cls:'mat-name' },
-    { key:'description', label:'Description', cls:'mat-cell flex-3 mat-desc' },
+    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-3 mat-desc' },
     { key:'notes',       label:'Notes',       cls:'mat-cell flex-2 mat-notes' },
   ],
   woods: [
     { key:'name',                 label:'Name',            cls:'mat-name' },
-    { key:'description',          label:'Description',     cls:'mat-cell flex-2 mat-desc' },
+    { key:'physical_description',          label:'Physical Description',     cls:'mat-cell flex-2 mat-desc' },
     { key:'location',             label:'Location',        cls:'mat-cell flex-1 mat-type' },
     { key:'item_properties',      label:'Item Properties', cls:'mat-cell flex-2 mat-effect' },
     { key:'component_properties', label:'Component Use',   cls:'mat-cell flex-2 mat-effect' },
@@ -67,7 +69,7 @@ const COLS = {
   ],
   enchanted: [
     { key:'name',        label:'Name',        cls:'mat-name' },
-    { key:'description', label:'Description', cls:'mat-cell flex-3 mat-desc' },
+    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-3 mat-desc' },
     { key:'notes',       label:'Notes',       cls:'mat-cell flex-2 mat-notes' },
   ],
 };
@@ -362,20 +364,20 @@ function buildEntryEditor(catKey, idx) {
 function getCategoryFields(catKey) {
   const all = {
     gems:       [
-      { key:'description',      label:'Description',         multi:true },
+      { key:'physical_description',      label:'Physical Description',         multi:true },
       { key:'magical_effect',   label:'Magical Effect',      multi:true },
-      { key:'incorrect_belief', label:'Incorrect Belief',    multi:false },
-      { key:'value',            label:'Value',               multi:false },
+      { key:'incorrect_belief', label:'False Belief',        multi:false },
+      { key:'type',             label:'Type',                multi:false },
       { key:'notes',            label:'Notes',               multi:false },
     ],
     herbs:      [
-      { key:'description',  label:'Description',  multi:true },
+      { key:'physical_description',  label:'Physical Description',  multi:true },
       { key:'effect',       label:'Effect',       multi:true },
       { key:'cost',         label:'Cost',         multi:false },
       { key:'notes',        label:'Notes',        multi:false },
     ],
     metals:     [
-      { key:'description',        label:'Description',        multi:true },
+      { key:'physical_description',        label:'Physical Description',        multi:true },
       { key:'type',               label:'Type',               multi:false },
       { key:'magical_properties', label:'Magical Properties', multi:true },
       { key:'bonus',              label:'Bonus',              multi:false },
@@ -390,18 +392,18 @@ function getCategoryFields(catKey) {
       { key:'notes',            label:'Notes',            multi:false },
     ],
     stones:     [
-      { key:'description',  label:'Description',  multi:true },
+      { key:'physical_description',  label:'Physical Description',  multi:true },
       { key:'notes',        label:'Notes',        multi:false },
     ],
     woods:      [
-      { key:'description',          label:'Description',          multi:true },
+      { key:'physical_description',          label:'Physical Description',          multi:true },
       { key:'location',             label:'Location',             multi:false },
       { key:'item_properties',      label:'Item Properties',      multi:true },
       { key:'component_properties', label:'Component Properties', multi:true },
       { key:'notes',                label:'Notes',                multi:false },
     ],
     enchanted:  [
-      { key:'description',  label:'Description',  multi:true },
+      { key:'physical_description',  label:'Physical Description',  multi:true },
       { key:'notes',        label:'Notes',        multi:false },
     ],
     spells:     [
