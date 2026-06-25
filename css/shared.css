@@ -213,9 +213,18 @@ body {
 .btn-danger     { background: #3a0d0d; color: #f07070; }
 
 /* ── Action modal button variants (green / orange / red) ───── */
-.btn-save-action   { background: #0a2e14; color: #5ec87a; border: 1px solid #2a7040; }
-.btn-cancel-action { background: #2e1408; color: #c07040; border: 1px solid #7a3018; }
-.btn-delete-action { background: #240606; color: #c04040; border: 1px solid #7a1a1a; }
+.btn-save-action   { background: #0a2e14; color: #5ec87a; }
+.btn-cancel-action { background: #2e1408; color: #c07040; }
+.btn-delete-action { background: #3a0d0d; color: #f07070; }
+
+/* ── Editor content button row ──────────────────────────────── */
+.editor-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
 .btn-icon       { background: transparent; color: var(--text-muted); font-size: 15px; padding: 4px 7px; }
 .btn-icon:hover { color: var(--text); opacity: 1; }
 .btn-delete     { display: block; margin-top: 28px; width: 100%; padding: 9px; font-size: 13px; }

@@ -63,7 +63,6 @@ function updateButtons() {
   const tr = state.mode === 'traits';
   document.getElementById('btn-new').style.display           = (t && !tr)             ? '' : 'none';
   document.getElementById('btn-edit').style.display          = (t && s && ev && !tr)   ? '' : 'none';
-  document.getElementById('btn-cancel').style.display        = state.mode === 'edit'   ? '' : 'none';
   document.getElementById('btn-save-gh').style.display       = (t && !tr)             ? '' : 'none';
   document.getElementById('btn-traits').style.display        = (t && !tr)             ? '' : 'none';
   document.getElementById('btn-cancel-traits').style.display = tr                      ? '' : 'none';

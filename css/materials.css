@@ -97,12 +97,48 @@
   color: var(--heading-fg);
   font-family: var(--font-ui);
 }
-
-.mat-name-nicks {
+.mat-name-aka {
   font-size: 11px;
+  font-weight: 550;
   color: var(--text-muted);
+  margin-top: 2px;
+}
+.mat-name-type {
+  font-size: 11px;
+  color: var(--text-attr);
   margin-top: 1px;
 }
+
+/* ── Trait chip input ───────────────────────────────────────── */
+
+.trait-chip-wrap { position: relative; }
+
+.trait-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; min-height: 20px; }
+
+.trait-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--heading-bg); color: var(--heading-fg);
+  font-size: 11px; padding: 2px 6px; border-radius: 2px;
+}
+.trait-chip-x {
+  background: none; border: none; color: var(--heading-fg);
+  cursor: pointer; font-size: 13px; line-height: 1; padding: 0; opacity: 0.7;
+}
+.trait-chip-x:hover { opacity: 1; }
+
+.trait-chip-dropdown {
+  position: absolute; left: 0; right: 0; top: 100%;
+  background: var(--bg); border: 1px solid var(--border);
+  max-height: 200px; overflow-y: auto; z-index: 100; display: none;
+}
+.trait-chip-group { padding: 4px 0; }
+.trait-chip-group-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--text-muted);
+  padding: 2px 8px; background: var(--row-odd);
+}
+.trait-chip-option { padding: 4px 8px; font-size: 12px; cursor: pointer; color: var(--text); }
+.trait-chip-option:hover { background: var(--heading-bg); color: var(--heading-fg); }
 
 /* ── Specific cell widths / styles ─────────────────────────── */
 

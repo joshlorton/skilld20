@@ -1346,14 +1346,51 @@ function buildEditor(f) {
   form.appendChild(sec('Variants'));
   form.appendChild(edJson('Variants (JSON array)', 'ed-variants', f.variants));
 
+  // ── Editor action buttons ──────────────────────────────────
+  const btnRow = el('div', { class: 'editor-btn-row' });
+  const fname  = f.name || 'this foundation';
+
+  // Save
+  const saveBtn = el('button', { class: 'btn btn-save-action', type: 'button' },
+    `Save \u201c${fname}\u201d`);
+  saveBtn.addEventListener('click', async () => {
+    try {
+      const updated = collectEditor();
+      state.entries[state.currentIndex] = updated;
+    } catch (e) { setStatus(e.message, 'error'); return; }
+    const ok = await saveData();
+    if (ok) {
+      state.mode = 'view';
+      renderList();
+      showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
+      updateButtons();
+    }
+  });
+  btnRow.appendChild(saveBtn);
+
+  // Cancel
+  const cancelBtn = el('button', { class: 'btn btn-cancel-action', type: 'button' }, 'Cancel');
+  cancelBtn.addEventListener('click', () => {
+    state.mode = 'view';
+    renderList();
+    if (state.currentIndex >= 0) {
+      showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
+    } else {
+      document.getElementById('empty-state').style.display = '';
+      document.querySelectorAll('.panel').forEach(p => { p.style.display = 'none'; });
+    }
+    updateButtons();
+  });
+  btnRow.appendChild(cancelBtn);
+
+  // Delete (existing entries only)
   if (state.currentIndex >= 0 && state.token) {
-    const deleteBtn = el('button', { class: 'btn btn-danger btn-delete', id: 'btn-delete' },
-      `Delete \u201c${f.name || 'this foundation'}\u201d`);
+    const deleteBtn = el('button', { class: 'btn btn-danger', type: 'button' },
+      `Delete \u201c${fname}\u201d`);
     deleteBtn.addEventListener('click', () => {
       const name = state.entries[state.currentIndex]?.name || 'this foundation';
       openDeleteModal(
         name,
-        // Save: collect form, update entry, save to GitHub
         async () => {
           try {
             const updated = collectEditor();
@@ -1367,9 +1404,7 @@ function buildEditor(f) {
             updateButtons();
           }
         },
-        // Cancel: return to editor
         () => {},
-        // Delete: remove entry and auto-save
         async () => {
           state.entries.splice(state.currentIndex, 1);
           state.currentIndex = -1;
@@ -1382,9 +1417,10 @@ function buildEditor(f) {
         }
       );
     });
-    form.appendChild(deleteBtn);
+    btnRow.appendChild(deleteBtn);
   }
 
+  form.appendChild(btnRow);
   return form;
 }
 
@@ -1488,13 +1524,11 @@ function updateButtons() {
   const ed = state.mode === 'edit';
   const tr = state.mode === 'traits';
 
-  document.getElementById('btn-new').style.display          = (t && !tr)                       ? '' : 'none';
-  document.getElementById('btn-edit').style.display         = (t && s && ev && !tr)             ? '' : 'none';
-  document.getElementById('btn-cancel').style.display       = (ed)                               ? '' : 'none';
-  document.getElementById('btn-save-gh').style.display      = (t && ed && !tr)                   ? '' : 'none';
-  document.getElementById('btn-traits').style.display       = (t && !tr)                        ? '' : 'none';
-  document.getElementById('btn-cancel-traits').style.display = tr                                ? '' : 'none';
-  document.getElementById('btn-save-traits').style.display   = (t && tr)                          ? '' : 'none';
+  document.getElementById('btn-new').style.display           = (t && !tr)             ? '' : 'none';
+  document.getElementById('btn-edit').style.display          = (t && s && ev && !tr)  ? '' : 'none';
+  document.getElementById('btn-traits').style.display        = (t && !tr)             ? '' : 'none';
+  document.getElementById('btn-cancel-traits').style.display = tr                     ? '' : 'none';
+  document.getElementById('btn-save-traits').style.display   = (t && tr)              ? '' : 'none';
 }
 
 /* ============================================================
@@ -1533,40 +1567,6 @@ document.addEventListener('DOMContentLoaded', () => {
     state.mode = 'edit';
     showPanel('editor', buildEditor(state.entries[state.currentIndex]));
     updateButtons();
-  });
-
-  // Cancel
-  document.getElementById('btn-cancel').addEventListener('click', () => {
-    state.mode = 'view';
-    if (state.currentIndex >= 0) {
-      showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
-    } else {
-      document.getElementById('empty-state').style.display = '';
-    }
-    renderList();
-    updateButtons();
-  });
-
-  // Save to GitHub
-  document.getElementById('btn-save-gh').addEventListener('click', async () => {
-    if (state.mode === 'edit') {
-      try {
-        const updated = collectEditor();
-        state.entries[state.currentIndex] = updated;
-      } catch (e) {
-        setStatus(e.message, 'error');
-        return;
-      }
-    }
-    const ok = await saveData();
-    if (ok) {
-      state.mode = 'view';
-      renderList();
-      if (state.currentIndex >= 0) {
-        showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
-      }
-      updateButtons();
-    }
   });
 
   // Manage Traits
