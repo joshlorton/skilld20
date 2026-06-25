@@ -13,9 +13,8 @@
       "use": "clothing and worn items; consumable",
       "effect": "conversion: resistance 2 vs all burst damage; mental enhancement, competence, confidence, free will",
       "traits": [
-        "Agni Manitite",
-        "Pearl of Fire",
-        "Pearl of the Divine Fire"
+        "Enhancement",
+        "Protection"
       ],
       "legacy_use": "garments and the crafting of magical items",
       "legacy_effect": "in all blasts (such as the explosions caused by fireballs and beads of force), agni manis vaporize but protect beings wearing or carrying them by negating 1d4 points of damage per agni mani stone",
