@@ -3,15 +3,15 @@
     {
       "name": "Agni Mani",
       "nicknames": [
-        "Agni Mani",
+        "Agni Manitite",
         "Pearl of Fire",
         "Pearl of the Divine Fire"
       ],
-      "physical_description": "meteoric glass; dark charcoal grey-black to a smoky translucent color; very rare; hardness 5.5-7",
+      "physical_description": "translucent dark charcoal grey-black to a smoky; very rare; meteoric glass (tektite); hardness 5.5-7",
       "type": "Ornamental",
       "location": "sands: beaches, deserts, shallow waters",
-      "use": "clothing and worn items; consumable",
-      "effect": "conversion: resistance 2 vs all burst damage; mental enhancement, competence, confidence, free will",
+      "use": "clothing and worn items; conversion: consumable",
+      "effect": "mental enhancement, competence, confidence, free will; conversion: resistance 2 vs all burst damage",
       "traits": [
         "Enhancement",
         "Protection"
@@ -807,6 +807,27 @@
       "source": "V'sGtATM"
     },
     {
+      "name": "Great Sand Sea Glass",
+      "nicknames": [
+        "Libyan Desert Glass"
+      ],
+      "physical_description": "translucent pale to medium yellow; very rare; meteoric glass (tektite); hardness ?",
+      "type": "?",
+      "location": "sands: sun drenched deserts",
+      "use": "weapon blades, cutting tools",
+      "effect": "fire and holy/sacred damage",
+      "traits": [
+        "Fire",
+        "Sacred",
+        "Sun"
+      ],
+      "legacy_use": "-",
+      "legacy_effect": "-",
+      "legacy_belief": "-",
+      "legacy_notes": "-",
+      "source": "V'sGtATM"
+    },
+    {
       "name": "Greenstone",
       "nicknames": [
         "Chlorastrolite"
@@ -1344,6 +1365,27 @@
       "legacy_effect": "Powdered and dissolved in the sap of any deciduous tree, microcline is the most versatile and abundant alternative to octopus and squid ink as a base for spell inks.",
       "legacy_belief": "",
       "legacy_notes": "",
+      "source": "V'sGtATM"
+    },
+    {
+      "name": "Moldavite",
+      "nicknames": [
+        "Stone of Transformation"
+      ],
+      "physical_description": "translucent forest green, bottle-green, olive green, blue-greenish, or brownish-green; jagged, etched, wrinkled, and pitted surface; very rare; meteoric glass (tektite); hardness 5.5",
+      "type": "Semi-precious",
+      "location": "forests",
+      "use": "clothing and worn items; consumable",
+      "effect": "warmth, protection, self-healing & cleansing; amplification of charm/compulsion/love",
+      "traits": [
+        "Emotion",
+        "Healing",
+        "Protection"
+      ],
+      "legacy_use": "-",
+      "legacy_effect": "-",
+      "legacy_belief": "-",
+      "legacy_notes": "-",
       "source": "V'sGtATM"
     },
     {
