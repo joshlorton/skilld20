@@ -198,6 +198,11 @@ body {
 .btn-primary    { background: var(--heading-bg); color: var(--heading-fg); }
 .btn-secondary  { background: #252525; color: var(--text); }
 .btn-danger     { background: #3a0d0d; color: #f07070; }
+
+/* ── Action modal button variants (green / orange / red) ───── */
+.btn-save-action   { background: #0a2e14; color: #5ec87a; border: 1px solid #2a7040; }
+.btn-cancel-action { background: #2e1408; color: #c07040; border: 1px solid #7a3018; }
+.btn-delete-action { background: #240606; color: #c04040; border: 1px solid #7a1a1a; }
 .btn-icon       { background: transparent; color: var(--text-muted); font-size: 15px; padding: 4px 7px; }
 .btn-icon:hover { color: var(--text); opacity: 1; }
 .btn-delete     { display: block; margin-top: 28px; width: 100%; padding: 9px; font-size: 13px; }
@@ -644,6 +649,28 @@ details[open] > summary.section-heading::before {
 }
 #token-input:focus { border-color: var(--heading-fg); }
 #modal-buttons     { display: flex; gap: 8px; }
+
+/* ── Delete confirmation modal ──────────────────────────────── */
+
+#delete-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center; justify-content: center;
+  z-index: 1001;
+}
+#delete-overlay.is-open { display: flex; }
+
+#delete-modal {
+  background: var(--bg);
+  border: 1px solid var(--heading-fg);
+  padding: 24px;
+  width: 420px;
+  max-width: 90vw;
+}
+#delete-modal h3 { color: var(--heading-fg); font-variant: small-caps; font-size: 18px; margin-bottom: 8px; }
+#delete-modal p  { color: var(--text-muted); font-size: 13px; line-height: 1.6; margin-bottom: 20px; }
+#delete-modal-buttons { display: flex; gap: 8px; }
 
 /* ============================================================
    SCROLLBAR

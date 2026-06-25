@@ -347,13 +347,29 @@ function buildEntryEditor(catKey, idx) {
   btnRow.appendChild(saveBtn);
 
   if (!isNew) {
-    const delBtn = el('button', { class: 'btn btn-danger', type: 'button', style: 'margin-left:16px' }, '\u00D7 Delete');
+    const delBtn = el('button', { class: 'btn btn-danger', type: 'button', style: 'margin-left:16px' },
+      '\u00D7 Delete');
     delBtn.addEventListener('click', () => {
-      if (!confirm('Delete "' + (entry.name || 'this entry') + '"?')) return;
-      mstate.data[catKey].splice(idx, 1);
-      mstate.selIdx = -1;
-      state.mode = 'view';
-      showCategory(catKey);
+      const name = entry.name || 'this entry';
+      openDeleteModal(
+        name,
+        // Save: commit current edits to local JSON then save to GitHub
+        async () => {
+          commitEdit(catKey, idx);
+          await saveData();
+        },
+        // Cancel: return to editor
+        () => {},
+        // Delete: remove entry and auto-save
+        async () => {
+          mstate.data[catKey].splice(idx, 1);
+          mstate.selIdx = -1;
+          state.mode    = 'view';
+          showCategory(catKey);
+          updateButtons();
+          await saveData();
+        }
+      );
     });
     btnRow.appendChild(delBtn);
   }

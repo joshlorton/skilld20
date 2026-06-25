@@ -1348,18 +1348,39 @@ function buildEditor(f) {
 
   if (state.currentIndex >= 0 && state.token) {
     const deleteBtn = el('button', { class: 'btn btn-danger btn-delete', id: 'btn-delete' },
-      `Delete "${f.name || 'this foundation'}"`);
+      `Delete \u201c${f.name || 'this foundation'}\u201d`);
     deleteBtn.addEventListener('click', () => {
       const name = state.entries[state.currentIndex]?.name || 'this foundation';
-      if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
-      state.entries.splice(state.currentIndex, 1);
-      state.currentIndex = -1;
-      state.dirty        = true;
-      state.mode         = 'view';
-      renderList();
-      document.getElementById('empty-state').style.display = '';
-      document.querySelectorAll('.panel').forEach(p => { p.style.display = 'none'; });
-      updateButtons();
+      openDeleteModal(
+        name,
+        // Save: collect form, update entry, save to GitHub
+        async () => {
+          try {
+            const updated = collectEditor();
+            state.entries[state.currentIndex] = updated;
+          } catch (e) { setStatus(e.message, 'error'); return; }
+          const ok = await saveData();
+          if (ok) {
+            state.mode = 'view';
+            renderList();
+            showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
+            updateButtons();
+          }
+        },
+        // Cancel: return to editor
+        () => {},
+        // Delete: remove entry and auto-save
+        async () => {
+          state.entries.splice(state.currentIndex, 1);
+          state.currentIndex = -1;
+          state.mode         = 'view';
+          renderList();
+          document.getElementById('empty-state').style.display = '';
+          document.querySelectorAll('.panel').forEach(p => { p.style.display = 'none'; });
+          updateButtons();
+          await saveData();
+        }
+      );
     });
     form.appendChild(deleteBtn);
   }
@@ -1470,7 +1491,7 @@ function updateButtons() {
   document.getElementById('btn-new').style.display          = (t && !tr)                       ? '' : 'none';
   document.getElementById('btn-edit').style.display         = (t && s && ev && !tr)             ? '' : 'none';
   document.getElementById('btn-cancel').style.display       = (ed)                               ? '' : 'none';
-  document.getElementById('btn-save-gh').style.display      = (t && (state.dirty || ed) && !tr)  ? '' : 'none';
+  document.getElementById('btn-save-gh').style.display      = (t && ed && !tr)                   ? '' : 'none';
   document.getElementById('btn-traits').style.display       = (t && !tr)                        ? '' : 'none';
   document.getElementById('btn-cancel-traits').style.display = tr                                ? '' : 'none';
   document.getElementById('btn-save-traits').style.display   = (t && tr)                          ? '' : 'none';

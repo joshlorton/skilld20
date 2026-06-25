@@ -260,6 +260,26 @@ function closeModal() {
 }
 
 /* ============================================================
+   DELETE CONFIRMATION MODAL
+   ============================================================ */
+
+const _delCbs = { save: null, cancel: null, del: null };
+
+function openDeleteModal(name, onSave, onCancel, onDelete) {
+  _delCbs.save   = onSave;
+  _delCbs.cancel = onCancel;
+  _delCbs.del    = onDelete;
+  document.getElementById('delete-modal-title').textContent = `Delete \u201c${name}\u201d?`;
+  document.getElementById('btn-del-save').textContent   = `Save \u201c${name}\u201d`;
+  document.getElementById('btn-del-delete').textContent = `Delete \u201c${name}\u201d`;
+  document.getElementById('delete-overlay').classList.add('is-open');
+}
+
+function closeDeleteModal() {
+  document.getElementById('delete-overlay').classList.remove('is-open');
+}
+
+/* ============================================================
    TRAIT GROUP SORTING
    ============================================================ */
 
@@ -697,6 +717,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('modal-overlay').addEventListener('click', e => {
     if (e.target.id === 'modal-overlay') closeModal();
+  });
+
+  // Inject delete confirmation modal into body
+  const delOverlay = document.createElement('div');
+  delOverlay.id = 'delete-overlay';
+  delOverlay.innerHTML =
+    '<div id="delete-modal">' +
+    '<h3 id="delete-modal-title">Delete?</h3>' +
+    '<p>This action cannot be undone.</p>' +
+    '<div id="delete-modal-buttons">' +
+    '<button id="btn-del-save"   class="btn btn-save-action"></button>' +
+    '<button id="btn-del-cancel" class="btn btn-cancel-action">Cancel</button>' +
+    '<button id="btn-del-delete" class="btn btn-delete-action"></button>' +
+    '</div></div>';
+  document.body.appendChild(delOverlay);
+
+  document.getElementById('btn-del-save').addEventListener('click', () => {
+    closeDeleteModal(); if (_delCbs.save)   _delCbs.save();
+  });
+  document.getElementById('btn-del-cancel').addEventListener('click', () => {
+    closeDeleteModal(); if (_delCbs.cancel) _delCbs.cancel();
+  });
+  document.getElementById('btn-del-delete').addEventListener('click', () => {
+    closeDeleteModal(); if (_delCbs.del)    _delCbs.del();
+  });
+
+  delOverlay.addEventListener('click', e => {
+    if (e.target.id === 'delete-overlay') closeDeleteModal();
   });
 
 });
