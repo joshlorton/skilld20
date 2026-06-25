@@ -2600,6 +2600,761 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Animate Fire",
+      "mana": 8,
+      "rarity": "uncommon",
+      "difficulty": "hard",
+      "image": "",
+      "note": "",
+      "traits": [
+        "fire"
+      ],
+      "traditions": [
+        "arcane",
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "arcane school: elemental: fire",
+        "bloodline: elemental: fire",
+        "divine domain: elemental: fire",
+        "pact: genie: fire"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Divine Armor",
+      "mana": 4,
+      "rarity": "uncommon",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "creation"
+      ],
+      "traditions": [
+        "divine"
+      ],
+      "access": [
+        "divine domain: protection"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Enhance Item",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [],
+      "traditions": [
+        "arcane",
+        "bardic",
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Fade",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "visual"
+      ],
+      "traditions": [
+        "arcane",
+        "bardic",
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "arcane school: elemental: air",
+        "bardic tune: obscure",
+        "bloodline: elemental: air",
+        "bloodline: fey",
+        "bloodline: genie: air",
+        "divine domain: trickery",
+        "pact: genie: air"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "s",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Fear",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "emotion",
+        "fear",
+        "mental"
+      ],
+      "traditions": [
+        "arcane",
+        "bardic",
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "bloodline: draconic",
+        "bloodline: fey",
+        "divine domain: chaos",
+        "pact: draconic: the lord",
+        "pact: draconic: the queen",
+        "pact: great old one: the deep"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Healing",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "positive",
+        "healing",
+        "necromancy"
+      ],
+      "traditions": [
+        "bardic",
+        "divine",
+        "pact"
+      ],
+      "access": [
+        "divine domain: renewal",
+        "divine domain: season: spring"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "s",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Morale",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "emotion",
+        "mental"
+      ],
+      "traditions": [
+        "arcane",
+        "bardic",
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Naturecraft",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "wood",
+        "enhancement",
+        "polymorph"
+      ],
+      "traditions": [
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "bloodline: fey",
+        "divine domain: plant",
+        "divine domain: season: autumn",
+        "divine domain: season: spring",
+        "divine domain: season: summer",
+        "divine domain: season: winter"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "s",
+        "trigger": ""
+      },
+      "range": "0'",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 1,
+        "type": "small item made completely of plant material or stone"
+      },
+      "duration": "1 minutes",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
+    },
+    {
+      "name": "Natureskin",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [
+        "wood",
+        "enhancement",
+        "polymorph"
+      ],
+      "traditions": [
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "divine domain: elemental: earth",
+        "divine domain: plant",
+        "divine domain: season: autumn",
+        "divine domain: season: spring",
+        "divine domain: season: summer",
+        "divine domain: season: winter"
+      ],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "0'",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 1,
+        "type": "self"
+      },
+      "duration": "1 minutes",
+      "effect": {
+        "options": []
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
