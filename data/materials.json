@@ -513,6 +513,20 @@
       "legacy_info": "A soft, brittle semiprecious stone of vivid emeraldgreen hue, dioptase (also known as diopside) is found in tiny, flawed crystals and yields only the smallest of faceted gemstones that are used in figurine adornment or to decorate lace. Larger specimens are extremely rare and highly valued, commanding the same prices as more valuable color and clarity variations. In two turns dioptase dissolves in liquids that have already been enchanted by any spell effect—and each gemstone that is so dissolved restores 1 hit point of damage to a creature who drinks the resulting mixture. Few folk in the Realms know of this alternative sort of potion of healing, but word is spreading."
     },
     {
+      "name": "Dirielong",
+      "nicknames": [
+        "\"Gazing-rock\""
+      ],
+      "physical_description": "Broad Dwarvish category for softer metamorphic and sedimentary stones used decoratively or where Naurond is unwieldy. Sub-types: \"Block-stones\" (colored marble and softer \"Wet-rocks\"/limestone), and \"Slab-stones\" (schist, flint, slate). Limestone cave formations — stalactites and stalagmites — are called \"Aulë's Tears\" by Dwarves and preserved wherever possible during delving.",
+      "type": "",
+      "location": "",
+      "use": "",
+      "effect": "",
+      "traits": [],
+      "source": "merp",
+      "legacy_info": "Description: Broad Dwarvish category for softer metamorphic and sedimentary stones used decoratively or where Naurond is unwieldy. Sub-types: \"Block-stones\" (colored marble and softer \"Wet-rocks\"/limestone), and \"Slab-stones\" (schist, flint, slate). Limestone cave formations — stalactites and stalagmites — are called \"Aulë's Tears\" by Dwarves and preserved wherever possible during delving."
+    },
+    {
       "name": "Disthene",
       "nicknames": [
         "Kyanite"
@@ -1185,6 +1199,20 @@
       "legacy_info": "This feldspar ornamental stone is usually tumbled or cabochon cut. It is deep green to blue-green in hue and is sometimes referred as amazonstone. Tiny cleavage cracks within the gemstones reflect light so that a polished microcline stone visibly shimmers. Microcline crystals cleave easily, and finished stones may split if handled carelessly. Powdered and dissolved in the sap of any deciduous tree, microcline is the most versatile and abundant alternative to octopus and squid ink as a base for spell inks."
     },
     {
+      "name": "Mirond",
+      "nicknames": [
+        "\"Jewel-rock\""
+      ],
+      "physical_description": "Dwarvish classification system for gems and glasses. Two principal categories: Fenen (\"Veils\" / \"Hidden Crystals\" / \"Glasses\") and Maegelenath (\"Sharp-stars\" / \"Bold Crystals\" / \"Gemstones\"). Of the glasses, laen is the most intriguing — as hard as diamond, smooth, without cleavage points, and colorable when worked.",
+      "type": "",
+      "location": "",
+      "use": "",
+      "effect": "",
+      "traits": [],
+      "source": "merp",
+      "legacy_info": "Description: Dwarvish classification system for gems and glasses. Two principal categories: Fenen (\"Veils\" / \"Hidden Crystals\" / \"Glasses\") and Maegelenath (\"Sharp-stars\" / \"Bold Crystals\" / \"Gemstones\"). Of the glasses, laen is the most intriguing — as hard as diamond, smooth, without cleavage points, and colorable when worked.; Notes: Quartzes and obsidians provide most of Moria's glasses; no single Dwarven gemstone is considered preeminent."
+    },
+    {
       "name": "Moldavite",
       "nicknames": [
         "Stone of Transformation"
@@ -1265,6 +1293,20 @@
       "traits": [],
       "source": "V'sGtATM",
       "legacy_info": "Mynteer is the name given to phenakite, a hard, colorless, and rare gemstone. This semiprecious stone occurs in crystals, usually with inclusions. Because of this, the crystals yield only small faceted gemstones. Its magical use is as a spell ink ingredient for magics concerned with levitation, telekinesis, and other constructs of force that move, hold, or carry things (such as unseen servant spells, Tenser’s floating disc, and so on)."
+    },
+    {
+      "name": "Naurond",
+      "nicknames": [
+        "\"Fire-rock\""
+      ],
+      "physical_description": "General Dwarvish term for volcanic/igneous rock; the stone that binds Moria. Coarse granite near the surface; smooth black basalt deeper in. A light pumice variety from the \"Domes\" of the Fifth Deep is used as a polishing/grinding material; rarely sold to non-Dwarves.",
+      "type": "",
+      "location": "",
+      "use": "",
+      "effect": "",
+      "traits": [],
+      "source": "merp",
+      "legacy_info": "Description: General Dwarvish term for volcanic/igneous rock; the stone that binds Moria. Coarse granite near the surface; smooth black basalt deeper in. A light pumice variety from the \"Domes\" of the Fifth Deep is used as a polishing/grinding material; rarely sold to non-Dwarves."
     },
     {
       "name": "Nelvine",
@@ -2210,6 +2252,18 @@
       "traits": [],
       "source": "V'sGtATM",
       "legacy_info": "Turritella is a dark brown agate (quartz) hardstone that consists of many small, silicified shells (all spiral-shaped and less than an inch long). This cheap alternative to marble is quarried in slabs and used for facings, inlay-work, and floorings, just as marble is. Many sages speculate that it should have a magical use, but (so far as is presently known) no one has yet discovered just what that use may be."
+    },
+    {
+      "name": "Ulgond",
+      "nicknames": [],
+      "physical_description": "Elven liquid stone poured into wood molds; hardens after a few days to a hardness exceeding any natural rock. Used extensively by the Gwaith-i-Mírdain.",
+      "type": "",
+      "location": "",
+      "use": "",
+      "effect": "",
+      "traits": [],
+      "source": "merp",
+      "legacy_info": "Description: Elven liquid stone poured into wood molds; hardens after a few days to a hardness exceeding any natural rock. Used extensively by the Gwaith-i-Mírdain."
     },
     {
       "name": "Ulvaen",
@@ -4156,18 +4210,6 @@
   ],
   "treatments": [
     {
-      "name": "",
-      "nicknames": [],
-      "physical_description": "",
-      "type": "",
-      "location": "",
-      "use": "",
-      "effect": "",
-      "traits": [],
-      "source": "V'sGtATM",
-      "legacy_info": ""
-    },
-    {
       "name": "Blueshine",
       "nicknames": [],
       "physical_description": "",
@@ -4192,18 +4234,6 @@
       "legacy_info": "Everbright: This long, difficult, and exacting dwarven process is now known to smiths of other races, but it has thus far defied all efforts to duplicate its end results with a spell. At least three mages—Athlagh of the Many Locks (who resides in"
     },
     {
-      "name": "Everbright",
-      "nicknames": [],
-      "physical_description": "",
-      "type": "",
-      "location": "",
-      "use": "",
-      "effect": "",
-      "traits": [],
-      "source": "V'sGtATM",
-      "legacy_info": "Everbright: This long, difficult, and exacting dwarven process is now known to smiths of other races, but it has thus far defied all efforts to duplicate its end results with a spell. At least three mages—Athlagh of the Many Locks (who resides in"
-    },
-    {
       "name": "Halabar's Stealth",
       "nicknames": [],
       "physical_description": "",
@@ -4214,62 +4244,6 @@
       "traits": [],
       "source": "V'sGtATM",
       "legacy_info": "everbright, practiced by dwarves for centuries; another is Halabar’s stealth, a treatment that improves the ability of a metallic weapon to be employed covertly."
-    }
-  ],
-  "stones": [
-    {
-      "name": "Dirielong",
-      "nicknames": [
-        "\"Gazing-rock\""
-      ],
-      "physical_description": "Broad Dwarvish category for softer metamorphic and sedimentary stones used decoratively or where Naurond is unwieldy. Sub-types: \"Block-stones\" (colored marble and softer \"Wet-rocks\"/limestone), and \"Slab-stones\" (schist, flint, slate). Limestone cave formations — stalactites and stalagmites — are called \"Aulë's Tears\" by Dwarves and preserved wherever possible during delving.",
-      "type": "",
-      "location": "",
-      "use": "",
-      "effect": "",
-      "traits": [],
-      "source": "merp",
-      "legacy_info": "Description: Broad Dwarvish category for softer metamorphic and sedimentary stones used decoratively or where Naurond is unwieldy. Sub-types: \"Block-stones\" (colored marble and softer \"Wet-rocks\"/limestone), and \"Slab-stones\" (schist, flint, slate). Limestone cave formations — stalactites and stalagmites — are called \"Aulë's Tears\" by Dwarves and preserved wherever possible during delving."
-    },
-    {
-      "name": "Mirond",
-      "nicknames": [
-        "\"Jewel-rock\""
-      ],
-      "physical_description": "Dwarvish classification system for gems and glasses. Two principal categories: Fenen (\"Veils\" / \"Hidden Crystals\" / \"Glasses\") and Maegelenath (\"Sharp-stars\" / \"Bold Crystals\" / \"Gemstones\"). Of the glasses, laen is the most intriguing — as hard as diamond, smooth, without cleavage points, and colorable when worked.",
-      "type": "",
-      "location": "",
-      "use": "",
-      "effect": "",
-      "traits": [],
-      "source": "merp",
-      "legacy_info": "Description: Dwarvish classification system for gems and glasses. Two principal categories: Fenen (\"Veils\" / \"Hidden Crystals\" / \"Glasses\") and Maegelenath (\"Sharp-stars\" / \"Bold Crystals\" / \"Gemstones\"). Of the glasses, laen is the most intriguing — as hard as diamond, smooth, without cleavage points, and colorable when worked.; Notes: Quartzes and obsidians provide most of Moria's glasses; no single Dwarven gemstone is considered preeminent."
-    },
-    {
-      "name": "Naurond",
-      "nicknames": [
-        "\"Fire-rock\""
-      ],
-      "physical_description": "General Dwarvish term for volcanic/igneous rock; the stone that binds Moria. Coarse granite near the surface; smooth black basalt deeper in. A light pumice variety from the \"Domes\" of the Fifth Deep is used as a polishing/grinding material; rarely sold to non-Dwarves.",
-      "type": "",
-      "location": "",
-      "use": "",
-      "effect": "",
-      "traits": [],
-      "source": "merp",
-      "legacy_info": "Description: General Dwarvish term for volcanic/igneous rock; the stone that binds Moria. Coarse granite near the surface; smooth black basalt deeper in. A light pumice variety from the \"Domes\" of the Fifth Deep is used as a polishing/grinding material; rarely sold to non-Dwarves."
-    },
-    {
-      "name": "Ulgond",
-      "nicknames": [],
-      "physical_description": "Elven liquid stone poured into wood molds; hardens after a few days to a hardness exceeding any natural rock. Used extensively by the Gwaith-i-Mírdain.",
-      "type": "",
-      "location": "",
-      "use": "",
-      "effect": "",
-      "traits": [],
-      "source": "merp",
-      "legacy_info": "Description: Elven liquid stone poured into wood molds; hardens after a few days to a hardness exceeding any natural rock. Used extensively by the Gwaith-i-Mírdain."
     }
   ],
   "woods": [
