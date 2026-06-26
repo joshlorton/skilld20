@@ -406,6 +406,15 @@ function buildTraitChipInput(currentTraits) {
     });
   }
 
+  function positionDropdown() {
+    const rect = input.getBoundingClientRect();
+    dropdown.style.left  = rect.left + 'px';
+    dropdown.style.top   = (rect.bottom + 2) + 'px';
+    dropdown.style.width = Math.max(rect.width, 180) + 'px';
+  }
+
+  function hideDropdown() { dropdown.style.display = 'none'; }
+
   function renderDropdown(q) {
     dropdown.innerHTML = '';
     dropdown.style.display = 'none';
@@ -437,12 +446,16 @@ function buildTraitChipInput(currentTraits) {
         dropdown.appendChild(g);
       });
     });
-    if (any) dropdown.style.display = '';
+    if (any) { positionDropdown(); dropdown.style.display = ''; }
   }
 
   input.addEventListener('input', () => renderDropdown(input.value));
   input.addEventListener('focus', () => renderDropdown(input.value));
-  input.addEventListener('blur',  () => { setTimeout(() => { dropdown.style.display='none'; }, 150); });
+  input.addEventListener('blur',  () => { setTimeout(hideDropdown, 150); });
+
+  // Close dropdown if the content panel scrolls (fixed positioning doesn't scroll with content)
+  const contentEl = document.getElementById('content');
+  if (contentEl) contentEl.addEventListener('scroll', hideDropdown, { passive: true });
 
   renderChips();
   wrap.appendChild(chips);

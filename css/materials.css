@@ -139,7 +139,8 @@
 .trait-chip-x:hover { opacity: 1; }
 
 .trait-chip-dropdown {
-  position: absolute; left: 0; right: 0; top: 100%;
+  position: fixed;
+  /* left, top, width set via JS from input.getBoundingClientRect() */
   background: var(--bg); border: 1px solid var(--border);
   max-height: 200px; overflow-y: auto; z-index: 100; display: none;
 }
