@@ -719,6 +719,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.id === 'modal-overlay') closeModal();
   });
 
+  // ── Traits buttons (shared across all section pages) ──────────
+
+  function restoreAfterTraits() {
+    // Re-show the viewer if it still has content; otherwise show empty state
+    const viewer = document.getElementById('viewer');
+    if (viewer && viewer.children.length > 0) {
+      showPanel('viewer');   // unhide without replacing content
+    } else {
+      document.getElementById('empty-state').style.display = '';
+      document.querySelectorAll('.panel').forEach(p => { p.style.display = 'none'; });
+    }
+  }
+
+  document.getElementById('btn-traits').addEventListener('click', () => {
+    state.mode = 'traits';
+    showPanel('traits', buildTraitsManagerPanel());
+    updateButtons();
+  });
+
+  document.getElementById('btn-save-traits').addEventListener('click', async () => {
+    const tdata = collectTraitsPanel();
+    state.traits.general    = sortGroups(tdata.general);
+    state.traits.traditions = sortGroups(tdata.traditions);
+    state.traits.access     = sortGroups(tdata.access);
+    const ok = await saveTraitsData();
+    if (ok) {
+      state.mode = 'view';
+      renderList();
+      restoreAfterTraits();
+      updateButtons();
+    }
+  });
+
+  document.getElementById('btn-cancel-traits').addEventListener('click', () => {
+    state.mode = 'view';
+    renderList();
+    restoreAfterTraits();
+    updateButtons();
+  });
+
   // Inject delete confirmation modal into body
   const delOverlay = document.createElement('div');
   delOverlay.id = 'delete-overlay';

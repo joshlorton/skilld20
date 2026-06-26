@@ -1569,44 +1569,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateButtons();
   });
 
-  // Manage Traits
-  document.getElementById('btn-traits').addEventListener('click', () => {
-    state.mode = 'traits';
-    showPanel('traits', buildTraitsManagerPanel());
-    updateButtons();
-  });
-
-  // Save Traits
-  document.getElementById('btn-save-traits').addEventListener('click', async () => {
-    const data = collectTraitsPanel();
-    state.traits.general    = sortGroups(data.general);
-    state.traits.traditions = sortGroups(data.traditions);
-    state.traits.access     = sortGroups(data.access);
-    const ok = await saveTraitsData();
-    if (ok) {
-      state.mode = 'view';
-      renderList();
-      if (state.currentIndex >= 0) {
-        showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
-      } else {
-        document.getElementById('empty-state').style.display = '';
-      }
-      updateButtons();
-    }
-  });
-
-  // Close Traits (Cancel)
-  document.getElementById('btn-cancel-traits').addEventListener('click', () => {
-    state.mode = 'view';
-    if (state.currentIndex >= 0) {
-      showPanel('viewer', renderViewer(state.entries[state.currentIndex]));
-    } else {
-      document.getElementById('empty-state').style.display = '';
-    }
-    renderList();
-    updateButtons();
-  });
-
   /* ----------------------------------------------------------
      Load data -- errors here no longer affect buttons.
      ---------------------------------------------------------- */
