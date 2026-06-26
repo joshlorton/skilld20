@@ -2799,7 +2799,27 @@
       },
       "duration": "",
       "effect": {
-        "options": []
+        "options": [
+          {
+            "title": "",
+            "text": "enhance item quality",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
       },
       "damage": {
         "dieNumber": 0,
