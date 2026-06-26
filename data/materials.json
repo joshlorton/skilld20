@@ -7,8 +7,8 @@
         "Pearl of Fire",
         "Pearl of the Divine Fire"
       ],
-      "physical_description": "translucent dark charcoal grey-black to a smoky; very rare; meteoric glass (tektite); hardness 5.5-7",
-      "type": "Ornamental",
+      "physical_description": "translucent dark charcoal grey-black to a smoky; very rare; hardness 5.5-7",
+      "type": "Ornamental meteoric glass (tektite)",
       "location": "sands: beaches, deserts, shallow waters",
       "use": "clothing and worn items; conversion: consumable",
       "effect": "mental enhancement, competence, confidence, free will; conversion: resistance 2 vs all burst damage",
@@ -741,6 +741,28 @@
       "source": "V'sGtATM"
     },
     {
+      "name": "Frozen Lightning",
+      "nicknames": [
+        "Fossilized Lightning",
+        "Lechatelierite",
+        "Lightning's Burrow"
+      ],
+      "physical_description": "translucent white, browns, greens, and yellows; twisted internal streaks and needles; hardness 6.5",
+      "type": "Ornamental fulgurite",
+      "location": "sands: anywhere lightning is common",
+      "use": "weapon blades (damage), shields and garments (absorption)",
+      "effect": "electricity/lightning damage & absorption, paralyzation; incorrect: curative",
+      "traits": [
+        "Electricity",
+        "Paralyzed"
+      ],
+      "legacy_use": "-",
+      "legacy_effect": "-",
+      "legacy_belief": "-",
+      "legacy_notes": "-",
+      "source": "-"
+    },
+    {
       "name": "Frost Agate",
       "nicknames": [
         "Frost Stone"
@@ -812,7 +834,7 @@
         "Libyan Desert Glass"
       ],
       "physical_description": "translucent pale to medium yellow; very rare; meteoric glass (tektite); hardness ?",
-      "type": "?",
+      "type": "meteroric glass (tektite)",
       "location": "sands: sun drenched deserts",
       "use": "weapon blades, cutting tools",
       "effect": "fire and holy/sacred damage",
@@ -825,7 +847,7 @@
       "legacy_effect": "-",
       "legacy_belief": "-",
       "legacy_notes": "-",
-      "source": "V'sGtATM"
+      "source": "-"
     },
     {
       "name": "Greenstone",
@@ -1372,8 +1394,8 @@
       "nicknames": [
         "Stone of Transformation"
       ],
-      "physical_description": "translucent forest green, bottle-green, olive green, blue-greenish, or brownish-green; jagged, etched, wrinkled, and pitted surface; very rare; meteoric glass (tektite); hardness 5.5",
-      "type": "Semi-precious",
+      "physical_description": "translucent forest green, bottle-green, olive green, blue-greenish, or brownish-green; jagged, etched, wrinkled, and pitted surface; very rare; hardness 5.5",
+      "type": "Semi-precious meteoric glass (tektite)",
       "location": "forests",
       "use": "inlay: instruments, staves, wands",
       "effect": "warmth, protection, self-healing & cleansing; amplification of charm/compulsion/love",
@@ -1386,7 +1408,7 @@
       "legacy_effect": "-",
       "legacy_belief": "-",
       "legacy_notes": "-",
-      "source": "V'sGtATM"
+      "source": ""
     },
     {
       "name": "Moonbar",
