@@ -3516,6 +3516,98 @@
       "heightened": [],
       "variants": [],
       "components": []
+    },
+    {
+      "name": "Create Alchemical Substance",
+      "mana": 4,
+      "rarity": "common",
+      "difficulty": "average",
+      "image": "",
+      "note": "",
+      "traits": [],
+      "traditions": [],
+      "access": [],
+      "cast": {
+        "actions": {
+          "count": 1,
+          "length": "action"
+        },
+        "component": "v",
+        "trigger": ""
+      },
+      "range": "",
+      "area": {
+        "size": 0,
+        "shape": "",
+        "type": ""
+      },
+      "targets": {
+        "count": 0,
+        "type": ""
+      },
+      "duration": "",
+      "effect": {
+        "options": [
+          {
+            "title": "",
+            "text": "create a substance that affects a game mechanic",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
+      },
+      "damage": {
+        "dieNumber": 0,
+        "dieSize": 0,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
+      },
+      "skill": {
+        "primary": [],
+        "secondary": [],
+        "cs": [],
+        "s": "",
+        "f": "",
+        "cf": []
+      },
+      "attack_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "save_results": {
+        "cs": "",
+        "s": "",
+        "f": "",
+        "cf": ""
+      },
+      "sustain": [],
+      "dismiss": [],
+      "heightened": [],
+      "variants": [],
+      "components": []
     }
   ]
 }
