@@ -3475,7 +3475,27 @@
       },
       "duration": "",
       "effect": {
-        "options": []
+        "options": [
+          {
+            "title": "",
+            "text": "alter sound: distance, emotion, source, volume",
+            "note": "",
+            "damage": {
+              "dieNumber": 0,
+              "dieSize": 0,
+              "modifier": 0,
+              "type": ""
+            },
+            "attack": {
+              "type": "",
+              "modifier": 0
+            },
+            "save": {
+              "type": "",
+              "modifier": 0
+            }
+          }
+        ]
       },
       "damage": {
         "dieNumber": 0,
