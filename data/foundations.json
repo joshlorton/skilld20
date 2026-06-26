@@ -3560,7 +3560,7 @@
         "options": [
           {
             "title": "",
-            "text": "create a substance that affects a game mechanic",
+            "text": "create a substance that affects a or has a game mechanic",
             "note": "",
             "damage": {
               "dieNumber": 0,
