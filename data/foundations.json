@@ -3524,9 +3524,19 @@
       "difficulty": "average",
       "image": "",
       "note": "",
-      "traits": [],
-      "traditions": [],
-      "access": [],
+      "traits": [
+        "creation",
+        "utility"
+      ],
+      "traditions": [
+        "arcane",
+        "divine",
+        "bloodline",
+        "pact"
+      ],
+      "access": [
+        "divine domain: artifice"
+      ],
       "cast": {
         "actions": {
           "count": 1,
