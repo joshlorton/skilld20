@@ -20,84 +20,55 @@ function onTokenChange() { loadData(); loadTraitsData(); }
 // ── Column definitions per category ──────────────────────────
 
 const COLS = {
-  gems: [
-    { key:'name',                 label:'Name',                 cls:'mat-name' },
-    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
-    { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
-    { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
-    { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
-    { key:'legacy_use',           label:'Legacy Use',           cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_effect',        label:'Legacy Effect',        cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_belief',        label:'Legacy Belief',        cls:'mat-cell flex-1 mat-false' },
-    { key:'legacy_notes',         label:'Legacy Notes',         cls:'mat-cell flex-1 mat-notes', hasSource:true },
-  ],
-  herbs: [
-    { key:'name',                 label:'Name',                 cls:'mat-name' },
-    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
-    { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
-    { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
-    { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
-    { key:'legacy_use',           label:'Legacy Use',           cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_effect',        label:'Legacy Effect',        cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_cost',          label:'Legacy Cost',          cls:'mat-cost' },
-    { key:'legacy_notes',         label:'Legacy Notes',         cls:'mat-cell flex-1 mat-notes', hasSource:true },
-  ],
-  metals: [
-    { key:'name',                 label:'Name',                 cls:'mat-name' },
-    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
-    { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
-    { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
-    { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
-    { key:'legacy_effect',        label:'Legacy Effect',        cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_bonus',         label:'Legacy Bonus',         cls:'mat-bonus' },
-    { key:'legacy_value',         label:'Legacy Value',         cls:'mat-cost' },
-    { key:'legacy_cost_factor',   label:'Legacy Cost ×',   cls:'mat-factor' },
-    { key:'legacy_time_factor',   label:'Legacy Time ×',   cls:'mat-factor' },
-    { key:'legacy_notes',         label:'Legacy Notes',         cls:'mat-cell flex-1 mat-notes', hasSource:true },
-  ],
-  treatments: [
-    { key:'name',                 label:'Name',                 cls:'mat-name' },
-    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
-    { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
-    { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
-    { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
-    { key:'legacy_use',           label:'Legacy Use',           cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_effect',        label:'Legacy Effect',        cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_notes',         label:'Legacy Notes',         cls:'mat-cell flex-1 mat-notes', hasSource:true },
-  ],
-  stones: [
-    { key:'name',                 label:'Name',                 cls:'mat-name' },
-    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-3 mat-desc' },
-    { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
-    { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
-    { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
-    { key:'legacy_notes',         label:'Legacy Notes',         cls:'mat-cell flex-1 mat-notes', hasSource:true },
-  ],
-  woods: [
-    { key:'name',                 label:'Name',                 cls:'mat-name' },
-    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
-    { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
-    { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
-    { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
-    { key:'legacy_use',           label:'Legacy Use',           cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_effect',        label:'Legacy Effect',        cls:'mat-cell flex-2 mat-notes' },
-    { key:'legacy_notes',         label:'Legacy Notes',         cls:'mat-cell flex-1 mat-notes', hasSource:true },
-  ],
-  enchanted: [
-    { key:'name',                 label:'Name',                 cls:'mat-name' },
-    { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-3 mat-desc' },
-    { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
-    { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
-    { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
-    { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
-    { key:'legacy_notes',         label:'Legacy Notes',         cls:'mat-cell flex-1 mat-notes', hasSource:true },
-  ],
+  gems:       [   { key:'name',                 label:'Name',                 cls:'mat-name' },
+  { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
+  { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
+  { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
+  { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
+  { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
+  { key:'legacy_info',          label:'Legacy Info',          cls:'mat-cell flex-3 mat-notes', hasSource:true }, ],
+  herbs:      [   { key:'name',                 label:'Name',                 cls:'mat-name' },
+  { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
+  { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
+  { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
+  { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
+  { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
+  { key:'legacy_info',          label:'Legacy Info',          cls:'mat-cell flex-3 mat-notes', hasSource:true }, ],
+  metals:     [   { key:'name',                 label:'Name',                 cls:'mat-name' },
+  { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
+  { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
+  { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
+  { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
+  { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
+  { key:'legacy_info',          label:'Legacy Info',          cls:'mat-cell flex-3 mat-notes', hasSource:true }, ],
+  treatments: [   { key:'name',                 label:'Name',                 cls:'mat-name' },
+  { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
+  { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
+  { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
+  { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
+  { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
+  { key:'legacy_info',          label:'Legacy Info',          cls:'mat-cell flex-3 mat-notes', hasSource:true }, ],
+  stones:     [   { key:'name',                 label:'Name',                 cls:'mat-name' },
+  { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
+  { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
+  { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
+  { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
+  { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
+  { key:'legacy_info',          label:'Legacy Info',          cls:'mat-cell flex-3 mat-notes', hasSource:true }, ],
+  woods:      [   { key:'name',                 label:'Name',                 cls:'mat-name' },
+  { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
+  { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
+  { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
+  { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
+  { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
+  { key:'legacy_info',          label:'Legacy Info',          cls:'mat-cell flex-3 mat-notes', hasSource:true }, ],
+  enchanted:  [   { key:'name',                 label:'Name',                 cls:'mat-name' },
+  { key:'physical_description', label:'Physical Description', cls:'mat-cell flex-2 mat-desc' },
+  { key:'location',             label:'Location',             cls:'mat-cell flex-1 mat-desc' },
+  { key:'use',                  label:'Use',                  cls:'mat-cell flex-2 mat-desc' },
+  { key:'effect',               label:'Effect',               cls:'mat-cell flex-2 mat-effect' },
+  { key:'traits',               label:'Traits',               cls:'mat-cell flex-1 mat-notes' },
+  { key:'legacy_info',          label:'Legacy Info',          cls:'mat-cell flex-3 mat-notes', hasSource:true }, ],
 };
 
 // ── Data load / save ──────────────────────────────────────────
@@ -212,8 +183,10 @@ function buildFlexViewer(catKey, entries, wrap) {
   });
   table.appendChild(hdr);
 
-  // Data rows (no source grouping -- source embedded in legacy_notes column)
-  entries.forEach((entry, idx) => {
+  // Data rows: sorted alphabetically, original index preserved for editing
+  const sorted = entries.map((e,i) => ({e,i})).sort((a,b) =>
+    (a.e.name||'').localeCompare(b.e.name||''));
+  sorted.forEach(({ e: entry, i: idx }) => {
     table.appendChild(buildRow(entry, cols, catKey, idx));
   });
 
@@ -234,16 +207,16 @@ function buildRow(entry, cols, catKey, idx) {
         cell.appendChild(el('div', { class: 'mat-name-aka' },
           'AKA: ' + entry.nicknames.join(', ')));
       }
-      // Row 3: type (orange)
-      if (entry.type) {
-        cell.appendChild(el('div', { class: 'mat-name-type' }, entry.type));
+      // Row 3: Nine Secrets badge (if applicable)
+      if (entry.legacy_info && /nine secret/i.test(entry.legacy_info)) {
+        cell.appendChild(el('div', { class: 'mat-nine-secrets' }, 'Nine Secrets'));
       }
     } else if (col.hasSource) {
-      // Legacy Notes with Source sub-row
-      const notes = entry.legacy_notes || '';
-      const src   = entry.source || '';
-      if (notes) cell.appendChild(el('div', { class: 'mat-notes-text' }, notes));
-      if (src)   cell.appendChild(el('div', { class: 'mat-name-aka' }, 'Source: ' + src));
+      // Legacy Info with Source sub-row
+      const info = entry.legacy_info || '';
+      const src  = entry.source || '';
+      if (info) cell.appendChild(el('div', { class: 'mat-notes-text' }, info));
+      if (src)  cell.appendChild(el('div', { class: 'mat-name-aka' }, 'Source: ' + src));
     } else if (col.key === 'traits') {
       const ts = Array.isArray(entry.traits) ? entry.traits : [];
       cell.textContent = ts.join(', ');
@@ -487,57 +460,25 @@ function buildTraitChipInput(currentTraits) {
 }
 
 function getCategoryFields(catKey) {
-  const SHARED_NEW = [
+  const SHARED = [
     { key:'physical_description', label:'Physical Description', multi:true  },
     { key:'location',             label:'Location',             multi:false },
     { key:'use',                  label:'Use',                  multi:true  },
     { key:'effect',               label:'Effect',               multi:true  },
     { key:'traits',               label:'Traits',               multi:false, chip:true },
+    { key:'legacy_info',          label:'Legacy Info',          multi:true  },
   ];
-  const SHARED_LEGACY_NOTES = { key:'legacy_notes', label:'Legacy Notes', multi:true  };
-
-  const extra = {
-    gems:       [
-      { key:'legacy_use',    label:'Legacy Use',    multi:true  },
-      { key:'legacy_effect', label:'Legacy Effect', multi:true  },
-      { key:'legacy_belief', label:'Legacy Belief', multi:false },
-    ],
-    herbs:      [
-      { key:'legacy_use',    label:'Legacy Use',    multi:true  },
-      { key:'legacy_effect', label:'Legacy Effect', multi:true  },
-      { key:'legacy_cost',   label:'Legacy Cost',   multi:false },
-    ],
-    metals:     [
-      { key:'legacy_effect',      label:'Legacy Effect',    multi:true  },
-      { key:'legacy_bonus',       label:'Legacy Bonus',     multi:false },
-      { key:'legacy_value',       label:'Legacy Value',     multi:false },
-      { key:'legacy_cost_factor', label:'Legacy Cost ×', multi:false },
-      { key:'legacy_time_factor', label:'Legacy Time ×', multi:false },
-    ],
-    treatments: [
-      { key:'legacy_use',    label:'Legacy Use',    multi:true  },
-      { key:'legacy_effect', label:'Legacy Effect', multi:true  },
-    ],
-    stones:     [],
-    woods:      [
-      { key:'legacy_use',    label:'Legacy Use',    multi:true  },
-      { key:'legacy_effect', label:'Legacy Effect', multi:true  },
-    ],
-    enchanted:  [],
-    spells:     [
-      { key:'spell_class', label:'Class',    multi:false },
-      { key:'level',       label:'Level',    multi:false },
-      { key:'school',      label:'School',   multi:false },
-      { key:'casting',     label:'Casting',  multi:false },
-      { key:'range',       label:'Range',    multi:false },
-      { key:'duration',    label:'Duration', multi:false },
-      { key:'save',        label:'Save',     multi:false },
-      { key:'effect',      label:'Effect',   multi:true  },
-    ],
-  };
-
-  if (catKey === 'spells') return extra.spells;
-  return [...SHARED_NEW, ...(extra[catKey] || []), SHARED_LEGACY_NOTES];
+  if (catKey === 'spells') return [
+    { key:'spell_class', label:'Class',    multi:false },
+    { key:'level',       label:'Level',    multi:false },
+    { key:'school',      label:'School',   multi:false },
+    { key:'casting',     label:'Casting',  multi:false },
+    { key:'range',       label:'Range',    multi:false },
+    { key:'duration',    label:'Duration', multi:false },
+    { key:'save',        label:'Save',     multi:false },
+    { key:'effect',      label:'Effect',   multi:true  },
+  ];
+  return SHARED;
 }
 
 function collectEdit(catKey) {

@@ -108,6 +108,19 @@
   color: var(--text-attr);
   margin-top: 1px;
 }
+.mat-nine-secrets {
+  display: inline-block;
+  background: #1e0d00;
+  color: var(--text-attr);
+  border: 1px solid var(--text-attr);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border-radius: 2px;
+  margin-top: 2px;
+}
 
 /* ── Trait chip input ───────────────────────────────────────── */
 
