@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+# Manual trigger only, deliberately -- this publishes the live site.
+# Requires Settings > Pages > Source to already be set to
+# "GitHub Actions" (a repo-settings change made outside this workflow).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          # Don't let this workflow flip the repo's Pages source itself --
+          # that's an explicit, separate decision made in Settings.
+          enablement: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install and build the Materials React app
+        working-directory: app
+        run: |
+          npm ci
+          npm run build
+
+      - name: Assemble deployable site
+        run: |
+          set -euo pipefail
+          mkdir site
+          git archive HEAD | tar -x -C site
+          # app/ and .github/ are source, not part of the served site.
+          rm -rf site/app site/.github
+          # Swap the vanilla materials.html for the built React app.
+          rm -f site/materials.html
+          cp app/dist/index.html site/materials.html
+          mkdir -p site/assets
+          cp -r app/dist/assets/materials site/assets/materials
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
