@@ -1,0 +1,15 @@
+.mat-filter-row { background: var(--bg-sidebar); padding-top: 4px; padding-bottom: 6px; }
+
+.mat-filter-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-family: var(--font-ui);
+}
+.mat-filter-input:focus { outline: none; border-color: var(--heading-fg); }
+
+.mat-empty-row { padding: 16px; color: var(--text-muted); font-style: italic; }
