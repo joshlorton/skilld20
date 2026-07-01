@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SKILLd20 Foundations</title>
+  <title>SKILLd20</title>
   <link rel="stylesheet" href="css/shared.css">
-  <link rel="stylesheet" href="css/foundations.css">
+  <link rel="stylesheet" href="css/index.css">
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,66 +13,67 @@
 
     <header id="topbar">
       <div id="topbar-left">
-        <span id="app-title">SKILLd20</span>
-        <span id="app-subtitle">Foundations of Magic</span>
-      </div>
-      <div id="topbar-right">
-        <span id="status-text"></span>
-        <button id="btn-traits"        class="btn btn-secondary" style="display:none">Manage Traits</button>
-        <button id="btn-cancel-traits" class="btn btn-secondary" style="display:none">Close</button>
-        <button id="btn-save-traits"   class="btn btn-primary"   style="display:none">Save Traits</button>
-        <button id="btn-token"   class="btn btn-icon"      title="GitHub Token">⚙</button>
+        <a id="app-title" href="index.html">SKILLd20</a>
+        <span id="app-subtitle">Home</span>
       </div>
     </header>
 
     <nav id="nav-rail">
-      <a href="index.html"      class="nav-rail-item"><span class="nav-rail-sym">◆</span><span class="nav-rail-label">Foundations</span></a>
-      <a href="feats.html"      class="nav-rail-item"><span class="nav-rail-sym">★</span><span class="nav-rail-label">Feats</span></a>
-      <a href="skills.html"     class="nav-rail-item"><span class="nav-rail-sym">◎</span><span class="nav-rail-label">Skills</span></a>
-      <a href="materials.html" class="nav-rail-item"><span class="nav-rail-sym">❖</span><span class="nav-rail-label">Materials</span></a>
-      <a href="rituals.html"    class="nav-rail-item"><span class="nav-rail-sym">⊕</span><span class="nav-rail-label">Rituals</span></a>
-      <a href="crafting.html"   class="nav-rail-item"><span class="nav-rail-sym">⚒</span><span class="nav-rail-label">Crafting</span></a>
-      <a href="rules.html"      class="nav-rail-item"><span class="nav-rail-sym">≡</span><span class="nav-rail-label">Rules</span></a>
+      <a href="foundations.html" class="nav-rail-item"><span class="nav-rail-sym">&#9670;</span><span class="nav-rail-label">Foundations</span></a>
+      <a href="feats.html"       class="nav-rail-item"><span class="nav-rail-sym">&#9733;</span><span class="nav-rail-label">Feats</span></a>
+      <a href="skills.html"      class="nav-rail-item"><span class="nav-rail-sym">&#9678;</span><span class="nav-rail-label">Skills</span></a>
+      <a href="materials.html"   class="nav-rail-item"><span class="nav-rail-sym">&#10022;</span><span class="nav-rail-label">Materials</span></a>
+      <a href="rituals.html"     class="nav-rail-item"><span class="nav-rail-sym">&#8853;</span><span class="nav-rail-label">Rituals</span></a>
+      <a href="crafting.html"    class="nav-rail-item"><span class="nav-rail-sym">&#9874;</span><span class="nav-rail-label">Crafting</span></a>
+      <a href="rules.html"       class="nav-rail-item"><span class="nav-rail-sym">&#8801;</span><span class="nav-rail-label">Rules</span></a>
     </nav>
 
     <div id="main">
-      <aside id="sidebar">
-        <div id="sidebar-actions">
-          <button id="btn-new"  class="btn btn-primary" style="display:none">+ New</button>
-          <button id="btn-edit" class="btn btn-primary" style="display:none">Edit</button>
+      <main id="content" class="landing">
+        <div class="landing-hero">
+          <h1>SKILLd20</h1>
+          <p>A rules reference and living data set for the SKILLd20 tabletop system. Pick a section to browse.</p>
         </div>
-        <div id="search-wrap">
-          <input id="search" type="text" placeholder="Search foundations…" autocomplete="off">
+        <div class="landing-grid">
+          <a href="foundations.html" class="landing-card">
+            <span class="landing-card-sym">&#9670;</span>
+            <span class="landing-card-title">Foundations</span>
+            <span class="landing-card-desc">Foundations of magic.</span>
+          </a>
+          <a href="materials.html" class="landing-card">
+            <span class="landing-card-sym">&#10022;</span>
+            <span class="landing-card-title">Materials</span>
+            <span class="landing-card-desc">Material components: gems, herbs, metals, treatments, woods, enchanted materials, and enchantment spells.</span>
+          </a>
+          <a href="feats.html" class="landing-card">
+            <span class="landing-card-sym">&#9733;</span>
+            <span class="landing-card-title">Feats</span>
+            <span class="landing-card-desc">Character feats.</span>
+          </a>
+          <a href="skills.html" class="landing-card">
+            <span class="landing-card-sym">&#9678;</span>
+            <span class="landing-card-title">Skills</span>
+            <span class="landing-card-desc">Character skills.</span>
+          </a>
+          <a href="rituals.html" class="landing-card">
+            <span class="landing-card-sym">&#8853;</span>
+            <span class="landing-card-title">Rituals</span>
+            <span class="landing-card-desc">Ritual magic.</span>
+          </a>
+          <a href="crafting.html" class="landing-card">
+            <span class="landing-card-sym">&#9874;</span>
+            <span class="landing-card-title">Crafting</span>
+            <span class="landing-card-desc">Crafting rules.</span>
+          </a>
+          <a href="rules.html" class="landing-card">
+            <span class="landing-card-sym">&#8801;</span>
+            <span class="landing-card-title">Rules</span>
+            <span class="landing-card-desc">General rules reference.</span>
+          </a>
         </div>
-        <div id="item-list"></div>
-      </aside>
-      <div id="sidebar-handle" title="Drag to resize"></div>
-
-      <main id="content">
-        <div id="empty-state"><p>Select a foundation or create a new one.</p></div>
-        <div id="viewer"  class="panel" style="display:none"></div>
-        <div id="editor"  class="panel" style="display:none"></div>
-        <div id="traits"  class="panel" style="display:none"></div>
       </main>
     </div>
 
   </div>
-
-  <!-- Token Modal -->
-  <div id="modal-overlay" style="display:none">
-    <div id="modal">
-      <h3>GitHub Token</h3>
-      <p>Personal Access Token with <strong>repo</strong> scope. Stored only in your browser's localStorage — never committed to GitHub.</p>
-      <input id="token-input" type="password" placeholder="ghp_…" autocomplete="off">
-      <div id="modal-buttons">
-        <button id="btn-token-save"   class="btn btn-save-action">Save Token</button>
-        <button id="btn-token-cancel" class="btn btn-cancel-action">Cancel</button>
-        <button id="btn-token-clear"  class="btn btn-delete-action">Clear Token</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="scripts/shared.js" defer></script>
-  <script src="scripts/foundations.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+/* ============================================================
+   SKILLd20 -- index.css (landing page)
+   ============================================================ */
+
+#content.landing { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+
+.landing-hero h1 {
+  font-family: var(--font-ui);
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--heading-fg);
+  margin: 0 0 12px;
+}
+
+.landing-hero p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 0 40px;
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.landing-card {
+  display: block;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--row-odd);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.landing-card:hover { border-color: var(--heading-fg); background: var(--row-even); }
+
+.landing-card-sym { display: block; font-size: 22px; color: var(--heading-fg); margin-bottom: 10px; }
+
+.landing-card-title { display: block; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+
+.landing-card-desc { display: block; font-size: 13px; color: var(--text-muted); line-height: 1.4; }

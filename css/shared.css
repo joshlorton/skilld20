@@ -56,7 +56,8 @@ body {
 }
 
 #topbar-left   { display: flex; align-items: center; gap: 0; flex: 1; }
-#app-title     { width: calc(44px + var(--sidebar-width) - 14px); text-align: center; flex-shrink: 0; font-size: 23px; font-weight: 900; color: var(--heading-fg); letter-spacing: 2px; }
+#app-title     { display: inline-block; width: calc(44px + var(--sidebar-width) - 14px); text-align: center; flex-shrink: 0; font-size: 23px; font-weight: 900; color: var(--heading-fg); letter-spacing: 2px; text-decoration: none; cursor: pointer; }
+#app-title:hover { color: var(--heading-fg); opacity: 0.85; }
 #app-subtitle  { font-size: 17px; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; padding-left: 27px; }
 #topbar-right  { display: flex; align-items: center; gap: 8px; }
 
