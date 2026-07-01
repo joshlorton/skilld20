@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { ColumnDef } from '../lib/columns';
+import { EditableField, EditableArrayField } from './EditableField';
 
 interface RowBase {
   name: string;
@@ -12,6 +13,9 @@ interface RowBase {
 interface Props<T extends RowBase> {
   columns: ColumnDef<T>[];
   rows: T[];
+  editable?: boolean;
+  onCellCommit?: (index: number, patch: Partial<T>) => void;
+  onDeleteRow?: (index: number) => void;
 }
 
 type SortDir = 'asc' | 'desc';
@@ -22,7 +26,13 @@ function cellText<T extends RowBase>(row: T, col: ColumnDef<T>): string {
   return value == null ? '' : String(value);
 }
 
-export function MaterialsTable<T extends RowBase>({ columns, rows }: Props<T>) {
+export function MaterialsTable<T extends RowBase>({
+  columns,
+  rows,
+  editable = false,
+  onCellCommit,
+  onDeleteRow,
+}: Props<T>) {
   const [sortKey, setSortKey] = useState<(keyof T & string) | null>(null);
   const [sortDir, setSortDir] = useState<SortDir>('asc');
   const [filters, setFilters] = useState<Record<string, string>>({});
@@ -36,23 +46,28 @@ export function MaterialsTable<T extends RowBase>({ columns, rows }: Props<T>) {
     }
   }
 
+  const indexed = useMemo(() => rows.map((row, index) => ({ row, index })), [rows]);
+
   const filtered = useMemo(() => {
-    return rows.filter((row) =>
+    return indexed.filter(({ row }) =>
       columns.every((col) => {
         const needle = filters[col.key]?.trim().toLowerCase();
         if (!needle) return true;
         return cellText(row, col).toLowerCase().includes(needle);
       }),
     );
-  }, [rows, columns, filters]);
+  }, [indexed, columns, filters]);
 
   const sorted = useMemo(() => {
     if (!sortKey) return filtered;
     const col = columns.find((c) => c.key === sortKey);
     if (!col) return filtered;
-    const withKey = filtered.map((row) => ({ row, key: cellText(row, col).toLowerCase() }));
+    const withKey = filtered.map((item) => ({
+      ...item,
+      key: cellText(item.row, col).toLowerCase(),
+    }));
     withKey.sort((a, b) => a.key.localeCompare(b.key) * (sortDir === 'asc' ? 1 : -1));
-    return withKey.map((w) => w.row);
+    return withKey;
   }, [filtered, columns, sortKey, sortDir]);
 
   return (
@@ -70,6 +85,7 @@ export function MaterialsTable<T extends RowBase>({ columns, rows }: Props<T>) {
             {sortKey === col.key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
           </div>
         ))}
+        {editable && <div className="mat-cell mat-row-actions" />}
       </div>
       <div className="mat-header-row mat-filter-row">
         {columns.map((col) => (
@@ -83,31 +99,91 @@ export function MaterialsTable<T extends RowBase>({ columns, rows }: Props<T>) {
             />
           </div>
         ))}
+        {editable && <div className="mat-cell mat-row-actions" />}
       </div>
-      {sorted.map((row, idx) => (
-        <div className="mat-row" key={row.name + idx}>
+      {sorted.map(({ row, index }) => (
+        <div className="mat-row" key={index}>
           {columns.map((col) => (
             <div key={col.key} className={col.cls}>
               {col.key === 'name' ? (
-                <>
-                  <div className="mat-name-primary">{row.name || ''}</div>
-                  {row.nicknames.length > 0 && (
-                    <div className="mat-name-aka">AKA: {row.nicknames.join(', ')}</div>
-                  )}
-                </>
+                editable ? (
+                  <>
+                    <EditableField
+                      className="mat-name-primary-input"
+                      value={row.name}
+                      onCommit={(v) => onCellCommit?.(index, { name: v } as Partial<T>)}
+                    />
+                    <EditableArrayField
+                      className="mat-name-aka-input"
+                      value={row.nicknames}
+                      onCommit={(v) => onCellCommit?.(index, { nicknames: v } as Partial<T>)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div className="mat-name-primary">{row.name || ''}</div>
+                    {row.nicknames.length > 0 && (
+                      <div className="mat-name-aka">AKA: {row.nicknames.join(', ')}</div>
+                    )}
+                  </>
+                )
               ) : col.hasSource ? (
-                <>
-                  {row.legacy_info && <div className="mat-notes-text">{row.legacy_info}</div>}
-                  {row.source && <div className="mat-name-aka">Source: {row.source}</div>}
-                </>
+                editable ? (
+                  <>
+                    <EditableField
+                      multiline
+                      value={row.legacy_info ?? ''}
+                      onCommit={(v) => onCellCommit?.(index, { legacy_info: v } as Partial<T>)}
+                    />
+                    <EditableField
+                      className="mat-name-aka-input"
+                      value={row.source ?? ''}
+                      onCommit={(v) => onCellCommit?.(index, { source: v } as Partial<T>)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {row.legacy_info && <div className="mat-notes-text">{row.legacy_info}</div>}
+                    {row.source && <div className="mat-name-aka">Source: {row.source}</div>}
+                  </>
+                )
+              ) : col.key === 'traits' ? (
+                editable ? (
+                  <EditableArrayField
+                    value={row.traits}
+                    onCommit={(v) => onCellCommit?.(index, { traits: v } as Partial<T>)}
+                  />
+                ) : (
+                  row.traits.join(', ')
+                )
+              ) : editable ? (
+                <EditableField
+                  multiline={col.multiline}
+                  value={cellText(row, col)}
+                  onCommit={(v) => onCellCommit?.(index, { [col.key]: v } as Partial<T>)}
+                />
               ) : (
                 cellText(row, col)
               )}
             </div>
           ))}
+          {editable && (
+            <div className="mat-cell mat-row-actions">
+              <button
+                type="button"
+                className="mat-row-delete"
+                title="Delete entry"
+                onClick={() => onDeleteRow?.(index)}
+              >
+                ✕
+              </button>
+            </div>
+          )}
         </div>
       ))}
-      {sorted.length === 0 && <div className="mat-empty-row">No entries match the current filters.</div>}
+      {sorted.length === 0 && (
+        <div className="mat-empty-row">No entries match the current filters.</div>
+      )}
     </div>
   );
 }

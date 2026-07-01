@@ -13,3 +13,44 @@
 .mat-filter-input:focus { outline: none; border-color: var(--heading-fg); }
 
 .mat-empty-row { padding: 16px; color: var(--text-muted); font-style: italic; }
+
+/* ── Inline editing ────────────────────────────────────────── */
+
+.mat-edit-input {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  color: inherit;
+  font: inherit;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+.mat-edit-input:hover  { border-color: var(--border); }
+.mat-edit-input:focus  { outline: none; border-color: var(--heading-fg); background: rgba(255, 255, 255, 0.04); }
+
+textarea.mat-edit-input { resize: vertical; min-height: 44px; }
+
+.mat-name-primary-input {
+  font-weight: 700;
+  color: var(--heading-fg);
+  font-family: var(--font-ui);
+}
+.mat-name-aka-input {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.mat-row-actions { flex: 0 0 24px; display: flex; align-items: flex-start; justify-content: center; }
+
+.mat-row-delete {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px;
+  line-height: 1;
+}
+.mat-row-delete:hover { color: #f07070; }
