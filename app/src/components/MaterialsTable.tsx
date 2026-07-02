@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { ColumnDef } from '../lib/columns';
 import { EditableField, EditableArrayField } from './EditableField';
+import { IconSave, IconCancel, IconDelete } from './icons';
 
 interface RowBase {
   name: string;
@@ -15,7 +16,12 @@ interface Props<T extends RowBase> {
   rows: T[];
   editable?: boolean;
   onCellCommit?: (index: number, patch: Partial<T>) => void;
-  onDeleteRow?: (index: number) => void;
+  /** Writes the whole current dataset to GitHub (same action for every row). */
+  onSave?: () => void;
+  /** Reverts this row's edits back to the last-saved snapshot (removes it if never saved). */
+  onCancelRow?: (index: number) => void;
+  /** Called only after the row's own delete confirmation. */
+  onConfirmDelete?: (index: number) => void;
 }
 
 type SortDir = 'asc' | 'desc';
@@ -31,11 +37,14 @@ export function MaterialsTable<T extends RowBase>({
   rows,
   editable = false,
   onCellCommit,
-  onDeleteRow,
+  onSave,
+  onCancelRow,
+  onConfirmDelete,
 }: Props<T>) {
   const [sortKey, setSortKey] = useState<(keyof T & string) | null>(null);
   const [sortDir, setSortDir] = useState<SortDir>('asc');
   const [filters, setFilters] = useState<Record<string, string>>({});
+  const [confirmIndex, setConfirmIndex] = useState<number | null>(null);
 
   function toggleSort(key: keyof T & string) {
     if (sortKey === key) {
@@ -74,27 +83,21 @@ export function MaterialsTable<T extends RowBase>({
     <div className="mat-table">
       <div className="mat-header-row">
         {columns.map((col) => (
-          <div
-            key={col.key}
-            className={col.cls}
-            onClick={() => toggleSort(col.key)}
-            style={{ cursor: 'pointer' }}
-            title="Click to sort"
-          >
-            {col.label}
-            {sortKey === col.key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
-          </div>
-        ))}
-        {editable && <div className="mat-cell mat-row-actions" />}
-      </div>
-      <div className="mat-header-row mat-filter-row">
-        {columns.map((col) => (
           <div key={col.key} className={col.cls}>
+            <div
+              className="mat-col-label"
+              onClick={() => toggleSort(col.key)}
+              title="Click to sort"
+            >
+              {col.label}
+              {sortKey === col.key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
+            </div>
             <input
               type="text"
               className="mat-filter-input"
               placeholder="Filter…"
               value={filters[col.key] ?? ''}
+              onClick={(e) => e.stopPropagation()}
               onChange={(e) => setFilters((f) => ({ ...f, [col.key]: e.target.value }))}
             />
           </div>
@@ -169,14 +172,56 @@ export function MaterialsTable<T extends RowBase>({
           ))}
           {editable && (
             <div className="mat-cell mat-row-actions">
-              <button
-                type="button"
-                className="mat-row-delete"
-                title="Delete entry"
-                onClick={() => onDeleteRow?.(index)}
-              >
-                ✕
-              </button>
+              {confirmIndex === index ? (
+                <>
+                  <button
+                    type="button"
+                    className="mat-row-icon-btn btn-delete-action"
+                    title="Confirm delete"
+                    onClick={() => {
+                      onConfirmDelete?.(index);
+                      setConfirmIndex(null);
+                    }}
+                  >
+                    <IconDelete />
+                  </button>
+                  <button
+                    type="button"
+                    className="mat-row-icon-btn btn-cancel-action"
+                    title="Keep entry"
+                    onClick={() => setConfirmIndex(null)}
+                  >
+                    <IconCancel />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    className="mat-row-icon-btn btn-save-action"
+                    title="Save to GitHub"
+                    onClick={() => onSave?.()}
+                  >
+                    <IconSave />
+                  </button>
+                  <button
+                    type="button"
+                    className="mat-row-icon-btn btn-cancel-action"
+                    title="Revert changes"
+                    onClick={() => onCancelRow?.(index)}
+                  >
+                    <IconCancel />
+                  </button>
+                  <button
+                    type="button"
+                    className="mat-row-icon-btn btn-delete-action"
+                    title="Delete entry"
+                    onClick={() => setConfirmIndex(index)}
+                  >
+                    <IconDelete />
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>

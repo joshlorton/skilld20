@@ -11,7 +11,7 @@ export interface ColumnDef<T> {
 }
 
 export const MATERIAL_COLUMNS: ColumnDef<MaterialEntry>[] = [
-  { key: 'name', label: 'Name', cls: 'mat-name' },
+  { key: 'name', label: 'Name', cls: 'mat-cell mat-name' },
   {
     key: 'physical_description',
     label: 'Physical Description',
@@ -26,7 +26,7 @@ export const MATERIAL_COLUMNS: ColumnDef<MaterialEntry>[] = [
 ];
 
 export const SPELL_COLUMNS: ColumnDef<SpellEntry>[] = [
-  { key: 'name', label: 'Name', cls: 'mat-name' },
+  { key: 'name', label: 'Name', cls: 'mat-cell mat-name' },
   { key: 'spell_class', label: 'Class', cls: 'mat-cell flex-1 mat-desc' },
   { key: 'level', label: 'Level', cls: 'mat-cell flex-1 mat-desc' },
   { key: 'school', label: 'School', cls: 'mat-cell flex-1 mat-desc' },

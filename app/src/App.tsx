@@ -3,9 +3,11 @@ import { getToken, setToken as persistToken, ghReadFile, saveWithConflictRetry }
 import type { MaterialEntry, MaterialsData, SpellEntry, MaterialCategory } from './types/materials';
 import { MATERIAL_COLUMNS, SPELL_COLUMNS } from './lib/columns';
 import { blankMaterialEntry, blankSpellEntry } from './lib/blankEntry';
+import { CATEGORIES, type Category } from './lib/categories';
 import { MaterialsTable } from './components/MaterialsTable';
-import { CategoryNav, type Category } from './components/CategoryNav';
+import { CategoryNav } from './components/CategoryNav';
 import { TokenModal } from './components/TokenModal';
+import { IconNewFile } from './components/icons';
 import './App.css';
 
 type LoadState =
@@ -17,6 +19,8 @@ type SaveStatus = 'idle' | 'saving' | 'saved' | 'error';
 
 function App() {
   const [state, setState] = useState<LoadState>({ status: 'loading' });
+  // Data as of the last successful load/save -- what row-level Cancel reverts to.
+  const [snapshot, setSnapshot] = useState<MaterialsData | null>(null);
   const [category, setCategory] = useState<Category>('gems');
   const [token, setTokenState] = useState(() => getToken());
   const [modalOpen, setModalOpen] = useState(false);
@@ -31,6 +35,7 @@ function App() {
           return;
         }
         setState({ status: 'loaded', data: result.data, sha: result.sha });
+        setSnapshot(result.data);
       })
       .catch((err: unknown) => {
         setState({ status: 'error', message: err instanceof Error ? err.message : String(err) });
@@ -61,13 +66,62 @@ function App() {
         `Update Materials [${ts}]`,
       );
       setState({ status: 'loaded', data: state.data, sha: result.sha });
+      setSnapshot(state.data);
       setSaveStatus('saved');
     } catch {
       setSaveStatus('error');
     }
   }
 
-  function updateMaterialCategory(cat: MaterialCategory, updater: (arr: MaterialEntry[]) => MaterialEntry[]) {
+  /** Deletes a row and immediately commits, matching the vanilla editor's auto-save-on-delete. */
+  async function handleConfirmDelete(index: number) {
+    if (state.status !== 'loaded' || !token) return;
+    const newData: MaterialsData =
+      category === 'spells'
+        ? { ...state.data, spells: state.data.spells.filter((_, i) => i !== index) }
+        : { ...state.data, [category]: state.data[category].filter((_, i) => i !== index) };
+    setState({ status: 'loaded', data: newData, sha: state.sha });
+    setSaveStatus('saving');
+    try {
+      const ts = new Date().toISOString().slice(0, 16).replace('T', ' ');
+      const result = await saveWithConflictRetry(
+        'data/materials.json',
+        state.sha,
+        newData,
+        `Delete entry from Materials [${ts}]`,
+      );
+      setState({ status: 'loaded', data: newData, sha: result.sha });
+      setSnapshot(newData);
+      setSaveStatus('saved');
+    } catch {
+      setSaveStatus('error');
+    }
+  }
+
+  /** Reverts one row's edits to the last-saved snapshot; removes it if it was never saved. */
+  function handleCancelRow(index: number) {
+    if (state.status !== 'loaded' || !snapshot) return;
+    if (category === 'spells') {
+      const original = snapshot.spells[index];
+      if (!original) {
+        updateSpells((arr) => arr.filter((_, i) => i !== index));
+      } else {
+        updateSpells((arr) => arr.map((e, i) => (i === index ? original : e)));
+      }
+    } else {
+      const original = snapshot[category][index];
+      if (!original) {
+        updateMaterialCategory(category, (arr) => arr.filter((_, i) => i !== index));
+      } else {
+        updateMaterialCategory(category, (arr) => arr.map((e, i) => (i === index ? original : e)));
+      }
+    }
+  }
+
+  function updateMaterialCategory(
+    cat: MaterialCategory,
+    updater: (arr: MaterialEntry[]) => MaterialEntry[],
+  ) {
     if (state.status !== 'loaded') return;
     setState({ ...state, data: { ...state.data, [cat]: updater(state.data[cat]) } });
   }
@@ -86,6 +140,7 @@ function App() {
   }
 
   const editable = Boolean(token);
+  const categoryLabel = CATEGORIES.find((c) => c.key === category)?.label ?? '';
 
   return (
     <div id="app">
@@ -105,11 +160,6 @@ function App() {
             {state.status === 'loaded' && saveStatus === 'error' && 'Save error'}
             {state.status === 'loaded' && saveStatus === 'idle' && 'Loaded'}
           </span>
-          {editable && (
-            <button id="btn-save-gh" className="btn btn-primary" onClick={handleSave}>
-              Save to GitHub
-            </button>
-          )}
           <button
             id="btn-token"
             className="btn btn-icon"
@@ -154,47 +204,58 @@ function App() {
 
       <div id="main">
         <aside id="sidebar">
-          {editable && (
-            <div id="sidebar-actions">
-              <button className="btn btn-primary" onClick={handleAddEntry}>
-                + New
-              </button>
-            </div>
-          )}
           <CategoryNav active={category} onSelect={setCategory} />
         </aside>
 
         <main id="content">
           {state.status === 'loading' && <div id="empty-state">Loading materials…</div>}
           {state.status === 'error' && <div id="empty-state">{state.message}</div>}
-          {state.status === 'loaded' &&
-            (category === 'spells' ? (
-              <MaterialsTable
-                key={category}
-                columns={SPELL_COLUMNS}
-                rows={state.data.spells}
-                editable={editable}
-                onCellCommit={(index, patch) =>
-                  updateSpells((arr) => arr.map((e, i) => (i === index ? { ...e, ...patch } : e)))
-                }
-                onDeleteRow={(index) => updateSpells((arr) => arr.filter((_, i) => i !== index))}
-              />
-            ) : (
-              <MaterialsTable
-                key={category}
-                columns={MATERIAL_COLUMNS}
-                rows={state.data[category]}
-                editable={editable}
-                onCellCommit={(index, patch) =>
-                  updateMaterialCategory(category, (arr) =>
-                    arr.map((e, i) => (i === index ? { ...e, ...patch } : e)),
-                  )
-                }
-                onDeleteRow={(index) =>
-                  updateMaterialCategory(category, (arr) => arr.filter((_, i) => i !== index))
-                }
-              />
-            ))}
+          {state.status === 'loaded' && (
+            <>
+              <div className="mat-category-title">
+                <span>{categoryLabel}</span>
+                {editable && (
+                  <button
+                    type="button"
+                    className="mat-title-new-btn"
+                    title="New entry"
+                    onClick={handleAddEntry}
+                  >
+                    <IconNewFile size={15} />
+                  </button>
+                )}
+              </div>
+              {category === 'spells' ? (
+                <MaterialsTable
+                  key={category}
+                  columns={SPELL_COLUMNS}
+                  rows={state.data.spells}
+                  editable={editable}
+                  onCellCommit={(index, patch) =>
+                    updateSpells((arr) => arr.map((e, i) => (i === index ? { ...e, ...patch } : e)))
+                  }
+                  onSave={handleSave}
+                  onCancelRow={handleCancelRow}
+                  onConfirmDelete={handleConfirmDelete}
+                />
+              ) : (
+                <MaterialsTable
+                  key={category}
+                  columns={MATERIAL_COLUMNS}
+                  rows={state.data[category]}
+                  editable={editable}
+                  onCellCommit={(index, patch) =>
+                    updateMaterialCategory(category, (arr) =>
+                      arr.map((e, i) => (i === index ? { ...e, ...patch } : e)),
+                    )
+                  }
+                  onSave={handleSave}
+                  onCancelRow={handleCancelRow}
+                  onConfirmDelete={handleConfirmDelete}
+                />
+              )}
+            </>
+          )}
         </main>
       </div>
 

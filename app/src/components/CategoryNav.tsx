@@ -1,16 +1,6 @@
-import type { MaterialCategory } from '../types/materials';
+import { CATEGORIES, type Category } from '../lib/categories';
 
-export type Category = MaterialCategory | 'spells';
-
-const CATEGORIES: { key: Category; label: string }[] = [
-  { key: 'enchanted', label: 'Enchanted Materials' },
-  { key: 'spells', label: 'Enchantment Spells' },
-  { key: 'gems', label: 'Gems & Stones' },
-  { key: 'herbs', label: 'Herbs & Plants' },
-  { key: 'treatments', label: 'Metal Treatments' },
-  { key: 'metals', label: 'Metals' },
-  { key: 'woods', label: 'Woods' },
-];
+export type { Category };
 
 interface Props {
   active: Category;

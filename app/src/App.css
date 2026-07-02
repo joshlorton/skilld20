@@ -1,11 +1,16 @@
-.mat-filter-row { background: var(--bg-sidebar); padding-top: 4px; padding-bottom: 6px; }
+.mat-col-label { cursor: pointer; }
 
 .mat-filter-input {
+  display: block;
   width: 100%;
+  margin-top: 4px;
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--text);
   font-size: 11px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
   padding: 2px 4px;
   border-radius: 2px;
   font-family: var(--font-ui);
@@ -13,6 +18,29 @@
 .mat-filter-input:focus { outline: none; border-color: var(--heading-fg); }
 
 .mat-empty-row { padding: 16px; color: var(--text-muted); font-style: italic; }
+
+/* ── Category title row ───────────────────────────────────── */
+
+.mat-category-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mat-title-new-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  background: var(--heading-fg);
+  color: var(--heading-bg);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.mat-title-new-btn:hover { opacity: 0.85; }
 
 /* ── Inline editing ────────────────────────────────────────── */
 
@@ -42,15 +70,26 @@ textarea.mat-edit-input { resize: vertical; min-height: 44px; }
   margin-top: 2px;
 }
 
-.mat-row-actions { flex: 0 0 24px; display: flex; align-items: flex-start; justify-content: center; }
+/* ── Row actions ───────────────────────────────────────────── */
 
-.mat-row-delete {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 13px;
-  padding: 2px;
-  line-height: 1;
+.mat-row-actions {
+  flex: 0 0 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
 }
-.mat-row-delete:hover { color: #f07070; }
+
+.mat-row-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.mat-row-icon-btn:hover { opacity: 0.85; }
