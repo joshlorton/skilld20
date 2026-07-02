@@ -1,53 +1,19 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
-import type { MaterialEntry } from '../types/materials';
-import { rarityLabel, rarityClass } from '../lib/rarity';
+import type { EntrySectionConfig } from '../lib/entryConfig';
 import { IconNewFile } from './icons';
-
-interface ListColumn {
-  key: string;
-  label: string;
-  cls: string;
-  text: (row: MaterialEntry) => string;
-}
-
-const LIST_COLUMNS: ListColumn[] = [
-  {
-    key: 'name',
-    label: 'Name',
-    cls: 'mat-cell mat-name',
-    text: (r) => [r.name, r.nicknames.join(', '), rarityLabel(r.rarity)].filter(Boolean).join(' '),
-  },
-  {
-    key: 'physical',
-    label: 'Physical Description',
-    cls: 'mat-cell flex-2 mat-desc',
-    text: (r) => [r.color, r.other].filter(Boolean).join(' '),
-  },
-  {
-    key: 'effect',
-    label: 'Common Effects',
-    cls: 'mat-cell flex-2 mat-effect',
-    text: (r) => r.effect,
-  },
-  {
-    key: 'traits',
-    label: 'Traits',
-    cls: 'mat-cell flex-1 mat-notes',
-    text: (r) => r.traits.join(', '),
-  },
-];
 
 type SortDir = 'asc' | 'desc';
 
-interface Props {
-  rows: MaterialEntry[];
+interface Props<T> {
+  config: EntrySectionConfig<T>;
+  rows: T[];
   editable?: boolean;
-  onRowClick?: (index: number) => void;
   onRowDoubleClick?: (index: number) => void;
   onAddEntry?: () => void;
 }
 
-export function MaterialsList({ rows, editable = false, onRowClick, onRowDoubleClick, onAddEntry }: Props) {
+export function EntryList<T>({ config, rows, editable = false, onRowDoubleClick, onAddEntry }: Props<T>) {
+  const columns = config.listColumns;
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortDir, setSortDir] = useState<SortDir>('asc');
   const [filters, setFilters] = useState<Record<string, string>>({});
@@ -64,7 +30,7 @@ export function MaterialsList({ rows, editable = false, onRowClick, onRowDoubleC
     const ro = new ResizeObserver(update);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [columns]);
 
   function toggleSort(key: string) {
     if (sortKey === key) {
@@ -79,32 +45,31 @@ export function MaterialsList({ rows, editable = false, onRowClick, onRowDoubleC
 
   const filtered = useMemo(() => {
     return indexed.filter(({ row }) =>
-      LIST_COLUMNS.every((col) => {
+      columns.every((col) => {
         const needle = filters[col.key]?.trim().toLowerCase();
         if (!needle) return true;
         return col.text(row).toLowerCase().includes(needle);
       }),
     );
-  }, [indexed, filters]);
+  }, [indexed, columns, filters]);
 
   const sorted = useMemo(() => {
     if (!sortKey) return filtered;
-    const col = LIST_COLUMNS.find((c) => c.key === sortKey);
+    const col = columns.find((c) => c.key === sortKey);
     if (!col) return filtered;
     const withKey = filtered.map((item) => ({ ...item, key: col.text(item.row).toLowerCase() }));
     withKey.sort((a, b) => a.key.localeCompare(b.key) * (sortDir === 'asc' ? 1 : -1));
     return withKey;
-  }, [filtered, sortKey, sortDir]);
+  }, [filtered, columns, sortKey, sortDir]);
 
   function handleRowClick(index: number) {
     setSelectedIndex(index);
-    onRowClick?.(index);
   }
 
   return (
     <div className="mat-table">
       <div className="mat-header-row" ref={labelRowRef}>
-        {LIST_COLUMNS.map((col) => (
+        {columns.map((col) => (
           <div
             key={col.key}
             className={col.cls}
@@ -130,7 +95,7 @@ export function MaterialsList({ rows, editable = false, onRowClick, onRowDoubleC
         )}
       </div>
       <div className="mat-header-row mat-filter-row" style={{ top: labelRowHeight }}>
-        {LIST_COLUMNS.map((col) => (
+        {columns.map((col) => (
           <div key={col.key} className={col.cls}>
             <input
               type="text"
@@ -150,23 +115,11 @@ export function MaterialsList({ rows, editable = false, onRowClick, onRowDoubleC
           onClick={() => handleRowClick(index)}
           onDoubleClick={() => onRowDoubleClick?.(index)}
         >
-          <div className="mat-cell mat-name">
-            <div className="mat-name-primary">{row.name || ''}</div>
-            {row.nicknames.length > 0 && (
-              <div className="mat-name-aka">AKA: {row.nicknames.join(', ')}</div>
-            )}
-            {row.rarity && (
-              <div className="mat-name-rarity">
-                <span className={`trait-tag ${rarityClass(row.rarity)}`}>{rarityLabel(row.rarity)}</span>
-              </div>
-            )}
-          </div>
-          <div className="mat-cell flex-2 mat-desc">
-            {row.color && <div className="mat-desc-color">{row.color}</div>}
-            <div className="mat-desc-other">{row.other}</div>
-          </div>
-          <div className="mat-cell flex-2 mat-effect">{row.effect}</div>
-          <div className="mat-cell flex-1 mat-notes">{row.traits.join(', ')}</div>
+          {columns.map((col) => (
+            <div key={col.key} className={col.cls}>
+              {col.render(row)}
+            </div>
+          ))}
           {editable && <div className="mat-cell mat-row-actions" />}
         </div>
       ))}

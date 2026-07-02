@@ -3,8 +3,18 @@ export interface TraitGroup {
   items: string[];
 }
 
+export interface AccessTraitItem {
+  value: string;
+  label: string;
+}
+
+export interface AccessTraitGroup {
+  label: string;
+  items: AccessTraitItem[];
+}
+
 export interface TraitGroupsData {
   general: TraitGroup[];
   traditions: TraitGroup[];
-  access: TraitGroup[];
+  access: AccessTraitGroup[];
 }

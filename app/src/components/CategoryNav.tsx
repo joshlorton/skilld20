@@ -1,16 +1,13 @@
-import { CATEGORIES, type Category } from '../lib/categories';
-
-export type { Category };
-
 interface Props {
-  active: Category;
-  onSelect: (cat: Category) => void;
+  categories: { key: string; label: string }[];
+  active: string;
+  onSelect: (cat: string) => void;
 }
 
-export function CategoryNav({ active, onSelect }: Props) {
+export function CategoryNav({ categories, active, onSelect }: Props) {
   return (
     <div id="item-list">
-      {CATEGORIES.map((c) => (
+      {categories.map((c) => (
         <div
           key={c.key}
           className={c.key === active ? 'list-item list-item-active' : 'list-item'}

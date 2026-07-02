@@ -139,3 +139,11 @@ textarea.mat-edit-input { resize: vertical; min-height: 44px; }
   cursor: pointer;
 }
 .mat-detail-edit-btn:hover { background: rgba(240, 232, 208, 0.15); }
+
+.mat-detail-rarity-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--heading-fg);
+  opacity: 0.8;
+}

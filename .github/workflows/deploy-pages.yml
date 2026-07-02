@@ -34,7 +34,7 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
 
-      - name: Install and build the Materials React app
+      - name: Install and build the Materials/Rituals/Crafting React app
         working-directory: app
         run: |
           npm ci
@@ -47,11 +47,15 @@ jobs:
           git archive HEAD | tar -x -C site
           # app/ and .github/ are source, not part of the served site.
           rm -rf site/app site/.github
-          # Swap the vanilla materials.html for the built React app.
-          rm -f site/materials.html
-          cp app/dist/index.html site/materials.html
+          # Swap the vanilla stub pages for the built React app -- all 3
+          # pages share one built assets/app directory (content-hashed
+          # filenames, so sharing is safe).
+          rm -f site/materials.html site/rituals.html site/crafting.html
+          cp app/dist/materials.html site/materials.html
+          cp app/dist/rituals.html site/rituals.html
+          cp app/dist/crafting.html site/crafting.html
           mkdir -p site/assets
-          cp -r app/dist/assets/materials site/assets/materials
+          cp -r app/dist/assets/app site/assets/app
 
       - uses: actions/upload-pages-artifact@v4
         with:
