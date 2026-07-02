@@ -53,7 +53,7 @@ jobs:
           mkdir -p site/assets
           cp -r app/dist/assets/materials site/assets/materials
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: site
 
