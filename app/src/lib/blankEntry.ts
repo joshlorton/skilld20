@@ -4,14 +4,17 @@ export function blankMaterialEntry(): MaterialEntry {
   return {
     name: '',
     nicknames: [],
-    physical_description: '',
-    type: '',
+    rarity: '',
+    color: '',
+    other: '',
     location: '',
-    use: '',
+    cut: '',
+    item_types: '',
     effect: '',
     traits: [],
     source: '',
-    legacy_info: '',
+    legacy_description: '',
+    legacy_effects: '',
   };
 }
 

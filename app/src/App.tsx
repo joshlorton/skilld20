@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getToken, setToken as persistToken, ghReadFile, saveWithConflictRetry } from './lib/github';
 import type { MaterialEntry, MaterialsData, SpellEntry, MaterialCategory } from './types/materials';
-import { MATERIAL_COLUMNS, SPELL_COLUMNS } from './lib/columns';
+import { SPELL_COLUMNS } from './lib/columns';
 import { blankMaterialEntry, blankSpellEntry } from './lib/blankEntry';
 import { CATEGORIES, type Category } from './lib/categories';
-import { MaterialsTable } from './components/MaterialsTable';
+import { MaterialsList } from './components/MaterialsList';
+import { MaterialDetail } from './components/MaterialDetail';
+import { SpellsTable } from './components/SpellsTable';
 import { CategoryNav } from './components/CategoryNav';
 import { TokenModal } from './components/TokenModal';
 import { IconWand, IconIngot, IconBolt, IconBrain, IconHourglass, IconHammer, IconBook } from './components/navIcons';
@@ -16,6 +18,8 @@ type LoadState =
   | { status: 'loaded'; data: MaterialsData; sha: string | null };
 
 type SaveStatus = 'idle' | 'saving' | 'saved' | 'error';
+type DetailView = 'list' | 'detail';
+type DetailMode = 'view' | 'edit';
 
 function App() {
   const [state, setState] = useState<LoadState>({ status: 'loading' });
@@ -25,6 +29,11 @@ function App() {
   const [token, setTokenState] = useState(() => getToken());
   const [modalOpen, setModalOpen] = useState(false);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
+
+  // Materials-only list/detail view state.
+  const [view, setView] = useState<DetailView>('list');
+  const [detailIndex, setDetailIndex] = useState<number | null>(null);
+  const [detailMode, setDetailMode] = useState<DetailMode>('view');
 
   useEffect(() => {
     setState({ status: 'loading' });
@@ -41,6 +50,12 @@ function App() {
         setState({ status: 'error', message: err instanceof Error ? err.message : String(err) });
       });
   }, [token]);
+
+  function handleSelectCategory(cat: Category) {
+    setCategory(cat);
+    setView('list');
+    setDetailIndex(null);
+  }
 
   function handleSaveToken(newToken: string) {
     persistToken(newToken);
@@ -134,13 +149,71 @@ function App() {
   function handleAddEntry() {
     if (category === 'spells') {
       updateSpells((arr) => [...arr, blankSpellEntry()]);
-    } else {
-      updateMaterialCategory(category, (arr) => [...arr, blankMaterialEntry()]);
+      return;
+    }
+    if (state.status !== 'loaded') return;
+    const newIndex = state.data[category].length;
+    updateMaterialCategory(category, (arr) => [...arr, blankMaterialEntry()]);
+    setDetailIndex(newIndex);
+    setDetailMode('edit');
+    setView('detail');
+  }
+
+  function handleOpenDetail(index: number) {
+    setDetailIndex(index);
+    setDetailMode('view');
+    setView('detail');
+  }
+
+  function handleBackToList() {
+    setView('list');
+    setDetailIndex(null);
+  }
+
+  function handleEditDetail() {
+    setDetailMode('edit');
+  }
+
+  function handleCancelDetail() {
+    if (detailIndex !== null) handleCancelRow(detailIndex);
+    handleBackToList();
+  }
+
+  async function handleDeleteDetail() {
+    if (detailIndex === null) return;
+    await handleConfirmDelete(detailIndex);
+    handleBackToList();
+  }
+
+  /** Save from the detail page: merges the draft entry in, then persists exactly like handleConfirmDelete. */
+  async function handleSaveDetail(draft: MaterialEntry) {
+    if (state.status !== 'loaded' || !token || detailIndex === null || category === 'spells') return;
+    const newData: MaterialsData = {
+      ...state.data,
+      [category]: state.data[category].map((e, i) => (i === detailIndex ? draft : e)),
+    };
+    setState({ status: 'loaded', data: newData, sha: state.sha });
+    setSaveStatus('saving');
+    try {
+      const ts = new Date().toISOString().slice(0, 16).replace('T', ' ');
+      const result = await saveWithConflictRetry(
+        'data/materials.json',
+        state.sha,
+        newData,
+        `Update Materials [${ts}]`,
+      );
+      setState({ status: 'loaded', data: newData, sha: result.sha });
+      setSnapshot(newData);
+      setSaveStatus('saved');
+      handleBackToList();
+    } catch {
+      setSaveStatus('error');
     }
   }
 
   const editable = Boolean(token);
   const categoryLabel = CATEGORIES.find((c) => c.key === category)?.label ?? '';
+  const showCategoryTitle = !(category !== 'spells' && view === 'detail');
 
   return (
     <div id="app">
@@ -204,7 +277,7 @@ function App() {
 
       <div id="main">
         <aside id="sidebar">
-          <CategoryNav active={category} onSelect={setCategory} />
+          <CategoryNav active={category} onSelect={handleSelectCategory} />
         </aside>
 
         <main id="content">
@@ -212,11 +285,13 @@ function App() {
           {state.status === 'error' && <div id="empty-state">{state.message}</div>}
           {state.status === 'loaded' && (
             <>
-              <div className="mat-category-title">
-                <span>{categoryLabel}</span>
-              </div>
+              {showCategoryTitle && (
+                <div className="mat-category-title">
+                  <span>{categoryLabel}</span>
+                </div>
+              )}
               {category === 'spells' ? (
-                <MaterialsTable
+                <SpellsTable
                   key={category}
                   columns={SPELL_COLUMNS}
                   rows={state.data.spells}
@@ -229,20 +304,22 @@ function App() {
                   onConfirmDelete={handleConfirmDelete}
                   onAddEntry={handleAddEntry}
                 />
+              ) : view === 'detail' && detailIndex !== null ? (
+                <MaterialDetail
+                  entry={state.data[category][detailIndex]}
+                  mode={detailMode}
+                  onEdit={handleEditDetail}
+                  onSave={handleSaveDetail}
+                  onCancel={handleCancelDetail}
+                  onDelete={handleDeleteDetail}
+                  onBack={handleBackToList}
+                />
               ) : (
-                <MaterialsTable
+                <MaterialsList
                   key={category}
-                  columns={MATERIAL_COLUMNS}
                   rows={state.data[category]}
                   editable={editable}
-                  onCellCommit={(index, patch) =>
-                    updateMaterialCategory(category, (arr) =>
-                      arr.map((e, i) => (i === index ? { ...e, ...patch } : e)),
-                    )
-                  }
-                  onSave={handleSave}
-                  onCancelRow={handleCancelRow}
-                  onConfirmDelete={handleConfirmDelete}
+                  onRowDoubleClick={handleOpenDetail}
                   onAddEntry={handleAddEntry}
                 />
               )}

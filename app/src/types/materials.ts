@@ -1,14 +1,17 @@
 export interface MaterialEntry {
   name: string;
   nicknames: string[];
-  physical_description: string;
-  type: string;
+  rarity: string;
+  color: string;
+  other: string;
   location: string;
-  use: string;
+  cut: string;
+  item_types: string;
   effect: string;
   traits: string[];
   source: string;
-  legacy_info: string;
+  legacy_description: string;
+  legacy_effects: string;
 }
 
 export interface SpellEntry {

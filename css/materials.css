@@ -107,6 +107,16 @@
   color: var(--text-attr);
   margin-top: 1px;
 }
+.mat-name-rarity { margin-top: 4px; }
+.mat-name-rarity .trait-tag { font-size: 10px; padding: 1px 5px; }
+
+.mat-desc-color {
+  font-weight: 700;
+  color: var(--text-attr);
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+.mat-desc-other { color: var(--text); }
 .mat-nine-secrets {
   display: inline-block;
   background: #1e0d00;

@@ -50,3 +50,12 @@ export function IconNewFile({ size = 14 }: IconProps) {
     </svg>
   );
 }
+
+export function IconEdit({ size = 14 }: IconProps) {
+  return (
+    <svg {...shared} width={size} height={size}>
+      <path d="M10.2 2.3a1.1 1.1 0 0 1 1.6 0l1.9 1.9a1.1 1.1 0 0 1 0 1.6L5.4 14.1l-3.4.8.8-3.4z" />
+      <path d="M9 3.5l3.5 3.5" />
+    </svg>
+  );
+}

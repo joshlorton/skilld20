@@ -75,3 +75,67 @@ textarea.mat-edit-input { resize: vertical; min-height: 44px; }
 .mat-row-icon-btn:hover { opacity: 0.85; }
 
 .mat-title-new-btn { background: var(--heading-fg); color: var(--heading-bg); }
+
+/* ── Material detail page ─────────────────────────────────────── */
+
+.mat-detail-back-btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 10px;
+}
+.mat-detail-back-btn:hover { color: var(--heading-fg); }
+
+.mat-detail-heading {
+  background: var(--heading-bg);
+  color: var(--heading-fg);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  font-family: var(--font-ui);
+}
+
+.mat-detail-name {
+  font-variant: small-caps;
+  font-weight: 900;
+  font-size: 23px;
+  letter-spacing: 1px;
+}
+.mat-detail-aka { font-size: 12px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
+
+.mat-detail-name-input,
+.mat-detail-aka-input {
+  display: block;
+  width: 220px;
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--heading-fg);
+  border: 1px solid transparent;
+}
+.mat-detail-name-input { font-weight: 900; font-size: 16px; margin-bottom: 4px; }
+.mat-detail-aka-input { font-size: 12px; }
+.mat-detail-name-input:focus,
+.mat-detail-aka-input:focus { border-color: var(--heading-fg); }
+
+.mat-detail-heading-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+.mat-detail-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  border: 1px solid var(--heading-fg);
+  border-radius: 3px;
+  color: var(--heading-fg);
+  cursor: pointer;
+}
+.mat-detail-edit-btn:hover { background: rgba(240, 232, 208, 0.15); }
