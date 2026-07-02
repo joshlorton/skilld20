@@ -22,29 +22,6 @@
 
 .mat-empty-row { padding: 16px; color: var(--text-muted); font-style: italic; }
 
-/* ── Category title row ───────────────────────────────────── */
-
-.mat-category-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.mat-title-new-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
-  background: var(--heading-fg);
-  color: var(--heading-bg);
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-.mat-title-new-btn:hover { opacity: 0.85; }
-
 /* ── Inline editing ────────────────────────────────────────── */
 
 .mat-edit-input {
@@ -96,3 +73,5 @@ textarea.mat-edit-input { resize: vertical; min-height: 44px; }
   flex-shrink: 0;
 }
 .mat-row-icon-btn:hover { opacity: 0.85; }
+
+.mat-title-new-btn { background: var(--heading-fg); color: var(--heading-bg); }

@@ -7,7 +7,6 @@ import { CATEGORIES, type Category } from './lib/categories';
 import { MaterialsTable } from './components/MaterialsTable';
 import { CategoryNav } from './components/CategoryNav';
 import { TokenModal } from './components/TokenModal';
-import { IconNewFile } from './components/icons';
 import './App.css';
 
 type LoadState =
@@ -214,16 +213,6 @@ function App() {
             <>
               <div className="mat-category-title">
                 <span>{categoryLabel}</span>
-                {editable && (
-                  <button
-                    type="button"
-                    className="mat-title-new-btn"
-                    title="New entry"
-                    onClick={handleAddEntry}
-                  >
-                    <IconNewFile size={15} />
-                  </button>
-                )}
               </div>
               {category === 'spells' ? (
                 <MaterialsTable
@@ -237,6 +226,7 @@ function App() {
                   onSave={handleSave}
                   onCancelRow={handleCancelRow}
                   onConfirmDelete={handleConfirmDelete}
+                  onAddEntry={handleAddEntry}
                 />
               ) : (
                 <MaterialsTable
@@ -252,6 +242,7 @@ function App() {
                   onSave={handleSave}
                   onCancelRow={handleCancelRow}
                   onConfirmDelete={handleConfirmDelete}
+                  onAddEntry={handleAddEntry}
                 />
               )}
             </>

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { ColumnDef } from '../lib/columns';
 import { EditableField, EditableArrayField } from './EditableField';
-import { IconSave, IconCancel, IconDelete } from './icons';
+import { IconSave, IconCancel, IconDelete, IconNewFile } from './icons';
 
 interface RowBase {
   name: string;
@@ -22,6 +22,8 @@ interface Props<T extends RowBase> {
   onCancelRow?: (index: number) => void;
   /** Called only after the row's own delete confirmation. */
   onConfirmDelete?: (index: number) => void;
+  /** Appends a new blank entry to this category. */
+  onAddEntry?: () => void;
 }
 
 type SortDir = 'asc' | 'desc';
@@ -40,6 +42,7 @@ export function MaterialsTable<T extends RowBase>({
   onSave,
   onCancelRow,
   onConfirmDelete,
+  onAddEntry,
 }: Props<T>) {
   const [sortKey, setSortKey] = useState<(keyof T & string) | null>(null);
   const [sortDir, setSortDir] = useState<SortDir>('asc');
@@ -110,7 +113,18 @@ export function MaterialsTable<T extends RowBase>({
             {sortKey === col.key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
           </div>
         ))}
-        {editable && <div className="mat-cell mat-row-actions" />}
+        {editable && (
+          <div className="mat-cell mat-row-actions">
+            <button
+              type="button"
+              className="mat-row-icon-btn mat-title-new-btn"
+              title="New entry"
+              onClick={() => onAddEntry?.()}
+            >
+              <IconNewFile />
+            </button>
+          </div>
+        )}
       </div>
       <div className="mat-header-row mat-filter-row" style={{ top: labelRowHeight }}>
         {columns.map((col) => (
