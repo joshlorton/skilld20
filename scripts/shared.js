@@ -1,6 +1,45 @@
 'use strict';
 
 /* ============================================================
+   NAV-RAIL / LANDING-CARD ICON SPRITE
+   Injected once per page so nav-rail-sym / landing-card-sym spans can
+   reference icons via <svg class="nav-rail-icon"><use href="#icon-x">.
+   ============================================================ */
+
+(function injectIconSprite() {
+  const sprite = document.createElement('div');
+  sprite.style.display = 'none';
+  sprite.innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg">' +
+    '<symbol id="icon-wand" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M3 13l7-7"/><path d="M12 1.5v3M10.5 3h3"/><path d="M13.8 6v1.6M13 6.8h1.6"/>' +
+    '</symbol>' +
+    '<symbol id="icon-ingot" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<rect x="2.3" y="5" width="11.4" height="6" rx="0.6"/><path d="M2.3 8h11.4"/>' +
+    '</symbol>' +
+    '<symbol id="icon-bolt" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M9 1.5L4.5 9h3L6.5 14.5l6-8.5h-3z"/>' +
+    '</symbol>' +
+    '<symbol id="icon-brain" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M8 3c-.6-.9-2.4-.9-2.9.2-1 0-1.8.8-1.7 1.8-.8.4-1.1 1.5-.6 2.2-.5.7-.2 1.8.6 2.2C3.3 10.4 4 11.2 5 11.2c.2.7 1 1.1 1.7.9"/>' +
+      '<path d="M8 3c.6-.9 2.4-.9 2.9.2 1 0 1.8.8 1.7 1.8.8.4 1.1 1.5.6 2.2.5.7.2 1.8-.6 2.2-.1 1-.8 1.8-1.8 1.8-.2.7-1 1.1-1.7.9"/>' +
+      '<path d="M8 3v9.1"/>' +
+    '</symbol>' +
+    '<symbol id="icon-hourglass" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M4 1.5h8M4 14.5h8M4 1.5l4 6.5-4 6.5M12 1.5l-4 6.5 4 6.5"/>' +
+    '</symbol>' +
+    '<symbol id="icon-hammer" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<rect x="3.5" y="2" width="9" height="3.4" rx="0.5"/><path d="M8 5.4v8.6"/>' +
+    '</symbol>' +
+    '<symbol id="icon-book" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M8 4.2C6.6 3.3 4.6 3 2.5 3.4v9c2.1-.4 4.1-.1 5.5.8"/>' +
+      '<path d="M8 4.2c1.4-.9 3.4-1.2 5.5-.8v9c-2.1-.4-4.1-.1-5.5.8"/>' +
+    '</symbol>' +
+    '</svg>';
+  document.body.insertBefore(sprite, document.body.firstChild);
+})();
+
+/* ============================================================
    CONFIG  (shared fields; each section adds its own file path)
    ============================================================ */
 

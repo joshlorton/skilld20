@@ -7,6 +7,7 @@ import { CATEGORIES, type Category } from './lib/categories';
 import { MaterialsTable } from './components/MaterialsTable';
 import { CategoryNav } from './components/CategoryNav';
 import { TokenModal } from './components/TokenModal';
+import { IconWand, IconIngot, IconBolt, IconBrain, IconHourglass, IconHammer, IconBook } from './components/navIcons';
 import './App.css';
 
 type LoadState =
@@ -172,31 +173,31 @@ function App() {
 
       <nav id="nav-rail">
         <a href="foundations.html" className="nav-rail-item">
-          <span className="nav-rail-sym">◆</span>
+          <span className="nav-rail-sym"><IconWand /></span>
           <span className="nav-rail-label">Foundations</span>
         </a>
         <a href="feats.html" className="nav-rail-item">
-          <span className="nav-rail-sym">★</span>
+          <span className="nav-rail-sym"><IconBolt /></span>
           <span className="nav-rail-label">Feats</span>
         </a>
         <a href="skills.html" className="nav-rail-item">
-          <span className="nav-rail-sym">◎</span>
+          <span className="nav-rail-sym"><IconBrain /></span>
           <span className="nav-rail-label">Skills</span>
         </a>
         <a href="materials.html" className="nav-rail-item nav-link-active">
-          <span className="nav-rail-sym">✦</span>
+          <span className="nav-rail-sym"><IconIngot /></span>
           <span className="nav-rail-label">Materials</span>
         </a>
         <a href="rituals.html" className="nav-rail-item">
-          <span className="nav-rail-sym">⊕</span>
+          <span className="nav-rail-sym"><IconHourglass /></span>
           <span className="nav-rail-label">Rituals</span>
         </a>
         <a href="crafting.html" className="nav-rail-item">
-          <span className="nav-rail-sym">⚒</span>
+          <span className="nav-rail-sym"><IconHammer /></span>
           <span className="nav-rail-label">Crafting</span>
         </a>
         <a href="rules.html" className="nav-rail-item">
-          <span className="nav-rail-sym">≡</span>
+          <span className="nav-rail-sym"><IconBook /></span>
           <span className="nav-rail-label">Rules</span>
         </a>
       </nav>

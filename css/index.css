@@ -31,7 +31,6 @@
   display: block;
   padding: 20px;
   border: 1px solid var(--border);
-  border-radius: 6px;
   background: var(--row-odd);
   color: var(--text);
   text-decoration: none;
@@ -40,7 +39,9 @@
 
 .landing-card:hover { border-color: var(--heading-fg); background: var(--row-even); }
 
-.landing-card-sym { display: block; font-size: 22px; color: var(--heading-fg); margin-bottom: 10px; }
+.landing-card-sym { display: block; color: var(--heading-fg); margin-bottom: 10px; }
+
+.landing-card-icon { width: 24px; height: 24px; }
 
 .landing-card-title { display: block; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
 

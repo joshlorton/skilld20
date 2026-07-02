@@ -103,6 +103,8 @@ body {
   width: 16px;
   text-align: center;
 }
+
+.nav-rail-icon { width: 15px; height: 15px; vertical-align: middle; }
 .nav-rail-label {
   font-size: 17px;
   font-weight: 700;
