@@ -3,7 +3,7 @@
     {
       "name": "Adamant",
       "nicknames": [],
-      "rarity": "",
+      "rarity": "rare",
       "color": "",
       "other": "Made only by Celebrimbor among the High Jewel Smiths. Harder than diamond or laen, yet colorable like laen and faceted like diamond — clear, brilliant, brighter than diamond. Used as the setting-stone of Nenya, Galadriel's Ring.",
       "location": "",
@@ -22,25 +22,25 @@
         "Pearl of Fire",
         "Pearl of the Divine Fire"
       ],
-      "rarity": "",
-      "color": "",
-      "other": "Ornamental meteoric glass (tektite). translucent dark charcoal grey-black to a smoky; very rare; hardness 5.5-7",
-      "location": "sands: beaches, deserts, shallow waters",
-      "cut": "",
-      "item_types": "clothing and worn items; conversion: consumable",
-      "effect": "mental enhancement, competence, confidence, free will; conversion: resistance 2 vs all burst damage",
+      "rarity": "unique",
+      "color": "dark charcoal grey-black; translucent smoky grey-brown when backlit",
+      "other": "very rare; hardness 5.5-6; tektite (volcanic glass / impact glass)",
+      "location": "sand: beaches, deserts, shallow waters",
+      "cut": "raw, cabochon ",
+      "item_types": "clothing and worn items",
+      "effect": "mental enhancement, competence, confidence, free will",
       "traits": [
         "Enhancement",
         "Protection"
       ],
       "source": "V'sGtATM",
       "legacy_description": "This black, irregularly shaped glasslike ornamental stone has fallen from the sky in meteoritic form to crash among the sands of Anauroch and other Faerûnian deserts. It is used in garments and the crafting of magical items because in all blasts (such as the explosions caused by fireballs and beads of force), agni manis vaporize but protect beings wearing or carrying them by negating 1d4 points of damage per agni mani stone.",
-      "legacy_effects": ""
+      "legacy_effects": "consumable; resistance 2 vs all burst damage"
     },
     {
       "name": "Alabaster",
       "nicknames": [],
-      "rarity": "",
+      "rarity": "common",
       "color": "",
       "other": "Hardstone. Alabaster is the white, finely textured, but brittle, form of gypsum (plaster).",
       "location": "",
