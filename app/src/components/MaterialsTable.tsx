@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { ColumnDef } from '../lib/columns';
 import { EditableField, EditableArrayField } from './EditableField';
 import { IconSave, IconCancel, IconDelete } from './icons';
@@ -46,6 +46,22 @@ export function MaterialsTable<T extends RowBase>({
   const [filters, setFilters] = useState<Record<string, string>>({});
   const [confirmIndex, setConfirmIndex] = useState<number | null>(null);
 
+  // Column labels can wrap to two lines, so the label row's height isn't
+  // fixed -- measure it so the filter row can stick directly beneath it
+  // instead of overlapping at the same `top: 0`.
+  const labelRowRef = useRef<HTMLDivElement>(null);
+  const [labelRowHeight, setLabelRowHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    const el = labelRowRef.current;
+    if (!el) return;
+    const update = () => setLabelRowHeight(el.getBoundingClientRect().height);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [columns]);
+
   function toggleSort(key: keyof T & string) {
     if (sortKey === key) {
       setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
@@ -81,23 +97,29 @@ export function MaterialsTable<T extends RowBase>({
 
   return (
     <div className="mat-table">
-      <div className="mat-header-row">
+      <div className="mat-header-row" ref={labelRowRef}>
+        {columns.map((col) => (
+          <div
+            key={col.key}
+            className={col.cls}
+            onClick={() => toggleSort(col.key)}
+            style={{ cursor: 'pointer' }}
+            title="Click to sort"
+          >
+            {col.label}
+            {sortKey === col.key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
+          </div>
+        ))}
+        {editable && <div className="mat-cell mat-row-actions" />}
+      </div>
+      <div className="mat-header-row mat-filter-row" style={{ top: labelRowHeight }}>
         {columns.map((col) => (
           <div key={col.key} className={col.cls}>
-            <div
-              className="mat-col-label"
-              onClick={() => toggleSort(col.key)}
-              title="Click to sort"
-            >
-              {col.label}
-              {sortKey === col.key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
-            </div>
             <input
               type="text"
               className="mat-filter-input"
               placeholder="Filter…"
               value={filters[col.key] ?? ''}
-              onClick={(e) => e.stopPropagation()}
               onChange={(e) => setFilters((f) => ({ ...f, [col.key]: e.target.value }))}
             />
           </div>
