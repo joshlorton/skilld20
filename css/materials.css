@@ -112,7 +112,7 @@
 
 .mat-desc-color {
   font-weight: 700;
-  color: var(--text-attr);
+  color: var(--text);
   font-size: 12px;
   margin-bottom: 2px;
 }
