@@ -769,6 +769,7 @@
       "note": "",
       "traits": [
         "fire",
+        "fire",
         "light",
         "visual"
       ],
@@ -791,7 +792,7 @@
           "count": 1,
           "length": "action"
         },
-        "component": "v",
+        "component": "s",
         "trigger": ""
       },
       "range": "",
@@ -804,7 +805,7 @@
         "count": 0,
         "type": "all fires"
       },
-      "duration": "until extinguished",
+      "duration": "1 minutes",
       "effect": {
         "options": [
           {
@@ -904,7 +905,7 @@
           },
           {
             "title": "Size",
-            "text": "You alter the size of mundane sources of fire within a 5'-cube. Increase or decrease size by 1 step (candle < torch < campfire < bonfire).",
+            "text": "You alter the size of mundane sources of fire within a 5'-cube. Increase or decrease size by 1 step (extinguish < candle < torch < campfire < bonfire).",
             "note": "",
             "damage": {
               "dieNumber": 0,
@@ -975,8 +976,66 @@
         "cf": ""
       },
       "sustain": [],
-      "dismiss": [],
-      "heightened": [],
+      "dismiss": [
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "end your effect",
+          "mana": 0,
+          "results": null
+        }
+      ],
+      "heightened": [
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "increase duration by 1 step",
+          "mana": 3,
+          "results": null
+        },
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "make duration permanent",
+          "mana": 15,
+          "results": null
+        },
+        {
+          "name": "color",
+          "attribute": "effect",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "create multicolored patterns within the fire",
+          "mana": 24,
+          "results": {
+            "type": "save",
+            "saveType": "charisma",
+            "attackType": "",
+            "cs": "no effect and immune for 2 hours",
+            "s": "no effect",
+            "f": "become fascinated for 1d4 rounds",
+            "cf": "become fascinated for 1d4 minutes"
+          }
+        }
+      ],
       "variants": [],
       "components": []
     },
