@@ -975,7 +975,32 @@
         "f": "",
         "cf": ""
       },
-      "sustain": [],
+      "sustain": [
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "extend duration until the end of your next turn",
+          "mana": 0,
+          "results": null
+        },
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "extend duration for 1 minute",
+          "mana": 2,
+          "results": null
+        }
+      ],
       "dismiss": [
         {
           "name": "",
@@ -999,7 +1024,7 @@
             "length": "action"
           },
           "component": "S",
-          "effect": "increase duration by 1 step",
+          "effect": "extend duration by 1 step",
           "mana": 3,
           "results": null
         },
@@ -1037,7 +1062,21 @@
         }
       ],
       "variants": [],
-      "components": []
+      "components": [
+        {
+          "name": "Illumination",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "increase bright illumination radius by 5'",
+          "description": "a pinch of phosphor",
+          "rarity": "common",
+          "price": 0.1
+        }
+      ]
     },
     {
       "name": "Detect",
