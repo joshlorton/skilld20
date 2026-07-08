@@ -769,6 +769,7 @@
       "note": "",
       "traits": [
         "fire",
+        "fire",
         "light",
         "visual"
       ],
@@ -791,7 +792,7 @@
           "count": 1,
           "length": "action"
         },
-        "component": "v",
+        "component": "s",
         "trigger": ""
       },
       "range": "",
@@ -804,7 +805,7 @@
         "count": 0,
         "type": "all fires"
       },
-      "duration": "until extinguished",
+      "duration": "1 minutes",
       "effect": {
         "options": [
           {
@@ -847,7 +848,7 @@
           },
           {
             "title": "Heat",
-            "text": "You alter the warmth of mundane sources of fire within a 5'-cube. Heat area from none to twice normal.",
+            "text": "You alter the warmth provided by mundane sources of fire within a 5'-cube. Heat area from none to twice normal.",
             "note": "",
             "damage": {
               "dieNumber": 0,
@@ -904,7 +905,7 @@
           },
           {
             "title": "Size",
-            "text": "You alter the size of mundane sources of fire within a 5'-cube. Increase or decrease size by 1 step (candle < torch < campfire < bonfire).",
+            "text": "You alter the size of mundane sources of fire within a 5'-cube. Increase or decrease size by 1 step (extinguish < candle < torch < campfire < bonfire).",
             "note": "",
             "damage": {
               "dieNumber": 0,
@@ -974,11 +975,195 @@
         "f": "",
         "cf": ""
       },
-      "sustain": [],
-      "dismiss": [],
-      "heightened": [],
+      "sustain": [
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "extend duration until the end of your next turn",
+          "mana": 0,
+          "results": null
+        },
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "extend duration for 1 minute",
+          "mana": 2,
+          "results": null
+        },
+        {
+          "name": "illumination",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "adjust affected fire's normal light radius by 5'; maximum 40', minimum 0' + 5' of dim light",
+          "mana": 2,
+          "results": null
+        }
+      ],
+      "dismiss": [
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "end your effect",
+          "mana": 0,
+          "results": null
+        }
+      ],
+      "heightened": [
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "extend duration by 1 step",
+          "mana": 3,
+          "results": null
+        },
+        {
+          "name": "",
+          "attribute": "duration",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "make duration permanent",
+          "mana": 15,
+          "results": null
+        },
+        {
+          "name": "color > pattern",
+          "attribute": "effect",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "S",
+          "effect": "create multicolored patterns within the fire",
+          "mana": 24,
+          "results": {
+            "type": "save",
+            "saveType": "charisma",
+            "attackType": "",
+            "cs": "no effect and immune for 2 hours",
+            "s": "no effect",
+            "f": "become fascinated for 1d4 rounds",
+            "cf": "become fascinated for 1d4 minutes"
+          }
+        },
+        {
+          "name": "pattern",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "V",
+          "effect": "you can suggest of a reasonable course of action to targets fascinated by your pattern; they will attempt to carry your suggestion out for up to 1 hour unless completed sooner; your suggested action must be something in their nature to do;  if threatened by you or your allies, the effect ends",
+          "mana": 12,
+          "results": null
+        },
+        {
+          "name": "illumination",
+          "attribute": "area size",
+          "actions": {
+            "count": 2,
+            "length": "action"
+          },
+          "component": "-",
+          "effect": "prevent target's light from passing past \"Normal\" radius",
+          "mana": 4,
+          "results": null
+        },
+        {
+          "name": "intensity",
+          "attribute": "damage",
+          "actions": {
+            "count": 0,
+            "length": "action"
+          },
+          "component": "-",
+          "effect": "increase or decrease damage by an additional 1 die size",
+          "mana": 4,
+          "results": null
+        }
+      ],
       "variants": [],
-      "components": []
+      "components": [
+        {
+          "name": "",
+          "attribute": "effect",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "increase radius of bright illumination by 5'",
+          "description": "a pinch of phosphor",
+          "rarity": "common",
+          "price": 0.1
+        },
+        {
+          "name": "pattern",
+          "attribute": "save",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "increase duration by 1 minute OR increase save DC by 1",
+          "description": "a piece of multicolored silk",
+          "rarity": "common",
+          "price": 1
+        },
+        {
+          "name": "light barrier",
+          "attribute": "damage",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "passing through the barrier causes fire damage equal to that of the fire the barrier hides",
+          "description": "a handful of ash from burnt thorns",
+          "rarity": "common",
+          "price": 0.01
+        },
+        {
+          "name": "incendiary",
+          "attribute": "damage",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "increase damage die size by 1",
+          "description": "a marble of dried dung and flammable dust",
+          "rarity": "common",
+          "price": 0.01
+        }
+      ]
     },
     {
       "name": "Detect",
