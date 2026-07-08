@@ -1041,7 +1041,7 @@
           "results": null
         },
         {
-          "name": "color>pattern",
+          "name": "pattern",
           "attribute": "effect",
           "actions": {
             "count": 2,
