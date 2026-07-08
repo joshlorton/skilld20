@@ -1041,7 +1041,7 @@
           "results": null
         },
         {
-          "name": "color",
+          "name": "color>pattern",
           "attribute": "effect",
           "actions": {
             "count": 2,
@@ -1064,7 +1064,7 @@
       "variants": [],
       "components": [
         {
-          "name": "Illumination",
+          "name": "",
           "attribute": "effect",
           "actions": {
             "count": 1,
@@ -1075,6 +1075,19 @@
           "description": "a pinch of phosphor",
           "rarity": "common",
           "price": 0.1
+        },
+        {
+          "name": "pattern",
+          "attribute": "save",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "increase duration by 1 minute OR increase save DC by 1",
+          "description": "a piece of multicolored silk",
+          "rarity": "common",
+          "price": 1
         }
       ]
     },
