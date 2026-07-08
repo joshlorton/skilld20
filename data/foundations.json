@@ -1071,7 +1071,7 @@
             "length": "action"
           },
           "component": "M",
-          "effect": "increase bright illumination radius by 5'",
+          "effect": "increase radius of bright illumination by 5'",
           "description": "a pinch of phosphor",
           "rarity": "common",
           "price": 0.1
@@ -1088,6 +1088,19 @@
           "description": "a piece of multicolored silk",
           "rarity": "common",
           "price": 1
+        },
+        {
+          "name": "light barrier",
+          "attribute": "damage",
+          "actions": {
+            "count": 1,
+            "length": "action"
+          },
+          "component": "M",
+          "effect": "passing through the barrier causes fire damage equal to that of the fire the barrier hides",
+          "description": "a handful of ash from burnt thorns",
+          "rarity": "common",
+          "price": 0.01
         }
       ]
     },
