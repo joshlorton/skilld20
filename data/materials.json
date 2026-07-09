@@ -33,23 +33,35 @@
         "Pearl of Fire",
         "Pearl of the Divine Fire"
       ],
-      "rarity": "rare",
+      "rarity": "very rare",
       "color": "dark charcoal grey-black; translucent smoky grey-brown when backlit",
-      "location_climate": "",
-      "location_biome": "",
+      "location_climate": "am",
+      "location_biome": "tropical-moist-broadleaf-forest",
       "location_override": "sand: beaches, deserts, shallow waters",
       "crafting": [
         {
           "skill": "Jeweler",
-          "preparation": "raw, cabochon ",
+          "preparation": "raw",
           "difficulty": "average",
           "item_types": "clothing and worn items"
         }
       ],
       "effects": [
         {
-          "item_type": "",
-          "effect": "mental enhancement, competence, confidence, free will"
+          "item_type": "earrings",
+          "effect": "mental enhancement: bonus to Int, Wis, or Cha"
+        },
+        {
+          "item_type": "earrings",
+          "effect": "competence: bonus to skill checks"
+        },
+        {
+          "item_type": "earrings",
+          "effect": "confidence: bonus to saves vs fear"
+        },
+        {
+          "item_type": "earrings",
+          "effect": "free will: bonus to saves vs charm/compulsion"
         }
       ],
       "traits": [
@@ -63,13 +75,28 @@
         }
       ],
       "identity_hardness": "5.5-6",
-      "identity_crystal_system": "tektite (volcanic glass / impact glass)",
-      "identity_chemical_formula": "",
-      "identity_color_cause": "",
-      "identity_locale": "",
-      "identity_region": "",
-      "identity_related_materials": [],
-      "myths": []
+      "identity_crystal_system": "none; amorphous glass; tektite (volcanic glass / impact glass)",
+      "identity_chemical_formula": "silicon dioxide dominant, with trace aluminum, iron, magnesium, and potassium",
+      "identity_color_cause": "dark charcoal grey-black; translucent smoky grey-brown when backlit",
+      "identity_locale": "Freshwater coasts and banks; ocean/saltwater shores. Most specimens are documented as submerged in river and coastal deposits rather than found on dry land.",
+      "identity_region": "Asia (Java, Indonesia, specifically); the broader Australasian strewnfield extends across most of Southeast Asia and beyond.",
+      "identity_related_materials": [
+        "austrailite"
+      ],
+      "myths": [
+        {
+          "culture": "Hindu",
+          "tier": "",
+          "description": "Agni, the Hindu god of fire.",
+          "primary_source": ""
+        },
+        {
+          "culture": "Hindu and Mahayana Buddhist",
+          "tier": "",
+          "description": "Cintamani, a wish-fulfilling jewel.",
+          "primary_source": ""
+        }
+      ]
     },
     {
       "name": "Alabaster",
