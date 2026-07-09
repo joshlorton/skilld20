@@ -101,7 +101,7 @@ function renderBase(f) {
   // Row 1: rarity + difficulty + general traits
   const traitsRow = el('div', { class: 'trait-row' });
   if (f.rarity)     traitsRow.appendChild(traitTag(f.rarity,
-    `trait-rarity-${f.rarity.toLowerCase()}`));
+    `trait-rarity-${f.rarity.toLowerCase().replace(/\s+/g, '-')}`));
   if (f.difficulty) traitsRow.appendChild(traitTag(f.difficulty,
     `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
   (f.traits || []).filter(Boolean).forEach(t => traitsRow.appendChild(traitTag(t, '')));
@@ -425,7 +425,7 @@ function componentRow(item, idx) {
   row.appendChild(el('span', { class: 'option-component' }, sdComponent(item.component)));
   row.appendChild(el('span', { class: 'option-effect'  }, item.effect     || ''));
   row.appendChild(el('span', { class: 'component-desc' }, item.description || ''));
-  const _rv = (item.rarity || '').toLowerCase();
+  const _rv = (item.rarity || '').toLowerCase().replace(/\s+/g, '-');
   row.appendChild(el('span', { class: `component-rarity${_rv ? ` component-rarity-${_rv}` : ''}` }, item.rarity || ''));
   const price = item.price;
   row.appendChild(el('span', { class: 'component-price'  },
@@ -1002,9 +1002,9 @@ function buildComponentRow(data) {
 
   const raritySel = el('select', { class: 'form-input form-select', 'data-field': 'rarity' });
   raritySel.appendChild(el('option', { value: '' }, ''));
-  ['Common', 'Uncommon', 'Rare', 'Unique'].forEach(r => {
-    const o = el('option', { value: r.toLowerCase() }, r);
-    if ((data.rarity || '').toLowerCase() === r.toLowerCase()) o.selected = true;
+  OPTS.rarity.forEach(({ value, label }) => {
+    const o = el('option', { value }, label);
+    if ((data.rarity || '').toLowerCase() === value) o.selected = true;
     raritySel.appendChild(o);
   });
   mainRow.appendChild(raritySel);
@@ -1187,17 +1187,22 @@ function collectEffectOptions() {
 
 const OPTS = {
   rarity     : [
-    { value: 'common',   label: 'Common'   },
-    { value: 'uncommon', label: 'Uncommon' },
-    { value: 'rare',     label: 'Rare'     },
-    { value: 'unique',   label: 'Unique'   }
+    { value: 'abundant',        label: 'Abundant'       },
+    { value: 'common',          label: 'Common'         },
+    { value: 'uncommon',        label: 'Uncommon'       },
+    { value: 'rare',            label: 'Rare'           },
+    { value: 'very rare',       label: 'Very Rare'      },
+    { value: 'extremely rare',  label: 'Extremely Rare' },
+    { value: 'unique',          label: 'Unique'         }
   ],
   difficulty : [
-    { value: 'easy',             label: 'Easy' },
-    { value: 'average',          label: 'Average' },
-    { value: 'hard',             label: 'Hard' },
-    { value: 'very hard',        label: 'Very Hard' },
-    { value: 'incredibly hard',  label: 'Incredibly Hard' }
+    { value: 'routine',         label: 'Routine'        },
+    { value: 'easy',            label: 'Easy'           },
+    { value: 'average',         label: 'Average'        },
+    { value: 'hard',            label: 'Hard'           },
+    { value: 'very hard',       label: 'Very Hard'      },
+    { value: 'extremely hard',  label: 'Extremely Hard' },
+    { value: 'monumental',      label: 'Monumental'     }
   ],
   areaShape  : ['cone', 'cube', 'cylinder', 'line', 'sphere', 'wall'],
   areaType   : ['burst', 'emanation', 'cloud'],

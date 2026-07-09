@@ -1,6 +1,6 @@
 import type { CraftingEntry } from '../types/crafting';
 import type { EntrySectionConfig } from './entryConfig';
-import { rarityLabel, rarityClass } from './rarity';
+import { DIFFICULTY_TIERS, difficultyLabel, difficultyClass } from './rarity';
 import { blankCraftingEntry } from './blankEntry';
 
 export const craftingConfig: EntrySectionConfig<CraftingEntry> = {
@@ -8,6 +8,7 @@ export const craftingConfig: EntrySectionConfig<CraftingEntry> = {
   nicknamesField: 'nicknames',
   rarityField: 'rarity',
   rarityLabel: 'Difficulty',
+  rarityTiers: DIFFICULTY_TIERS,
   blank: blankCraftingEntry,
 
   listColumns: [
@@ -15,14 +16,14 @@ export const craftingConfig: EntrySectionConfig<CraftingEntry> = {
       key: 'name',
       label: 'Name',
       cls: 'mat-cell mat-name',
-      text: (r) => [r.name, r.nicknames.join(', '), rarityLabel(r.rarity)].filter(Boolean).join(' '),
+      text: (r) => [r.name, r.nicknames.join(', '), difficultyLabel(r.rarity)].filter(Boolean).join(' '),
       render: (r) => (
         <>
           <div className="mat-name-primary">{r.name || ''}</div>
           {r.nicknames.length > 0 && <div className="mat-name-aka">AKA: {r.nicknames.join(', ')}</div>}
           {r.rarity && (
             <div className="mat-name-rarity">
-              <span className={`trait-tag ${rarityClass(r.rarity)}`}>{rarityLabel(r.rarity)}</span>
+              <span className={`trait-tag ${difficultyClass(r.rarity)}`}>{difficultyLabel(r.rarity)}</span>
             </div>
           )}
         </>

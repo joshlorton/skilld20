@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { EntrySectionConfig, FieldDef } from '../lib/entryConfig';
-import { RARITY_TIERS, rarityLabel, rarityClass } from '../lib/rarity';
+import { RARITY_TIERS, DIFFICULTY_TIERS, tierLabel, tierClass } from '../lib/rarity';
 import { IconEdit } from './icons';
+import { GroupFieldEditor } from './GroupFieldEditor';
 
 interface Props<T> {
   config: EntrySectionConfig<T>;
@@ -53,6 +54,8 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
     }));
   }
 
+  const rarityTiers = config.rarityTiers ?? RARITY_TIERS;
+  const rarityClassPrefix = rarityTiers === DIFFICULTY_TIERS ? 'trait-difficulty' : 'trait-rarity';
   const name = String(entry[config.nameField] ?? '');
   const nicknames = (entry[config.nicknamesField] as unknown as string[]) ?? [];
   const rarity = config.rarityField ? String(entry[config.rarityField] ?? '') : '';
@@ -102,7 +105,7 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
                   onChange={(e) => setTopField(config.rarityField as keyof T & string, e.target.value, false)}
                 >
                   <option value="">—</option>
-                  {RARITY_TIERS.map((t) => (
+                  {rarityTiers.map((t) => (
                     <option key={t.value} value={t.value}>
                       {t.label}
                     </option>
@@ -112,10 +115,10 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
             ) : (
               rarity && (
                 <span
-                  className={`trait-tag ${rarityClass(rarity)}`}
+                  className={`trait-tag ${tierClass(rarityClassPrefix, rarity)}`}
                   title={config.rarityLabel ?? 'Rarity'}
                 >
-                  {rarityLabel(rarity)}
+                  {tierLabel(rarityTiers, rarity)}
                 </span>
               )
             ))}
@@ -127,52 +130,66 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
         </div>
       </div>
 
-      {config.detailSections.map((section) => (
+      {config.detailSections.map((section) => {
+        const group = section.group;
+        return (
         <div key={section.title}>
           <div className="editor-section-title">{section.title}</div>
-          {section.rows.map((row, i) => (
-            <div className="form-row" key={i}>
-              {row.map((field) => (
-                <div key={field.key} className={field.wide ? 'form-field form-field-wide' : 'form-field'}>
-                  {field.label && <label>{field.label}</label>}
-                  {editing ? (
-                    field.kind === 'textarea' ? (
-                      <textarea
-                        className="form-input"
-                        rows={field.rows ?? 3}
-                        value={fieldValue(draft, field)}
-                        onChange={(e) => setField(field, e.target.value)}
-                      />
-                    ) : field.kind === 'select' ? (
-                      <select
-                        className="form-input form-select"
-                        value={fieldValue(draft, field)}
-                        onChange={(e) => setField(field, e.target.value)}
-                      >
-                        <option value="">—</option>
-                        {field.options?.map((o) => (
-                          <option key={o.value} value={o.value}>
-                            {o.label}
-                          </option>
-                        ))}
-                      </select>
+          {group ? (
+            <GroupFieldEditor
+              items={(editing ? draft : entry)[group.key] as unknown as Record<string, unknown>[]}
+              fields={group.itemFields}
+              editing={editing}
+              blankItem={group.blankItem}
+              addLabel={group.addLabel}
+              onChange={(items) => setDraft((d) => ({ ...d, [group.key]: items }))}
+            />
+          ) : (
+            section.rows?.map((row, i) => (
+              <div className="form-row" key={i}>
+                {row.map((field) => (
+                  <div key={field.key} className={field.wide ? 'form-field form-field-wide' : 'form-field'}>
+                    {field.label && <label>{field.label}</label>}
+                    {editing ? (
+                      field.kind === 'textarea' ? (
+                        <textarea
+                          className="form-input"
+                          rows={field.rows ?? 3}
+                          value={fieldValue(draft, field)}
+                          onChange={(e) => setField(field, e.target.value)}
+                        />
+                      ) : field.kind === 'select' ? (
+                        <select
+                          className="form-input form-select"
+                          value={fieldValue(draft, field)}
+                          onChange={(e) => setField(field, e.target.value)}
+                        >
+                          <option value="">—</option>
+                          {field.options?.map((o) => (
+                            <option key={o.value} value={o.value}>
+                              {o.label}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <input
+                          className="form-input"
+                          value={fieldValue(draft, field)}
+                          onChange={(e) => setField(field, e.target.value)}
+                          placeholder={field.kind === 'tags' ? 'Comma-separated' : undefined}
+                        />
+                      )
                     ) : (
-                      <input
-                        className="form-input"
-                        value={fieldValue(draft, field)}
-                        onChange={(e) => setField(field, e.target.value)}
-                        placeholder={field.kind === 'tags' ? 'Comma-separated' : undefined}
-                      />
-                    )
-                  ) : (
-                    <div>{fieldValue(entry, field) || '—'}</div>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
+                      <div>{fieldValue(entry, field) || '—'}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))
+          )}
         </div>
-      ))}
+        );
+      })}
 
       {editing && (
         <div className="editor-btn-row">

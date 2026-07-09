@@ -14,10 +14,29 @@ export interface FieldDef<T> {
   rows?: number;
 }
 
+export interface GroupItemFieldDef {
+  key: string;
+  label: string;
+  kind: 'text' | 'textarea' | 'select';
+  /** For kind: 'select'. */
+  options?: { value: string; label: string }[];
+}
+
+export interface GroupFieldDef<T> {
+  /** The array property on T that holds the repeatable items. */
+  key: keyof T & string;
+  itemFields: GroupItemFieldDef[];
+  blankItem: () => Record<string, unknown>;
+  /** "Add" button label, e.g. "Add Skill". Defaults to "Add". */
+  addLabel?: string;
+}
+
 export interface DetailSection<T> {
   title: string;
   /** Each inner array renders as one form-row, matching the original hand-built layout. */
-  rows: FieldDef<T>[][];
+  rows?: FieldDef<T>[][];
+  /** A section is either `rows` (flat fields) or `group` (repeatable array-of-objects), not both. */
+  group?: GroupFieldDef<T>;
 }
 
 export interface ListColumnDef<T> {
@@ -39,5 +58,8 @@ export interface EntrySectionConfig<T> {
   rarityField?: keyof T & string;
   /** Heading label for rarityField, e.g. "Difficulty" instead of "Rarity". Defaults to "Rarity". */
   rarityLabel?: string;
+  /** Which 7-tier taxonomy backs rarityField's options -- defaults to RARITY_TIERS.
+   * Crafting sets this to DIFFICULTY_TIERS since its rarityField is conceptually difficulty. */
+  rarityTiers?: { value: string; label: string }[];
   blank: () => T;
 }

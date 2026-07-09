@@ -258,17 +258,16 @@ body {
   white-space: nowrap;
 }
 
-/* Rarity / Difficulty -- shared color scale */
-.trait-difficulty-easy, .trait-difficulty-untrained
-  { background: #00b050; }
-.trait-rarity-common, .trait-difficulty-average, .trait-difficulty-trained
-  { background: #1a1a1a; }
-.trait-rarity-uncommon, .trait-difficulty-hard, .trait-difficulty-expert
-  { background: #bd5410; }
-.trait-rarity-rare, .trait-difficulty-very-hard, .trait-difficulty-master
-  { background: #160b65; }
-.trait-rarity-unique, .trait-difficulty-incredibly-hard, .trait-difficulty-legendary
-  { background: #54116d; }
+/* Rarity / Difficulty -- one standardized 7-tier scale, same color ramp by
+   tier position for both taxonomies. Green/orange/red anchor the existing
+   "degrees of success" result colors (see FOUR DEGREES OF SUCCESS below). */
+.trait-rarity-abundant,        .trait-difficulty-routine        { background: #2f6da8; }
+.trait-rarity-common,          .trait-difficulty-easy           { background: #1f8a74; }
+.trait-rarity-uncommon,        .trait-difficulty-average        { background: #3ea058; }
+.trait-rarity-rare,            .trait-difficulty-hard           { background: #b08f2e; }
+.trait-rarity-very-rare,       .trait-difficulty-very-hard      { background: #c07040; }
+.trait-rarity-extremely-rare,  .trait-difficulty-extremely-hard { background: #c04040; }
+.trait-rarity-unique,          .trait-difficulty-monumental     { background: #a83a6e; }
 
 /* Traditions */
 .trait-tradition-arcane    { background: #c8a830; }

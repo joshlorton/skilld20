@@ -208,3 +208,37 @@
   margin-bottom: 16px;
   font-family: var(--font-ui);
 }
+
+/* ── Repeatable group field editor (GroupFieldEditor) ─────────
+   Same row-per-item / remove-button / add-button interaction as
+   Foundations' component-row editor, reimplemented with a flexible
+   field count instead of that pattern's fixed 7-column grid. ── */
+
+.group-empty { color: var(--text-muted); font-style: italic; font-size: 13px; padding: 4px 6px; }
+
+.group-view-list { margin-bottom: 8px; }
+.group-view-row {
+  display: flex;
+  gap: 16px;
+  padding: 6px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.group-view-row:last-child { border-bottom: none; }
+.group-view-field { flex: 1; min-width: 140px; font-size: 13px; }
+.group-view-field-label {
+  font-size: 10px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.group-editor-list { margin-bottom: 8px; }
+.group-editor-row { border: 1px solid var(--border); padding: 6px; margin-bottom: 6px; }
+.group-editor-row-main { display: flex; gap: 6px; align-items: flex-end; flex-wrap: wrap; }
+.group-editor-row-main .form-field { flex: 1; min-width: 120px; margin-bottom: 0; }
+.group-editor-remove { flex-shrink: 0; white-space: nowrap; }
+.group-add-btn { margin-top: 2px; }

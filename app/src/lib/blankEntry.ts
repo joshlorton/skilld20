@@ -1,6 +1,7 @@
 import type { MaterialEntry, SpellEntry } from '../types/materials';
 import type { RitualEntry } from '../types/rituals';
 import type { CraftingEntry } from '../types/crafting';
+import type { MineralEntry } from '../types/minerals';
 
 export function blankMaterialEntry(): MaterialEntry {
   return {
@@ -67,5 +68,29 @@ export function blankCraftingEntry(): CraftingEntry {
     source: '',
     legacy_description: '',
     legacy_effects: '',
+  };
+}
+
+export function blankMineralEntry(): MineralEntry {
+  return {
+    name: '',
+    nicknames: [],
+    rarity: '',
+    color: '',
+    location_climate: '',
+    location_biome: '',
+    location_override: '',
+    crafting: [],
+    effects: [],
+    traits: [],
+    legacy: [],
+    identity_hardness: '',
+    identity_crystal_system: '',
+    identity_chemical_formula: '',
+    identity_color_cause: '',
+    identity_locale: '',
+    identity_region: '',
+    identity_related_materials: [],
+    myths: [],
   };
 }

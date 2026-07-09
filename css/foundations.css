@@ -185,10 +185,13 @@
 }
 .component-desc     { font-size: 13px; font-style: italic; color: var(--text-muted); line-height: 1.4; }
 .component-rarity   { font-size: 13px; font-weight: 700; font-variant: small-caps; text-transform: capitalize; text-align: center; padding-top: 2px; }
-.component-rarity-common   { color: var(--text-muted); }
-.component-rarity-uncommon { color: #bd5410; }
-.component-rarity-rare     { color: #3a2caa; }
-.component-rarity-unique   { color: #8c34a8; }
+.component-rarity-abundant        { color: #2f6da8; }
+.component-rarity-common          { color: #1f8a74; }
+.component-rarity-uncommon        { color: #3ea058; }
+.component-rarity-rare            { color: #b08f2e; }
+.component-rarity-very-rare       { color: #c07040; }
+.component-rarity-extremely-rare  { color: #c04040; }
+.component-rarity-unique          { color: #a83a6e; }
 .component-price    { font-weight: 700; color: var(--price); font-family: var(--font-ui); font-size: 13px; text-align: right; white-space: nowrap; }
 
 .comp-editor-row { border: 1px solid var(--border); padding: 4px; margin-bottom: 6px; }
