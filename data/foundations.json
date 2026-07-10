@@ -40,21 +40,7 @@
         "count": 1,
         "type": "creature or object"
       },
-      "attack": {
-        "type": "ranged",
-        "modifier": 0
-      },
-      "save": {
-        "type": "",
-        "modifier": 0
-      },
       "duration": "instantaneous",
-      "damage": {
-        "dieNumber": 1,
-        "dieSize": 4,
-        "modifier": 0,
-        "type": "fire"
-      },
       "effect": {
         "options": [
           {
@@ -62,8 +48,8 @@
             "text": "You launch a bolt of fire at your target. It provides 5' of dim illumination along its path of travel.",
             "note": "",
             "damage": {
-              "dieNumber": 0,
-              "dieSize": 0,
+              "dieNumber": 1,
+              "dieSize": 4,
               "modifier": 0,
               "type": ""
             },
@@ -77,6 +63,20 @@
             }
           }
         ]
+      },
+      "damage": {
+        "dieNumber": 1,
+        "dieSize": 4,
+        "modifier": 0,
+        "type": ""
+      },
+      "attack": {
+        "type": "",
+        "modifier": 0
+      },
+      "save": {
+        "type": "",
+        "modifier": 0
       },
       "skill": {
         "primary": [
@@ -115,7 +115,7 @@
       },
       "sustain": [
         {
-          "variant": "",
+          "name": "",
           "attribute": "",
           "actions": {
             "count": 1,
@@ -127,7 +127,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "",
           "actions": {
             "count": 0,
