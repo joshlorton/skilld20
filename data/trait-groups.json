@@ -4,14 +4,15 @@
       "label": "Condition",
       "items": [
         "blinded",
-        "curse",
+        "cursed",
         "deafened",
-        "disease",
-        "haste",
-        "poison",
+        "diseased",
+        "fascinated",
+        "hasted",
+        "poisoned",
         "reposition",
-        "slow",
-        "stun"
+        "slowed",
+        "stunned"
       ]
     },
     {
