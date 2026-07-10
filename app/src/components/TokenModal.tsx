@@ -23,7 +23,7 @@ export function TokenModal({ open, onSave, onClear, onCancel }: Props) {
         <h3>GitHub Token</h3>
         <p>
           Personal Access Token with <strong>repo</strong> scope. Stored only in your browser's
-          localStorage — never committed to GitHub.
+          localStorage -- never committed to GitHub.
         </p>
         <input
           id="token-input"

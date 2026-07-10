@@ -104,7 +104,7 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
                   value={draftRarity}
                   onChange={(e) => setTopField(config.rarityField as keyof T & string, e.target.value, false)}
                 >
-                  <option value="">—</option>
+                  <option value="">--</option>
                   {rarityTiers.map((t) => (
                     <option key={t.value} value={t.value}>
                       {t.label}
@@ -164,7 +164,7 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
                           value={fieldValue(draft, field)}
                           onChange={(e) => setField(field, e.target.value)}
                         >
-                          <option value="">—</option>
+                          <option value="">--</option>
                           {field.options?.map((o) => (
                             <option key={o.value} value={o.value}>
                               {o.label}
@@ -180,7 +180,7 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
                         />
                       )
                     ) : (
-                      <div>{fieldValue(entry, field) || '—'}</div>
+                      <div>{fieldValue(entry, field) || '--'}</div>
                     )}
                   </div>
                 ))}

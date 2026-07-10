@@ -40,7 +40,7 @@ export function GroupFieldEditor({ items, fields, editing, onChange, blankItem, 
             {fields.map((field) => (
               <div className="group-view-field" key={field.key}>
                 <div className="group-view-field-label">{field.label}</div>
-                <div>{itemValue(item, field.key) || '—'}</div>
+                <div>{itemValue(item, field.key) || '--'}</div>
               </div>
             ))}
           </div>
@@ -70,7 +70,7 @@ export function GroupFieldEditor({ items, fields, editing, onChange, blankItem, 
                     value={itemValue(item, field.key)}
                     onChange={(e) => updateItem(i, field.key, e.target.value)}
                   >
-                    <option value="">—</option>
+                    <option value="">--</option>
                     {field.options?.map((o) => (
                       <option key={o.value} value={o.value}>
                         {o.label}

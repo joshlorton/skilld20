@@ -131,6 +131,47 @@
   margin-top: 2px;
 }
 
+/* ── Materials list row: Identity / Crafting / Effects / Traits ───────────
+   Shared MaterialEntry schema (all 6 categories). Deliberately separate
+   from the mat-name and mat-desc family of classes above (plus mat-effect,
+   mat-notes) -- those stay in place because Rituals/Crafting configs still
+   reference them for their own (differently-shaped) list columns.
+   Base look, unless overridden below: color: var(--text); font-size: 11px;
+   no font-weight; no margin/padding. ───────────────────────────────────── */
+
+.mat-id { width: 210px; }
+
+.mat-id-row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+.mat-id-primary { font-size: 13px; font-weight: 700; color: var(--heading-fg); font-family: var(--font-ui); }
+.mat-id-rarity { flex-shrink: 0; }
+.mat-id-rarity .trait-tag { font-size: 10px; padding: 1px 5px; }
+
+.mat-id-aka      { color: var(--text); font-size: 11px; font-weight: 550; }
+.mat-id-color    { color: var(--text); font-size: 11px; }
+.mat-id-location { color: var(--text); font-size: 11px; }
+
+.mat-craft   { color: var(--text); font-size: 11px; }
+.mat-effects { color: var(--text); font-size: 11px; }
+.mat-traits  { color: var(--text); font-size: 11px; }
+
+.mat-craft-row,
+.mat-effects-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.mat-craft-skill,
+.mat-effects-type { color: var(--text); font-size: 11px; }
+.mat-effects-text { color: var(--text); font-size: 11px; flex: 1; }
+.mat-craft-difficulty { flex-shrink: 0; font-size: 10px; padding: 1px 5px; }
+
+.mat-traits-list { display: flex; flex-wrap: wrap; gap: 4px; }
+
 /* ── Trait chip input ───────────────────────────────────────── */
 
 .trait-chip-wrap { position: relative; }

@@ -20,10 +20,7 @@ interface AppProps<T> {
   section: SectionName;
   subtitle: string;
   dataFile: string;
-  /** A function is used when different categories need different schemas
-   * (Materials' `gems` category uses mineralsConfig, everything else uses
-   * materialsConfig) -- resolved once per render against the active category. */
-  entryConfig: EntrySectionConfig<T> | ((category: string) => EntrySectionConfig<T>);
+  entryConfig: EntrySectionConfig<T>;
   /** Static category list; omit when categories are derived at runtime (Rituals). */
   categories?: { key: string; label: string }[];
 }
@@ -93,7 +90,6 @@ function App<T>({ section, subtitle, dataFile, entryConfig, categories: staticCa
   }, [section]);
 
   const isSpellsCategory = section === 'materials' && category === 'spells';
-  const activeConfig = typeof entryConfig === 'function' ? entryConfig(category) : entryConfig;
 
   function handleSelectCategory(cat: string) {
     setCategory(cat);
@@ -198,7 +194,7 @@ function App<T>({ section, subtitle, dataFile, entryConfig, categories: staticCa
     }
     if (state.status !== 'loaded' || !category) return;
     const newIndex = categoryEntries(category).length;
-    updateCategory(category, (arr) => [...arr, activeConfig.blank()]);
+    updateCategory(category, (arr) => [...arr, entryConfig.blank()]);
     setDetailIndex(newIndex);
     setDetailMode('edit');
     setView('detail');
@@ -328,7 +324,7 @@ function App<T>({ section, subtitle, dataFile, entryConfig, categories: staticCa
                 />
               ) : view === 'detail' && detailIndex !== null ? (
                 <EntryDetail
-                  config={activeConfig}
+                  config={entryConfig}
                   entry={categoryEntries(category)[detailIndex]}
                   mode={detailMode}
                   onEdit={handleEditDetail}
@@ -340,7 +336,7 @@ function App<T>({ section, subtitle, dataFile, entryConfig, categories: staticCa
               ) : (
                 <EntryList
                   key={category}
-                  config={activeConfig}
+                  config={entryConfig}
                   rows={categoryEntries(category)}
                   editable={editable}
                   onRowDoubleClick={handleOpenDetail}
