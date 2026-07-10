@@ -795,7 +795,7 @@
         "component": "s",
         "trigger": ""
       },
-      "range": "",
+      "range": "5'",
       "area": {
         "size": 5,
         "shape": "cube",
