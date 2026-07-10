@@ -152,6 +152,7 @@
       "image": "assets/img/foundations/project_fire.png",
       "note": "",
       "traits": [
+        "fire",
         "fire"
       ],
       "traditions": [
@@ -164,6 +165,7 @@
         "arcane school: elemental: fire",
         "bloodline: elemental: fire",
         "bloodline: genie: fire",
+        "divine domain: elemental: fire",
         "divine specialty: firewalker",
         "pact: genie: fire"
       ],
