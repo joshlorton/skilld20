@@ -260,13 +260,13 @@ body {
 
 /* Rarity / Difficulty -- one standardized 7-tier scale, same color ramp by
    tier position for both taxonomies (blue to purple). */
-.trait-rarity-abundant,        .trait-difficulty-routine        { background: #060e28; }
-.trait-rarity-common,          .trait-difficulty-easy           { background: #070e0e; }
-.trait-rarity-uncommon,        .trait-difficulty-average        { background: #081e0e; }
-.trait-rarity-rare,            .trait-difficulty-hard           { background: #2a2000; }
-.trait-rarity-very-rare,       .trait-difficulty-very-hard      { background: #2e1408; }
-.trait-rarity-extremely-rare,  .trait-difficulty-extremely-hard { background: #240606; }
-.trait-rarity-unique,          .trait-difficulty-monumental     { background: #1a0830; }
+.trait-rarity-abundant,        .trait-difficulty-routine        { background: #1840a0; }
+.trait-rarity-common,          .trait-difficulty-easy           { background: #187078; }
+.trait-rarity-uncommon,        .trait-difficulty-average        { background: #1a5028; }
+.trait-rarity-rare,            .trait-difficulty-hard           { background: #786618; }
+.trait-rarity-very-rare,       .trait-difficulty-very-hard      { background: #7a3018; }
+.trait-rarity-extremely-rare,  .trait-difficulty-extremely-hard { background: #7a1a1a; }
+.trait-rarity-unique,          .trait-difficulty-monumental     { background: #5c2090; }
 
 /* Traditions */
 .trait-tradition-arcane    { background: #c8a830; }
@@ -290,7 +290,7 @@ body {
 .row-even { background: var(--row-even); }
 
 .row-cs  { background: #0a2e14; border: 1px solid #2a7040; margin-bottom: 1px; }
-.row-s   { background: #081e0e; border: 1px solid #1a5028; margin-bottom: 1px; }
+.row-ss  { background: #081e0e; border: 1px solid #1a5028; margin-bottom: 1px; }
 .row-sf  { background: #2e1408; border: 1px solid #7a3018; margin-bottom: 1px; }
 .row-cf  { background: #240606; border: 1px solid #7a1a1a; }
 .result-row {
@@ -300,7 +300,7 @@ body {
   padding-left: 8px;
 }
 .row-cs  .result-label { color: #5ec87a; }
-.row-s   .result-label { color: #3ea058; }
+.row-ss  .result-label { color: #3ea058; }
 .row-sf  .result-label { color: #c07040; }
 .row-cf  .result-label { color: #c04040; }
 

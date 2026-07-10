@@ -97,6 +97,7 @@ function renderBase(f) {
 
   // -- Left column: traits (row 1 + row 2) then base-specs
   const left = el('div', { class: 'base-col-left' });
+  const traitsWrap = el('div', { class: 'base-traits' });
 
   // Row 1: rarity + difficulty + general traits
   const traitsRow = el('div', { class: 'trait-row' });
@@ -105,7 +106,7 @@ function renderBase(f) {
   if (f.difficulty) traitsRow.appendChild(traitTag(f.difficulty,
     `trait-difficulty-${f.difficulty.toLowerCase().replace(/\s+/g, '-')}`));
   (f.traits || []).filter(Boolean).forEach(t => traitsRow.appendChild(traitTag(t, '')));
-  left.appendChild(traitsRow);
+  traitsWrap.appendChild(traitsRow);
 
   // Row 2: traditions + access
   const traditions = (f.traditions || []).filter(Boolean);
@@ -139,8 +140,10 @@ function renderBase(f) {
         tradRow.appendChild(traitTag(ci >= 0 ? a.slice(ci + 2) : a, `trait-access-${tradKey(a)}`));
       });
     }
-    left.appendChild(tradRow);
+    traitsWrap.appendChild(tradRow);
   }
+
+  left.appendChild(traitsWrap);
 
   // Base specs (cast, range, area, targets, duration)
   const specs = renderSpecs(f);
@@ -336,7 +339,7 @@ function renderResults(f) {
       content.appendChild(typeRow('Primary', primDisplay, secDisplay ? 'Secondary' : '', secDisplay));
       const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
       add('Critical Success', sk.cs, 'row-cs');
-      add('Success',          sk.s  || ['Expected effect.'],        'row-s');
+      add('Success',          sk.s  || ['Expected effect.'],        'row-ss');
       add('Failure',          sk.f  || ['Failed cast. No effect.'], 'row-sf');
       add('Critical Failure', sk.cf, 'row-cf');
     }));
@@ -349,7 +352,7 @@ function renderResults(f) {
       content.appendChild(typeRow('Type', f.attack.type, '', ''));
       const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
       add('Critical Success', ar.cs, 'row-cs');
-      add('Success',          ar.s  || ['Normal damage.'],    'row-s');
+      add('Success',          ar.s  || ['Normal damage.'],    'row-ss');
       add('Failure',          ar.f  || ['Missed. No effect.'],'row-sf');
       add('Critical Failure', ar.cf, 'row-cf');
     }));
@@ -362,7 +365,7 @@ function renderResults(f) {
       content.appendChild(typeRow('Type', f.save.type, '', ''));
       const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
       add('Critical Success', sr.cs, 'row-cs');
-      add('Success',          sr.s,  'row-s');
+      add('Success',          sr.s,  'row-ss');
       add('Failure',          sr.f,  'row-sf');
       add('Critical Failure', sr.cf, 'row-cf');
     }));
@@ -387,7 +390,7 @@ function renderRowResults(results) {
   div.appendChild(el('div', { class: 'option-results-type' }, typeLabel));
   [
     { text: results.cs, label: 'CS', cls: 'row-cs' },
-    { text: results.s,  label: 'S',  cls: 'row-s'  },
+    { text: results.s,  label: 'S',  cls: 'row-ss'  },
     { text: results.f,  label: 'F',  cls: 'row-sf' },
     { text: results.cf, label: 'CF', cls: 'row-cf' }
   ].forEach(({ text, label, cls }) => {

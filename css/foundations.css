@@ -59,16 +59,26 @@
   justify-content: center;
   overflow: hidden;
 }
+/* Wraps the rarity/difficulty/traits row and the (optional) traditions/
+   access row -- gap handles the 1px space between them so it never stacks
+   with the margin below, and margin-bottom gives the 6px gap before
+   base-specs regardless of whether one or two trait-rows are present. */
+.base-traits {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-bottom: 6px;
+}
 .trait-row {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  padding-bottom: 3px;
 }
 .trait-break { width: 100%; height: 1px; overflow: hidden; }
 
-/* spec sheet inside left col: remove outer padding, inherit width */
-.base-col-left .base-specs { padding: 2px 0 0; }
+/* spec sheet inside left col: remove outer padding, inherit width --
+   .base-traits' margin-bottom already provides the gap above it. */
+.base-col-left .base-specs { padding: 0; }
 
 .base-image {
   max-height: 100%;
@@ -168,7 +178,7 @@
 }
 .option-results-label { font-size: 10px; font-family: var(--font-ui); font-weight: 700; }
 .option-results-entry.row-cs .option-results-label { color: #5ec87a; }
-.option-results-entry.row-s  .option-results-label { color: #3ea058; }
+.option-results-entry.row-ss .option-results-label { color: #3ea058; }
 .option-results-entry.row-sf .option-results-label { color: #c07040; }
 .option-results-entry.row-cf .option-results-label { color: #c04040; }
 
@@ -197,13 +207,13 @@
   font-family: var(--font-ui);
   white-space: nowrap;
 }
-.component-rarity-abundant        { background: #060e28; }
-.component-rarity-common          { background: #070e0e; }
-.component-rarity-uncommon        { background: #081e0e; }
-.component-rarity-rare            { background: #2a2000; }
-.component-rarity-very-rare       { background: #2e1408; }
-.component-rarity-extremely-rare  { background: #240606; }
-.component-rarity-unique          { background: #1a0830; }
+.component-rarity-abundant        { background: #1840a0; }
+.component-rarity-common          { background: #187078; }
+.component-rarity-uncommon        { background: #1a5028; }
+.component-rarity-rare            { background: #786618; }
+.component-rarity-very-rare       { background: #7a3018; }
+.component-rarity-extremely-rare  { background: #7a1a1a; }
+.component-rarity-unique          { background: #5c2090; }
 .component-price    { font-weight: 700; color: var(--price); font-family: var(--font-ui); font-size: 13px; text-align: right; white-space: nowrap; }
 
 .comp-editor-row { border: 1px solid var(--border); padding: 4px; margin-bottom: 6px; }
