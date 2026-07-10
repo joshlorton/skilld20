@@ -145,14 +145,13 @@
       "components": []
     },
     {
-      "name": "Project Fire",
+      "name": "TBD AoE Fire",
       "mana": 6,
       "rarity": "common",
       "difficulty": "average",
       "image": "assets/img/foundations/project_fire.png",
       "note": "",
       "traits": [
-        "fire",
         "fire"
       ],
       "traditions": [
@@ -252,7 +251,7 @@
       },
       "sustain": [
         {
-          "variant": "",
+          "name": "",
           "attribute": "",
           "actions": {
             "count": 1,
@@ -267,7 +266,7 @@
       "dismiss": [],
       "heightened": [
         {
-          "variant": "-",
+          "name": "",
           "attribute": "area size",
           "actions": {
             "count": 0,
@@ -279,7 +278,7 @@
           "results": null
         },
         {
-          "variant": "Cone",
+          "name": "",
           "attribute": "area shape",
           "actions": {
             "count": 0,
@@ -291,7 +290,7 @@
           "results": null
         },
         {
-          "variant": "Cone",
+          "name": "",
           "attribute": "area size",
           "actions": {
             "count": 0,
