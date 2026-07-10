@@ -184,14 +184,26 @@
   align-items: center;
 }
 .component-desc     { font-size: 13px; font-style: italic; color: var(--text-muted); line-height: 1.4; }
-.component-rarity   { font-size: 13px; font-weight: 700; font-variant: small-caps; text-transform: capitalize; text-align: center; padding-top: 2px; }
-.component-rarity-abundant        { color: #2f6da8; }
-.component-rarity-common          { color: #1f8a74; }
-.component-rarity-uncommon        { color: #3ea058; }
-.component-rarity-rare            { color: #b08f2e; }
-.component-rarity-very-rare       { color: #c07040; }
-.component-rarity-extremely-rare  { color: #c04040; }
-.component-rarity-unique          { color: #a83a6e; }
+.component-rarity {
+  display: inline-block;
+  justify-self: center;
+  color: #EEF0EC;
+  font-weight: 700;
+  font-variant: small-caps;
+  text-transform: capitalize;
+  font-size: 10px;
+  padding: 1px 5px;
+  border: 2px solid var(--heading-fg);
+  font-family: var(--font-ui);
+  white-space: nowrap;
+}
+.component-rarity-abundant        { background: #060e28; }
+.component-rarity-common          { background: #070e0e; }
+.component-rarity-uncommon        { background: #081e0e; }
+.component-rarity-rare            { background: #2a2000; }
+.component-rarity-very-rare       { background: #2e1408; }
+.component-rarity-extremely-rare  { background: #240606; }
+.component-rarity-unique          { background: #1a0830; }
 .component-price    { font-weight: 700; color: var(--price); font-family: var(--font-ui); font-size: 13px; text-align: right; white-space: nowrap; }
 
 .comp-editor-row { border: 1px solid var(--border); padding: 4px; margin-bottom: 6px; }

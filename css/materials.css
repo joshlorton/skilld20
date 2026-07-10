@@ -139,13 +139,14 @@
    Base look, unless overridden below: color: var(--text); font-size: 11px;
    no font-weight; no margin/padding. ───────────────────────────────────── */
 
-.mat-id { width: 210px; }
+.mat-id { width: 270px; }
 
 .mat-id-row1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 6px;
+  margin-bottom: 2px;
 }
 .mat-id-primary { font-size: 13px; font-weight: 700; color: var(--heading-fg); font-family: var(--font-ui); }
 .mat-id-rarity { flex-shrink: 0; }
@@ -156,6 +157,7 @@
 .mat-id-location { color: var(--text); font-size: 11px; }
 
 .mat-craft   { color: var(--text); font-size: 11px; }
+.mat-cell.mat-craft { flex: 0 0 180px; width: 180px; }
 .mat-effects { color: var(--text); font-size: 11px; }
 .mat-traits  { color: var(--text); font-size: 11px; }
 
@@ -171,6 +173,7 @@
 .mat-craft-difficulty { flex-shrink: 0; font-size: 10px; padding: 1px 5px; }
 
 .mat-traits-list { display: flex; flex-wrap: wrap; gap: 4px; }
+.mat-traits-list .trait-tag { font-size: 10px; padding: 1px 5px; }
 
 /* ── Trait chip input ───────────────────────────────────────── */
 
