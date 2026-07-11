@@ -4,9 +4,10 @@ export interface FieldDef<T> {
   key: keyof T & string;
   /** Omitted when the section title already conveys it (single-field sections). */
   label?: string;
-  /** tags = comma-separated string[] editing, matching the old EditableArrayField behavior. */
-  kind: 'text' | 'textarea' | 'select' | 'tags';
-  /** For kind: 'select'. */
+  /** tags = comma-separated string[] editing, matching the old EditableArrayField behavior.
+   * multiselect = string[] backed by a fixed `options` list (native multi-select). */
+  kind: 'text' | 'textarea' | 'select' | 'tags' | 'multiselect';
+  /** For kind: 'select' | 'multiselect'. */
   options?: { value: string; label: string }[];
   /** form-field-wide CSS class. */
   wide?: boolean;

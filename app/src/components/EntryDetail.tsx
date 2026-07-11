@@ -15,9 +15,21 @@ interface Props<T> {
   onBack: () => void;
 }
 
+function optionLabel<T>(field: FieldDef<T>, value: string): string {
+  return field.options?.find((o) => o.value === value)?.label ?? value;
+}
+
+/** Resolves select/multiselect values through field.options so the viewer shows
+ * the friendly label (e.g. "Am -- Tropical monsoon") instead of the raw stored
+ * value (e.g. "am"). */
 function fieldValue<T>(source: T, field: FieldDef<T>): string {
   const v = source[field.key];
-  return Array.isArray(v) ? (v as string[]).join(', ') : ((v as string) ?? '');
+  if (Array.isArray(v)) {
+    const arr = v as string[];
+    return field.kind === 'multiselect' ? arr.map((val) => optionLabel(field, val)).join(', ') : arr.join(', ');
+  }
+  if (field.kind === 'select' && v) return optionLabel(field, v as string);
+  return (v as string) ?? '';
 }
 
 export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, onDelete, onBack }: Props<T>) {
@@ -40,6 +52,11 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
     } else {
       setDraft((d) => ({ ...d, [field.key]: raw }));
     }
+  }
+
+  function setMultiField(field: FieldDef<T>, select: HTMLSelectElement) {
+    const values = Array.from(select.selectedOptions).map((o) => o.value);
+    setDraft((d) => ({ ...d, [field.key]: values }));
   }
 
   function setTopField(key: keyof T & string, raw: string, tags: boolean) {
@@ -165,6 +182,20 @@ export function EntryDetail<T>({ config, entry, mode, onEdit, onSave, onCancel, 
                           onChange={(e) => setField(field, e.target.value)}
                         >
                           <option value="">--</option>
+                          {field.options?.map((o) => (
+                            <option key={o.value} value={o.value}>
+                              {o.label}
+                            </option>
+                          ))}
+                        </select>
+                      ) : field.kind === 'multiselect' ? (
+                        <select
+                          multiple
+                          size={6}
+                          className="form-input form-multiselect"
+                          value={(draft[field.key] as unknown as string[]) ?? []}
+                          onChange={(e) => setMultiField(field, e.target)}
+                        >
                           {field.options?.map((o) => (
                             <option key={o.value} value={o.value}>
                               {o.label}

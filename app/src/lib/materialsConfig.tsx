@@ -7,10 +7,14 @@ import { CRAFTING_CATEGORIES } from '../types/crafting';
 
 const CRAFTING_SKILL_OPTIONS = CRAFTING_CATEGORIES.map((label) => ({ value: label, label }));
 
+function labelsFor(tiers: { value: string; label: string }[], values: string[]): string {
+  return values.map((v) => tiers.find((t) => t.value === v)?.label ?? v).join(', ');
+}
+
 function locationSummary(r: MaterialEntry): string {
   if (r.location_override) return r.location_override;
-  const climate = CLIMATE_TIERS.find((t) => t.value === r.location_climate)?.label ?? '';
-  const biome = BIOME_TIERS.find((t) => t.value === r.location_biome)?.label ?? '';
+  const climate = labelsFor(CLIMATE_TIERS, r.location_climate);
+  const biome = labelsFor(BIOME_TIERS, r.location_biome);
   return [climate, biome].filter(Boolean).join(' / ');
 }
 
@@ -112,8 +116,8 @@ export const materialsConfig: EntrySectionConfig<MaterialEntry> = {
       rows: [
         [
           { key: 'color', label: 'Color', kind: 'text' },
-          { key: 'location_climate', label: 'Climate', kind: 'select', options: CLIMATE_TIERS },
-          { key: 'location_biome', label: 'Biome', kind: 'select', options: BIOME_TIERS },
+          { key: 'location_climate', label: 'Climate', kind: 'multiselect', options: CLIMATE_TIERS },
+          { key: 'location_biome', label: 'Biome', kind: 'multiselect', options: BIOME_TIERS },
           { key: 'location_override', label: 'Location Override', kind: 'text', wide: true },
         ],
       ],

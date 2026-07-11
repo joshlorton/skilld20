@@ -612,7 +612,7 @@ details[open] > summary.section-heading::before {
    ============================================================ */
 
 .group-list { margin-bottom: 8px; }
-.group-box  { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
+.group-box  { border: 1px solid var(--border); padding: 2px; margin-bottom: 8px; }
 .group-box-header   { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .group-label-input  { font-weight: 700; font-variant: small-caps; color: var(--heading-fg); }
 

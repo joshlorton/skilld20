@@ -171,20 +171,20 @@ function renderBase(f) {
 
 function specRow(label, value) {
   if (!hasValue(value)) return null;
-  const row = el('div', { class: 'spec-row' });
+  const row = el('div', { class: 'spec-row spec-entry' });
   row.appendChild(el('b', { class: 'spec-label' }, label));
   row.appendChild(el('span', { class: 'spec-value' }, String(value)));
   return row;
 }
 
-function specRowCast(f) {
-  const cast = f.cast;
+function specRowCast(opt) {
+  const cast = opt.cast;
   if (!cast) return null;
   const hasActions   = !isNoAction(cast.actions);
   const hasComponent = cast.component && cast.component !== '';
   const hasTrigger   = cast.trigger   && cast.trigger   !== '';
   if (!hasActions && !hasComponent && !hasTrigger) return null;
-  const row = el('div', { class: 'spec-row' });
+  const row = el('div', { class: 'spec-row spec-entry' });
   row.appendChild(el('b', { class: 'spec-label' }, 'Cast'));
   const val = el('span', { class: 'spec-value' });
   if (hasActions)   val.appendChild(el('span', { class: 'action-sym' }, actionSym(cast.actions)));
@@ -193,28 +193,58 @@ function specRowCast(f) {
   return row;
 }
 
+function hasSpecValues(opt) {
+  return !isNoAction(opt.cast?.actions) || !!opt.cast?.component || !!opt.cast?.trigger ||
+    hasValue(opt.range) || !!opt.area?.size || !!opt.area?.shape || !!opt.area?.type ||
+    !!opt.targets?.count || !!opt.targets?.type || hasValue(opt.duration);
+}
+
+/* Named Base options (cast/range/area/targets/duration per option), mirroring
+   renderEffect's allOpts pattern: legacy foundation-level fields are read as
+   an implicit untitled option when no spec_options array has been saved yet. */
 function renderSpecs(f) {
-  const content = el('div', { class: 'section-col-content' });
-  const add = r => r && content.appendChild(r);
-
-  add(specRowCast(f));
-  if (f.cast?.trigger) add(specRow('Trigger', f.cast.trigger));
-  if (hasValue(f.range)) add(specRow('Range', f.range));
-  if (f.area?.size || f.area?.shape || f.area?.type) {
-    const parts = [];
-    if (f.area.size) parts.push(`${f.area.size}'`);
-    if (f.area.shape) parts.push(f.area.shape);
-    if (f.area.type)  parts.push(f.area.type);
-    add(specRow('Area', parts.join(' ')));
+  const allOpts = [];
+  if (Array.isArray(f.spec_options) && f.spec_options.length) {
+    f.spec_options.filter(Boolean).forEach(opt => allOpts.push(opt));
+  } else {
+    const legacy = { cast: f.cast, range: f.range, area: f.area, targets: f.targets, duration: f.duration };
+    if (hasSpecValues(legacy)) allOpts.push(legacy);
   }
-  if (f.targets?.count || f.targets?.type) {
-    add(specRow('Targets', [f.targets.count, f.targets.type].filter(Boolean).join(' ')));
-  }
-  if (hasValue(f.duration)) add(specRow('Duration', f.duration));
+  if (!allOpts.length) return null;
 
-  if (!content.children.length) return null;
-  const section = el('div', { class: 'base-specs' });
+  const section = el('div', { class: 'base-spec' });
   section.appendChild(el('div', { class: 'section-col-heading' }, 'Base'));
+  const content = el('div', { class: 'section-col-content' });
+
+  const multiOpts = allOpts.length > 1;
+  allOpts.forEach((opt, oi) => {
+    const hasTitle = !!opt.title;
+    const rowCls  = multiOpts ? (oi % 2 === 0 ? ' row-odd' : ' row-even') : '';
+    const block   = el('div', { class: `spec-option-block${rowCls}` });
+
+    if (hasTitle) block.appendChild(el('div', { class: 'base-opt-title option-name' }, opt.title));
+
+    const inner = el('div', { class: 'spec-opt-content' });
+    const add = r => r && inner.appendChild(r);
+    add(specRowCast(opt));
+    if (opt.cast?.trigger) add(specRow('Trigger', opt.cast.trigger));
+    if (hasValue(opt.range)) add(specRow('Range', opt.range));
+    if (opt.area?.size || opt.area?.shape || opt.area?.type) {
+      const parts = [];
+      if (opt.area.size) parts.push(`${opt.area.size}'`);
+      if (opt.area.shape) parts.push(opt.area.shape);
+      if (opt.area.type)  parts.push(opt.area.type);
+      add(specRow('Area', parts.join(' ')));
+    }
+    if (opt.targets?.count || opt.targets?.type) {
+      add(specRow('Targets', [opt.targets.count, opt.targets.type].filter(Boolean).join(' ')));
+    }
+    if (hasValue(opt.duration)) add(specRow('Duration', opt.duration));
+
+    block.appendChild(inner);
+    content.appendChild(block);
+  });
+
   section.appendChild(content);
   return section;
 }
@@ -624,24 +654,6 @@ function edSelect(label, id, value, options) {
     sel.appendChild(o);
   });
   wrap.appendChild(sel);
-  return wrap;
-}
-
-function edCheckboxes(label, groupId, currentValue) {
-  const wrap  = el('div', { class: 'form-field' });
-  wrap.appendChild(el('label', {}, label));
-  const group = el('div', { class: 'checkbox-group', id: groupId });
-  const cv    = (currentValue || '').toLowerCase();
-  ['V', 'S', 'M', 'F'].forEach(comp => {
-    const cbId  = `${groupId}-${comp}`;
-    const cbWrap = el('label', { class: 'checkbox-label', for: cbId });
-    const cb    = el('input', { type: 'checkbox', id: cbId, value: comp.toLowerCase() });
-    if (cv.includes(comp.toLowerCase())) cb.checked = true;
-    cbWrap.appendChild(cb);
-    cbWrap.appendChild(document.createTextNode(comp));
-    group.appendChild(cbWrap);
-  });
-  wrap.appendChild(group);
   return wrap;
 }
 
@@ -1091,6 +1103,34 @@ function dfSel(label, field, val, options) {
   return wrap;
 }
 
+function dfField(label, field, val, type) {
+  const wrap = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', {}, label));
+  const input = el(type === 'textarea' ? 'textarea' : 'input', { class: 'form-input', 'data-field': field });
+  if (type !== 'textarea') input.type = type || 'text';
+  input.value = (val !== null && val !== undefined) ? String(val) : '';
+  if (type === 'textarea') input.rows = 3;
+  wrap.appendChild(input);
+  return wrap;
+}
+
+function dfCheckboxes(label, field, currentValue) {
+  const wrap  = el('div', { class: 'form-field' });
+  wrap.appendChild(el('label', {}, label));
+  const group = el('div', { class: 'checkbox-group' });
+  const cv    = (currentValue || '').toLowerCase();
+  ['V', 'S', 'M', 'F'].forEach(comp => {
+    const cbWrap = el('label', { class: 'checkbox-label' });
+    const cb    = el('input', { type: 'checkbox', value: comp.toLowerCase(), 'data-field': field });
+    if (cv.includes(comp.toLowerCase())) cb.checked = true;
+    cbWrap.appendChild(cb);
+    cbWrap.appendChild(document.createTextNode(comp));
+    group.appendChild(cbWrap);
+  });
+  wrap.appendChild(group);
+  return wrap;
+}
+
 /* ============================================================
    EDITOR — EFFECT SECTION BUILDER
    ============================================================ */
@@ -1247,16 +1287,125 @@ function parseDuration(dur) {
   return { count: '', length: '', custom: String(dur) };
 }
 
-function parseRange(range) {
-  if (!range && range !== 0) return '';
-  const n = parseInt(String(range), 10);
-  return isNaN(n) ? '' : n;
+/* Mirrors parseDuration's split: a plain numeric (+ optional trailing ')
+   value is treated as the number field; anything else (e.g. "Touch",
+   "Self", "Unlimited") is treated as a custom override. */
+function parseRangeValue(range) {
+  if (!range && range !== 0) return { num: '', custom: '' };
+  const m = String(range).match(/^(\d+)'?$/);
+  if (m) return { num: m[1], custom: '' };
+  return { num: '', custom: String(range) };
+}
+
+/* ============================================================
+   EDITOR — SPEC (BASE) SECTION BUILDER
+   ============================================================ */
+
+function buildSpecRow(data) {
+  data = data || {};
+  const wrap = el('div', { class: 'spec-extra-row' });
+
+  const mainRow = el('div', { class: 'spec-row-main' });
+  const nameIn = el('input', { class: 'form-input', type: 'text',
+    placeholder: 'Option Name', 'data-field': 'title' });
+  nameIn.value = data.title || '';
+  mainRow.appendChild(nameIn);
+  const removeBtn = el('button', { class: 'effect-row-remove', type: 'button' }, '×');
+  removeBtn.addEventListener('click', () => wrap.remove());
+  mainRow.appendChild(removeBtn);
+  wrap.appendChild(mainRow);
+
+  // Cast
+  const castActWrap = el('div', { class: 'form-field' });
+  castActWrap.appendChild(el('label', {}, 'Actions'));
+  castActWrap.appendChild(buildActionPair(data.cast?.actions));
+  const castRow = el('div', { class: 'form-row' });
+  castRow.appendChild(castActWrap);
+  castRow.appendChild(dfCheckboxes('Components', 'cast-comp', data.cast?.component));
+  castRow.appendChild(dfField('Trigger', 'cast-trigger', data.cast?.trigger));
+  wrap.appendChild(castRow);
+
+  // Range & Area
+  const rp = parseRangeValue(data.range);
+  const raRow1 = el('div', { class: 'form-row' });
+  raRow1.appendChild(dfNum(  'Range (ft)',    'range',      rp.num, 0));
+  raRow1.appendChild(dfField('Custom Range',  'range-custom', rp.custom));
+  raRow1.appendChild(dfNum(  'Area Size (ft)','area-size',  data.area?.size, 0));
+  raRow1.appendChild(dfSel(  'Area Shape',    'area-shape', data.area?.shape, OPTS.areaShape));
+  wrap.appendChild(raRow1);
+  const raRow2 = el('div', { class: 'form-row' });
+  raRow2.appendChild(dfSel(  'Area Type',     'area-type',      data.area?.type, OPTS.areaType));
+  raRow2.appendChild(dfNum(  'Targets Count', 'targets-count',  data.targets?.count, 0));
+  raRow2.appendChild(dfField('Targets Type',  'targets-type',   data.targets?.type));
+  wrap.appendChild(raRow2);
+
+  // Duration
+  const dur = parseDuration(data.duration);
+  const durRow = el('div', { class: 'form-row' });
+  durRow.appendChild(dfNum(  'Count',         'dur-count',  dur.count, 0));
+  durRow.appendChild(dfSel(  'Length',        'dur-length', dur.length, OPTS.durLength));
+  durRow.appendChild(dfField('Custom Length', 'dur-custom', dur.custom));
+  wrap.appendChild(durRow);
+
+  return wrap;
+}
+
+function buildSpecSection(f) {
+  const wrap = el('div', { class: 'form-field form-field-wide' });
+
+  const heading = el('div', { class: 'options-heading' });
+  heading.appendChild(el('span', {}, 'Base'));
+  const addBtn = el('button', { class: 'options-add-btn', type: 'button' }, '+');
+  heading.appendChild(addBtn);
+  wrap.appendChild(heading);
+
+  const container = el('div', { id: 'spec-options-rows' });
+  wrap.appendChild(container);
+
+  // Migration: fold legacy foundation-level cast/range/area/targets/duration into first option
+  const initOpts = [{
+    title: '', cast: f.cast || {}, range: f.range || '', area: f.area || {},
+    targets: f.targets || {}, duration: f.duration || ''
+  }];
+  (f.spec_options || []).filter(Boolean).forEach(opt => initOpts.push(opt));
+  initOpts.forEach(opt => container.appendChild(buildSpecRow(opt)));
+
+  addBtn.addEventListener('click', () => container.appendChild(buildSpecRow({})));
+  return wrap;
+}
+
+function collectSpecOptions() {
+  const rows = document.querySelectorAll('#spec-options-rows .spec-extra-row');
+  return Array.from(rows).map(row => {
+    const get   = field => row.querySelector(`[data-field="${field}"]`)?.value?.trim() || '';
+    const num   = field => { const x = get(field); return x !== '' ? parseFloat(x) : 0; };
+    const check = field => Array.from(row.querySelectorAll(`[data-field="${field}"]:checked`)).map(cb => cb.value).join('');
+
+    const rangeNum    = get('range');
+    const rangeCustom = get('range-custom');
+    const durCount    = get('dur-count');
+    const durLength   = get('dur-length');
+    const durCustom   = get('dur-custom');
+
+    return {
+      title: get('title'),
+      cast: {
+        actions   : collectAction(get('act-count'), get('act-length')),
+        component : check('cast-comp'),
+        trigger   : get('cast-trigger')
+      },
+      range   : rangeCustom || (rangeNum !== '' ? `${rangeNum}'` : ''),
+      area    : { size: num('area-size'), shape: get('area-shape'), type: get('area-type') },
+      targets : { count: num('targets-count'), type: get('targets-type') },
+      duration: durCustom || (durCount && durLength ? `${durCount} ${durLength}` : durLength)
+    };
+  }).filter(r => r.title || r.range || r.duration || r.area.size || r.area.shape || r.area.type ||
+    r.targets.type || r.targets.count || !isNoAction(r.cast.actions) || r.cast.component || r.cast.trigger);
 }
 
 function buildEditor(f) {
   const form = el('div', { class: 'editor-form' });
   const sec  = t => el('div', { class: 'editor-section-title' }, t);
-  const dur  = parseDuration(f.duration);
 
   // Foundation (was Identity)
   form.appendChild(sec('Foundation'));
@@ -1279,37 +1428,8 @@ function buildEditor(f) {
   form.appendChild(edGroupedCheckboxes('Traditions',  'ed-traditions', f.traditions, state.traits.traditions, 'form-label-tag-traditions'));
   form.appendChild(edGroupedCheckboxes('Access',      'ed-access',     f.access,     state.traits.access,     'form-label-tag-access'));
 
-  // Cast
-  form.appendChild(sec('Cast'));
-  const castActWrap = el('div', { class: 'form-field' });
-  castActWrap.appendChild(el('label', {}, 'Actions'));
-  castActWrap.appendChild(buildActionPair(f.cast?.actions, 'ed-cast'));
-  form.appendChild(edRow(
-    castActWrap,
-    edCheckboxes('Components', 'ed-cast-comp', f.cast?.component),
-    edField('Trigger', 'ed-cast-trigger', f.cast?.trigger)
-  ));
-
-  // Range & Area
-  form.appendChild(sec('Range & Area'));
-  form.appendChild(edRow(
-    edNum(  'Range (ft)',    'ed-range',       parseRange(f.range), 0, 5),
-    edNum(  'Area Size (ft)','ed-area-size',   f.area?.size,         0, 5),
-    edSelect('Area Shape',   'ed-area-shape',  f.area?.shape,  OPTS.areaShape),
-    edSelect('Area Type',    'ed-area-type',   f.area?.type,   OPTS.areaType)
-  ));
-  form.appendChild(edRow(
-    edNum(  'Targets Count', 'ed-targets-count', f.targets?.count, 0),
-    edField('Targets Type',  'ed-targets-type',  f.targets?.type)
-  ));
-
-  // Duration
-  form.appendChild(sec('Duration'));
-  form.appendChild(edRow(
-    edNum(   'Count',       'ed-dur-count',   dur.count,   0),
-    edSelect('Length',      'ed-dur-length',  dur.length,  OPTS.durLength),
-    edField( 'Custom Length','ed-dur-custom',  dur.custom)
-  ));
+  // Base (Cast, Range & Area, Targets, Duration -- with + button for additional named options)
+  form.appendChild(buildSpecSection(f));
 
   // Effect (with + button for additional effects)
   form.appendChild(buildEffectSection(f));
@@ -1447,19 +1567,10 @@ function collectEditor() {
     try { return JSON.parse(raw); }
     catch (e) { throw new Error(`Invalid JSON in "${id}": ${e.message}`); }
   }
-  function checkboxes(groupId) {
-    return Array.from(document.querySelectorAll(`#${groupId} input:checked`))
-      .map(b => b.value).join('+');
-  }
   function checkboxArr(groupId) {
     return Array.from(document.querySelectorAll(`#${groupId} input:checked`))
       .map(b => b.value);
   }
-
-  const durCount  = v('ed-dur-count');
-  const durLength = v('ed-dur-length');
-  const durCustom = v('ed-dur-custom');
-  const rangeNum  = v('ed-range');
 
   return {
     name       : v('ed-name'),
@@ -1471,18 +1582,14 @@ function collectEditor() {
     traits     : checkboxArr('ed-traits'),
     traditions : checkboxArr('ed-traditions'),
     access     : checkboxArr('ed-access'),
-    cast: {
-      actions  : collectAction(
-        document.getElementById('ed-cast-act-count')?.value?.trim() || '',
-        document.getElementById('ed-cast-act-length')?.value?.trim() || 'none'
-      ),
-      component : checkboxes('ed-cast-comp'),
-      trigger   : v('ed-cast-trigger')
-    },
-    range   : rangeNum !== '' ? `${rangeNum}'` : '',
-    area    : { size: num('ed-area-size'), shape: v('ed-area-shape'), type: v('ed-area-type') },
-    targets : { count: num('ed-targets-count'), type: v('ed-targets-type') },
-    duration : durCustom || (durCount && durLength ? `${durCount} ${durLength}` : durLength),
+    ...(()=>{ const _so=collectSpecOptions(); const _sf=_so[0]||{}; return {
+      spec_options: _so,
+      cast    : _sf.cast || {},
+      range   : _sf.range || '',
+      area    : _sf.area || {},
+      targets : _sf.targets || {},
+      duration: _sf.duration || ''
+    }; })(),
     ...(()=>{ const _o=collectEffectOptions(); const _f=_o[0]||{}; return {
       effect : { options: _o },
       note   : '',

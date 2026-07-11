@@ -78,7 +78,7 @@
 
 /* spec sheet inside left col: remove outer padding, inherit width --
    .base-traits' margin-bottom already provides the gap above it. */
-.base-col-left .base-specs { padding: 0; }
+.base-col-left .base-spec { padding: 0; }
 
 .base-image {
   max-height: 100%;
@@ -92,10 +92,13 @@
 }
 
 /* ============================================================
-   SPEC SHEET
+   SPEC SHEET (Base) -- repeatable named options, same layout as Effect
    ============================================================ */
 
-.base-specs { display: flex; padding: 5px 0; margin-bottom: 6px; }
+.base-spec { display: flex; padding: 5px 0; margin-bottom: 6px; }
+.spec-option-block { display: flex; align-items: flex-start; margin-bottom: 1px; }
+.base-opt-title    { width: 80px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
+.spec-opt-content  { flex: 1; min-width: 0; }
 
 /* ============================================================
    SECTION MARGINS & DISPLAY (Foundation-specific sections)
@@ -123,7 +126,7 @@
   line-height: 1.55;
 }
 .effect-option-block { display: flex; align-items: flex-start; margin-bottom: 1px; }
-.effect-opt-title    { min-width: 80px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
+.effect-opt-title    { width: 80px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
 .effect-opt-content  { flex: 1; min-width: 0; }
 
 /* ============================================================
@@ -140,17 +143,27 @@
 .effect-extra-row .form-row { margin-bottom: 0; }
 
 /* ============================================================
+   SPEC (BASE) EDITOR
+   ============================================================ */
+
+.spec-row-main { display: flex; gap: 4px; align-items: stretch; margin-bottom: 4px; }
+.spec-row-main input[type="text"] { flex: 1; }
+.spec-row-main .effect-row-remove { align-self: flex-start; }
+.spec-extra-row { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
+.spec-extra-row .form-row { margin-bottom: 4px; }
+
+/* ============================================================
    OPTION ROW VIEWER (Sustain / Dismiss / Heightened)
    ============================================================ */
 
 .option-row {
   display: grid;
-  grid-template-columns: 70px 70px 50px 40px 1fr 300px 40px;
+  grid-template-columns: 80px 70px 50px 40px 1fr 300px 40px;
   padding: 4px 6px;
   gap: 6px;
   align-items: center;
 }
-.option-name      { font-weight: 700; color: var(--text-variant); font-size: 13px; overflow-wrap: break-word; word-break: break-word; }
+.option-name      { width: 80px; font-weight: 700; color: var(--text-variant); font-size: 13px; overflow-wrap: break-word; word-break: break-word; }
 .option-spec      { font-weight: 700; color: var(--text-attr); font-family: var(--font-ui); font-size: 13px; text-transform: capitalize; }
 .option-duration  { font-size: 15px; letter-spacing: -1px; line-height: 1.5; white-space: nowrap; }
 .option-component { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }

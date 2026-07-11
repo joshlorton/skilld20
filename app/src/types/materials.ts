@@ -32,9 +32,9 @@ export interface MaterialEntry {
   rarity: string;
   color: string;
 
-  // Identity: location
-  location_climate: string;
-  location_biome: string;
+  // Identity: location (multi-select -- a material can occur across several climates/biomes)
+  location_climate: string[];
+  location_biome: string[];
   /** Freeform, takes precedence for setting-specific locations. */
   location_override: string;
 
