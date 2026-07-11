@@ -1277,6 +1277,52 @@
         "bardic tune: discovery",
         "divine domain: knowledge"
       ],
+      "spec_options": [
+        {
+          "title": "detect",
+          "cast": {
+            "actions": {
+              "count": 1,
+              "length": "action"
+            },
+            "component": "s",
+            "trigger": ""
+          },
+          "range": "",
+          "area": {
+            "size": 30,
+            "shape": "sphere",
+            "type": "emanation"
+          },
+          "targets": {
+            "count": 0,
+            "type": "a general type of object (furniture/tool), substance (liquid/wood), creature (animal/plant/undead), or active magical effect"
+          },
+          "duration": "until the end of your next turn"
+        },
+        {
+          "title": "sense",
+          "cast": {
+            "actions": {
+              "count": 1,
+              "length": "action"
+            },
+            "component": "s",
+            "trigger": ""
+          },
+          "range": "",
+          "area": {
+            "size": 300,
+            "shape": "sphere",
+            "type": "emanation"
+          },
+          "targets": {
+            "count": 0,
+            "type": "a general type of object (furniture/tool), substance (liquid/wood), creature (animal/plant/undead), or active magical effect"
+          },
+          "duration": "until the end of your next turn"
+        }
+      ],
       "cast": {
         "actions": {
           "count": 1,
@@ -1293,7 +1339,7 @@
       },
       "targets": {
         "count": 0,
-        "type": "a general type of object, a specific type object, a substance, or an active magical effect"
+        "type": "a general type of object (furniture/tool), substance (liquid/wood), creature (animal/plant/undead), or active magical effect"
       },
       "duration": "until the end of your next turn",
       "effect": {
@@ -1392,7 +1438,7 @@
       },
       "sustain": [
         {
-          "variant": "",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 0,
@@ -1404,7 +1450,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 1,
@@ -1416,7 +1462,7 @@
           "results": null
         },
         {
-          "variant": "",
+          "name": "",
           "attribute": "duration",
           "actions": {
             "count": 2,
@@ -1431,7 +1477,7 @@
       "dismiss": [],
       "heightened": [
         {
-          "variant": "Creature",
+          "name": "",
           "attribute": "targets",
           "actions": {
             "count": 0,
@@ -1443,7 +1489,7 @@
           "results": null
         },
         {
-          "variant": "Cone",
+          "name": "",
           "attribute": "area shape",
           "actions": {
             "count": 0,
@@ -1455,7 +1501,7 @@
           "results": null
         },
         {
-          "variant": "Detect",
+          "name": "",
           "attribute": "area size",
           "actions": {
             "count": 0,
