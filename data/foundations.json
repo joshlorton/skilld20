@@ -202,9 +202,9 @@
             "component": "v",
             "trigger": ""
           },
-          "range": "",
+          "range": "0'",
           "area": {
-            "size": 0,
+            "size": 10,
             "shape": "cone",
             "type": "emanation"
           },
@@ -224,7 +224,7 @@
             "component": "v",
             "trigger": ""
           },
-          "range": "",
+          "range": "5'",
           "area": {
             "size": 5,
             "shape": "sphere",
@@ -260,13 +260,13 @@
         "options": [
           {
             "title": "",
-            "text": "You project a line of searing flames from your outstretched hands.",
+            "text": "You create an area of searing flames from your outstretched hands or .",
             "note": "",
             "damage": {
-              "dieNumber": 0,
-              "dieSize": 0,
+              "dieNumber": 1,
+              "dieSize": 4,
               "modifier": 0,
-              "type": ""
+              "type": "fire"
             },
             "attack": {
               "type": "",
@@ -280,10 +280,10 @@
         ]
       },
       "damage": {
-        "dieNumber": 0,
-        "dieSize": 0,
+        "dieNumber": 1,
+        "dieSize": 4,
         "modifier": 0,
-        "type": ""
+        "type": "fire"
       },
       "attack": {
         "type": "",
