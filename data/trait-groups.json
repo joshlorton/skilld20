@@ -126,6 +126,10 @@
         {
           "value": "arcane school: elemental: water",
           "label": "elemental: water"
+        },
+        {
+          "value": "arcane school: incantatrix",
+          "label": "incantatrix"
         }
       ]
     },
@@ -352,8 +356,16 @@
           "label": "airwalker"
         },
         {
+          "value": "divine specialty: curna wide one",
+          "label": "curna wide one"
+        },
+        {
           "value": "divine specialty: deathstalker",
           "label": "deathstalker"
+        },
+        {
+          "value": "divine specialty: dweomerkeeper",
+          "label": "dweomerkeeper"
         },
         {
           "value": "divine specialty: firemane",
@@ -368,8 +380,28 @@
           "label": "icepriestess/icepriest"
         },
         {
+          "value": "divine specialty: lorekeeper",
+          "label": "lorekeeper"
+        },
+        {
+          "value": "divine specialty: lucha guide",
+          "label": "lucha guide"
+        },
+        {
+          "value": "divine specialty: nightcloak",
+          "label": "nightcloak"
+        },
+        {
+          "value": "divine specialty: silverstar",
+          "label": "silverstar"
+        },
+        {
           "value": "divine specialty: stormlady/stormlord",
           "label": "stormlady/stormlord"
+        },
+        {
+          "value": "divine specialty: sunlady/sunlord",
+          "label": "sunlady/sunlord"
         },
         {
           "value": "divine specialty: windwalker",
