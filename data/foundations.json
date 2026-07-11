@@ -194,28 +194,6 @@
       ],
       "spec_options": [
         {
-          "title": "",
-          "cast": {
-            "actions": {
-              "count": 1,
-              "length": "action"
-            },
-            "component": "v",
-            "trigger": ""
-          },
-          "range": "0'",
-          "area": {
-            "size": 20,
-            "shape": "line",
-            "type": "emanation"
-          },
-          "targets": {
-            "count": 0,
-            "type": ""
-          },
-          "duration": "instantaneous"
-        },
-        {
           "title": "line",
           "cast": {
             "actions": {
@@ -381,7 +359,7 @@
       "dismiss": [],
       "heightened": [
         {
-          "name": "",
+          "name": "line",
           "attribute": "area size",
           "actions": {
             "count": 0,
@@ -393,20 +371,8 @@
           "results": null
         },
         {
-          "name": "",
+          "name": "cone",
           "attribute": "area shape",
-          "actions": {
-            "count": 0,
-            "length": "action"
-          },
-          "component": "-",
-          "effect": "change AoE to a 10' cone",
-          "mana": 0,
-          "results": null
-        },
-        {
-          "name": "",
-          "attribute": "area size",
           "actions": {
             "count": 0,
             "length": "action"
@@ -414,6 +380,18 @@
           "component": "-",
           "effect": "increase Cone length by 5'",
           "mana": 4,
+          "results": null
+        },
+        {
+          "name": "sphere",
+          "attribute": "area size",
+          "actions": {
+            "count": 0,
+            "length": "action"
+          },
+          "component": "-",
+          "effect": "increase Sphere radius  by 5'",
+          "mana": 6,
           "results": null
         }
       ],
