@@ -152,6 +152,7 @@
       "image": "assets/img/foundations/project_fire.png",
       "note": "",
       "traits": [
+        "fire",
         "fire"
       ],
       "traditions": [
@@ -168,6 +169,74 @@
         "divine specialty: firewalker",
         "pact: genie: fire"
       ],
+      "spec_options": [
+        {
+          "title": "line",
+          "cast": {
+            "actions": {
+              "count": 1,
+              "length": "action"
+            },
+            "component": "v",
+            "trigger": ""
+          },
+          "range": "0'",
+          "area": {
+            "size": 20,
+            "shape": "line",
+            "type": "emanation"
+          },
+          "targets": {
+            "count": 0,
+            "type": ""
+          },
+          "duration": "instantaneous"
+        },
+        {
+          "title": "cone",
+          "cast": {
+            "actions": {
+              "count": 1,
+              "length": "action"
+            },
+            "component": "v",
+            "trigger": ""
+          },
+          "range": "",
+          "area": {
+            "size": 0,
+            "shape": "cone",
+            "type": "emanation"
+          },
+          "targets": {
+            "count": 0,
+            "type": ""
+          },
+          "duration": ""
+        },
+        {
+          "title": "ball",
+          "cast": {
+            "actions": {
+              "count": 1,
+              "length": "action"
+            },
+            "component": "v",
+            "trigger": ""
+          },
+          "range": "",
+          "area": {
+            "size": 5,
+            "shape": "sphere",
+            "type": "burst"
+          },
+          "targets": {
+            "count": 0,
+            "type": ""
+          },
+          "duration": ""
+        }
+      ],
       "cast": {
         "actions": {
           "count": 1,
@@ -180,7 +249,7 @@
       "area": {
         "size": 20,
         "shape": "line",
-        "type": ""
+        "type": "emanation"
       },
       "targets": {
         "count": 0,
