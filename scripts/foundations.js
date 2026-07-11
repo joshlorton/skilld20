@@ -952,7 +952,7 @@ function buildHtSection(initialData) {
   heading.appendChild(addBtn);
   wrap.appendChild(heading);
 
-  const container = el('div', { id: 'heightened-rows' });
+  const container = el('div', { id: 'heightened-options-rows' });
   const rows = Array.isArray(initialData) ? initialData : [];
   if (rows.length) rows.forEach(r => container.appendChild(buildHtRow(r)));
   else container.appendChild(buildHtRow({}));
@@ -963,7 +963,7 @@ function buildHtSection(initialData) {
 }
 
 function collectHeightenedRows() {
-  const wraps = document.querySelectorAll('#heightened-rows .option-row-wrap');
+  const wraps = document.querySelectorAll('#heightened-options-rows .option-row-wrap');
   return Array.from(wraps).map(wrap => {
     const get = f => wrap.querySelector(`[data-field="${f}"]`)?.value?.trim() || '';
     const m = get('mana');
@@ -1137,7 +1137,7 @@ function dfCheckboxes(label, field, currentValue) {
 
 function buildEffectRow(data) {
   data = data || {};
-  const wrap = el('div', { class: 'effect-extra-row' });
+  const wrap = el('div', { class: 'option-row-wrap' });
 
   // Single row: Effect Name (80px) | Description (flex) | Notes (flex) | [×]
   const mainRow = el('div', { class: 'effect-row-main' });
@@ -1213,7 +1213,7 @@ function buildEffectSection(f) {
 }
 
 function collectEffectOptions() {
-  const rows = document.querySelectorAll('#effect-options-rows .effect-extra-row');
+  const rows = document.querySelectorAll('#effect-options-rows .option-row-wrap');
   return Array.from(rows).map(row => {
     const get = field => row.querySelector(`[data-field="${field}"]`)?.value?.trim() || '';
     const num = field => { const x = get(field); return x !== '' ? parseFloat(x) : 0; };
@@ -1303,7 +1303,7 @@ function parseRangeValue(range) {
 
 function buildSpecRow(data) {
   data = data || {};
-  const wrap = el('div', { class: 'spec-extra-row' });
+  const wrap = el('div', { class: 'option-row-wrap' });
 
   const mainRow = el('div', { class: 'spec-row-main' });
   const nameIn = el('input', { class: 'form-input', type: 'text',
@@ -1332,9 +1332,9 @@ function buildSpecRow(data) {
   raRow1.appendChild(dfField('Custom Range',  'range-custom', rp.custom));
   raRow1.appendChild(dfNum(  'Area Size (ft)','area-size',  data.area?.size, 0));
   raRow1.appendChild(dfSel(  'Area Shape',    'area-shape', data.area?.shape, OPTS.areaShape));
+  raRow1.appendChild(dfSel(  'Area Type',     'area-type',  data.area?.type, OPTS.areaType));
   wrap.appendChild(raRow1);
   const raRow2 = el('div', { class: 'form-row' });
-  raRow2.appendChild(dfSel(  'Area Type',     'area-type',      data.area?.type, OPTS.areaType));
   raRow2.appendChild(dfNum(  'Targets Count', 'targets-count',  data.targets?.count, 0));
   raRow2.appendChild(dfField('Targets Type',  'targets-type',   data.targets?.type));
   wrap.appendChild(raRow2);
@@ -1342,9 +1342,9 @@ function buildSpecRow(data) {
   // Duration
   const dur = parseDuration(data.duration);
   const durRow = el('div', { class: 'form-row' });
-  durRow.appendChild(dfNum(  'Count',         'dur-count',  dur.count, 0));
-  durRow.appendChild(dfSel(  'Length',        'dur-length', dur.length, OPTS.durLength));
-  durRow.appendChild(dfField('Custom Length', 'dur-custom', dur.custom));
+  durRow.appendChild(dfNum(  'Duration Count',  'dur-count',  dur.count, 0));
+  durRow.appendChild(dfSel(  'Duration Length', 'dur-length', dur.length, OPTS.durLength));
+  durRow.appendChild(dfField('Custom Duration', 'dur-custom', dur.custom));
   wrap.appendChild(durRow);
 
   return wrap;
@@ -1377,7 +1377,7 @@ function buildSpecSection(f) {
 }
 
 function collectSpecOptions() {
-  const rows = document.querySelectorAll('#spec-options-rows .spec-extra-row');
+  const rows = document.querySelectorAll('#spec-options-rows .option-row-wrap');
   return Array.from(rows).map(row => {
     const get   = field => row.querySelector(`[data-field="${field}"]`)?.value?.trim() || '';
     const num   = field => { const x = get(field); return x !== '' ? parseFloat(x) : 0; };
@@ -1469,8 +1469,8 @@ function buildEditor(f) {
   resultsRow.appendChild(saveCol);
   form.appendChild(resultsRow);
 
-  form.appendChild(buildSdSection('Sustain', 'sustain-rows', f.sustain));
-  form.appendChild(buildSdSection('Dismiss', 'dismiss-rows', f.dismiss));
+  form.appendChild(buildSdSection('Sustain', 'sustain-options-rows', f.sustain));
+  form.appendChild(buildSdSection('Dismiss', 'dismiss-options-rows', f.dismiss));
   form.appendChild(buildHtSection(f.heightened));
   form.appendChild(buildComponentsSection(f));
   form.appendChild(sec('Variants'));
@@ -1610,8 +1610,8 @@ function collectEditor() {
     },
     attack_results : { cs: v('ed-ar-cs'), s: v('ed-ar-s'), f: v('ed-ar-f'), cf: v('ed-ar-cf') },
     save_results   : { cs: v('ed-sr-cs'), s: v('ed-sr-s'), f: v('ed-sr-f'), cf: v('ed-sr-cf') },
-    sustain    : collectSdRows('sustain-rows'),
-    dismiss    : collectSdRows('dismiss-rows'),
+    sustain    : collectSdRows('sustain-options-rows'),
+    dismiss    : collectSdRows('dismiss-options-rows'),
     heightened : collectHeightenedRows(),
     variants   : json('ed-variants',   []),
     components : collectComponentRows()

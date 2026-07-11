@@ -139,8 +139,6 @@
 .effect-row-main .effect-note-ta    { flex: 1; min-height: 60px; width: 0; min-width: 0; resize: vertical; }
 .effect-row-main .effect-row-remove { align-self: flex-start; }
 .effect-base-wrap   { padding: 8px 0 4px; }
-.effect-extra-row   { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
-.effect-extra-row .form-row { margin-bottom: 0; }
 
 /* ============================================================
    SPEC (BASE) EDITOR
@@ -149,8 +147,10 @@
 .spec-row-main { display: flex; gap: 4px; align-items: stretch; margin-bottom: 4px; }
 .spec-row-main input[type="text"] { flex: 1; }
 .spec-row-main .effect-row-remove { align-self: flex-start; }
-.spec-extra-row { border: 1px solid var(--border); padding: 8px; margin-bottom: 6px; }
-.spec-extra-row .form-row { margin-bottom: 4px; }
+
+/* Shared with Effect (above) and Sustain/Dismiss/Heightened (below) --
+   one row-wrapper class, .option-row-wrap, across all four option builders. */
+.option-row-wrap .form-row { margin-bottom: 4px; }
 
 /* ============================================================
    OPTION ROW VIEWER (Sustain / Dismiss / Heightened)

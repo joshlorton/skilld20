@@ -588,7 +588,7 @@ details[open] > summary.section-heading::before {
 
 .option-row-wrap {
   border: 1px solid var(--border);
-  padding: 8px;
+  padding: 2px;
   margin-bottom: 6px;
 }
 .option-row-wrap .row-results-section { border: none; margin-top: 4px; }
