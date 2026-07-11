@@ -78,7 +78,7 @@
               "type": "fire"
             },
             "attack": {
-              "type": "",
+              "type": "ranged",
               "modifier": 0
             },
             "save": {
@@ -95,7 +95,7 @@
         "type": "fire"
       },
       "attack": {
-        "type": "",
+        "type": "ranged",
         "modifier": 0
       },
       "save": {
