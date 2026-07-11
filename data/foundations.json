@@ -1279,7 +1279,7 @@
       ],
       "spec_options": [
         {
-          "title": "detectdfgdg",
+          "title": "Detect",
           "cast": {
             "actions": {
               "count": 1,
@@ -1301,7 +1301,7 @@
           "duration": "until the end of your next turn"
         },
         {
-          "title": "sensedfgfg",
+          "title": "Sense",
           "cast": {
             "actions": {
               "count": 1,
