@@ -1362,12 +1362,14 @@ function buildSpecSection(f) {
   const container = el('div', { id: 'spec-options-rows' });
   wrap.appendChild(container);
 
-  // Migration: fold legacy foundation-level cast/range/area/targets/duration into first option
-  const initOpts = [{
-    title: '', cast: f.cast || {}, range: f.range || '', area: f.area || {},
-    targets: f.targets || {}, duration: f.duration || ''
-  }];
-  (f.spec_options || []).filter(Boolean).forEach(opt => initOpts.push(opt));
+  // Mutually exclusive with the legacy foundation-level fields, mirroring renderSpecs():
+  // once spec_options has been saved, it's authoritative and the flat cast/range/area/
+  // targets/duration fields are only ever a save-time mirror of its first row (matching
+  // Effect's damage/attack/save/note) -- reading both here would double-count option 1.
+  const initOpts = (Array.isArray(f.spec_options) && f.spec_options.length)
+    ? f.spec_options.filter(Boolean)
+    : [{ title: '', cast: f.cast || {}, range: f.range || '', area: f.area || {},
+         targets: f.targets || {}, duration: f.duration || '' }];
   initOpts.forEach(opt => container.appendChild(buildSpecRow(opt)));
 
   addBtn.addEventListener('click', () => container.appendChild(buildSpecRow({})));
