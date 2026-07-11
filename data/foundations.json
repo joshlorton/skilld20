@@ -153,6 +153,7 @@
       "note": "",
       "traits": [
         "fire",
+        "metal",
         "fire"
       ],
       "traditions": [
@@ -212,7 +213,7 @@
             "count": 0,
             "type": ""
           },
-          "duration": ""
+          "duration": "instantaneous"
         },
         {
           "title": "ball",
@@ -234,7 +235,7 @@
             "count": 0,
             "type": ""
           },
-          "duration": ""
+          "duration": "instantaneous"
         }
       ],
       "cast": {
