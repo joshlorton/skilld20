@@ -22,6 +22,30 @@
         "bloodline: genie: fire",
         "divine domain: elemental: fire"
       ],
+      "spec_options": [
+        {
+          "title": "",
+          "cast": {
+            "actions": {
+              "count": 1,
+              "length": "action"
+            },
+            "component": "v",
+            "trigger": ""
+          },
+          "range": "30'",
+          "area": {
+            "size": 0,
+            "shape": "",
+            "type": ""
+          },
+          "targets": {
+            "count": 1,
+            "type": "creature or object"
+          },
+          "duration": "instantaneous"
+        }
+      ],
       "cast": {
         "actions": {
           "count": 1,
@@ -51,7 +75,7 @@
               "dieNumber": 1,
               "dieSize": 4,
               "modifier": 0,
-              "type": ""
+              "type": "fire"
             },
             "attack": {
               "type": "",
@@ -68,7 +92,7 @@
         "dieNumber": 1,
         "dieSize": 4,
         "modifier": 0,
-        "type": ""
+        "type": "fire"
       },
       "attack": {
         "type": "",
