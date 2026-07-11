@@ -356,16 +356,68 @@
           "label": "airwalker"
         },
         {
-          "value": "divine specialty: curna wide one",
-          "label": "curna wide one"
+          "value": "divine specialty: authlim",
+          "label": "authlim"
         },
         {
-          "value": "divine specialty: deathstalker",
-          "label": "deathstalker"
+          "value": "divine specialty: battleguard",
+          "label": "battleguard"
+        },
+        {
+          "value": "divine specialty: darkbringer",
+          "label": "darkbringer"
+        },
+        {
+          "value": "divine specialty: darkwalker",
+          "label": "darkwalker"
+        },
+        {
+          "value": "divine specialty: demarch/demarchess",
+          "label": "demarch/demarchess"
+        },
+        {
+          "value": "divine specialty: doomguide",
+          "label": "doomguide"
+        },
+        {
+          "value": "divine specialty: doommaster/doommistress",
+          "label": "doommaster/doommistress"
+        },
+        {
+          "value": "divine specialty: dreadmaster",
+          "label": "dreadmaster"
+        },
+        {
+          "value": "divine specialty: druid: forestarm",
+          "label": "druid: forestarm"
+        },
+        {
+          "value": "divine specialty: druid: freewalker",
+          "label": "druid: freewalker"
+        },
+        {
+          "value": "divine specialty: druid: grove guardian",
+          "label": "druid: grove guardian"
+        },
+        {
+          "value": "divine specialty: druid: harvestmaster/harvestmistress",
+          "label": "druid: harvestmaster/harvestmistress"
+        },
+        {
+          "value": "divine specialty: druid: oakheart",
+          "label": "druid: oakheart"
+        },
+        {
+          "value": "divine specialty: druid/ranger: shadoweir",
+          "label": "druid/ranger: shadoweir"
         },
         {
           "value": "divine specialty: dweomerkeeper",
           "label": "dweomerkeeper"
+        },
+        {
+          "value": "divine specialty: earthwalker",
+          "label": "earthwalker"
         },
         {
           "value": "divine specialty: firemane",
@@ -376,20 +428,88 @@
           "label": "firewalker"
         },
         {
+          "value": "divine specialty: glyphscribe",
+          "label": "glyphscribe"
+        },
+        {
+          "value": "divine specialty: goldeye",
+          "label": "goldeye"
+        },
+        {
+          "value": "divine specialty: gondsman/gondswoman",
+          "label": "gondsman/gondswoman"
+        },
+        {
+          "value": "divine specialty: gray one",
+          "label": "gray one"
+        },
+        {
+          "value": "divine specialty: guide of lucha",
+          "label": "guide of lucha"
+        },
+        {
+          "value": "divine specialty: heartwarder",
+          "label": "heartwarder"
+        },
+        {
+          "value": "divine specialty: holy champion",
+          "label": "holy champion"
+        },
+        {
+          "value": "divine specialty: holy justice",
+          "label": "holy justice"
+        },
+        {
           "value": "divine specialty: icepriestess/icepriest",
           "label": "icepriestess/icepriest"
+        },
+        {
+          "value": "divine specialty: joydancer",
+          "label": "joydancer"
         },
         {
           "value": "divine specialty: lorekeeper",
           "label": "lorekeeper"
         },
         {
-          "value": "divine specialty: lucha guide",
-          "label": "lucha guide"
+          "value": "divine specialty: luckbringer",
+          "label": "luckbringer"
+        },
+        {
+          "value": "divine specialty: magistrati",
+          "label": "magistrati"
+        },
+        {
+          "value": "divine specialty: malagent",
+          "label": "malagent"
+        },
+        {
+          "value": "divine specialty: mistcaller",
+          "label": "mistcaller"
+        },
+        {
+          "value": "divine specialty: morninglady/morninglord",
+          "label": "morninglady/morninglord"
         },
         {
           "value": "divine specialty: nightcloak",
           "label": "nightcloak"
+        },
+        {
+          "value": "divine specialty: pain",
+          "label": "pain"
+        },
+        {
+          "value": "divine specialty: painbearer",
+          "label": "painbearer"
+        },
+        {
+          "value": "divine specialty: peaceman/peacewoman",
+          "label": "peaceman/peacewoman"
+        },
+        {
+          "value": "divine specialty: ranger: needle",
+          "label": "ranger: needle"
         },
         {
           "value": "divine specialty: silverstar",
@@ -400,12 +520,40 @@
           "label": "stormlady/stormlord"
         },
         {
+          "value": "divine specialty: strifeleader",
+          "label": "strifeleader"
+        },
+        {
           "value": "divine specialty: sunlady/sunlord",
           "label": "sunlady/sunlord"
         },
         {
+          "value": "divine specialty: talon",
+          "label": "talon"
+        },
+        {
+          "value": "divine specialty: tuneservant",
+          "label": "tuneservant"
+        },
+        {
+          "value": "divine specialty: watcher",
+          "label": "watcher"
+        },
+        {
+          "value": "divine specialty: waterwalker",
+          "label": "waterwalker"
+        },
+        {
+          "value": "divine specialty: waveservant",
+          "label": "waveservant"
+        },
+        {
           "value": "divine specialty: windwalker",
           "label": "windwalker"
+        },
+        {
+          "value": "divine specialty: wise one of curna",
+          "label": "wise one of curna"
         }
       ]
     },
