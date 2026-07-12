@@ -252,7 +252,7 @@ body {
   font-variant: small-caps;
   text-transform: capitalize;
   font-size: 13px;
-  padding: 3px 7px;
+  padding: 2px 6px;
   border: 2px solid var(--heading-fg);
   font-family: var(--font-ui);
   white-space: nowrap;
@@ -289,16 +289,11 @@ body {
 .row-odd  { background: var(--row-odd); }
 .row-even { background: var(--row-even); }
 
-.row-cs  { background: #0a2e14; border: 1px solid #2a7040; margin-bottom: 1px; }
-.row-ss  { background: #081e0e; border: 1px solid #1a5028; margin-bottom: 1px; }
-.row-sf  { background: #2e1408; border: 1px solid #7a3018; margin-bottom: 1px; }
+.row-cs  { background: #0a2e14; border: 1px solid #2a7040; }
+.row-ss  { background: #081e0e; border: 1px solid #1a5028; }
+.row-sf  { background: #2e1408; border: 1px solid #7a3018; }
 .row-cf  { background: #240606; border: 1px solid #7a1a1a; }
-.result-row {
-  padding-top: 2px;
-  padding-right: 8px;
-  padding-bottom: 2px;
-  padding-left: 8px;
-}
+.result-row { padding: 1px 4px; }
 .row-cs  .result-label { color: #5ec87a; }
 .row-ss  .result-label { color: #3ea058; }
 .row-sf  .result-label { color: #c07040; }
@@ -363,7 +358,7 @@ details[open] > summary.section-heading::before {
   color: var(--heading-fg);
   font-variant: small-caps;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 1px;
   font-family: var(--font-ui);
   text-transform: uppercase;
@@ -376,13 +371,28 @@ details[open] > summary.section-heading::before {
   border: 1px solid var(--border);
 }
 
-.result-type-row { display: flex; }
-.result-subcell  { flex: 1; padding: 4px 8px; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+/* Same row/column shape, two names -- skills-row/skill-column for the Skill
+   Check "Primary/Secondary" row, type-row/type-column for Attack/Save's
+   "Type" row. Padding lives on the column (kept at cell level per request),
+   as margin rather than padding. */
+.skills-row, .type-row { display: flex; }
+.skill-column, .type-column {
+  flex: 1;
+  margin: 2px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
 
 .result-label { font-weight: 700; text-transform: uppercase; font-size: 12px; font-family: var(--font-ui); }
 .skill-label  { font-weight: 700; font-size: 12px; font-family: var(--font-ui); color: var(--text-muted); text-transform: uppercase; }
-.result-value { font-size: 14px; }
+.result-value { font-size: 11px; }
 .result-value div { margin-bottom: 1px; }
+/* Same styling as .result-value, used specifically for the Skill Check
+   column's Primary/Secondary value list. */
+.skill-list { font-size: 11px; }
+.skill-list div { margin-bottom: 1px; }
 
 /* ============================================================
    SPEC ROW (shared across all sections)
@@ -391,11 +401,11 @@ details[open] > summary.section-heading::before {
 .spec-row {
   display: flex;
   align-items: baseline;
-  padding: 2px 12px;
+  padding: 1px 4px;
   gap: 6px;
 }
 .spec-label {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: capitalize;
   min-width: 80px;
@@ -403,7 +413,7 @@ details[open] > summary.section-heading::before {
   color: var(--heading-fg);
   font-family: var(--font-ui);
 }
-.spec-value { font-size: 14px; white-space: normal; word-break: break-word; }
+.spec-value { font-size: 11px; white-space: normal; word-break: break-word; }
 .action-sym { font-size: 15px; letter-spacing: -1px; line-height: 1; }
 
 /* ============================================================

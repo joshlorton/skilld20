@@ -96,8 +96,8 @@
    ============================================================ */
 
 .base-spec { display: flex; padding: 5px 0; margin-bottom: 6px; }
-.spec-option-block { display: flex; align-items: flex-start; margin-bottom: 1px; }
-.base-opt-title    { width: 80px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
+.spec-option-block { display: flex; align-items: flex-start; padding: 1px 4px; }
+.base-opt-title    { width: 70px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
 .spec-opt-content  { flex: 1; min-width: 0; }
 
 /* ============================================================
@@ -115,18 +115,18 @@
   display: block;
   padding: 8px 12px 4px;
   margin: 0;
-  font-size: 14px;
+  font-size: 11px;
   font-family: var(--font-spec);
   line-height: 1.55;
 }
 .effect-note {
   padding: 4px 12px;
-  font-size: 14px;
+  font-size: 11px;
   font-family: var(--font-spec);
   line-height: 1.55;
 }
-.effect-option-block { display: flex; align-items: flex-start; margin-bottom: 1px; }
-.effect-opt-title    { width: 80px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
+.effect-option-block { display: flex; align-items: flex-start; padding: 1px 4px; }
+.effect-opt-title    { width: 70px; flex-shrink: 0; padding: 4px 8px 2px; font-size: 13px; }
 .effect-opt-content  { flex: 1; min-width: 0; }
 
 /* ============================================================
@@ -159,19 +159,31 @@
 .option-row {
   display: grid;
   grid-template-columns: 80px 70px 50px 40px 1fr 300px 40px;
-  padding: 4px 6px;
+  padding: 1px 4px;
   gap: 6px;
   align-items: center;
 }
-.option-name      { width: 80px; font-weight: 700; color: var(--text-variant); font-size: 13px; overflow-wrap: break-word; word-break: break-word; }
-.option-spec      { font-weight: 700; color: var(--text-attr); font-family: var(--font-ui); font-size: 13px; text-transform: capitalize; }
-.option-duration  { font-size: 15px; letter-spacing: -1px; line-height: 1.5; white-space: nowrap; }
-.option-component { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
-.option-effect    { font-size: 14px; line-height: 1.5; }
-.option-mana      { text-align: right; font-weight: 700; color: var(--mana); font-family: var(--font-ui); font-size: 13px; white-space: nowrap; }
+.option-name      { width: 80px; font-weight: 700; color: var(--text-variant); font-size: 11px; overflow-wrap: break-word; word-break: break-word; }
+/* .option-name is also combined with .base-opt-title/.effect-opt-title
+   (Base/Effect option titles), which use a narrower 70px column than the
+   .option-row grid's own 80px first track -- scoped here so it doesn't
+   affect the plain .option-name usage above. */
+.base-opt-title.option-name,
+.effect-opt-title.option-name { width: 70px; }
+.option-spec      { font-weight: 700; color: var(--text-attr); font-family: var(--font-ui); font-size: 11px; text-transform: capitalize; }
+/* Shows the action-cost symbol, not a duration -- named for what it is. */
+.option-action    { font-size: 15px; letter-spacing: -1px; line-height: 1.5; white-space: nowrap; }
+.option-component { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; font-family: var(--font-spec); }
+.option-effect    { font-size: 11px; line-height: 1.5; }
+.option-mana      { text-align: right; font-weight: 700; color: var(--mana); font-family: var(--font-ui); font-size: 11px; white-space: nowrap; }
 
-/* Row results sub-column (viewer) */
-.option-results { font-size: 12px; padding: 2px 4px; overflow: hidden; align-self: stretch; }
+/* .option-spec sits in a narrower (70px) column here than in .option-row's
+   grid (80px) -- scoped rather than resizing the whole 8-column grid. */
+.component-row .option-spec { width: 70px; }
+
+/* Row results sub-column (viewer) -- kept at cell level (not promoted to a
+   full section row), spacing as margin rather than padding. */
+.option-results { font-size: 11px; margin: 1px 4px; overflow: hidden; align-self: stretch; }
 .option-results-type {
   font-family: var(--font-ui);
   font-size: 10px;
@@ -183,11 +195,11 @@
 }
 .option-results-entry {
   color: var(--text);
+  font-size: 11px;
   line-height: 1.4;
   white-space: normal;
   word-break: break-word;
-  padding: 1px 4px;
-  margin-bottom: 1px;
+  margin: 1px 4px;
 }
 .option-results-label { font-size: 10px; font-family: var(--font-ui); font-weight: 700; }
 .option-results-entry.row-cs .option-results-label { color: #5ec87a; }
@@ -202,11 +214,11 @@
 .component-row {
   display: grid;
   grid-template-columns: 70px 90px 40px 40px 1fr 1fr 60px 60px;
-  padding: 4px 12px;
+  padding: 1px 4px;
   gap: 6px;
   align-items: center;
 }
-.component-desc     { font-size: 13px; font-style: italic; color: var(--text-muted); line-height: 1.4; }
+.component-desc     { font-size: 11px; font-style: italic; color: var(--text-muted); line-height: 1.4; }
 .component-rarity {
   display: inline-block;
   justify-self: center;
@@ -227,7 +239,7 @@
 .component-rarity-very-rare       { background: #7a3018; }
 .component-rarity-extremely-rare  { background: #7a1a1a; }
 .component-rarity-unique          { background: #5c2090; }
-.component-price    { font-weight: 700; color: var(--price); font-family: var(--font-ui); font-size: 13px; text-align: right; white-space: nowrap; }
+.component-price    { font-weight: 700; color: var(--price); font-family: var(--font-ui); font-size: 11px; text-align: right; white-space: nowrap; }
 
 .comp-editor-row { border: 1px solid var(--border); padding: 4px; margin-bottom: 6px; }
 .comp-editor-labels {

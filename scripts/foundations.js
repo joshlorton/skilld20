@@ -344,13 +344,16 @@ function renderResults(f) {
     return col;
   }
 
-  // Helper: type row (row 1) -- two sub-cells
-  function typeRow(leftLabel, leftVal, rightLabel, rightVal) {
-    const row = el('div', { class: 'result-type-row row-odd' });
+  // Helper: type row (row 1) -- two sub-cells. rowCls/colCls/valCls are
+  // supplied per call site (skills-row/skill-column/skill-list for the Skill
+  // Check column, type-row/type-column/result-value for Attack/Save's "Type"
+  // row) since they share styling but mean different things.
+  function typeRow(leftLabel, leftVal, rightLabel, rightVal, rowCls, colCls, valCls) {
+    const row = el('div', { class: `${rowCls} row-odd` });
     [{ lbl: leftLabel, val: leftVal }, { lbl: rightLabel, val: rightVal }].forEach(({ lbl, val }) => {
-      const cell = el('div', { class: 'result-subcell' });
-      if (lbl) cell.appendChild(el('b',   { class: 'skill-label'  }, lbl));
-      if (val) cell.appendChild(el('div', { class: 'result-value' }, val));
+      const cell = el('div', { class: colCls });
+      if (lbl) cell.appendChild(el('b',   { class: 'skill-label' }, lbl));
+      if (val) cell.appendChild(el('div', { class: valCls }, val));
       row.appendChild(cell);
     });
     return row;
@@ -366,7 +369,8 @@ function renderResults(f) {
     cols.push(buildCol('Skill Check', content => {
       const primDisplay = sk.primary?.some(Boolean) ? sk.primary.join(', ') : 'per Tradition';
       const secDisplay  = sk.secondary?.length ? sk.secondary.join(', ') : '';
-      content.appendChild(typeRow('Primary', primDisplay, secDisplay ? 'Secondary' : '', secDisplay));
+      content.appendChild(typeRow('Primary', primDisplay, secDisplay ? 'Secondary' : '', secDisplay,
+        'skills-row', 'skill-column', 'skill-list'));
       const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
       add('Critical Success', sk.cs, 'row-cs');
       add('Success',          sk.s  || ['Expected effect.'],        'row-ss');
@@ -379,7 +383,7 @@ function renderResults(f) {
   if (f.attack?.type && f.attack_results) {
     const ar = f.attack_results;
     cols.push(buildCol('Attack', content => {
-      content.appendChild(typeRow('Type', f.attack.type, '', ''));
+      content.appendChild(typeRow('Type', f.attack.type, '', '', 'type-row', 'type-column', 'result-value'));
       const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
       add('Critical Success', ar.cs, 'row-cs');
       add('Success',          ar.s  || ['Normal damage.'],    'row-ss');
@@ -392,7 +396,7 @@ function renderResults(f) {
   if (f.save?.type && f.save_results) {
     const sr = f.save_results;
     cols.push(buildCol('Save', content => {
-      content.appendChild(typeRow('Type', f.save.type, '', ''));
+      content.appendChild(typeRow('Type', f.save.type, '', '', 'type-row', 'type-column', 'result-value'));
       const add = (lbl, val, cls) => { const r = resultRow(lbl, val, cls); if (r) content.appendChild(r); };
       add('Critical Success', sr.cs, 'row-cs');
       add('Success',          sr.s,  'row-ss');
@@ -437,7 +441,7 @@ function actionRow(item, idx) {
   const row = el('div', { class: `option-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   row.appendChild(el('span', { class: 'option-name' }, item.name || ''));
   row.appendChild(el('b',    { class: 'option-spec' }, item.attribute || ''));
-  row.appendChild(el('span', { class: 'option-duration'  },
+  row.appendChild(el('span', { class: 'option-action'  },
     !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'option-component' },
     item.component ? sdComponent(item.component) : ''));
@@ -454,7 +458,7 @@ function componentRow(item, idx) {
   const row = el('div', { class: `component-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   row.appendChild(el('span', { class: 'option-name'    }, item.name   || ''));
   row.appendChild(el('b',    { class: 'option-spec'    }, item.attribute  || ''));
-  row.appendChild(el('span', { class: 'option-duration'  }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'option-action'  }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'option-component' }, sdComponent(item.component)));
   row.appendChild(el('span', { class: 'option-effect'  }, item.effect     || ''));
   row.appendChild(el('span', { class: 'component-desc' }, item.description || ''));
@@ -479,7 +483,7 @@ function sustainRow(item, idx) {
   const row = el('div', { class: `option-row ${idx % 2 === 0 ? 'row-odd' : 'row-even'}` });
   row.appendChild(el('span', { class: 'option-name'   }, item.name   || ''));
   row.appendChild(el('b',    { class: 'option-spec'   }, item.attribute  || ''));
-  row.appendChild(el('span', { class: 'option-duration' }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
+  row.appendChild(el('span', { class: 'option-action' }, !isNoAction(item.actions) ? actionSym(item.actions) : ''));
   row.appendChild(el('span', { class: 'option-component' }, sdComponent(item.component)));
   row.appendChild(el('span', { class: 'option-effect' }, item.effect || ''));
   row.appendChild(renderRowResults(item.results));
