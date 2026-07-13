@@ -239,8 +239,16 @@
           "label": "oakheart"
         },
         {
+          "value": "divine circle (f&a): sea druid (DhD)",
+          "label": "sea druid (DhD)"
+        },
+        {
           "value": "divine circle (f&a): shadoweir (ranger/druid)",
           "label": "shadoweir (ranger/druid)"
+        },
+        {
+          "value": "divine circle (f&a): skinwalker (DhD)",
+          "label": "skinwalker (DhD)"
         },
         {
           "value": "divine circle: woodwife (P&P)",
@@ -393,26 +401,226 @@
           "label": "amorphite"
         },
         {
+          "value": "divine specialty (dhd - drow): arachne",
+          "label": "arachne"
+        },
+        {
+          "value": "divine specialty (dhd - drow): darkmask",
+          "label": "darkmask"
+        },
+        {
+          "value": "divine specialty (dhd - drow): masked traitor",
+          "label": "masked traitor"
+        },
+        {
+          "value": "divine specialty (dhd - drow): spidersword",
+          "label": "spidersword"
+        },
+        {
           "value": "divine specialty (dhd - drow): sword dancer",
           "label": "sword dancer"
+        },
+        {
+          "value": "divine specialty (dhd - drow): yathrinshee",
+          "label": "yathrinshee"
         }
       ]
     },
     {
-      "label": "Divine Specialty (DhD - Dwarven)",
-      "items": []
+      "label": "Divine Specialty (DhD - Dwarven - Morndinsamman)",
+      "items": [
+        {
+          "value": "divine specialty (dhd - dwarven): aetharnor",
+          "label": "aetharnor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): alaghor",
+          "label": "alaghor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): barakor",
+          "label": "barakor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): delvesonn",
+          "label": "delvesonn"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): faernor",
+          "label": "faernor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): hurndor",
+          "label": "hurndor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): luckmaiden",
+          "label": "luckmaiden"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): norothor",
+          "label": "norothor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): sonnlinor",
+          "label": "sonnlinor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): thalornor",
+          "label": "thalornor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): thuldor",
+          "label": "thuldor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): trailblazer",
+          "label": "trailblazer"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): vuddor",
+          "label": "vuddor"
+        },
+        {
+          "value": "divine specialty (dhd - dwarven): xothor",
+          "label": "xothor"
+        }
+      ]
     },
     {
-      "label": "Divine Specialty (DhD - Elven)",
-      "items": []
+      "label": "Divine Specialty (DhD - Elven - Seldarine)",
+      "items": [
+        {
+          "value": "divine specialty (dhd - elven - seldarine): aquarian",
+          "label": "aquarian"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): chronologian",
+          "label": "chronologian"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): circle sister",
+          "label": "circle sister"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): dhaeraowathila",
+          "label": "dhaeraowathila"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): feywarden",
+          "label": "feywarden"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): goldheart",
+          "label": "goldheart"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): halcyon",
+          "label": "halcyon"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): hawkeye",
+          "label": "hawkeye"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): lone wolf",
+          "label": "lone wolf"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): mischiefmaker",
+          "label": "mischiefmaker"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): sensate (P&P)",
+          "label": "sensate (P&P)"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): starsinger",
+          "label": "starsinger"
+        },
+        {
+          "value": "divine specialty (dhd - elven - seldarine): totem sister",
+          "label": "totem sister"
+        }
+      ]
     },
     {
-      "label": "Divine Specialty (DhD - Gnomish)",
-      "items": []
+      "label": "Divine Specialty (DhD - Gnomish - Lords of the Golden Hills)",
+      "items": [
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): bloodstalker",
+          "label": "bloodstalker"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): earth-friend",
+          "label": "earth-friend"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): earthblood",
+          "label": "earthblood"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): fastpaw",
+          "label": "fastpaw"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): glitterbright",
+          "label": "glitterbright"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): hoodwinker",
+          "label": "hoodwinker"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): nebelunsman/nebelunswoman",
+          "label": "nebelunsman/nebelunswoman"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): pyrosmith",
+          "label": "pyrosmith"
+        },
+        {
+          "value": "divine specialty (dhd - gnomish - lords of the golden hills): sternshield",
+          "label": "sternshield"
+        }
+      ]
     },
     {
-      "label": "Divine Specialty (DhD - Halfling)",
-      "items": []
+      "label": "Divine Specialty (DhD - Halfling - Yondalla's Children)",
+      "items": [
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): green daughter/green son",
+          "label": "green daughter/green son"
+        },
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): greenfoster",
+          "label": "greenfoster"
+        },
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): grimwarden",
+          "label": "grimwarden"
+        },
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): homesteader",
+          "label": "homesteader"
+        },
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): horn guard",
+          "label": "horn guard"
+        },
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): luckbringer (F&A)",
+          "label": "luckbringer (F&A)"
+        },
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): misadventurer",
+          "label": "misadventurer"
+        },
+        {
+          "value": "divine specialty (dhd - halfling - yondalla's children): truesword",
+          "label": "truesword"
+        }
+      ]
     },
     {
       "label": "Divine Specialty (F&A)",
@@ -609,6 +817,10 @@
         {
           "value": "divine specialty (p&p - chultan): shadow stalker",
           "label": "shadow stalker"
+        },
+        {
+          "value": "divine specialty (p&p - chultan): vuddor (DhD)",
+          "label": "vuddor (DhD)"
         }
       ]
     },
