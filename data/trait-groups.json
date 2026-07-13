@@ -212,6 +212,35 @@
       ]
     },
     {
+      "label": "Divine Circle",
+      "items": [
+        {
+          "value": "divine circle: forestarm",
+          "label": "forestarm"
+        },
+        {
+          "value": "divine circle: freewalker",
+          "label": "freewalker"
+        },
+        {
+          "value": "divine circle: grove guardian",
+          "label": "grove guardian"
+        },
+        {
+          "value": "divine circle: harvestmaster/harvestmistress",
+          "label": "harvestmaster/harvestmistress"
+        },
+        {
+          "value": "divine circle: oakheart",
+          "label": "oakheart"
+        },
+        {
+          "value": "divine circle: shadoweir",
+          "label": "shadoweir"
+        }
+      ]
+    },
+    {
       "label": "Divine Domain",
       "items": [
         {
@@ -386,30 +415,6 @@
         {
           "value": "divine specialty: dreadmaster",
           "label": "dreadmaster"
-        },
-        {
-          "value": "divine specialty: druid: forestarm",
-          "label": "druid: forestarm"
-        },
-        {
-          "value": "divine specialty: druid: freewalker",
-          "label": "druid: freewalker"
-        },
-        {
-          "value": "divine specialty: druid: grove guardian",
-          "label": "druid: grove guardian"
-        },
-        {
-          "value": "divine specialty: druid: harvestmaster/harvestmistress",
-          "label": "druid: harvestmaster/harvestmistress"
-        },
-        {
-          "value": "divine specialty: druid: oakheart",
-          "label": "druid: oakheart"
-        },
-        {
-          "value": "divine specialty: druid/ranger: shadoweir",
-          "label": "druid/ranger: shadoweir"
         },
         {
           "value": "divine specialty: dweomerkeeper",
