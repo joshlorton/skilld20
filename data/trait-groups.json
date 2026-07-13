@@ -212,7 +212,7 @@
       ]
     },
     {
-      "label": "Divine Circle",
+      "label": "Divine Circle (F&A)",
       "items": [
         {
           "value": "divine circle: forestarm",
@@ -231,12 +231,20 @@
           "label": "harvestmaster/harvestmistress"
         },
         {
+          "value": "divine circle (f&a): jungle druid (P&P)",
+          "label": "jungle druid (P&P)"
+        },
+        {
           "value": "divine circle: oakheart",
           "label": "oakheart"
         },
         {
-          "value": "divine circle: shadoweir",
-          "label": "shadoweir"
+          "value": "divine circle (f&a): shadoweir (ranger/druid)",
+          "label": "shadoweir (ranger/druid)"
+        },
+        {
+          "value": "divine circle: woodwife (P&P)",
+          "label": "woodwife (P&P)"
         }
       ]
     },
@@ -378,7 +386,36 @@
       ]
     },
     {
-      "label": "Divine Specialty",
+      "label": "Divine Specialty (DhD - Drow)",
+      "items": [
+        {
+          "value": "divine specialty (dhd - drow): amorphite",
+          "label": "amorphite"
+        },
+        {
+          "value": "divine specialty (dhd - drow): sword dancer",
+          "label": "sword dancer"
+        }
+      ]
+    },
+    {
+      "label": "Divine Specialty (DhD - Dwarven)",
+      "items": []
+    },
+    {
+      "label": "Divine Specialty (DhD - Elven)",
+      "items": []
+    },
+    {
+      "label": "Divine Specialty (DhD - Gnomish)",
+      "items": []
+    },
+    {
+      "label": "Divine Specialty (DhD - Halfling)",
+      "items": []
+    },
+    {
+      "label": "Divine Specialty (F&A)",
       "items": [
         {
           "value": "divine specialty: airwalker",
@@ -423,10 +460,6 @@
         {
           "value": "divine specialty: earthwalker",
           "label": "earthwalker"
-        },
-        {
-          "value": "divine specialty: firemane",
-          "label": "firemane"
         },
         {
           "value": "divine specialty: firewalker",
@@ -497,6 +530,10 @@
           "label": "morninglady/morninglord"
         },
         {
+          "value": "divine specialty (f&a): needle (ranger)",
+          "label": "needle (ranger)"
+        },
+        {
           "value": "divine specialty: nightcloak",
           "label": "nightcloak"
         },
@@ -511,10 +548,6 @@
         {
           "value": "divine specialty: peaceman/peacewoman",
           "label": "peaceman/peacewoman"
-        },
-        {
-          "value": "divine specialty: ranger: needle",
-          "label": "ranger: needle"
         },
         {
           "value": "divine specialty: silverstar",
@@ -559,6 +592,169 @@
         {
           "value": "divine specialty: wise one of curna",
           "label": "wise one of curna"
+        }
+      ]
+    },
+    {
+      "label": "Divine Specialty (P&P - Chultan)",
+      "items": [
+        {
+          "value": "divine specialty (p&p - chultan): eshowdowan shaman",
+          "label": "eshowdowan shaman"
+        },
+        {
+          "value": "divine specialty (p&p - chultan): serphidian",
+          "label": "serphidian"
+        },
+        {
+          "value": "divine specialty (p&p - chultan): shadow stalker",
+          "label": "shadow stalker"
+        }
+      ]
+    },
+    {
+      "label": "Divine Specialty (P&P - Mulhorandi & Untheric)",
+      "items": [
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): divine arbitrator",
+          "label": "divine arbitrator"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): earthchild",
+          "label": "earthchild"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): goodwife",
+          "label": "goodwife"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): martinet",
+          "label": "martinet"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): militar",
+          "label": "militar"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): nighthunter",
+          "label": "nighthunter"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): revered mother",
+          "label": "revered mother"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): scrivener",
+          "label": "scrivener"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): sensate",
+          "label": "sensate"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): skyweaver",
+          "label": "skyweaver"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): sunhawk",
+          "label": "sunhawk"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): swamplord",
+          "label": "swamplord"
+        },
+        {
+          "value": "divine specialty (p&p - mulhorandi & untheric): wyrmkeeper",
+          "label": "wyrmkeeper"
+        }
+      ]
+    },
+    {
+      "label": "Divine Specialty (P&P)",
+      "items": [
+        {
+          "value": "divine specialty (p&p): bloodreaver",
+          "label": "bloodreaver"
+        },
+        {
+          "value": "divine specialty (p&p): doombringer",
+          "label": "doombringer"
+        },
+        {
+          "value": "divine specialty (p&p): doomscribe",
+          "label": "doomscribe"
+        },
+        {
+          "value": "divine specialty (p&p): finder",
+          "label": "finder"
+        },
+        {
+          "value": "divine specialty (p&p): firemane",
+          "label": "firemane"
+        },
+        {
+          "value": "divine specialty (p&p): heartblood",
+          "label": "heartblood"
+        },
+        {
+          "value": "divine specialty (p&p): highborn",
+          "label": "highborn"
+        },
+        {
+          "value": "divine specialty (p&p): holy strategist",
+          "label": "holy strategist"
+        },
+        {
+          "value": "divine specialty (p&p): ice hunter beast shaman",
+          "label": "ice hunter beast shaman"
+        },
+        {
+          "value": "divine specialty (p&p): iceguardian shaman",
+          "label": "iceguardian shaman"
+        },
+        {
+          "value": "divine specialty (p&p): malefactor",
+          "label": "malefactor"
+        },
+        {
+          "value": "divine specialty (p&p): mazewalker",
+          "label": "mazewalker"
+        },
+        {
+          "value": "divine specialty (p&p): nakurit",
+          "label": "nakurit"
+        },
+        {
+          "value": "divine specialty (p&p): necrophant",
+          "label": "necrophant"
+        },
+        {
+          "value": "divine specialty (p&p): sensate",
+          "label": "sensate"
+        },
+        {
+          "value": "divine specialty (p&p): sibylite",
+          "label": "sibylite"
+        },
+        {
+          "value": "divine specialty (p&p): silvermaid",
+          "label": "silvermaid"
+        },
+        {
+          "value": "divine specialty (p&p): spiritlord shaman",
+          "label": "spiritlord shaman"
+        },
+        {
+          "value": "divine specialty (p&p): stalker of the silent path",
+          "label": "stalker of the silent path"
+        },
+        {
+          "value": "divine specialty (p&p): uthgardt beast shaman",
+          "label": "uthgardt beast shaman"
+        },
+        {
+          "value": "divine specialty (p&p): wavetamer",
+          "label": "wavetamer"
         }
       ]
     },
