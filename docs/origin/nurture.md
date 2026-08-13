@@ -1,8 +1,9 @@
 # SKILLd20 Origin -- Nurture
 
 Nurture is the second half of Origin (see `nature.md` for Ancestry). It runs: **Culture** ->
-**Early Childhood** (Family/Social Standing) -> **Late Childhood** -> **Adult** (a repeatable
-Later Life loop). Only Culture and Early Childhood are designed so far.
+**Early Childhood** (Family/Social Standing) -> **Late Childhood** -> **Adulthood** (a repeatable
+Later Life loop; renamed from "Real Life" -- even children are living a real life, and "Adulthood"
+follows the Childhood-stage naming pattern). Only Culture and Early Childhood are designed so far.
 
 Skill ranks throughout Nurture are purchased on the standard skill rank point-buy curve: **1, 1, 2,
 2, 3, 3, 4, 4, 4, ...** (cost per successive rank). Note that ranks 1 and 2 both cost 1 point each --
@@ -160,6 +161,10 @@ line up; exceptions noted).
 
 Not yet designed.
 
-## Adult
+## Adulthood
 
-Not yet designed. Established elsewhere as a repeatable "Later Life" loop, structure TBD.
+Not yet designed. Established elsewhere as a repeatable "Later Life" loop, structure TBD. May
+connect to the five spellcasting tradition access routes (Arcane Schooling, Bardic Performance,
+Bloodline, Divine Teachings, Pact) -- Bloodline is confirmed granted via Origin/Nature (Ancestry);
+the other four are plausibly acquired here instead, though this is a probable connection, not yet
+confirmed.
