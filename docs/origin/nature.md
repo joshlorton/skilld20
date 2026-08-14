@@ -80,9 +80,9 @@ Darkness -> Deeper darkness (usually magical; blocks darkvision).
 | Ancestry | Str | Agi | Dex | Con | Int | Wis | Cha | Per | Movement | Vision | Saves | Immunities | Other |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Dwarf | - | - | - | +2 | - | +2 | -2 | - | 20 | Darkvision 40'; Low-light 8x | poison +2; magic +2 | - | Slow and Steady: encumbrance has no speed penalty |
-| Elf | - | - | +2 | -2 | +2 | - | - | +2 | 30 | Low-light 4x | enchantment +2 | - | Saves vs. magical sleep effects treated as one result better (stacks with enchantment +2) |
+| Elf | - | +2 | - | -2 | +2 | - | - | +2 | 30 | Low-light 4x | enchantment +2 | - | Saves vs. magical sleep effects treated as one result better (stacks with enchantment +2) |
 | Gnome | -2 | - | - | +2 | - | - | +2 | +2 | 25 | Low-light 2x | - | - | Gnome Bloodline: foundations restricted to illusion & communication (animals only); mana pool 25 (Tier 0) |
-| Halfling | -2 | - | +2 | - | - | - | +2 | - | 25 | Normal | fear +2 | - | Lucky: bonus TBD (pending player feedback -- candidates: bonus on some/all saves, bonus on checks to avoid notice, Foundation: Luck synergy, overlooked-in-a-crowd/Blend mechanic, flat check to avoid surprise) |
+| Halfling | -2 | +2 | +2 | - | - | - | - | - | 25 | Normal | fear +2 | - | Lucky: bonus TBD (pending player feedback -- candidates: bonus on some/all saves, bonus on checks to avoid notice, Foundation: Luck synergy, overlooked-in-a-crowd/Blend mechanic, flat check to avoid surprise) |
 | Human | - | - | - | - | - | - | - | - | 30 | Normal | - | - | Any One Ability Score (bonus magnitude TBD) |
 | Orc | +4 | - | - | - | -2 | -2 | -2 | - | 30 | Darkvision 20'; Low-light 4x; Light Sensitivity (-1 on vision-based skill checks in bright light, worse in brighter conditions -- values TBD against the lighting tiers above) | - | - | Orc Ferocity: 1/day, remains conscious when reduced to 0 HP; slowed 1 (round 1), slowed 2 (round 2), slowed 3 and unconscious at end of turn (round 3) |
 
@@ -107,6 +107,12 @@ Darkness -> Deeper darkness (usually magical; blocks darkvision).
 - Gnome's innate mana pool was originally drafted at 40 (from tallying four 1/day spells), corrected
   to 25 to match the Tier 0 standard once two of those four grants turned out to be too limited to
   justify the higher number.
+- **Elf and Halfling's nimbleness bonuses were revised 2026-08-13** after combat accuracy was unified
+  to Agility for all weapon types (see `docs/skills/skill-list.md`). Elf's Dex+2 moved straight to
+  Agi+2 -- same total magnitude, same net, just relocated to the ability score that now governs
+  combat accuracy. Halfling's bonuses became Agi+2/Dex+2, dropping the earlier Cha+2 entirely --
+  **confirmed intentional**, not an unstated side effect. Total bonus magnitude and net stay identical
+  to the prior version either way (6 total, +2 net), a clean reshuffle rather than a power change.
 
 ---
 

@@ -90,9 +90,65 @@ total mana actually spent completing the item -- keep these two numbers distinct
 | Skill Amplification Item (multi-use, command word/ritual activation) | Craft/(varies by material) | 10x base mana | 300x base mana |
 | Tattoo (limited-use, consumable) | Craft (Drawing or Painting) | 5x base mana | 10x base mana |
 
-**Wands are the primary Skill Amplification Item** -- a deliberate divergence from D&D-style wands
-with charges. Instead they assist casting via a bonus to the Spellcraft or Foundation skill check
-and/or by paying part of the effect's mana cost.
+### Amplification items
+
+**Amplification** (backup name: Catalyst) is the working term for the broader item category that
+Skill Amplification Items belong to -- any item that provides mana and/or a skill bonus to a
+Spellcraft/Foundation check. This is deliberately broader than "wand": a wand is one specific
+physical shape commonly used for this purpose, but the category also includes staves, books, and any
+other object a designer wants to build this way -- a deliberate divergence from D&D-style wands with
+charges. **Powerful Amplification items can let a wielder with no mana or Spellcraft ranks of their
+own produce a spell effect anyway** -- see the Necronomicon example below.
+
+Each Amplification item defines:
+- **Requirements** -- what the wielder must have (a Foundation rank, Spellcraft ranks, literacy, or
+  nothing at all) to use the item. This is the item's own gate; there's no separate universal
+  "attempt to use an item you don't qualify for" mechanic layered on top.
+- **Skill boost** -- a flat bonus to the relevant Foundation/Spellcraft check, if the item grants one.
+- **Mana boost** -- mana the item itself contributes toward a cast, up to a stated maximum per use,
+  drawn from the item's own pool.
+- **Mana pool** -- the item's total reserve, and its recharge rate (mana restored per hour without
+  use).
+
+Amplification items -- including unique, artifact-tier ones -- are still created through the same
+Skill Amplification Item formula above (10x base mana / 300x base gp), not a separate ruleset; the
+examples below simply sit at very different points along that same scale, from a common item to a
+world-defining artifact.
+
+> **Design Note (Open):** Recharge rate and per-use mana boost don't yet follow a stated formula
+> relative to pool size -- in the examples below they vary designer-to-designer per item (e.g. the
+> Necronomicon's recharge is deliberately slow relative to its huge pool, a specific narrative choice
+> tied to its own effect, not a derived number). Whether a general formula should govern these two
+> stats for ordinary (non-artifact) items is still open.
+
+**Examples:**
+
+**Wand of Magic Missile**
+- Requirements: Foundation (Force Bolt) 1 rank
+- Mana boost: provides up to 4 mana when the wielder successfully casts Foundation (Force Bolt)
+- Mana pool: 80 mana; recharges 12 mana per hour without use
+
+**Wand of Project Fire**
+- Requirements: Spellcraft (any 1) 4 ranks
+- Skill boost: +4 on Foundation (Create Fire) checks that create a line or cone
+- Mana boost: provides up to 8 mana when the wielder successfully casts a line- or cone-shaped
+  Foundation (Create Fire)
+- Mana pool: 40 mana; recharges 4 mana per hour without use
+
+**Necronomicon** (book; intended as a true artifact, not a normally-craftable item)
+- Requirements: literacy (any 1); text changes to be readable by user -- the book actively adapts
+  itself to whoever picks it up, rather than merely happening to be in a language they know
+- Skill boost: +100 on Foundation (Animate Dead) checks -- intended as near-unfailable, matching the
+  book's flavor: anyone literate can read it and produce devastating necromancy with no training at
+  all
+- Mana boost: provides up to 100 mana when the wielder successfully casts Foundation (Animate Dead)
+- Mana pool: 1000 mana; recharges 20 mana per hour without use -- deliberately slow relative to the
+  pool size. Animate Dead requires ongoing mana (a Renew Control sustain action, see
+  `docs/archive/SKILLd20_Ch09_Components.md`) to maintain control over animated undead; a careless or
+  overconfident reader who drains the pool risks losing control of whatever they've animated.
+
+An item name isn't a fixed set of stats -- two items both called "Wand of Magic Missile" could carry
+different numbers; the name describes flavor and rough function, not a template.
 
 > **Design Note (Open):** This mana/gp table conflicts with an earlier 2018 draft workbook's
 > quadratic formula (`cost = mana^2` for potions, vs. this table's flat `3x base mana`) at the same
