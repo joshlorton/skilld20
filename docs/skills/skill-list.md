@@ -43,7 +43,6 @@ alphabetically among everything else.
 | Endurance | Sustained physical stamina | Con |
 | First Aid | Simple, immediate healing | Wis |
 | Fly | Innate flight | Agi |
-| Forgery | Create a fake | Int |
 | Gamble | Games of chance | Int |
 | Intimidate | Coercive persuasion | Cha |
 | Leadership | Command those following you | Cha |
@@ -53,11 +52,12 @@ alphabetically among everything else.
 | Research | Dig up information | Int |
 | Resolve | Keep your cool | Wis |
 | Scrounge | Find what you need | Wis |
-| Search | Physically locate something | Int |
+| Search | Actively search within reach | Per |
 | Sense Motive | Read demeanor, detect lies | Wis |
-| Shadowing | Follow someone at distance | Int |
+| Shadow | Follow someone at a distance | Per |
 | Sleight of Hand | Stash object in plain sight | Dex |
-| Smuggling | Hide goods within goods | Wis |
+| Smuggle | Hide goods within goods | Wis |
+| Spot | Actively look at a distance | Per |
 | Stealth | Move quietly and unseen | Agi |
 | Streetwise | Navigate urban environments | Wis |
 | Survival | Survive in wilderness | Wis |
@@ -82,6 +82,29 @@ alphabetically among everything else.
   well-known.
 - **Tracking is a Survival action**, not its own skill -- Survival covers interpreting and following
   signs of passage once noticed; a separate Perception check is used to actually spot them first.
+- **Appraisal and Forgery are both actions, not skills** -- achievable through Craft and/or Expertise
+  depending on approach (someone who can build something is well-positioned to judge or fake its
+  quality; someone with specialized subject knowledge can do the same without being a craftsperson).
+  The two mirror each other: Appraisal detects a forgery, Forgery creates one, both riding on the same
+  underlying Craft/Expertise investment.
+- **Fly stays a standalone skill**, confirmed -- same treatment as Swim, not folded into Acrobatics.
+
+**Perception-based skills** (Search, Shadow, Spot) -- all three run on the **Perception** ability
+score, not Int. This gives Perception real skills built directly on top of it for the first time
+since it stopped being a skill itself and became a pure ability score -- these three (plus whichever
+of Shadow survives, see below) are its active expression.
+- **Shadowing renamed to Shadow, Smuggling renamed to Smuggle** -- both dropped their "-ing" suffix to
+  conform with the project's skill-naming convention (top-level names avoid "-ing" endings).
+- **Search** is active, within reach, opposed to Smuggle or Craft (hidden drawers, trap mechanisms,
+  and similar concealment).
+- **Spot** is a new skill -- active, at a distance, opposed to Camouflage, Blend, or Stealth. Filled a
+  real gap left when Perception became an ability score rather than a skill: the active, at-range
+  "actively look for something" function needed a new home, and nothing existing already covered it
+  (checked against Search specifically, which is deliberately scoped to within-reach instead).
+- **Shadow may not need to survive as its own skill** -- possibly just a combo action: Stealth (to not
+  be seen) + Spot (to keep the target in sight) when trying to stay hidden while following someone, or
+  Spot alone when not bothering to stay hidden. Flagged as a real possibility, not yet confirmed --
+  Shadow stays listed above as a skill until/unless this dissolution is confirmed.
 
 ## Specialty Skills (specialty required)
 
@@ -94,7 +117,7 @@ alphabetically among everything else.
 | Gunnery | Operate large weaponry | Int |
 | Handle Animal | Train/command an animal | Wis |
 | Musical Instrument | Play an instrument | Dex |
-| Navigation | Find your way | Int |
+| Navigation | Find your way | Wis |
 | Perform | Put on a show | Cha |
 | Personal Vehicle/Craft | Pilot personal balance-vehicle | Agi |
 | Profession | Monetize your other skills | Wis |
@@ -117,6 +140,11 @@ alphabetically among everything else.
   trajectory-calculated, not personal-coordination-based, so Int fits better than Combat's otherwise
   universal Agi basis. Keeping it in Specialty sidesteps having to force a category-wide ability score
   exception.
+- **Navigation moved from Int to Wis** -- splits in practice between calculating a route from known
+  reference points (Int-flavored) and maintaining a sense of direction/making the right call on
+  natural cues and judgment alone (Wis-flavored); landed on Wis since that's the harder, less
+  substitutable half of the skill. Sits well next to Survival (also Wis) without becoming redundant --
+  Survival is about sustaining yourself in the wild, Navigation is specifically about not getting lost.
 - **Disable/Sabotage** is fine-motor *execution* (defeating a mechanism); its knowledge-side
   counterpart is **Use** (Int, understanding how the mechanism works, which then informs how to defeat
   it) -- a deliberate pair, unlike Repair/Disable-Sabotage above.
@@ -231,14 +259,20 @@ explicit second row here or stays a cross-reference note.
 
 | Name | Description | Ability |
 |---|---|---|
-| Foundation | Cast one specific spell | **Unclear** |
+| Foundation | Cast one specific spell | See below |
 
-**Open:** each Foundation has its own trainable rank, independent of Spellcraft's own rank (see
-`docs/skills/core-mechanics.md`'s Focus section), but no ability score has ever been established for
-it specifically. The casting check formula (`d20 + Spellcraft skill + Foundation skill + modifiers`)
-adds Foundation rank as a flat bonus without a stated ability-modifier component of its own -- unclear
-whether Foundation skill carries an ability score at all, or is a bare rank bonus riding alongside
-Spellcraft's.
+**Resolved:** in a standard spellcasting check (`d20 + Spellcraft skill + Foundation skill +
+modifiers`), Foundation contributes **no separate ability-score bonus of its own** -- it's a bare
+rank bonus riding alongside Spellcraft's. This avoids doubling up ability-score bonuses on a single
+check; every check in this system receives exactly one ability-score bonus, and spellcasting checks
+are no exception even though they combine two skill ranks.
+
+For any *other* check that calls for Foundation skill **alone** (no accompanying Spellcraft roll),
+use the ability score of whichever Tradition the specific Foundation belongs to -- or, if the check
+is tradition-agnostic, whichever Tradition the character has the highest rank in overall. Example: a
+character with a rank-1 Bloodline-origin Foundation and a rank-10 Arcane Foundation uses Cha (Bloodline's
+governing ability) for a Foundation-alone check tied to the Bloodline spell specifically, but Int
+(their highest-rank Tradition, Arcane) for a tradition-agnostic Foundation-alone check.
 
 ## Dissolved -- folded into other skills, not listed above
 
@@ -250,11 +284,14 @@ Spellcraft's.
 - **Mimic** -> folded into Perform
 - **Track** -> a Survival action (Perception to notice first)
 - **Current Affairs** -> headline-level Gather Information, scaling DC by distance/obscurity
+- **Appraisal** -> an action of Craft and/or Expertise, specifically used to spot forgeries
+- **Forgery** -> an action of Craft and/or Expertise, the mirror of Appraisal (creating a fake rather
+  than detecting one)
 
 ## Open items
 
-- **Appraisal** is used by Nurture content (the Trades background) but was never assigned a category
-  or ability score anywhere in this project's history -- still unresolved.
-- **Fly**: standalone skill vs. an Acrobatics Focus -- still undecided; listed under General Skills
-  as its current default, not as confirmed.
-- **Spellcraft and Foundation's ability-score questions**, above.
+- **Shadow's possible dissolution** into a Stealth + Spot combo action -- flagged as a real
+  possibility, not yet confirmed.
+- **Spellcraft and Foundation's ability-score questions**: Foundation is now resolved (see above);
+  Spellcraft's own varies-by-Tradition nature, and whether Perform needs its own explicit row here for
+  Bardic Performance, remain open.
