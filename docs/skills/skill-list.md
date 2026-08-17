@@ -47,6 +47,7 @@ alphabetically among everything else.
 | Intimidate | Coercive persuasion | Cha |
 | Leadership | Command those following you | Cha |
 | Meditation | Focus before acting | Wis |
+| Profession | Monetize your other skills | Wis |
 | Quickdraw | Draw a weapon fast | Dex |
 | Read Lips | Read speech visually | Int |
 | Research | Dig up information | Int |
@@ -120,7 +121,6 @@ of Shadow survives, see below) are its active expression.
 | Navigation | Find your way | Wis |
 | Perform | Put on a show | Cha |
 | Personal Vehicle/Craft | Pilot personal balance-vehicle | Agi |
-| Profession | Monetize your other skills | Wis |
 | Repair | Fix a broken object | Int |
 | Ride | Control a mount | Agi |
 | Teamster | Drive animal-powered vehicle | Int |
@@ -167,7 +167,6 @@ of Shadow survives, see below) are its active expression.
 | History | Historical facts |
 | Hobby | Something you enjoy |
 | Language | Speak a language |
-| Literacy | Read and write |
 | Lore | Legendary/mythical facts |
 | Medical | Advanced medical healing |
 | Science | Scientific discovery/theory |
@@ -216,8 +215,8 @@ not performing it.
 
 All ten items from the older Ch. 4 Focus list (Arcana, Astronomy, Dungeoneering, Engineering, Law,
 Nature, Nobility/Heraldry, Occultism, Religion/Theology, Underworld) are now placed -- none remain
-unreconciled. Language/Literacy/Culture starting ranks are set during Origin; further ranks are
-bought normally.
+unreconciled. Language and Culture starting ranks are set during Origin; further ranks are bought
+normally. Literacy has no starting rank of its own -- see the Dissolved section below.
 
 ## Combat Skills (specialty required)
 
@@ -287,6 +286,13 @@ governing ability) for a Foundation-alone check tied to the Bloodline spell spec
 - **Appraisal** -> an action of Craft and/or Expertise, specifically used to spot forgeries
 - **Forgery** -> an action of Craft and/or Expertise, the mirror of Appraisal (creating a fake rather
   than detecting one)
+- **Literacy** -> not a purchased skill or a separately-flagged trait. Reaching **rank 3 in a
+  Language** grants literacy in that language automatically, for any Language a character has ranks
+  in, not just their primary/origin one -- resolves the earlier "should this be a Feat instead"
+  question by removing it as a standalone purchase entirely. See `docs/origin/nurture.md`'s Culture
+  section for the full rule, including what happens when a Language's *underlying* rank goes negative
+  (a rank floor of 0 applies to checks, but a categorical penalty and a flat 2-XP-per-rank buyback
+  apply to the deficit).
 
 ## Open items
 
