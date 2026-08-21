@@ -297,13 +297,16 @@ Notable design reasoning worth preserving, not obvious from the numbers alone:
 - **Exiled** -- renamed **Outcast**.
 - **Farm** -- broadens toward "manual labor" generally, with Subphases, rather than staying
   farming-specific.
-- **Fugitive/On the Run** -- does **not** get its own top-level background; folds into Unsettled's
-  "Reason" Subphase instead (see below).
+- **Fugitive/On the Run** -- its own standalone background, confirmed. Originally proposed as a
+  Reason under Unsettled, then reverted once the Phase Choice Matrix made the mismatch concrete:
+  Freedom 1 (On the Run) vs. 7 (Unsettled) is close to maximally opposite, not a coincidence -- the
+  other Reason options (seasonal migration, drifter, pilgrim, vagabond, explorer) all plausibly share
+  real autonomy, while fleeing active pursuit is forced and constrained rather than chosen. Different
+  experience, not just a different motivation for the same one.
 - **Nomadic** -- becomes **Unsettled** (Early Childhood's analog to Climate's Nomadic type; chosen
   over Constant Travel/On the Move/Mobile for its double meaning -- literally rootless, and
   potentially psychologically restless too). Gets a **"Reason"** Subphase: seasonal migration,
-  drifter/wanderer, pilgrim, vagabond, explorer -- and Fugitive/On the Run folds in here as one more
-  Reason option rather than its own background.
+  drifter/wanderer, pilgrim, vagabond, explorer.
 - **Closed Community** -- becomes one base pick with a Subphase: academic, indentured servitude,
   militaristic, monastic (was two separate entries, Militaristic and Monastic; academic and
   indentured servitude are new additions).
