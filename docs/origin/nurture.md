@@ -1,9 +1,19 @@
 # SKILLd20 Origin -- Nurture
 
 Nurture is the second half of Origin (see `nature.md` for Ancestry). It runs: **Culture** ->
-**Early Childhood** (Family/Social Standing) -> **Late Childhood** -> **Adulthood** (a repeatable
-Later Life loop; renamed from "Real Life" -- even children are living a real life, and "Adulthood"
-follows the Childhood-stage naming pattern).
+**Early Childhood** -> **Late Childhood** -> **Adulthood** (a repeatable Later Life loop; renamed
+from "Real Life" -- even children are living a real life, and "Adulthood" follows the
+Childhood-stage naming pattern).
+
+**Terminology, v1 rework:** Early Childhood, Late Childhood, and Adulthood are collectively
+**Phases** (people are often described as going through phases in life). Each Phase's own
+sub-choice -- what an earlier draft called "Focus/Specialty" or "Subpath" -- gets a **thematic name
+specific to that Phase's content** rather than one generic mechanical term (e.g. an Arcane-flavored
+Phase might use Element/Major/Minor/School; a Divine one might use Major/Minor/Specialty Priest,
+reusing vocabulary already established in the deity docs; a Military Order might use
+Frontline/Historian/Leadership; a Nobility-flavored one might use Foreign Diplomat/Knighthood/Royal
+Court). The underlying mechanic behind these named sub-choices is shared across all Phases even
+though the display name varies -- see Lifepath Rework below for what that mechanic is.
 
 Skill ranks throughout Nurture are purchased on the standard skill rank point-buy curve: **1, 1, 2,
 2, 3, 3, 4, 4, 4, ...** (cost per successive rank). Note that ranks 1 and 2 both cost 1 point each --
@@ -42,19 +52,31 @@ reference for this whole project; don't duplicate its content here, cross-refere
 
 ### Climate (Pick 1)
 
-Twelve terrain/settlement types, each granting the same four-skill template except one swap for
-Urban:
+Twelve terrain/settlement types. **Survival is now a Specialty skill** (requires a subtype, e.g.
+`Survival (desert)`), confirmed -- moved from General Skills, since knowing how to survive in one
+climate genuinely shouldn't transfer fully to another (arctic survival skill doesn't make you
+tropics-competent). This project deliberately does **not** import GURPS' "Defaults" mechanic
+(rolling a related-but-unlearned skill at a penalty) to handle the gap between climates -- left to
+GM/player table negotiation instead, to avoid the added complexity.
 
 **Urban:** Culture (origin) +1, Expertise (any 1) +1, Language (origin) +1, Streetwise +1
-**All others** (Arctic, Coastal, Desert, Forest, Jungle, Mountains, Nomadic, Ocean, Plains,
-Subterranean, Swamp): Culture (origin) +1, Expertise (any 1) +1, Language (origin) +1, Survival +1
+**Nomadic** (complete separation from both templates below): Culture (origin) +1, Expertise (any 1)
++1, Language (origin) +1, pick 1: Endurance +1 or Handle Animal +1 -- Survival is deliberately
+**not** granted here, even generically. A nomadic lifestyle moving between multiple terrains would
+plausibly prevent the deep, focused competency Survival's subtype now represents; time split across
+several climates removes the specialization rather than granting a generic version of it. (A
+nomadic character who split time between urban and rural settings specifically, rather than across
+wild terrains, would more plausibly end up with a Streetwise/Survival split instead -- not
+represented by this template, left to the player's specific background story.)
+**All other types** (Arctic, Coastal, Desert, Forest, Jungle, Mountains, Ocean, Plains, Subterranean,
+Swamp): Culture (origin) +1, Expertise (any 1) +1, Language (origin) +1, Survival (own climate) +1
 
-Differentiation between the eleven non-Urban types lives entirely in what "Culture (origin)"/
-"Language (origin)" actually mean per type (flavor), not in which skills get granted (mechanics) --
-deliberately simplified from an earlier draft that gave each type its own bespoke skill pair, which
-kept producing mismatches against Early Childhood's own backgrounds and against real-world
-culture-by-geography sources (HARP) used to sanity-check the type list itself. Jungle and Swamp were
-added after an initial gap check found them missing from the original ten.
+Differentiation between the ten non-Urban, non-Nomadic types lives entirely in what "Culture
+(origin)"/"Language (origin)" actually mean per type (flavor), not in which skills get granted
+(mechanics) -- deliberately simplified from an earlier draft that gave each type its own bespoke
+skill pair, which kept producing mismatches against Early Childhood's own backgrounds and against
+real-world culture-by-geography sources (HARP) used to sanity-check the type list itself. Jungle and
+Swamp were added after an initial gap check found them missing from the original ten.
 
 ### Government
 
@@ -143,7 +165,175 @@ Lower Class and Impoverished are not, by default.
 
 ---
 
-## Early Childhood
+## Lifepath Rework (v1 draft)
+
+A ground-up rework of how Phases work, started after Standard of Living absorbed the old "social
+standing" concept out of Early Childhood specifically so it wouldn't be represented twice. **Scope:
+framework decisions and Early Childhood's new structure only -- Late Childhood and Adulthood aren't
+reworked yet** and still use the older content further below. Early Childhood's own new background
+list has a confirmed *structure* but not yet drafted skill-grant numbers.
+
+### What Phase choices can change
+
+- **Ability scores:** must balance; a +1 costs 10 XP.
+- **Skill ranks:** can increase normally; can also *decrease* Language (origin) specifically -- ties
+  directly into the floor/penalty/buyback mechanic under Culture, above.
+- **Feats/Complications:** 3-4 at most for this first draft, deliberately scope-limited.
+
+### Complication (replaces "Flaw")
+
+The term for a negative-feat-equivalent trait a character can take for budget. **Complication** was
+chosen deliberately, reusing the same term already used for fail-forward's "yes, but..." consequence
+-- the two are thematically the same underlying idea (English already links "a development" to "a
+complication" in common usage) even though they're mechanically distinct: fail-forward's Complication
+is an *emergent* consequence of an unusual Phase transition (see Determine Next Phase, below), while
+this one is a *deliberate, budget-motivated pick* like any other trait. Since the same word covers
+both, rules text needs to keep disambiguating which kind is meant from context. ("Hindrance" and
+"Drawback" were both considered and rejected in favor of reusing Complication -- Hindrance
+specifically was flagged as a strong option, precedented by Savage Worlds' own identical-scope term,
+in case this decision gets revisited.)
+
+**Complications shouldn't represent things wrong with the player** -- e.g. an Enemy or a Dependent is
+a complication *for* the character, not a flaw *in* them, which was the actual reason "Flaw" got
+rejected as a name in the first place.
+
+### Phase Choice Balance
+
+- Each Phase has an XP budget.
+- Ability scores, skill ranks, and Feats/Complications-taken-as-feats subtract from that budget.
+- Complications (the negative-trait kind) add to the budget, spent as normal at that Phase --
+  intended to auto-balance against ability score and Feat costs rather than being pure free XP.
+- **Negative Language (origin) ranks are ignored for this budget** -- deliberately excluded from the
+  normal "negative skill rank refunds points" pattern, since Language going negative already has its
+  own dedicated consequence system (see Culture, above); letting it *also* refund Phase budget would
+  double-dip the same lever.
+
+### Determine Next Phase
+
+**No hard restrictions** between Phases -- confirmed. Whatever a character picks next is always
+available; the system only calibrates how much narrative justification an unusual choice needs, not
+whether it's allowed.
+
+**Mechanism:** a partial Rarity Spectrum (reusing the project's existing 7-tier Routine->Monumental
+Difficulty/Rarity scale rather than inventing a new one), driven by a **Phase Choice Matrix** --
+each background is rated once, on a small set of shared 1-7 axes, and the *distance* between two
+backgrounds' ratings determines how rare (and how much backstory/Complications) a transition between
+them needs. This avoids hand-rating every possible pairwise transition directly (which would be a
+combinatorial explosion) in favor of rating each background once and deriving transition rarity from
+that -- the same additive-not-cross-product principle already used for Government's skill grants.
+
+**Important scope note:** the matrix itself is a one-time, behind-the-scenes calculation tool.
+Players never see the raw axis numbers -- they only ever see the derived output (a transition is
+Rare, requiring N sentences of backstory and M Complications). Once the matrix has done its job of
+generating those outputs, it doesn't need to be revisited or exposed anywhere in play.
+
+**Draft Rarity tiers** (titles unofficial, not yet reconciled with the real 7-tier scale's actual
+names):
+
+| Tier | Requirement | Worked example |
+|---|---|---|
+| Common | No backstory needed | Farm -> Farm, Back Woods -> Back Woods |
+| Uncommon | 1-sentence backstory + 1 Complication | Closed Community -> Street |
+| Rare | 3-4 sentence backstory + 2 Complications | Farm -> Militant Organization, Trades -> Orphan |
+| Very Rare | 6-7 sentence backstory + 3 Complications | Back Woods -> Noble |
+
+> **Open:** "Trades -> Orphan" as a Rare example is worth double-checking -- Orphan is normally an
+> initial-Phase starting condition, not something a character transitions *into* from an established
+> background, so this example implies a specific story (apprenticed in a trade, then lost their
+> support system) that may or may not be the intended reading.
+
+**Draft Phase Choice Matrix (Early Childhood), quick draft awaiting player feedback -- not final.**
+Six axes, all 1-7, all viewed from a social perspective: **power** (social standing/political
+power), **wealth**, **freedom** (constraint from wealth or obligation, distinct from wealth itself),
+**net-str** (network strength -- how reliable/deep are your existing connections), **net-size**
+(network breadth -- how far-reaching/diverse they are), **safety** (general vulnerability/exposure to
+danger, broader than just "is someone actively hunting you"). Ratings are feeling-based with 1s and
+7s deliberately reserved for true extremes, not derived from a formula.
+
+| Background | Power | Wealth | Freedom | Net-Str | Net-Size | Safety | Total |
+|---|---|---|---|---|---|---|---|
+| Back Woods | 2 | 2 | 4 | 2 | 3 | 3 | 16 |
+| Closed Community | 4 | 3 | 1 | 6 | 2 | 2 | 18 |
+| Elite | 7 | 7 | 6 | 7 | 7 | 7 | 41 |
+| Farm | 2 | 3 | 3 | 3 | 3 | 3 | 17 |
+| Nobility | 6 | 6 | 3 | 6 | 6 | 6 | 33 |
+| On the Run | 1 | 1 | 1 | 3 | 3 | 1 | 10 |
+| Orphan | 2 | 1 | 3 | 2 | 2 | 2 | 12 |
+| Outcast | 1 | 1 | 4 | 2 | 1 | 2 | 11 |
+| Street | 2 | 2 | 3 | 2 | 3 | 2 | 14 |
+| Trades | 4 | 4 | 4 | 4 | 4 | 4 | 24 |
+| Unsettled | 3 | 3 | 7 | 5 | 5 | 4 | 27 |
+| Wealthy | 5 | 6 | 6 | 6 | 6 | 5 | 34 |
+
+Notable design reasoning worth preserving, not obvious from the numbers alone:
+- **Freedom measures constraint, not mobility.** Nobility scores low Freedom (3) despite high
+  Power/Connections specifically because duty and political obligation outweigh raw status. On the
+  Run scores low Freedom (1) despite presumably high physical mobility, because constantly evading
+  pursuit is its own constraint -- freedom-of-movement and freedom-from-constraint aren't the same
+  thing here.
+- **Net-Str vs. Net-Size splitting is what makes Closed Community's profile work**: high Net-Str (6,
+  deep bonds within the group) against low Net-Size (2, narrow reach outside it) -- a real,
+  differentiated profile a single "Connections" axis (an earlier, since-abandoned 3-axis draft)
+  couldn't have produced.
+- **Outcast vs. Orphan, deliberately close but not identical**: Outcast may still have family (cast
+  out of a community, not necessarily orphaned), so it shares Safety (2) and Net-Str (2) with Orphan
+  while differing on Net-Size (1 vs. 2), Freedom (4 vs. 3), and Power (1 vs. 2).
+- **Back Woods and Street, deliberately brought close together (16 vs. 14)** after an earlier draft
+  had them too far apart -- they're meant as urban/rural analogs of the same underlying archetype.
+  The remaining gap (Freedom 4 vs. 3, Safety 3 vs. 2) reflects rural hardship reading as more
+  isolated-but-safe, urban hardship as more exposed-but-connected.
+- **Elite (7,7,6,7,7,7) and Wealthy (5,6,6,6,6,5)** anchor the top of the scale a full step apart,
+  consistent with Elite representing the literal ruling group and Wealthy representing
+  rich-but-not-ruling status.
+
+### Early Childhood: new background structure (confirmed direction, skill grants not yet drafted)
+
+- **Elite** -- new; add "ruling group" specifically (ties to Government's Who Has Power axis --
+  being born into whichever group actually holds power).
+- **Nobility and Wealthy** -- combine via "pick" lists; 5 of Nobility's 6 existing grants and 4 of
+  Wealthy's 5 are already Knowledge-category, so simplify most of both to "pick N: any
+  Knowledge-category skill +1," matching the same broad-flexibility pattern already used for Standard
+  of Living's Elite/Upper Class tiers.
+- **Exiled** -- renamed **Outcast**.
+- **Farm** -- broadens toward "manual labor" generally, with Subphases, rather than staying
+  farming-specific.
+- **Fugitive/On the Run** -- does **not** get its own top-level background; folds into Unsettled's
+  "Reason" Subphase instead (see below).
+- **Nomadic** -- becomes **Unsettled** (Early Childhood's analog to Climate's Nomadic type; chosen
+  over Constant Travel/On the Move/Mobile for its double meaning -- literally rootless, and
+  potentially psychologically restless too). Gets a **"Reason"** Subphase: seasonal migration,
+  drifter/wanderer, pilgrim, vagabond, explorer -- and Fugitive/On the Run folds in here as one more
+  Reason option rather than its own background.
+- **Closed Community** -- becomes one base pick with a Subphase: academic, indentured servitude,
+  militaristic, monastic (was two separate entries, Militaristic and Monastic; academic and
+  indentured servitude are new additions).
+- **Trades** -- renamed **Skilled Trades**, one base pick with a Subphase: Guild Member,
+  Independent.
+- **Orphan** -- stays its own background, **not** folded into Closed Community's Orphanage-adjacent
+  content -- "Closed Community/institution" implies exactly the stable structure most orphan
+  archetypes are defined by *lacking* (unless the intent is specifically institutionally-raised
+  orphans, a narrower concept than "orphan" broadly implies). Orphan's existing Blend +1 grant is
+  likely its real thematic anchor (learning to go unnoticed), and its environment flexibility (pick
+  Streetwise or Survival) is plausibly a *feature* -- Street and Back Woods are each tied to one fixed
+  environment, Orphan isn't. The Phase Choice Matrix's Net-Size axis (breadth of connections) is the
+  intended long-term mechanism for keeping Orphan numerically distinct from Street specifically, now
+  that Street's own rating was adjusted (see matrix above).
+
+**Urban/Rural reflavoring, not hard limiting:** Climate's Urban/Rural split doesn't block Early
+Childhood background combinations -- every tested mismatch reflavors into a coherent story instead
+(Urban + Farm -> a farm at the city's edge; Urban + Back Woods -> isolation/loner within the city;
+Rural + Street -> the streets of a small village or hamlet). Consistent with the broader "no hard
+restrictions" decision above.
+
+---
+
+## Early Childhood (pre-rework content, kept for reference)
+
+**Superseded in structure by the Lifepath Rework above** -- organized around "Social Standing," a
+concept that now lives in Culture's Standard of Living instead. Kept here because its actual skill
+grants haven't been ported to the new background structure yet; treat the background *names* and
+*organization* below as outdated, but the specific skill values as a real starting point for
+whoever drafts the new structure's numbers.
 
 A **10-point budget** applies to skill ranks. Each social-standing choice lists mandatory skills;
 their point cost is subtracted from the base 10, and whatever remains is free for player choice.

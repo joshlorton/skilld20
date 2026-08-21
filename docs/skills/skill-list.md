@@ -61,7 +61,6 @@ alphabetically among everything else.
 | Spot | Actively look at a distance | Per |
 | Stealth | Move quietly and unseen | Agi |
 | Streetwise | Navigate urban environments | Wis |
-| Survival | Survive in wilderness | Wis |
 | Swim | Swim, don't drown | Str |
 | Teach | Pass on a skill | Wis |
 
@@ -123,6 +122,7 @@ of Shadow survives, see below) are its active expression.
 | Personal Vehicle/Craft | Pilot personal balance-vehicle | Agi |
 | Repair | Fix a broken object | Int |
 | Ride | Control a mount | Agi |
+| Survival | Survive in a specific climate/terrain | Wis |
 | Teamster | Drive animal-powered vehicle | Int |
 | Use | Understand an unfamiliar device | Int |
 
@@ -151,6 +151,13 @@ of Shadow survives, see below) are its active expression.
 - **Personal Vehicle/Craft** covers personal-sized, balance-dependent vehicles (bicycles, motorcycles,
   skateboards, surfboards, canoes, hang gliders, paragliders) -- distinct from **Fly** (a body's own
   innate flight), since this is piloting a craft to achieve movement, not flying under your own power.
+- **Survival moved here from General Skills, now requiring a specialty** (e.g. `Survival (desert)`)
+  -- knowing how to survive in one climate genuinely shouldn't transfer fully to another. GURPS'
+  "Defaults" mechanic (rolling a related-but-unlearned skill at a penalty) was deliberately not
+  imported to bridge the gap between climates; left to GM/player table negotiation instead. See
+  `docs/origin/nurture.md`'s Climate section for how this plays out for the Nomadic Climate type
+  specifically (which pointedly does *not* grant Survival at all, on the reasoning that split time
+  across terrains prevents the deep competency the specialty represents).
 - **Ride** (the in-the-moment physical act of controlling a mount) stays separate from **Handle
   Animal** (training/command) deliberately -- different ability score, different action, even though
   both involve an animal.
