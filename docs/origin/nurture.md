@@ -53,7 +53,7 @@ reference for this whole project; don't duplicate its content here, cross-refere
 ### Climate (Pick 1)
 
 Twelve terrain/settlement types. **Survival is now a Specialty skill** (requires a subtype, e.g.
-`Survival (desert)`), confirmed -- moved from General Skills, since knowing how to survive in one
+`Survival (origin climate)`), confirmed -- moved from General Skills, since knowing how to survive in one
 climate genuinely shouldn't transfer fully to another (arctic survival skill doesn't make you
 tropics-competent). This project deliberately does **not** import GURPS' "Defaults" mechanic
 (rolling a related-but-unlearned skill at a penalty) to handle the gap between climates -- left to
@@ -69,7 +69,7 @@ nomadic character who split time between urban and rural settings specifically, 
 wild terrains, would more plausibly end up with a Streetwise/Survival split instead -- not
 represented by this template, left to the player's specific background story.)
 **All other types** (Arctic, Coastal, Desert, Forest, Jungle, Mountains, Ocean, Plains, Subterranean,
-Swamp): Culture (origin) +1, Expertise (any 1) +1, Language (origin) +1, Survival (own climate) +1
+Swamp): Culture (origin) +1, Expertise (any 1) +1, Language (origin) +1, Survival (origin climate) +1
 
 Differentiation between the ten non-Urban, non-Nomadic types lives entirely in what "Culture
 (origin)"/"Language (origin)" actually mean per type (flavor), not in which skills get granted
@@ -290,10 +290,13 @@ Notable design reasoning worth preserving, not obvious from the numbers alone:
 
 - **Elite** -- new; add "ruling group" specifically (ties to Government's Who Has Power axis --
   being born into whichever group actually holds power).
-- **Nobility and Wealthy** -- combine via "pick" lists; 5 of Nobility's 6 existing grants and 4 of
-  Wealthy's 5 are already Knowledge-category, so simplify most of both to "pick N: any
-  Knowledge-category skill +1," matching the same broad-flexibility pattern already used for Standard
-  of Living's Elite/Upper Class tiers.
+- **Nobility and Wealthy** -- stay separate, reversing an earlier plan to combine them via shared
+  "pick" lists. The Phase Choice Matrix made the reason concrete: Nobility's Freedom (3) sits well
+  below Wealthy's (6), despite similar Power/Wealth/Total scores -- title comes with duty and
+  political obligation that raw money doesn't, a real difference in experience the combined-background
+  plan would have erased. Wealthy still gets the simplified "pick N: any Knowledge-category skill +1"
+  treatment on its own, since its own grants were Knowledge-heavy enough to warrant it independent of
+  the (abandoned) merge.
 - **Exiled** -- renamed **Outcast**.
 - **Farm** -- broadens toward "manual labor" generally, with Subphases, rather than staying
   farming-specific.
