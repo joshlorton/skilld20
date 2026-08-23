@@ -286,7 +286,7 @@ Notable design reasoning worth preserving, not obvious from the numbers alone:
   consistent with Elite representing the literal ruling group and Wealthy representing
   rich-but-not-ruling status.
 
-### Early Childhood: new background structure (confirmed direction, skill grants not yet drafted)
+### Early Childhood: new background structure (confirmed direction)
 
 - **Elite** -- new; add "ruling group" specifically (ties to Government's Who Has Power axis --
   being born into whichever group actually holds power).
@@ -330,6 +330,90 @@ Childhood background combinations -- every tested mismatch reflavors into a cohe
 (Urban + Farm -> a farm at the city's edge; Urban + Back Woods -> isolation/loner within the city;
 Rural + Street -> the streets of a small village or hamlet). Consistent with the broader "no hard
 restrictions" decision above.
+
+### Early Childhood: Skill Grants (Draft v1)
+
+Actual skill-grant numbers for the reworked backgrounds above. Subphase content (Closed Community's
+academic/indentured servitude/militaristic/monastic split, Elite's, and Unsettled's "Reason" options)
+is still WIP and will layer on top of these base grants once drafted -- Closed Community's short list
+below is deliberately light for that reason, not underweight.
+
+**Back Woods**
+- Athletics +1
+- Endurance +1
+- Language (origin) -2
+- Survival (origin climate) +2
+- Swim +1
+
+**Closed Community**
+- Culture (community) +1
+- Pick 1: Expertise (community) or Language (community) +1
+- History (community) +1
+
+**Elite**
+- Area (origin) +1
+- Culture (origin) +1
+- Pick 1: Bluff, Diplomacy, or Intimidate +2
+- Pick 1: Expertise (Administration) or Expertise (Bureaucracy) +1
+- Expertise (any 1) +1
+- History (origin) +1
+- Language (origin) +1
+
+**Farm**
+- Athletics +1
+- Craft (any 1) +1
+- Pick 1: Handle Animal or Expertise (Farming) +2
+
+**Nobility**
+- Area (origin) +1
+- Culture (origin) +1
+- Diplomacy +1
+- Expertise (any 2) +1
+- History (origin) +1
+- Language (origin) +1
+- Language (any non-origin) +1
+
+**On the Run**
+- Blend +1
+- Bluff +1
+- Disguise +1
+- Language (any non-origin) +1
+- Pick 1: Streetwise or Survival (origin climate) +1
+
+**Orphan**
+- Blend +1
+- Pick 1: Bluff or Diplomacy +1
+- Scrounge +1
+- Pick 1: Streetwise or Survival (origin climate) +1
+
+**Outcast**
+- Area (any non-origin) +1
+- Blend +1
+- Spot +1
+- Pick 1: Streetwise or Survival (origin climate) +2
+
+**Street**
+- Carouse +1
+- Language (origin) -1
+- Scrounge +1
+- Streetwise +2
+
+**Skilled Trades**
+- Craft (any 1) +2
+- Expertise (any 1) +1
+- Profession +1
+
+**Unsettled**
+- Area (any 2) +1
+- Pick 1: Bluff or Diplomacy +1
+- Endurance +1
+- Pick 1: Handle Animal or Teamster +2
+- Language (any non-origin) +1
+
+**Wealthy**
+- Pick 5: any Knowledge-category skill +1 each, no duplicates
+- Language (origin) +1
+- Profession +1
 
 ---
 
