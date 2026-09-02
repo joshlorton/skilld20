@@ -331,7 +331,11 @@ Childhood background combinations -- every tested mismatch reflavors into a cohe
 Rural + Street -> the streets of a small village or hamlet). Consistent with the broader "no hard
 restrictions" decision above.
 
-### Early Childhood: Skill Grants (Draft v1)
+### Early Childhood: Skill Grants (Draft v1, superseded for now -- kept for reference)
+
+**Superseded by the MVP Test Set below** for the initial testing pass -- Elite, Nobility, Wealthy,
+Farm, and Skilled Trades are deferred (not cut) until the narrower test set proves out. Kept here
+because its numbers are still the real starting point once the fuller build-out resumes.
 
 Actual skill-grant numbers for the reworked backgrounds above. Subphase content (Closed Community's
 academic/indentured servitude/militaristic/monastic split, Elite's, and Unsettled's "Reason" options)
@@ -414,6 +418,41 @@ below is deliberately light for that reason, not underweight.
 - Pick 5: any Knowledge-category skill +1 each, no duplicates
 - Language (origin) +1
 - Profession +1
+
+### Early Childhood: MVP Test Set (Draft v1)
+
+A deliberately narrowed set of Phase and Subphase options for initial testing, ahead of the fuller
+build-out above. **Budget: 4 net points per Phase choice** (sum of signed rank changes) -- base grant
+plus subphase grant always total exactly 4. Closed Community and Refuge merge into one Phase here --
+both shared the same underlying theme (insulation from the broader origin culture), whether that
+insulation comes from an arcane school, a militant order, a religious order, or a hidden village, so
+one shared base (including a `Culture (origin) -1` penalty for that weaker connection to the
+mainstream culture) covers all four Subphases. On the Run folds into Unsettled as a Reason here too --
+every Reason contributes the same 2-point shape on top of the same (now animal-free) base, which keeps
+the budget uniform even though Freedom still differs sharply by Reason chosen; the Phase Choice
+Matrix's single Unsettled row (Freedom 7) doesn't yet reflect On the Run's much lower Freedom as a
+Reason within it -- still open, deferred until the Rarity-tier system needs it resolved.
+
+**Closed Community**
+- Base: Area (community) +1, Culture (community) +2, Culture (origin) -1
+- *Arcane School*: Expertise (Arcana) +2
+- *Hidden Village*: Blend -1, Area (community) +1, Stealth +1, Survival (community climate) +1
+- *Militant Order*: Athletics +1, Unarmed Combat (Brawling) +1
+- *Religious Order*: Expertise (community religion) +2
+
+**Impoverished**
+- Base: Language (origin) -1
+- *Back Woods*: Area (origin) +1, Athletics +2, Endurance +2, Language (origin) -1, Survival (origin climate) +1
+- *Orphan*: Blend +1, Bluff +1, Diplomacy +1, Scrounge +1, Pick 1: Streetwise or Survival (origin climate) +1
+- *Street*: Area (origin) +1, Pick 1: Bluff or Diplomacy +1, Scrounge +2, Streetwise +1
+
+**Unsettled**
+- Base: Endurance +1, Language (any 1 non-origin) +1
+- *Drifters*: Bluff +1, Area (any 1) +1
+- *Explorers*: Area (any 1) +1, Survival (any 1) +1
+- *On the Run*: Blend +1, Bluff +1
+- *Nomads*: Area (nomadic route) +1, Handle Animal +1
+- *Pilgrims*: Area (pilgrimage route) +1, Expertise (pilgrimage route) +1
 
 ---
 
