@@ -605,8 +605,71 @@ like are not yet designed.
 
 **Weapon-skill conversion, confirmed:** legacy per-weapon skill values (e.g. from a Darklands-style
 source chart) convert to Tight Weapon Group picks. A character can end up with several separate Tight
-Weapon Group entries this way; a future mechanic to consolidate multiple tight groups into one
-broader group is planned but not designed yet.
+Weapon Group entries this way; consolidating them uses the Weapon Group Feats below.
+
+**Weapon Group Feats, confirmed:**
+- Expand Single Weapon -> Tight Weapon Group: 6 XP
+- Expand Tight Weapon Group -> Broad Weapon Group: 12 XP
+- Expand Broad Weapon Group -> All Weapons: 30 XP ("All Weapons" = all non-exotic weapons; exotic is
+  currently defined by culture, complexity, and/or TL)
+
+Skill ranks themselves (Tight/Broad/All) still cost the normal rank-cost curve to improve once
+gained -- these three feats only buy broader *scope*. Expanding scope via one of the three feats
+above **carries rank forward**: `new rank = highest rank being consolidated + floor(sum of the other
+ranks being consolidated / 4)`. Example: Tight Weapon Group (light blades) 6 + Tight Weapon Group
+(one-handed blades) 4 + Tight Weapon Group (two-handed blades) 2 -> Broad Weapon Group (blades)
+6 + floor(6/4) = 6 + 1 = **7**. This carry-forward only applies to adjacent-tier expansions (Single
+-> Tight, Tight -> Broad, Broad -> All) -- skipping a tier (Single -> Broad/All, Tight -> All) still
+grants the broader access, but no rank carries forward; the new skill starts at 0. The "highest +
+others/4" shape (rather than summing every consolidated rank outright) is deliberate: summing
+everything would let a character cheaply buy a high rank in the broader skill by fragmenting
+investment across many narrow ones first.
+
+### Late Childhood: MVP Test Set (Draft v1)
+
+Same three Phases as Early Childhood's MVP Test Set (Closed Community, Impoverished, Unsettled),
+reusing the same paths for simplicity. **Budget: 14 XP per choice** -- base grant + Subphase grant +
+any Feat purchase (Weapon Group or Core Spellcasting Feat tiers, per their own cost tables) always
+total exactly 14.
+
+**Closed Community** -- base: Area (community) +1, Culture (community) +2, Culture (origin) -1 (2 XP)
+- *Arcane School* (6 XP; + Arcane Schooling Tier 0 feat, 6 XP = 14 total): Expertise (Arcana) +2,
+  Foundation (any 1) +1, Spellcraft +1, Pick 2: any Knowledge-category skill +1 each
+- *Hidden Village* (12 XP, no feat = 14 total): Blend -1, Area (community) +2, Culture (community)
+  +2, Craft (any 1) +2, Stealth +2, Survival (community climate) +2, Pick 3: any Knowledge-category
+  skill +1 each
+- *Militant Order* (0 XP; + Expand Single Weapon -> Tight Weapon Group feat x2, 12 XP = 14 total):
+  Area (origin) -1, Culture (origin) -1, Diplomacy -1, Tight Weapon Group (any 1 melee) +1, Tight
+  Weapon Group (any 1) +1, Unarmed Combat (Brawling) +1
+- *Religious Order* (6 XP; + Divine Teachings Tier 0 feat, 6 XP = 14 total): Expertise (order's
+  religion) +2, Foundation (any 1) +1, Spellcraft +1, Pick 2: any Knowledge-category skill +1 each
+
+**Impoverished** -- base: Area (origin) +1 (1 XP)
+- *Back Woods* (7 XP; + Expand Single Weapon -> Tight Weapon Group feat x1, 6 XP = 14 total):
+  Athletics +2, Endurance +2, Pick 1: Weapon (Short Bow), Weapon (Dagger), Weapon (Short Spear),
+  Weapon (Club), or Weapon (Quarterstaff) +1, Pick 1: Tight Weapon Group (Bows), Tight Weapon Group
+  (Light Blades), Tight Weapon Group (Spears), or Tight Weapon Group (Staves) +1, Survival (origin
+  climate) +1
+- *Orphan* (13 XP, no feat = 14 total): Blend +2, Bluff +1, Diplomacy +1, Scrounge +2, Pick 1:
+  Streetwise or Survival (origin climate) +2, Craft (any 2) +1 each, Pick 3: any Knowledge-category
+  skill +1 each
+- *Street* (7 XP; + Expand Single Weapon -> Tight Weapon Group feat x1, 6 XP = 14 total): Pick 1:
+  Bluff or Diplomacy +1, Pick 1: Tight Weapon Group (Light Blades) or Tight Weapon Group (Clubs) +1,
+  Scrounge +1, Streetwise +2, Unarmed Combat (Brawling) +2
+
+**Unsettled** -- base: Endurance +1, Language (any 1 non-origin) +1 (2 XP)
+- *Drifters* (12 XP, no feat = 14 total): Bluff +1, Area (any 2) +1 each, Scrounge +2, Pick 7: any
+  skill +1 each -- deliberately unrestricted, reflecting how widely a drifter's interests/skillset
+  can vary
+- *Explorers* (12 XP, no feat = 14 total): Area (any 3) +1 each, History (any 3) +1 each, Language
+  (any 1 non-origin) +1, Survival (any 2) +1 each, Pick 3: any Knowledge-category skill +1 each
+- *On the Run* (12 XP, no feat = 14 total): Blend +2, Bluff +2, Diplomacy +2, Disguise +2, Expertise
+  (any 1) +1, Perform (Mimic) +1, Stealth +2
+- *Nomads* (12 XP, no feat = 14 total): Area (nomadic route) +2, Craft (any 1) +2, Handle Animal +2,
+  Teamster +2, Survival (any 2) +2 each
+- *Pilgrims* (12 XP, no feat = 14 total): Area (pilgrimage route) +2, Culture (pilgrimage route) +2,
+  Culture (any 1) +1, History (pilgrimage route) +2, Language (any 1) +1, Survival (pilgrimage route)
+  +2, Pick 2: any Knowledge-category skill +1 each
 
 ---
 
